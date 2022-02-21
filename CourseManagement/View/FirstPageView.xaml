@@ -1,0 +1,395 @@
+﻿<UserControl x:Class="StudentManagementSystem.View.FirstPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudentManagementSystem.View"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:lvcs="clr-namespace:LiveCharts;assembly=LiveCharts"
+             xmlns:zxc="clr-namespace:Controls;assembly=Controls"
+             xmlns:converter="clr-namespace:StudentManagementSystem.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1000" SnapsToDevicePixels="True">
+    <UserControl.Resources>
+        <converter:BoolToArrowConverter x:Key="BoolToArrowConverter"/>
+        <converter:BoolToBrushConverter x:Key="BoolToBrushConverter"/>
+        
+        <Style x:Key="BorderTextBlock" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource Iconfont}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <!--滚动条,设置隐藏-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="360"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--监控数据3个表格-->
+            <UniformGrid Columns="4">
+
+                <Border CornerRadius="5" Background="White" Margin="10">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="96" Opacity="0.4" Direction="270"/>
+                    </Border.Effect>
+                    <Grid>
+                        <lvc:CartesianChart Margin="0 0 0 45">
+                            <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Stroke="#FECC71" Fill="#FFF2DE" PointGeometrySize="0" Values="1,2,3,40,5,6,7"/>
+                            </lvc:CartesianChart.Series>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis ShowLabels="False"/>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis ShowLabels="False" MinValue="0" MaxValue="100"/>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Border Width="20" Height="20" CornerRadius="3" Background="#99FFE5B8">
+                                <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#B2F9AF28" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <TextBlock Text="32%" Margin="5 0 0 0" Foreground="Orange" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Margin="15 3" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="#99FFE5B8">
+                                <TextBlock Text="&#xe625;" Foreground="#7FF9AF28" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <StackPanel Margin="15 0 0 0">
+                                <TextBlock Text="监控数据一" FontSize="12" Foreground="#FF686868"/>
+                                <TextBlock Text="32%" FontSize="16" FontWeight="Bold" Foreground="#FF686868"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Margin="10" CornerRadius="5" Background="White">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
+                    </Border.Effect>
+                    <Grid>
+                        <lvc:CartesianChart Margin="0 0 0 45">
+                            <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Stroke="#FF7261" Fill="#ffe3e0" PointGeometrySize="0" Values="1,20,3,40,5,6,7"/>
+                            </lvc:CartesianChart.Series>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis ShowLabels="False"/>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis ShowLabels="False" MinValue="0" MaxValue="100"/>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Border Width="20" Height="20" Background="#7FEA968C" CornerRadius="3">
+                                <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#7FE65534" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <TextBlock Text="32%" Margin="5 0 0 0" VerticalAlignment="Center" Foreground="#CCFF2F00"/>
+                        </StackPanel>
+                        <StackPanel Margin="15 3" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="#7FEA968C">
+                                <TextBlock Text="&#xe639;" Foreground="#7FE65534" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <StackPanel Margin="15 0 0 0">
+                                <TextBlock Text="监控数据二" Foreground="#FF686868" FontSize="12"/>
+                                <TextBlock Text="32%" FontSize="16" FontWeight="Bold" Foreground="#FF686868"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Margin="10" CornerRadius="5" Background="White">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
+                    </Border.Effect>
+                    <Grid>
+                        <lvc:CartesianChart Margin="0 0 0 45">
+                            <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Stroke="#FECC71" Fill="#FFF2DE" PointGeometrySize="0" Values="1,2,3,40,5,6,7"/>
+                            </lvc:CartesianChart.Series>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis ShowLabels="False"/>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis ShowLabels="False" MinValue="0" MaxValue="100"/>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Border Width="20" Height="20" CornerRadius="3" Background="#99FFDA9B">
+                                <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#FFF5BF5B" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <TextBlock Text="32%" Margin="5 0 0 0" Foreground="#99FFA400" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Margin="15 3" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="#99FFDA9B">
+                                <TextBlock Text="&#xe625;" Foreground="#99C57F00" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <StackPanel Margin="15 0 0 0">
+                                <TextBlock Text="监控数据三" FontSize="12" Foreground="#FF686868"/>
+                                <TextBlock Text="32%" FontSize="16" FontWeight="Bold" Foreground="#FF686868"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Margin="10" CornerRadius="5" Background="White">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
+                    </Border.Effect>
+                    <Grid>
+                        <lvc:CartesianChart Margin="0 0 0 45">
+                            <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Stroke="#FF6ED678" Fill="#FFDAFBD9" PointGeometrySize="0" Values="17,2,3,40,5,16,7"/>
+                            </lvc:CartesianChart.Series>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis ShowLabels="False"/>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis ShowLabels="False" MinValue="0" MaxValue="100"/>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Border Width="20" Height="20" CornerRadius="3" Background="#EDFAF0">
+                                <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#7F00911A" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <TextBlock Text="32%" Margin="5 0 0 0" Foreground="#7ADA95" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Margin="15 3" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="#7F92CB81">
+                                <TextBlock Text="&#xe639;" Foreground="#7F00911A" Style="{StaticResource BorderTextBlock}"/>
+                            </Border>
+                            <StackPanel Margin="15 0 0 0">
+                                <TextBlock Text="监控数据四" FontSize="12" Foreground="#FF686868"/>
+                                <TextBlock Text="32%" FontSize="16" FontWeight="Bold" Foreground="#FF686868"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </UniformGrid>
+
+            <Grid Grid.Row="1" Margin="10 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--学员访问情况监控-->
+                <Grid Margin="0 0 10 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="学生访问情况监控" Foreground="#3f3c5d" 
+                           VerticalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Hyperlink>详情</Hyperlink>
+                    </TextBlock>
+                    <Border Grid.Row="1" CornerRadius="5" Background="White" >
+                        <Border.Effect>
+                            <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <TextBlock Text="当前使用率" FontSize="14" Foreground="#3f4c5d"/>
+                                <TextBlock Text="+120%" FontSize="18" FontWeight="Bold" Foreground="#3f4c5d" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Margin="0 0 0 10" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Border Width="20" Height="20" CornerRadius="3" Background="#FFE1F2F6">
+                                        <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#FF3BC8D7" Style="{StaticResource BorderTextBlock}"/>
+                                    </Border>
+                                    <TextBlock Text="32%" Margin="5 0 0 0" Foreground="#FF3BC8D7" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="最高使用率" Foreground="#3f4c5d" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <lvc:CartesianChart Margin="10" Grid.Column="1">
+                                <lvc:CartesianChart.Series>
+                                    <lvc:LineSeries Stroke="#3bc8d7" Fill="#e1f2f6" PointGeometrySize="0" Values="1,32,3,40,5,69,100"/>
+                                </lvc:CartesianChart.Series>
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis ShowLabels="False"/>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis ShowLabels="True" MinValue="0" MaxValue="100"/>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <!--文字部分-->
+                <Grid Grid.Row="1" Margin="0 0 10 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="学生管理系统" FontSize="15" FontWeight="Bold" Foreground="#3f4c5d" VerticalAlignment="Center"/>
+                    <Border Grid.Row="2" CornerRadius="10" Background="#FF3B4F81">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#f2f2f2" ShadowDepth="10" BlurRadius="105" Direction="10" Opacity="0.4"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Hi，Welcome to the student management system" Margin="15,0,0,10" Foreground="White"/>
+                                <TextBlock Name="Introduction"
+                                       LineHeight="20" Margin="15,0,0,0" Foreground="#B3E9F1" TextWrapping="Wrap" />
+                            </StackPanel>
+                            <Image Grid.Column="1" Width="60" Height="60" Source="/View/12.jpg"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <!--指针仪表数据监控-->
+                <Grid Grid.Column="1" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="指针仪表数据监控" FontSize="15" Foreground="#3F4C5D" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Border Grid.Row="1" CornerRadius="10" Margin="10 0 0 0">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="#EDFAF0" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Border Width="20" Height="20" CornerRadius="3" Background="#4CEE9B9B">
+                                    <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#FFE08686" Style="{StaticResource BorderTextBlock}"/>
+                                </Border>
+                                <TextBlock Text="32%" Margin="5 0 0 0" Foreground="red" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="30,0,0,20" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <TextBlock Text="当前使用率" FontSize="14" Foreground="#3F4C5D"/>
+                                <TextBlock Text="+20%" FontSize="18" FontWeight="Bold" Foreground="#3F4C5D" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="0,0,30,20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Border Width="20" Height="20" CornerRadius="5" Background="#FFC3E6CC">
+                                        <TextBlock Text="&#xe6f9;" FontSize="7" Foreground="#FF8BBB99" Style="{StaticResource BorderTextBlock}"/>
+                                    </Border>
+                                    <TextBlock Text="32%" Margin="5,0,0,0" Foreground="#FF8BBB99" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="最高使用率" FontSize="12" Foreground="#3F4C5D" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <zxc:Instrument Margin="0,20,0,40"
+                                        Value="{Binding InstrumentValue}"
+                                        Minimum="-10"
+                                        Maximum="90"
+                                        Interval="10"
+                                        ScaleTextSize="12"
+                                        ScaleBrush="White">
+                                <zxc:Instrument.PlateBackground>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF7EDEC8"/>
+                                        <GradientStop Color="#FF84E299" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </zxc:Instrument.PlateBackground>
+                            </zxc:Instrument>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="10,0" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="课程总览" Foreground="#3F4C5D" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" >
+                    <Hyperlink>详情</Hyperlink>
+                </TextBlock>
+                <!--课程列表-->
+                <ItemsControl ItemsSource="{Binding CourseSeriesList}" Grid.Row="1">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border Background="White" CornerRadius="10" Margin="0,5" >
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.2" Direction="0"/>
+                                </Border.Effect>
+                                <Grid Height="70">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="#DDD" BorderThickness="0,0,1,0" Margin="0,10"/>
+                                    <!--分割线-->
+                                    <Border BorderBrush="#DDD" BorderThickness="0,0,1,0" Margin="0,10" Grid.Column="1"/>
+                                    <!--分割线-->
+                                    <TextBlock Text="{Binding CourseName}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#444"/>
+
+                                    <!--中间列图表-->
+                                    <lvc:PieChart Grid.Column="1" LegendLocation="Right" InnerRadius="15"  Margin="0,0,15,0" Series="{Binding SeriesColection}">
+                                        <lvc:PieChart.ChartLegend>
+                                            <lvc:DefaultLegend BulletSize="10"/>
+                                        </lvc:PieChart.ChartLegend>
+                                        <lvc:PieChart.DataTooltip>
+                                            <lvc:DefaultTooltip BulletSize="10"/>
+                                        </lvc:PieChart.DataTooltip>
+                                    </lvc:PieChart>
+
+                                    <!--右边列表-->
+                                    <ItemsControl Grid.Column="2" ItemsSource="{Binding SeriesList}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid Columns="{Binding DataContext.ItemCount,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition MinHeight="24"/>
+                                                        <RowDefinition MinHeight="24"/>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Text="{Binding SeriesName}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding CurrentValue}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding IsGrowing,Converter={StaticResource BoolToArrowConverter}}" 
+                                                               Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10 0 0 0" 
+                                                               Foreground="{Binding IsGrowing,Converter={StaticResource BoolToBrushConverter}}"/>
+                                                    <TextBlock Text="{Binding ChangeRate}" Grid.Row="1" Grid.Column="1" 
+                                                               VerticalAlignment="Center" Margin="10 0 0 0"
+                                                               Foreground="{Binding IsGrowing,Converter={StaticResource BoolToBrushConverter}}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

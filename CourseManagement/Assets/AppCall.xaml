@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Assets/Style/ContactsViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/DefaultStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/DefaultTemplate.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/LoginViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/MainViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/StudentsStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/AddDataViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/SearchViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/MessageWindowStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/TextbookViewStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <FontFamily x:Key="Iconfont">pack://application:,,,/StudentManagementSystem;component/Assets/Typeface/#iconfont</FontFamily>
+</ResourceDictionary>

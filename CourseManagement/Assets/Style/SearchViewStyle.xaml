@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="LookupButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Width" Value="220"/>
+        <Setter Property="Height" Value="74"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Content" Value="查    找"/>
+        <Setter Property="Background" Value="#FF3B4F81"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Iconfont}"/>
+        <Setter Property="Template" Value="{DynamicResource CompleteCancelButtonTemplate}"/>
+    </Style>
+
+    <Style x:Key="LookupTextBox" TargetType="TextBox">
+        <Setter Property="Width" Value="450"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{DynamicResource AddDataTextBoxTemplate}"/>
+    </Style>
+</ResourceDictionary>

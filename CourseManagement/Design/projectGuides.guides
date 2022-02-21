@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ProjectGuidesConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProjectItemGuides>
+    <ProjectItemGuide TargetFile="View\AddStudentWindow.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Left" Position="756" />
+            <Guide Alignment="Left" Position="420" />
+            <Guide Alignment="Left" Position="744" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+  </ProjectItemGuides>
+</ProjectGuidesConfiguration>

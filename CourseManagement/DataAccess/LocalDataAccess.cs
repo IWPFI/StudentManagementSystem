@@ -406,7 +406,7 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"update student set  Student_ID=('" + GetVs[0] + "'), Student_Name=('" + GetVs[1] + "'),Student_Sex=('" + GetVs[2] + "'),Student_Birthday=" + GetVs[3] + ",Student_Phone=('" + GetVs[5] + "'),Student_Grade=('" + GetVs[4] + "'),Student_Site=('" + GetVs[6] + "') where Student_ID=('" + GetVs[0] + "')  ";
+                    string sql = "update student set  Student_ID=('" + GetVs[0] + "'), Student_Name=('" + GetVs[1] + "'), Student_Sex=('" + GetVs[2] + "'), Student_Birthday='" + GetVs[3] + "', Student_Phone=('" + GetVs[5] + "'), Student_Grade=('" + GetVs[4] + "'), Student_Site=('" + GetVs[6] + "') where Student_ID=('" + GetVs[0] + "')";
                     //string sql = "update student set  Student_ID=( 191304005), Student_Name=('i'),Student_Sex=( 1 ),Student_Age=(12),Student_Phone=(12345678905),Student_Grade=('19级旅游综合班'),Student_Site=('北京天安门') where Student_ID=(191304005)  ";
                     //string sql = @"insert into student(Student_ID, Student_Name,Student_Sex,Student_Age,Student_Phone,Student_Grade,Student_Site)
                     //               values('" + GetVs[1] + "','" + GetVs[0] + "','" + GetVs[2] + "','" + GetVs[3] + "','" + GetVs[5] + "','" + GetVs[4] + "','" + GetVs[6] + "')";

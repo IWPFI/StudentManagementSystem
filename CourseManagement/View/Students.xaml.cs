@@ -66,25 +66,18 @@ namespace StudentManagementSystem.View
             {
                 GetVs[0] = xingming.Text;
                 GetVs[1] = xuehao.Text;
+                if (shengri.Text != "")
+                {
+                    GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
+                }
+                else
+                {
+                    GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
+                }
                 GetVs[2] = xingbie.Text;
                 GetVs[4] = bangji.Text;
                 GetVs[5] = dianhau.Text;
                 GetVs[6] = dizhi.Text;
-                try
-                {
-                    if (shengri.Text != "")
-                    {
-                        GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
-                    }
-                    else
-                    {
-                        GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("年龄字段必须是整数");
-                }
             }
             else
             {

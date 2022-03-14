@@ -71,12 +71,13 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding CategoryName}" Margin="5 0" GroupName="course" IsChecked="{Binding IsSelected}" Template="{DynamicResource CategoryButtonTemplate}" />
+                                    <RadioButton Content="{Binding CategoryName}" Margin="5 0" GroupName="course"
+                                                 IsChecked="{Binding IsSelected}" Template="{DynamicResource CategoryButtonTemplate}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="技术分类" Margin="0 0 10 0" Foreground="#666" VerticalAlignment="Center"/>
                         <ItemsControl ItemsSource="{Binding CategoryTechnology}">
@@ -92,7 +93,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="授课老师" Margin="0 0 10 0" Foreground="#666" VerticalAlignment="Center"/>
                         <ItemsControl ItemsSource="{Binding CategoryTeacher}">
@@ -107,7 +108,8 @@
                                                  IsChecked="{Binding IsSelected}" Margin="5 0" 
                                                  Template="{DynamicResource CategoryButtonTemplate}" 
                                                  Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
-                                                 CommandParameter="{Binding CategoryName}"/>--><!--方法一-->
+                                                 CommandParameter="{Binding CategoryName}"/>-->
+                                    <!--方法一-->
                                     <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected}"
                                                  GroupName="teacher"
                                                  Template="{DynamicResource CategoryButtonTemplate}" Margin="5,0"

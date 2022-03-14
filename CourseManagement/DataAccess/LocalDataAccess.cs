@@ -562,6 +562,7 @@ order by parameters.course_id,c.platform_id";
             aaa = a;
             return a;
         }
+
         /// <summary>
         /// 搜索学生信息
         /// </summary>
@@ -608,7 +609,6 @@ order by parameters.course_id,c.platform_id";
                                     model.StudentID = dr.Field<string>("Student_ID");//学号
                                     model.StudentName = dr.Field<string>("Student_Name");//姓名
                                     model.StudentSex = dr.Field<int>("Student_Sex");//性别
-                                    model.StudentAge = dr.Field<int>("Student_Age");//年龄
                                     model.StudentPhone = dr.Field<string>("Student_Phone");//电话
                                     model.StudentGrade = dr.Field<string>("Student_Grade");//班级
                                     model.StudentSite = dr.Field<string>("Student_Site");//地址

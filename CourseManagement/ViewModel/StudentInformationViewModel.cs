@@ -13,40 +13,12 @@ namespace StudentManagementSystem.ViewModel
 
         public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
 
-        //public ObservableCollection<StudentInformation> SearchStudentsList { get; set; }
-
-        //public ObservableCollection<StudentInformation> AmendStudenList { get; set; }
-        //public ObservableCollection<StudentInformation> DeleteStudenList { get; set; }
-        //public ObservableCollection<StudentInformation> AddStudenList { get; set; }
-
         public CommandBase OpenStudentId { get; set; }//点击Id时执行
 
         public StudentInformationViewModel()
         {
-            //StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
-
-            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails());//卡片信息
-
-
-            //if (MainView.search)
-            //{
-            //    StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents());
-            //    MainView.search = false;
-            //}
-            //else
-            //{
-            //    StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
-            //}
-
-            if (MainView.search)
-            {
-                SearchStudents();
-            }
-            else
-            {
-                NoSearchStudents();
-            }
-
+            GetSearchStudents();
+            StudentsList();
 
             OpenStudentId = new CommandBase();
             OpenStudentId.DoCanExecute = new Func<object, bool>((o) => true);
@@ -56,12 +28,15 @@ namespace StudentManagementSystem.ViewModel
             });
         }
 
+        //搜索学生信息
         public void SearchStudents()
         {
             StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents());
             MainView.search = false;
         }
-        public void NoSearchStudents()
+
+        //获取学生列表
+        public void GetSearchStudents()
         {
             StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
         }
@@ -69,10 +44,14 @@ namespace StudentManagementSystem.ViewModel
         public string InitStudentList(string a)
         {
             LocalDataAccess.GetInstance().Chuangdi(a);
-
             Students students = new Students();
             students.ShowDialog();
             return a;
+        }
+
+        private void StudentsList()
+        {
+            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails());//卡片信息
         }
     }
 }

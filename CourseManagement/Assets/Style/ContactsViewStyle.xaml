@@ -4,6 +4,7 @@
     <!--学生列表-->
     <Style x:Key="BorderStyle" TargetType="Border">
         <Setter Property="Height" Value="80"/>
+        <Setter Property="Panel.ZIndex" Value="1"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="Background" Value="#FFEEF4FF"/>
         <Setter Property="Effect" >
@@ -22,7 +23,7 @@
     <!--刷新界面按钮-->
     <Style x:Key="ContactsFlushbutton" TargetType="Button">
         <Setter Property="FontSize" Value="20"/>
-        <Setter Property="Panel.ZIndex" Value="1"/>
+        <Setter Property="Panel.ZIndex" Value="4"/>
         <Setter Property="Margin" Value="0 0 0 150"/>
         <Setter Property="Content" Value="&#xe6a7;"/>
         <Setter Property="BorderThickness" Value="0 0 0 2"/>
@@ -69,7 +70,7 @@
 
     
     <ControlTemplate x:Key="ContactsAddButton" TargetType="{x:Type Button}">
-        <Border x:Name="border" SnapsToDevicePixels="true"  
+        <Border x:Name="border" SnapsToDevicePixels="true" 
                 Height="50" Width="24" CornerRadius="10 0 0 10"
                 BorderThickness="{TemplateBinding BorderThickness}" 
                 Background="{TemplateBinding Background}" 
@@ -100,7 +101,7 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Width" From="50" To="24" Duration="0:0:0">
+                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Width" From="50" To="24" Duration="0:0:1">
                                 <DoubleAnimation.EasingFunction>
                                     <QuarticEase EasingMode="EaseOut"/>
                                 </DoubleAnimation.EasingFunction>

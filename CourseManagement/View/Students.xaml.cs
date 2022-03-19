@@ -17,25 +17,54 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace StudentManagementSystem.View
 {
     /// <summary>
     /// Students.xaml 的交互逻辑
     /// </summary>
-    public partial class Students : Window
+    public partial class Students : Window, INotifyPropertyChanged
     {
-
         public Students()
         {
             InitializeComponent();
 
             GridDataContext.DataContext = new StudentInformationViewModel().StudentsDetailsList;
-            //if (alter)
-            //{
-            //    GridDataContext.DataContext =AmendStudenList;
-            //}
+
+            Binding binding = new Binding();
+            binding.Source = this;
+            binding.Path = new PropertyPath("Age");
+            BindingOperations.SetBinding(this.nianling, TextBox.TextProperty, binding);
+
+            Loaded += (s, e) =>
+            {
+                DateTime dt = Convert.ToDateTime(shengri.Text);
+                GetAgeByBirthdate(dt);
+            };
         }
+
+        private string[] GetVs = new string[7];
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void DoNotify([CallerMemberName] string propName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));//达到通知效果
+        }
+
+        private int age;
+
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                age = value;
+                DoNotify();
+            }
+        }
+
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -56,8 +85,6 @@ namespace StudentManagementSystem.View
             LocalDataAccess.GetInstance().Transmit(GetVs);
             DeleteStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDelete());
         }
-        //private bool _delete = false;
-        private string[] GetVs = new string[7];
 
         //获取数据
         private void Content()
@@ -66,25 +93,18 @@ namespace StudentManagementSystem.View
             {
                 GetVs[0] = xingming.Text;
                 GetVs[1] = xuehao.Text;
+                if (shengri.Text != "")
+                {
+                    GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
+                }
+                else
+                {
+                    GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
+                }
                 GetVs[2] = xingbie.Text;
                 GetVs[4] = bangji.Text;
                 GetVs[5] = dianhau.Text;
                 GetVs[6] = dizhi.Text;
-                try
-                {
-                    if (shengri.Text != "")
-                    {
-                        GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
-                    }
-                    else
-                    {
-                        GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("年龄字段必须是整数");
-                }
             }
             else
             {
@@ -128,6 +148,16 @@ namespace StudentManagementSystem.View
                 this.Close();
             }
 
+        }
+        public int GetAgeByBirthdate(DateTime birthdate)
+        {
+            DateTime now = DateTime.Now;
+            Age = now.Year - birthdate.Year;
+            if (now.Month < birthdate.Month || (now.Month == birthdate.Month && now.Day < birthdate.Day))
+            {
+                Age--;
+            }
+            return Age < 0 ? 0 : Age;
         }
 
         //private void ImgBorder_MouseUp(object sender, RoutedEventArgs e)

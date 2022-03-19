@@ -62,13 +62,17 @@ namespace StudentManagementSystem.ViewModel
             });
 
             Stochastic();
+
+            LoginModel.UserName = "1";
+            LoginModel.Password = "1";
         }
 
         public void Stochastic()//用于验证码随机数
         {
             //获取随机数
             string i = new Random().Next(1000, 9999).ToString();
-            LoginModel.RandomField = i;
+            //LoginModel.RandomField = i;
+            LoginModel.RandomField = "1";
         }
 
         private void DoLogin(object o)//主要的登录逻辑在DoLogin这个方法里面

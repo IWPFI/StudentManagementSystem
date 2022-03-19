@@ -406,7 +406,7 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"update student set  Student_ID=('" + GetVs[0] + "'), Student_Name=('" + GetVs[1] + "'),Student_Sex=('" + GetVs[2] + "'),Student_Birthday=" + GetVs[3] + ",Student_Phone=('" + GetVs[5] + "'),Student_Grade=('" + GetVs[4] + "'),Student_Site=('" + GetVs[6] + "') where Student_ID=('" + GetVs[0] + "')  ";
+                    string sql = "update student set  Student_ID=('" + GetVs[0] + "'), Student_Name=('" + GetVs[1] + "'), Student_Sex=('" + GetVs[2] + "'), Student_Birthday='" + GetVs[3] + "', Student_Phone=('" + GetVs[5] + "'), Student_Grade=('" + GetVs[4] + "'), Student_Site=('" + GetVs[6] + "') where Student_ID=('" + GetVs[0] + "')";
                     //string sql = "update student set  Student_ID=( 191304005), Student_Name=('i'),Student_Sex=( 1 ),Student_Age=(12),Student_Phone=(12345678905),Student_Grade=('19级旅游综合班'),Student_Site=('北京天安门') where Student_ID=(191304005)  ";
                     //string sql = @"insert into student(Student_ID, Student_Name,Student_Sex,Student_Age,Student_Phone,Student_Grade,Student_Site)
                     //               values('" + GetVs[1] + "','" + GetVs[0] + "','" + GetVs[2] + "','" + GetVs[3] + "','" + GetVs[5] + "','" + GetVs[4] + "','" + GetVs[6] + "')";
@@ -562,6 +562,7 @@ order by parameters.course_id,c.platform_id";
             aaa = a;
             return a;
         }
+
         /// <summary>
         /// 搜索学生信息
         /// </summary>
@@ -608,7 +609,6 @@ order by parameters.course_id,c.platform_id";
                                     model.StudentID = dr.Field<string>("Student_ID");//学号
                                     model.StudentName = dr.Field<string>("Student_Name");//姓名
                                     model.StudentSex = dr.Field<int>("Student_Sex");//性别
-                                    model.StudentAge = dr.Field<int>("Student_Age");//年龄
                                     model.StudentPhone = dr.Field<string>("Student_Phone");//电话
                                     model.StudentGrade = dr.Field<string>("Student_Grade");//班级
                                     model.StudentSite = dr.Field<string>("Student_Site");//地址

@@ -49,7 +49,7 @@
                                  Background="Transparent" BorderBrush="Gray" Foreground="White"
                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
-                    <TextBlock Text="** 学号字段暂不支持修改，如需要请删除后重新添加，或联系管理员开通此功能." Margin="5,0,0,5" TextWrapping="Wrap" Foreground="White" FontSize="10" VerticalAlignment="Bottom" />
+                    <TextBlock Text="** 学号字段暂不支持修改，如需要请删除后重新添加，或联系管理员开通此功能." Visibility="Collapsed" Margin="5,0,0,5" TextWrapping="Wrap" Foreground="White" FontSize="10" VerticalAlignment="Bottom" />
                 </Grid>
             </Border>
             <Border Grid.Column="1" CornerRadius="0 10 10 0">
@@ -106,7 +106,7 @@
 
                             <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="年龄：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="nianling" Text="{Binding StudentAge}" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="nianling" Text="{Binding Students.Age,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
                             <!-- 默认
@@ -117,7 +117,7 @@
                             -->
                             <StackPanel Grid.Row="2" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="电话：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="dianhau" Text="{Binding StudentPhone}" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="dianhau" Text="{Binding StudentPhone}" MaxLength="13" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
                             <!--生日-->

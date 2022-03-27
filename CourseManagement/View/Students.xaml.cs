@@ -122,6 +122,7 @@ namespace StudentManagementSystem.View
                 Content();
                 XiugaiXX();
                 MessageWindow.ShowWindow("修改成功", "修改成功");
+                Close();
             }
         }
 
@@ -139,12 +140,12 @@ namespace StudentManagementSystem.View
         private void DelectButton_Click(object sender, RoutedEventArgs e)
         {
             bool? r = false;
-            r = MessageWindow.ShowWindow("删除后就不能还原了哦", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (r != null && r == true)
             {
                 Content();
                 Shanchu();
-                MessageWindow.ShowWindow("删除成功");
+                MessageWindow.ShowWindow("删除成功,请刷新数据库。");
                 this.Close();
             }
 

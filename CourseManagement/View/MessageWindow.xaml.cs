@@ -111,7 +111,7 @@ namespace StudentManagementSystem.View
         /// <returns></returns>
         public static bool? ShowWindow(string message, string title, MessageBoxButton button, MessageBoxImage image, bool topmost = false)
         {
-            #region 学习笔记[4]
+            #region 学习笔记
             /* MessageBoxButton枚举：指定显示在消息框上的按钮; 用作 Show 方法的参数。
                https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.messageboxbutton?redirectedfrom=MSDN&view=windowsdesktop-6.0 */
 
@@ -229,7 +229,7 @@ namespace StudentManagementSystem.View
             return result;
         }
 
-        #region 学习笔记[5]
+        #region 学习笔记
         /* Window.DialogResult 属性：获取或设置对话框结果值，此值是从 ShowDialog 方法返回的值。
            https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.window.dialogresult?redirectedfrom=MSDN&view=windowsdesktop-6.0#System_Windows_Window_DialogResult */
 

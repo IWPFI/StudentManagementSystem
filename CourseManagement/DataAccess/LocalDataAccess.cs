@@ -297,7 +297,16 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"select * from student";
+                    string sql = @"
+SELECT
+	id,
+	name,
+	number,
+	grade 
+FROM
+	students
+WHERE
+    is_delete = 0;";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -309,20 +318,15 @@ order by parameters.course_id,c.platform_id";
 
                         foreach (DataRow dr in table.AsEnumerable())
                         {
-                            string tempId = dr.Field<string>("Student_ID");
+                            string tempId = dr.Field<string>("number");
                             if (courseId != tempId)
                             {
                                 courseId = tempId;
 
                                 model = new StudentInformation();
-                                model.StudentID = dr.Field<string>("Student_ID");
-                                model.StudentName = dr.Field<string>("Student_Name");
-                                model.StudentSex = dr.Field<int>("Student_Sex");
-                                model.StudentGrade = dr.Field<string>("Student_Grade");
-                                //model.StudentAge = dr.Field<int>("Student_Age");
-                                //model.StudentBirthday = dr.Field<string>("Student_Birthday");
-                                //model.StudentPhone = dr.Field<string>("Student_Phone");
-                                //model.StudentSite = dr.Field<string>("Student_Site");
+                                model.StudentID = dr.Field<string>("number");
+                                model.StudentName = dr.Field<string>("name");
+                                model.StudentGrade = dr.Field<string>("grade");
                                 result.Add(model);
                             }
                         }
@@ -351,7 +355,11 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"select * from student where Student_ID=('" + a + "')";
+                    string sql = @"SELECT a.id, a.number, a.name, a.sex, a.birthday, a.grade, a.site, a.phone, b.politics_status, c.nations_name 
+FROM dbo.students AS a 
+INNER JOIN dbo.politics_status AS b ON a.nation_id= b.id	
+INNER JOIN dbo.nations AS c ON a.nation_id= c.id 
+WHERE a.number = ('" + a + "') AND  is_delete = 0;";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -363,20 +371,19 @@ order by parameters.course_id,c.platform_id";
 
                         foreach (DataRow dr in table.AsEnumerable())
                         {
-                            string tempId = dr.Field<string>("Student_ID");
+                            string tempId = dr.Field<string>("number");
                             if (courseId != tempId)
                             {
                                 courseId = tempId;
 
                                 model = new StudentInformation();
-                                model.StudentID = dr.Field<string>("Student_ID");//学号
-                                model.StudentName = dr.Field<string>("Student_Name");//姓名
-                                model.StudentSex = dr.Field<int>("Student_Sex");//性别
-                                //model.StudentAge = dr.Field<int>("Student_Age");//年龄
-                                model.StudentPhone = dr.Field<string>("Student_Phone");//电话
-                                model.StudentGrade = dr.Field<string>("Student_Grade");//班级
-                                model.StudentSite = dr.Field<string>("Student_Site");//地址
-                                model.StudentBirthday = dr.Field<DateTime>("Student_Birthday");//生日
+                                model.StudentID = dr.Field<string>("number");//学号
+                                model.StudentName = dr.Field<string>("name");//姓名
+                                model.StudentSex = dr.Field<int>("sex");//性别
+                                model.StudentPhone = dr.Field<string>("phone");//电话
+                                model.StudentGrade = dr.Field<string>("grade");//班级
+                                model.StudentSite = dr.Field<string>("site");//地址
+                                model.StudentBirthday = dr.Field<DateTime>("birthday");//生日
                                 result.Add(model);
                             }
                         }
@@ -406,10 +413,9 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = "update student set  Student_ID=('" + GetVs[0] + "'), Student_Name=('" + GetVs[1] + "'), Student_Sex=('" + GetVs[2] + "'), Student_Birthday='" + GetVs[3] + "', Student_Phone=('" + GetVs[5] + "'), Student_Grade=('" + GetVs[4] + "'), Student_Site=('" + GetVs[6] + "') where Student_ID=('" + GetVs[0] + "')";
-                    //string sql = "update student set  Student_ID=( 191304005), Student_Name=('i'),Student_Sex=( 1 ),Student_Age=(12),Student_Phone=(12345678905),Student_Grade=('19级旅游综合班'),Student_Site=('北京天安门') where Student_ID=(191304005)  ";
-                    //string sql = @"insert into student(Student_ID, Student_Name,Student_Sex,Student_Age,Student_Phone,Student_Grade,Student_Site)
-                    //               values('" + GetVs[1] + "','" + GetVs[0] + "','" + GetVs[2] + "','" + GetVs[3] + "','" + GetVs[5] + "','" + GetVs[4] + "','" + GetVs[6] + "')";
+                    string sql = "UPDATE students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
+                        "sex = ('" + GetVs[2] + "'),birthday = '" + GetVs[3] + "',phone = ('" + GetVs[5] + "'),grade = ('" + GetVs[4] + "')," +
+                        "site = ('" + GetVs[6] + "')WHERE number = ('" + GetVs[0] + "')";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -418,30 +424,6 @@ order by parameters.course_id,c.platform_id";
                     {
                         MessageBox.Show("");
                     }
-
-                    //    string courseId = "";
-                    //    StudentInformation model = null;
-
-                    //    foreach (DataRow dr in table.AsEnumerable())
-                    //    {
-                    //        string tempId = dr.Field<string>("Student_ID");
-                    //        if (courseId != tempId)
-                    //        {
-                    //            courseId = tempId;
-
-                    //            model = new StudentInformation();
-                    //            model.StudentID = dr.Field<string>("Student_ID");//学号
-                    //            model.StudentName = dr.Field<string>("Student_Name");//姓名
-                    //            model.StudentSex = dr.Field<int>("Student_Sex");//性别
-                    //            //model.StudentAge = dr.Field<int>("Student_Age");//年龄
-                    //            model.StudentPhone = dr.Field<string>("Student_Phone");//电话
-                    //            model.StudentGrade = dr.Field<string>("Student_Grade");//班级
-                    //            model.StudentSite = dr.Field<string>("Student_Site");//地址
-                    //            model.StudentBirthday = dr.Field<DateTime>("Student_Birthday");//生日
-                    //            result.Add(model);
-                    //        }
-                    //    }
-                    //}
                 }
                 return result;
             }
@@ -466,7 +448,11 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"DELETE FROM student WHERE  Student_ID=('" + GetVs[0] + "') ";
+                    string sql = @"
+UPDATE students 
+SET is_delete = 1, gmt_modified = GETDATE()
+WHERE
+	number = ( '" + GetVs[0] + "' )";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -496,7 +482,7 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    #region 学习笔记[9]
+                    #region 学习笔记
                     /* SqlConnection.CreateCommand 方法：创建并返回一个与 SqlConnection 关联的 SqlCommand 对象；
                        https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.createcommand?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlConnection_CreateCommand */
 
@@ -519,14 +505,7 @@ order by parameters.course_id,c.platform_id";
                     #endregion
 
                     comm = conn.CreateCommand();
-                    comm.CommandText = "select * from student where Student_ID=('" + GetAdd[0] + "')";
-
-                    //对于 UPDATE、INSERT 和 DELETE 语句，返回值为该命令所影响的行数。 对于其他所有类型的语句，返回值为 -1。不适用此处
-                    //int s = comm.ExecuteNonQuery();
-                    //if (s > 0)
-                    //{
-                    //    MessageWindow.ShowWindow("已存在该学生或输入有误！添加失败！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    //}
+                    comm.CommandText = @"SELECT id FROM students WHERE number = ('" + GetAdd[0] + "')AND is_delete = 0;";
 
                     string s = (string)comm.ExecuteScalar();//ExecuteScalar()一般用来执行只有一行一列放回值的SQL查询
                     if (s != null)
@@ -535,8 +514,9 @@ order by parameters.course_id,c.platform_id";
                     }
                     else
                     {
-                        string sql = @"insert into student(Student_ID, Student_Name,Student_Sex,Student_Birthday,Student_Phone,Student_Grade,Student_Site)
-                                   values('" + GetAdd[0] + "','" + GetAdd[1] + "','" + GetAdd[2] + "','" + GetAdd[3] + "','" + GetAdd[4] + "','" + GetAdd[5] + "','" + GetAdd[6] + "')";
+                        string sql = @"INSERT INTO students ( number, name, sex, birthday, phone, grade, site, is_delete, gmt_create )
+VALUES
+	( '" + GetAdd[0] + "', '" + GetAdd[1] + "', '" + GetAdd[2] + "', '" + GetAdd[3] + "', '" + GetAdd[4] + "', '" + GetAdd[5] + "', '" + GetAdd[6] + "', 0, GETDATE() );";
                         adapter = new SqlDataAdapter(sql, conn);
 
                         DataTable table = new DataTable();
@@ -569,7 +549,7 @@ order by parameters.course_id,c.platform_id";
         /// <returns></returns>
         public List<StudentInformation> SearchStudents()
         {
-            #region 学习笔记[12]
+            #region 学习笔记
             //执行多条语句用 ExecuteReader
             //ExecuteReader:返回包含数据的DataReader对象，通常配合DataReader对象用于完成只读、只进的查询操作
             // https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlcommand.executereader?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlCommand_ExecuteReader
@@ -622,6 +602,53 @@ order by parameters.course_id,c.platform_id";
                     else
                     {
                         bool? unused = MessageWindow.ShowWindow("该学生不存在", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return null;
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 获取民族信息
+        /// </summary>
+        public List<NationModel> GeiNation()
+        {
+            try
+            {
+                List<NationModel> result = new List<NationModel>();
+                if (this.DBConnection())
+                {
+                    string sql = @"SELECT * FROM nations";
+                    adapter = new SqlDataAdapter(sql, conn);
+
+                    DataTable table = new DataTable();
+                    int count = adapter.Fill(table);
+                    if (count > 0)//大于零说明有数据
+                    {
+                        string courseId = "";
+                        NationModel model = null;
+
+                        foreach (DataRow dr in table.AsEnumerable())
+                        {
+                            string tempId = dr.Field<string>("id");
+                            if (courseId != tempId)
+                            {
+                                courseId = tempId;
+                                model = new NationModel();
+                                model.Id = dr.Field<int>("id");//学号
+                                model.NationName = dr.Field<string>("nations_name");
+                                result.Add(model);
+                            }
+                        }
                     }
                 }
                 return result;

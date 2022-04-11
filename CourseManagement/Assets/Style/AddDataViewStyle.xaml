@@ -41,7 +41,7 @@
     </Style>
 
     <Style x:Key="AddDataTextBox" TargetType="TextBox">
-        <Setter Property="Width" Value="300"/>
+        <Setter Property="Width" Value="180"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="BorderBrush" Value="Gray"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -62,9 +62,9 @@
     
     <!--生日-->
     <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
-        <Setter Property="Width" Value="300"/>
+        <Setter Property="Width" Value="180"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="Foreground" Value="#bbb"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -241,7 +241,7 @@
 
     <!--性别-->
     <Style x:Key="AddDataSexTextBox" TargetType="TextBox">
-        <Setter Property="Width" Value="300"/>
+        <Setter Property="Width" Value="180"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="BorderBrush" Value="Gray"/>
@@ -259,22 +259,10 @@
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
                 <ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" Height="22" Width="240" Focusable="false"
-                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="10 0"
                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <!--<TextBlock Text="{TemplateBinding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-                <Border Name="back1" Grid.Column="1" CornerRadius="0 10 10 0" BorderThickness="1 0 0 0" BorderBrush="{TemplateBinding BorderBrush}">
-                    <!--
-                    <Expander VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Border Margin="-100 10 0 -80" Background="Gainsboro" CornerRadius="10" Padding="5">
-                            <StackPanel>
-                                <RadioButton Content="男" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="MaleRadioButtonChecked"/>
-                                <RadioButton Content="女" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="FemaleRadioButtonChecked"/>
-                                <RadioButton Content="未知" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="UnknownRadioButtonChecked"/>
-                            </StackPanel>
-                        </Border>
-                    </Expander>
-                    -->
-                </Border>
+                <TextBlock Name="markText" Text="{TemplateBinding Tag}" Margin="10 0" Visibility="Collapsed" Foreground="#BBB" VerticalAlignment="Center"/>
+                <Border Name="back1" Grid.Column="1" CornerRadius="0 10 10 0" BorderThickness="1 0 0 0" BorderBrush="{TemplateBinding BorderBrush}"/>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -282,6 +270,9 @@
                 <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
                 <Setter Property="BorderBrush" TargetName="back1" Value="#FF2DABC7"/>
             </Trigger>
+            <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+                <Setter Property="Visibility" TargetName="markText" Value="Visible"/>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     
@@ -311,14 +302,20 @@
     <ControlTemplate x:Key="AddDataTextBoxTemplate" TargetType="TextBox">
         <Border Name="back" CornerRadius="10" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
                 BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
-            <ScrollViewer Focusable="false" x:Name="PART_ContentHost" 
+            <Grid>
+                <TextBlock Name="markText" Text="{TemplateBinding Tag}" Margin="10 0" Visibility="Collapsed" Foreground="#BBB" VerticalAlignment="Center"/>
+                <ScrollViewer Focusable="false" x:Name="PART_ContentHost" Margin="10 0"
                           HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
             </Trigger>
+            <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+                <Setter Property="Visibility" TargetName="markText" Value="Visible"/>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

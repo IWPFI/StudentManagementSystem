@@ -18,7 +18,7 @@ namespace StudentManagementSystem.View
 
         private void WinMove_LeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            #region 学习笔记[1]
+            #region 学习笔记
             /*
             MouseButtonState：指定鼠标按钮的可能状态 （备注:MouseButtonState 枚举可指定与鼠标按钮的状态相关联的常量）
             Pressed：该按钮处于按下状态；

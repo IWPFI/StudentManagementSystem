@@ -10,8 +10,7 @@
         AllowsTransparency="True"
         Background="{x:Null}" WindowStyle="None" 
         WindowStartupLocation="CenterScreen"
-        MouseLeftButtonDown="WindowsMouseLeftButtonDown"
-        Loaded="Window_Loaded">
+        MouseLeftButtonDown="WindowsMouseLeftButtonDown">
     <Border Margin="10" Style="{StaticResource WinBorderEffect}">
         <Grid>
             <Grid.Background>
@@ -36,6 +35,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -43,64 +43,77 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+
                 <!--学号-->
                 <StackPanel Style="{StaticResource AddDataContentStackPanelStyle}">
                     <Label Name="addIdLabel" Content="&#xe61d;" ToolTip="学号" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addId" Style="{DynamicResource AddDataTextBox}"/>
+                    <TextBox Name="addId" Width="180" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
+                </StackPanel>
+
+                <!--姓名-->
+                <StackPanel Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">
+                    <Label Content="&#xe601;" ToolTip="姓名" Style="{StaticResource AddDataLabelStyle}"/>
+                    <TextBox Name="addName" Tag="请输入姓名" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
 
                 <!--性别-->
-                <!--
-                <StackPanel Grid.Row="0" Grid.Column="1" Panel.ZIndex="3" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe62d;" ToolTip="性别" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addSex" Text="{Binding RadioButtonText}" Style="{DynamicResource AddDataSexTextBox}" />
-                </StackPanel>
-                -->
-                <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="3">
+                <Grid Grid.Column="2">
                     <Label Content="&#xe62d;" ToolTip="性别" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addSex" Text="{Binding RadioButtonText}" Margin="22,0,0,0" Style="{DynamicResource AddDataSexTextBox}"/>
-                    <Expander x:Name="sexRadio" Margin="0,0,40,0" VerticalAlignment="Center" HorizontalAlignment="Right" LostStylusCapture="SexExpanderLostStylusCapture">
-                        <Border Margin="-100,10,0,-80" Background="Gainsboro" CornerRadius="10" Padding="5">
+                    <TextBox Name="addSex" Text="{Binding RadioButtonText}" Margin="22,0,0,0" Tag="请选择性别" Style="{DynamicResource AddDataSexTextBox}"/>
+                    <Expander x:Name="sexRadio" Margin="0,0,35,0" Panel.ZIndex="5" VerticalAlignment="Center" HorizontalAlignment="Right" LostStylusCapture="SexExpanderLostStylusCapture">
+                        <Border Margin="-80,0,0,-50" Background="Gainsboro" CornerRadius="10" Padding="5">
                             <StackPanel>
                                 <RadioButton Content="男" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="RadioButtonChecked"/>
                                 <RadioButton Content="女" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="RadioButtonChecked"/>
-                                <RadioButton Content="未知" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="RadioButtonChecked"/>
                             </StackPanel>
                         </Border>
                     </Expander>
                 </Grid>
 
-                <!--姓名-->
+                <!--生日-->
                 <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe601;" ToolTip="姓名" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addName" Style="{DynamicResource AddDataTextBox}"/>
-                </StackPanel>
-
-                <!--年龄-->
-                <!--#region 学习笔记[8] -->
-                <!--TextBox.MaxLength 属性：获取或设置可在文本框中手动输入的最大字符数。-->
-                <!--#endregion-->
-                <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">
                     <Label Content="&#xe653;" ToolTip="生日" Style="{StaticResource AddDataLabelStyle}"/>
                     <DatePicker Name="addBirthday" Style="{DynamicResource DatePickerStyle}"/>
                 </StackPanel>
 
-                <!--班级-->
-                <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe630;" ToolTip="班级" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addClass" Style="{DynamicResource AddDataTextBox}"/>
-                </StackPanel>
+                <!--民族-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Label Content="&#xe66f;" ToolTip="民族" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
+                    <ComboBox Height="40" Width="180" Margin="30 0 0 0"/>
+                    <!--<TextBox Name="qw2" Margin="30,0,0,0" Tag="请选择民族" Style="{DynamicResource AddDataSexTextBox}"/>-->
+                </Grid>
 
-                <!--电话-->
-                <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe88b;" ToolTip="电话" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addNumber" Style="{DynamicResource AddDataTextBox}"/>
-                </StackPanel>
+                <!--政治面貌-->
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Label Content="&#xe643;" ToolTip="政治面貌" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
+                    <ComboBox Height="40" Width="180" Margin="30 0 0 0"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--班级-->
+                    <StackPanel Grid.Column="0" Style="{StaticResource AddDataContentStackPanelStyle}">
+                        <Label Content="&#xe630;" ToolTip="班级" Style="{StaticResource AddDataLabelStyle}"/>
+                        <TextBox Name="addClass" Width="300" Tag="请输入班级名称" Style="{DynamicResource AddDataTextBox}"/>
+                    </StackPanel>
+
+                    <!--电话-->
+                    <!--#region 学习笔记 -->
+                    <!--TextBox.MaxLength 属性：获取或设置可在文本框中手动输入的最大字符数。-->
+                    <!--#endregion-->
+                    <StackPanel Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">
+                        <Label Content="&#xe88b;" ToolTip="电话" Style="{StaticResource AddDataLabelStyle}"/>
+                        <TextBox Name="addNumber" Tag="请输入电话号码" TextBox.MaxLength="11" Width="305" Style="{DynamicResource AddDataTextBox}"/>
+                    </StackPanel>
+                </Grid>
 
                 <!--地址-->
-                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource AddDataContentStackPanelStyle}">
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource AddDataContentStackPanelStyle}">
                     <Label Content="&#xe641;" ToolTip="地址" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addAddress" Width="692" Style="{DynamicResource AddDataTextBox}"/>
+                    <TextBox Name="addAddress" Width="692" Tag="请输入地址" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
             </Grid>
 

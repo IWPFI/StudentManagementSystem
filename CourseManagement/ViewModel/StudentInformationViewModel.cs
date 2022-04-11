@@ -18,7 +18,7 @@ namespace StudentManagementSystem.ViewModel
         public StudentInformationViewModel()
         {
             GetSearchStudents();
-            StudentsList();
+            CardList();
 
             OpenStudentId = new CommandBase();
             OpenStudentId.DoCanExecute = new Func<object, bool>((o) => true);
@@ -28,14 +28,18 @@ namespace StudentManagementSystem.ViewModel
             });
         }
 
-        //搜索学生信息
+        /// <summary>
+        /// 搜索学生信息
+        /// </summary>
         public void SearchStudents()
         {
             StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents());
             MainView.search = false;
         }
 
-        //获取学生列表
+        /// <summary>
+        /// 获取学生列表
+        /// </summary>
         public void GetSearchStudents()
         {
             StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
@@ -49,7 +53,10 @@ namespace StudentManagementSystem.ViewModel
             return a;
         }
 
-        private void StudentsList()
+        /// <summary>
+        /// 卡片信息
+        /// </summary>
+        private void CardList()
         {
             StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails());//卡片信息
         }

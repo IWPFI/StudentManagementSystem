@@ -22,7 +22,7 @@
 
             <Grid Grid.Row="1">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                    <ItemsControl ItemsSource="{Binding StudentList,Mode=TwoWay}">
+                    <ItemsControl ItemsSource="{Binding StudentList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel/>

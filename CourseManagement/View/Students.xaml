@@ -27,7 +27,6 @@
             </Grid.ColumnDefinitions>
             <Border CornerRadius="10 0 0 10" Background="#FF5D6B99">
                 <Grid>
-
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <Border x:Name="ImgBorder">
                             <Grid>
@@ -50,6 +49,7 @@
                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
                     <TextBlock Text="** 学号字段暂不支持修改，如需要请删除后重新添加，或联系管理员开通此功能." Visibility="Collapsed" Margin="5,0,0,5" TextWrapping="Wrap" Foreground="White" FontSize="10" VerticalAlignment="Bottom" />
+                    <Button Style="{DynamicResource ExchangeAllButtonStyle}"/>
                 </Grid>
             </Border>
             <Border Grid.Column="1" CornerRadius="0 10 10 0">

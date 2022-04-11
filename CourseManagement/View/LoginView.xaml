@@ -12,7 +12,7 @@
         FontFamily="Microsoft YaHei" FontWeight="ExtraLight"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
-    <!--#region 学习笔记[0] -->
+    <!--#region 学习笔记 -->
     <!--
     ResizeMode="NoResize"设置窗口拖到顶不放大,禁止放大
     WindowStartupLocation="CenterScreen"设置启动时居中

@@ -27,6 +27,12 @@ namespace StudentManagementSystem.View
     /// </summary>
     public partial class Students : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void DoNotify([CallerMemberName] string propName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));//达到通知效果
+        }
+
         public Students()
         {
             InitializeComponent();
@@ -47,14 +53,10 @@ namespace StudentManagementSystem.View
 
         private string[] GetVs = new string[7];
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void DoNotify([CallerMemberName] string propName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));//达到通知效果
-        }
-
         private int age;
-
+        /// <summary>
+        /// 年龄
+        /// </summary>
         public int Age
         {
             get { return age; }
@@ -65,25 +67,52 @@ namespace StudentManagementSystem.View
             }
         }
 
+        public ObservableCollection<StudentInformation> AmendStudenList { get; set; }
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();//窗口拖动
+        }
+
+        /// <summary>
+        /// 修改按钮
+        /// </summary>
+        private void AlterButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool? r = false;
+            r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (r != null && r == true)
+            {
+                Content();
+                Amend();
+                MessageWindow.ShowWindow("修改成功", "修改成功");
+                Close();
+            }
+        }
+
+        /// <summary>
+        /// 删除按钮
+        /// </summary>
+        private void DelectButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool? r = false;
+            r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (r != null && r == true)
+            {
+                Content();
+                Delete();
+                MessageWindow.ShowWindow("删除成功,请刷新数据库。");
+                this.Close();
+            }
+
+        }
+
+        /// <summary>
+        /// 关闭按钮
+        /// </summary>
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        public ObservableCollection<StudentInformation> AmendStudenList { get; set; }
-        //修改
-        public void XiugaiXX()
-        {
-            LocalDataAccess.GetInstance().Transmit(GetVs);
-            AmendStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsAmend());
-        }
-
-        //删除
-        public void Shanchu()
-        {
-            LocalDataAccess.GetInstance().Transmit(GetVs);
-            DeleteStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDelete());
         }
 
         //获取数据
@@ -112,44 +141,34 @@ namespace StudentManagementSystem.View
             }
         }
 
-        //修改操作
-        private void AlterButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool? r = false;
-            r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (r != null && r == true)
-            {
-                Content();
-                XiugaiXX();
-                MessageWindow.ShowWindow("修改成功", "修改成功");
-                Close();
-            }
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();//窗口拖动
-        }
-
         /// <summary>
         /// 删除操作
         /// </summary>
         public ObservableCollection<StudentInformation> DeleteStudenList { get; set; }
 
-        //删除操作
-        private void DelectButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 修改操作
+        /// </summary>
+        public void Amend()
         {
-            bool? r = false;
-            r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (r != null && r == true)
-            {
-                Content();
-                Shanchu();
-                MessageWindow.ShowWindow("删除成功,请刷新数据库。");
-                this.Close();
-            }
-
+            LocalDataAccess.GetInstance().Transmit(GetVs);
+            AmendStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsAmend());
         }
+
+        /// <summary>
+        /// 删除操作
+        /// </summary>
+        public void Delete()
+        {
+            LocalDataAccess.GetInstance().Transmit(GetVs);
+            DeleteStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDelete());
+        }
+
+        /// <summary>
+        /// Gets the age by birthdate.
+        /// </summary>
+        /// <param name="birthdate">The birthdate.</param>
+        /// <returns>An int.</returns>
         public int GetAgeByBirthdate(DateTime birthdate)
         {
             DateTime now = DateTime.Now;
@@ -161,6 +180,7 @@ namespace StudentManagementSystem.View
             return Age < 0 ? 0 : Age;
         }
 
+        //更换头像
         //private void ImgBorder_MouseUp(object sender, RoutedEventArgs e)
         //{
         //    OpenFileDialog openFile = new OpenFileDialog();

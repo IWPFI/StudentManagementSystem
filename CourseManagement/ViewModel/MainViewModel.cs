@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace StudentManagementSystem.ViewModel
 {
-    #region 学习笔记[7]
+    #region 学习笔记
     /* FrameworkElement 类：为 Windows Presentation Foundation (WPF) 元素提供 WPF 框架级属性集、事件集和方法集。 此类表示附带的 WPF 框架级实现，它是基于由 UIElement 定义的 WPF 核心级 API 构建的。
        https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement?redirectedfrom=MSDN&view=windowsdesktop-6.0 */
 
@@ -52,7 +52,7 @@ namespace StudentManagementSystem.ViewModel
         }
         private void DoNavChanged(object obj)/*₈*/
         {
-            #region 学习笔记[10]
+            #region 学习笔记
             /* Type 类：表示类型声明：类类型、接口类型、数组类型、值类型、枚举类型、类型参数、泛型类型定义，以及开放或封闭构造的泛型类型。
                https://docs.microsoft.com/zh-cn/dotnet/api/system.type?redirectedfrom=MSDN&view=net-6.0 */
 

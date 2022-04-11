@@ -13,7 +13,9 @@ namespace StudentManagementSystem.Model
     public class StudentInformation : NotifyBase
     {
         private string _studentId;
-        /// <summary>学生ID</summary>
+        /// <summary>
+        /// 学生ID
+        /// </summary>
         public string StudentID
         {
             get { return _studentId; }
@@ -25,7 +27,9 @@ namespace StudentManagementSystem.Model
         }
 
         private string _studentName;
-        /// <summary>学生姓名</summary>
+        /// <summary>
+        /// 学生姓名
+        /// </summary>
         public string StudentName
         {
             get { return _studentName; }
@@ -36,9 +40,10 @@ namespace StudentManagementSystem.Model
             }
         }
 
-        //public int StudentSex { get; set; }
         private int _studentSex;
-        /// <summary>学生性别</summary>
+        /// <summary>
+        /// 学生性别
+        /// </summary>
         public int StudentSex
         {
             get => _studentSex;
@@ -50,7 +55,9 @@ namespace StudentManagementSystem.Model
         }
 
         private int _studentAge;
-        /// <summary>学生年龄</summary>
+        /// <summary>
+        /// 学生年龄
+        /// </summary>
         public int StudentAge
         {
             get => _studentAge;
@@ -62,24 +69,23 @@ namespace StudentManagementSystem.Model
         }
 
         private DateTime _studentBirthday;
-        /// <summary>学生生日</summary>
+        /// <summary>
+        /// 学生生日
+        /// </summary>
         public DateTime StudentBirthday
         {
-            get
-            {
-                //_studentBirthday.ToString("d");
-                return _studentBirthday;
-            }
+            get { return _studentBirthday; }
             set
             {
-                //_studentBirthday.ToString("d");
                 _studentBirthday = value;
                 this.DoNotify();
             }
         }
 
         private string _studentPhone;
-        /// <summary>学生电话</summary>
+        /// <summary>
+        /// 学生电话
+        /// </summary>
         public string StudentPhone
         {
             get { return _studentPhone; }
@@ -91,7 +97,9 @@ namespace StudentManagementSystem.Model
         }
 
         private string _studentGrade;
-        /// <summary>学生班级</summary>
+        /// <summary>
+        /// 学生班级
+        /// </summary>
         public string StudentGrade
         {
             get { return _studentGrade; }
@@ -103,7 +111,9 @@ namespace StudentManagementSystem.Model
         }
 
         private string _studentSite;
-        /// <summary>学生地址</summary>
+        /// <summary>
+        /// 学生地址
+        /// </summary>
         public string StudentSite
         {
             get { return _studentSite; }
@@ -113,5 +123,34 @@ namespace StudentManagementSystem.Model
                 this.DoNotify();
             }
         }
+
+        private string _nationsName;
+        /// <summary>
+        /// 民族
+        /// </summary>
+        public string NationsName
+        {
+            get { return _nationsName; }
+            set
+            {
+                _nationsName = value;
+                this.DoNotify();
+            }
+        }
+
+        private string _politicsStatus;
+        /// <summary>
+        /// 政治面貌
+        /// </summary>
+        public string PoliticsStatus
+        {
+            get { return _politicsStatus; }
+            set
+            {
+                _politicsStatus = value;
+                this.DoNotify();
+            }
+        }
+
     }
 }

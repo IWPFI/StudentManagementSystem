@@ -415,7 +415,7 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
                 {
                     string sql = "UPDATE students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
                         "sex = ('" + GetVs[2] + "'),birthday = '" + GetVs[3] + "',phone = ('" + GetVs[5] + "'),grade = ('" + GetVs[4] + "')," +
-                        "site = ('" + GetVs[6] + "')WHERE number = ('" + GetVs[0] + "')";
+                        "site = ('" + GetVs[6] + "'),gmt_modified = GETDATE() WHERE number = ('" + GetVs[0] + "')";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();

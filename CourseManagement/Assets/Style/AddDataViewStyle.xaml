@@ -73,7 +73,7 @@
         <Setter Property="SelectedDateFormat" Value="Short"/>
         
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#BBBBBB"/>
+        <Setter Property="Foreground" Value="#333"/>
         <Setter Property="BorderBrush" Value="#BBBBBB"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
@@ -223,11 +223,10 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" TargetName="border" Value="#FF2DABC7"/>
                             <Setter Property="BorderBrush" TargetName="border1" Value="#FF2DABC7"/>
-                            <Setter Property="Foreground" Value="#333"/>
                         </Trigger>
-                        <Trigger Property="">
-
-                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+                            <Setter Property="Foreground" Value="#BBBBBB"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

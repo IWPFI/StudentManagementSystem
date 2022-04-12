@@ -20,7 +20,7 @@
         <Setter Property="BorderBrush" Value="Gray"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Template" Value="{DynamicResource AddDataTextBoxTemplate}"/>
+        <Setter Property="Template" Value="{DynamicResource DataTextBoxTemplate}"/>
     </Style>
 
     <Style x:Key="StudentBirthdayTextBox" TargetType="TextBox">
@@ -383,5 +383,20 @@
         </Setter>
     </Style>
 
+    <ControlTemplate x:Key="DataTextBoxTemplate" TargetType="TextBox">
+        <Border Name="back" CornerRadius="10" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+            <Grid>
+                <ScrollViewer Focusable="false" x:Name="PART_ContentHost" Margin="10 0"
+                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
 </ResourceDictionary>

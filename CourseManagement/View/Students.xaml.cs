@@ -33,6 +33,8 @@ namespace StudentManagementSystem.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));//达到通知效果
         }
 
+        ContactsView contacts = new ContactsView();
+
         public Students()
         {
             InitializeComponent();
@@ -46,8 +48,11 @@ namespace StudentManagementSystem.View
 
             Loaded += (s, e) =>
             {
-                DateTime dt = Convert.ToDateTime(shengri.Text);
-                GetAgeByBirthdate(dt);
+                if (!string.IsNullOrEmpty(shengri.Text))
+                {
+                    DateTime dt = Convert.ToDateTime(shengri.Text);
+                    GetAgeByBirthdate(dt);
+                }
             };
         }
 
@@ -79,14 +84,22 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void AlterButton_Click(object sender, RoutedEventArgs e)
         {
-            bool? r = false;
-            r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (r != null && r == true)
+            if (string.IsNullOrEmpty(xuehao.Text))
             {
-                Content();
-                Amend();
-                MessageWindow.ShowWindow("修改成功", "修改成功");
-                Close();
+                MessageWindow.ShowWindow("数据不存在！", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
+                this.Close();
+            }
+            else
+            {
+                bool? r = false;
+                r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (r != null && r == true)
+                {
+                    Content();
+                    Amend();
+                    MessageWindow.ShowWindow("修改成功", "修改成功");
+                    Close();
+                }
             }
         }
 
@@ -95,16 +108,24 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void DelectButton_Click(object sender, RoutedEventArgs e)
         {
-            bool? r = false;
-            r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (r != null && r == true)
+            if (string.IsNullOrEmpty(xuehao.Text))
             {
-                Content();
-                Delete();
-                MessageWindow.ShowWindow("删除成功,请刷新数据库。");
+                MessageWindow.ShowWindow("数据不存在！", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
             }
-
+            else
+            {
+                bool? r = false;
+                r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if (r != null && r == true)
+                {
+                    Content();
+                    Delete();
+                    MessageWindow.ShowWindow("删除成功,请刷新数据库。");
+                    contacts.InterfaceData();
+                    this.Close();
+                }
+            }
         }
 
         /// <summary>

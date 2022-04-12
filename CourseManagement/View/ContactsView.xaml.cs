@@ -14,21 +14,28 @@ namespace StudentManagementSystem.View
             InitializeComponent();
             InterfaceData();
         }
+
+        /// <summary>
+        /// Get the data.
+        /// </summary>
         public void InterfaceData()
         {
             this.DataContext = new StudentInformationViewModel();
         }
 
 
-        //添加功能 
-
+        /// <summary>
+        /// 添加按钮
+        /// </summary>
         private void AddStudentButtonClick(object sender, RoutedEventArgs e)
         {
             AddDataView addData = new AddDataView();
             addData.ShowDialog();
         }
 
-        //刷新界面
+        /// <summary>
+        /// 刷新界面按钮
+        /// </summary>
         private void FlushStudentButtonClick(object sender, RoutedEventArgs e)
         {
             InterfaceData();

@@ -42,6 +42,10 @@ namespace StudentManagementSystem.ViewModel
         /// </summary>
         public void GetSearchStudents()
         {
+            if (StudentList != null)
+            {
+                StudentList.Clear();
+            }
             StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
         }
 

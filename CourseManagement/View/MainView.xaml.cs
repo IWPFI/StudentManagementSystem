@@ -23,7 +23,7 @@ namespace StudentManagementSystem.View
             model.UserInfo.UserName = GlobalValues.UserInfo.RealName;
             model.UserInfo.Gender = GlobalValues.UserInfo.Gender;
 
-            #region 学习笔记 
+            #region Notes 
             //SystemParameters: 可用来查询系统设置的属性
             //SystemParameters.PrimaryScreenHeight 属性: 获取一个值，该值指示主监视器的屏幕高度（以像素为单位）[屏幕的高度]
             #endregion
@@ -42,7 +42,7 @@ namespace StudentManagementSystem.View
 
         private void btnMax_Click(object sender, RoutedEventArgs e)
         {
-            #region 学习笔记 
+            #region Notes 
             /* WindowState 枚举: 指定是最小化、最大化还是还原窗口。 由 WindowState 属性使用。
                Maximized 最大化窗口。 
                Minimized 最小化窗口。 
@@ -60,7 +60,7 @@ namespace StudentManagementSystem.View
         public static bool search;
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            #region 学习笔记
+            #region Notes
             //Key 枚举: 指定键盘上可能的键值
             #endregion
             if (e.Key == Key.Enter)
@@ -87,19 +87,17 @@ namespace StudentManagementSystem.View
                             if (Search.Text != "")
                             {
                                 LocalDataAccess.GetInstance().Search(Search.Text);
-                                search = true;
                             }
                             break;
                         }
                     default:
-                        search = false;
                         break;
                 }
             }
         }
 
 
-        #region 学习笔记
+        #region Notes
         /* ButtonBase.CommandParameter 属性：获取或设置要传递给 Command 属性的参数。*/
         #endregion
         private void FirstPageRadioButton_Checked(object sender, RoutedEventArgs e)

@@ -77,7 +77,7 @@ namespace StudentManagementSystem.ViewModel
 
         private void DoLogin(object o)//主要的登录逻辑在DoLogin这个方法里面
         {
-            #region 学习笔记
+            #region Notes
             /* Visibility 枚举：指定元素的显示状态
              
                Visibility.Collapsed 不显示元素，且不为其保留布局空间

@@ -33,7 +33,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>-->
 
-    <!--首页菜单样式  首页 查看帮助 管理中心 应用设置 个人中心-->
+    <!--菜单栏样式-->
     <Style x:Key="NavButtonStyle" TargetType="RadioButton">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">

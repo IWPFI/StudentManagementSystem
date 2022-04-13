@@ -79,11 +79,11 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
                     <!--绑定到切换命令₇-->
                     <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True" Command="{Binding NavChangedCommand}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
-                    <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
                     <RadioButton Content="课程管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
-                    <RadioButton Content="学生通讯录" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
-                    <RadioButton Content="文档编辑" Style="{StaticResource NavButtonStyle}"/>
-                    <RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>
+                    <RadioButton Content="通讯录管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
+                    <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
+                    <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                    <!--<RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>-->
                 </StackPanel>
                 <TextBox Name="Search" Template="{DynamicResource StaticResourceSearchTextBoxTemplate}" Grid.Row="1" VerticalAlignment="Center" Margin="0 0 50 0"
                          HorizontalAlignment="Right" Width="300" Height="32" Foreground="White" Text="{Binding SearchText}"/>

@@ -106,7 +106,7 @@
                     </StackPanel>
 
                     <!--电话-->
-                    <!--#region 学习笔记 -->
+                    <!--#region Notes -->
                     <!--TextBox.MaxLength 属性：获取或设置可在文本框中手动输入的最大字符数。-->
                     <!--#endregion-->
                     <StackPanel Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">

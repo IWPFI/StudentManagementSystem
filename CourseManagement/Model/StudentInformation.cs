@@ -131,7 +131,11 @@ namespace StudentManagementSystem.Model
         public int Id
         {
             get { return _id; }
-            set { _id = value; this.DoNotify(); }
+            set
+            {
+                _id = value;
+                this.DoNotify();
+            }
         }
 
 

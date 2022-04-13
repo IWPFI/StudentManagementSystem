@@ -16,7 +16,7 @@
             <Grid>
                 <TextBlock Text="学号" Margin="110,0,0,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="姓名" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="班级" Margin="0,0,110,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock Text="序号" Margin="0,0,110,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 <Border Margin="50 0" BorderThickness="0 0 0 2" BorderBrush="Gray" VerticalAlignment="Bottom"/>
             </Grid>
 
@@ -38,7 +38,7 @@
                                             </Hyperlink>
                                         </TextBlock>
                                         <TextBlock Text="{Binding StudentName}" Margin="0 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Id,Mode=TwoWay}" Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Id}" Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

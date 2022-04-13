@@ -297,8 +297,7 @@ order by parameters.course_id,c.platform_id";
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"
-SELECT
+                    string sql = @"SELECT
 	id,
 	name,
 	number,
@@ -313,17 +312,17 @@ WHERE
                     int count = adapter.Fill(table);
                     if (count > 0)//大于零说明有数据
                     {
-                        string courseId = "";
+                        int courseId = 0;
                         StudentInformation model = null;
 
                         foreach (DataRow dr in table.AsEnumerable())
                         {
-                            string tempId = dr.Field<string>("number");
+                            int tempId = dr.Field<int>("id");
                             if (courseId != tempId)
                             {
                                 courseId = tempId;
-
                                 model = new StudentInformation();
+                                model.Id = dr.Field<int>("id");
                                 model.StudentID = dr.Field<string>("number");
                                 model.StudentName = dr.Field<string>("name");
                                 model.StudentGrade = dr.Field<string>("grade");

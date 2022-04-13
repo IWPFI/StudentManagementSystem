@@ -33,12 +33,12 @@
                                 <Border Margin="20" Style="{DynamicResource BorderStyle}">
                                     <Grid>
                                         <TextBlock Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Hyperlink Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding StudentID}">
-                                            <TextBlock Text="{Binding StudentID}"/>
-                                        </Hyperlink>
-                                    </TextBlock>
+                                            <Hyperlink Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding StudentID}">
+                                                <TextBlock Text="{Binding StudentID}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
                                         <TextBlock Text="{Binding StudentName}" Margin="0 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding StudentGrade}" Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Id,Mode=TwoWay}" Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

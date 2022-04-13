@@ -368,16 +368,15 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
                     {
                         string courseId = "";
                         StudentInformation model = null;
-
                         foreach (DataRow dr in table.AsEnumerable())
                         {
                             string tempId = dr.Field<string>("number");
                             if (courseId != tempId)
                             {
                                 courseId = tempId;
-
                                 model = new StudentInformation();
                                 model.StudentID = dr.Field<string>("number");//学号
+                                model.Id = dr.Field<int>("id");//Id
                                 model.StudentName = dr.Field<string>("name");//姓名
                                 model.StudentSex = dr.Field<int>("sex");//性别
                                 model.StudentPhone = dr.Field<string>("phone");//电话
@@ -554,67 +553,68 @@ VALUES
             //ExecuteReader:返回包含数据的DataReader对象，通常配合DataReader对象用于完成只读、只进的查询操作
             // https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlcommand.executereader?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlCommand_ExecuteReader
             #endregion
-            try
-            {
-                List<StudentInformation> result = new List<StudentInformation>();
-                if (DBConnection())
-                {
-                    comm = conn.CreateCommand();
-                    comm.CommandText = "select * from student where Student_ID like '%" + aaa + "%' or Student_Name like '%" + aaa + "%'";
-                    //comm.CommandText = "select * from student where Student_ID like @xxx or Student_Name like @xxx";
-                    //comm.Parameters.AddWithValue("@xxx",aaa);//输入1'or'1'=1会造成SQL注入漏洞   避免SQL注入漏洞攻击
-                    //comm.Parameters.Add(new SqlParameter("@xxx", TextBox.Text));//避免SQL注入漏洞攻击和上面代码功能相同，不同写法
-                    string s = (string)comm.ExecuteScalar();
-                    if (s != null)
-                    {
-                        string sql = "select * from student where Student_ID like '%" + aaa + "%' or Student_Name like '%" + aaa + "%'";
-                        //string sql = @"select * from student where Student_ID like '%@xxx%' or Student_Name like '%@xxx%'";//没办法实现模糊查找
-                        //comm.Parameters.Add(new SqlParameter("@xxx", aaa));//避免SQL注入攻击
-                        adapter = new SqlDataAdapter(sql, conn);
-                        DataTable table = new DataTable();
-                        int count = adapter.Fill(table);
-                        if (count > 0)
-                        {
-                            string courseId = "";
-                            StudentInformation model = null;
+            //try
+            //{
+            //    List<StudentInformation> result = new List<StudentInformation>();
+            //    if (DBConnection())
+            //    {
+            //        comm = conn.CreateCommand();
+            //        comm.CommandText = "select * from student where Student_ID like '%" + aaa + "%' or Student_Name like '%" + aaa + "%'";
+            //        //comm.CommandText = "select * from student where Student_ID like @xxx or Student_Name like @xxx";
+            //        //comm.Parameters.AddWithValue("@xxx",aaa);//输入1'or'1'=1会造成SQL注入漏洞   避免SQL注入漏洞攻击
+            //        //comm.Parameters.Add(new SqlParameter("@xxx", TextBox.Text));//避免SQL注入漏洞攻击和上面代码功能相同，不同写法
+            //        string s = (string)comm.ExecuteScalar();
+            //        if (s != null)
+            //        {
+            //            string sql = "select * from student where Student_ID like '%" + aaa + "%' or Student_Name like '%" + aaa + "%'";
+            //            //string sql = @"select * from student where Student_ID like '%@xxx%' or Student_Name like '%@xxx%'";//没办法实现模糊查找
+            //            //comm.Parameters.Add(new SqlParameter("@xxx", aaa));//避免SQL注入攻击
+            //            adapter = new SqlDataAdapter(sql, conn);
+            //            DataTable table = new DataTable();
+            //            int count = adapter.Fill(table);
+            //            if (count > 0)
+            //            {
+            //                string courseId = "";
+            //                StudentInformation model = null;
 
-                            foreach (DataRow dr in table.AsEnumerable())
-                            {
-                                string tempId = dr.Field<string>("Student_ID");
-                                if (courseId != tempId)
-                                {
-                                    courseId = tempId;
+            //                foreach (DataRow dr in table.AsEnumerable())
+            //                {
+            //                    string tempId = dr.Field<string>("Student_ID");
+            //                    if (courseId != tempId)
+            //                    {
+            //                        courseId = tempId;
 
-                                    model = new StudentInformation();
-                                    model.StudentID = dr.Field<string>("Student_ID");//学号
-                                    model.StudentName = dr.Field<string>("Student_Name");//姓名
-                                    model.StudentSex = dr.Field<int>("Student_Sex");//性别
-                                    model.StudentPhone = dr.Field<string>("Student_Phone");//电话
-                                    model.StudentGrade = dr.Field<string>("Student_Grade");//班级
-                                    model.StudentSite = dr.Field<string>("Student_Site");//地址
-                                    model.StudentBirthday = dr.Field<DateTime>("Student_Birthday");//生日
-                                    result.Add(model);
-                                }
-                            }
-                        }
-                        MessageWindow.ShowWindow("已查询出全部结果", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        bool? unused = MessageWindow.ShowWindow("该学生不存在", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return null;
-                    }
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                this.Dispose();
-            }
+            //                        model = new StudentInformation();
+            //                        model.StudentID = dr.Field<string>("Student_ID");//学号
+            //                        model.StudentName = dr.Field<string>("Student_Name");//姓名
+            //                        model.StudentSex = dr.Field<int>("Student_Sex");//性别
+            //                        model.StudentPhone = dr.Field<string>("Student_Phone");//电话
+            //                        model.StudentGrade = dr.Field<string>("Student_Grade");//班级
+            //                        model.StudentSite = dr.Field<string>("Student_Site");//地址
+            //                        model.StudentBirthday = dr.Field<DateTime>("Student_Birthday");//生日
+            //                        result.Add(model);
+            //                    }
+            //                }
+            //            }
+            //            MessageWindow.ShowWindow("已查询出全部结果", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //        }
+            //        else
+            //        {
+            //            bool? unused = MessageWindow.ShowWindow("该学生不存在", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //            return null;
+            //        }
+            //    }
+            //    return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+            //finally
+            //{
+            //    this.Dispose();
+            //}
+            throw new Exception();
         }
 
         /// <summary>

@@ -124,6 +124,17 @@ namespace StudentManagementSystem.Model
             }
         }
 
+        private int _id;
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; this.DoNotify(); }
+        }
+
+
         private string _nationsName;
         /// <summary>
         /// 民族

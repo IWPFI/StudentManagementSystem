@@ -8,6 +8,9 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Title="SearchView" Height="500" Width="700">
+    <Window.Resources>
+        <ResourceDictionary Source="../Assets/Style/SearchViewStyle.xaml"/>
+    </Window.Resources>
     <Border CornerRadius="1" BorderThickness="13" Background="#FF5D6B99" BorderBrush="#FF7582AC" MouseLeftButtonDown="MouseLeftButtonDown">
         <Grid Name="searchView" TextBlock.Foreground="White">
             <Grid.RowDefinitions>

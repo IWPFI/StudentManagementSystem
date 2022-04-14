@@ -8,7 +8,6 @@
         <ResourceDictionary Source="../Assets/Style/MainViewStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/StudentsStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/AddDataViewStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style/SearchViewStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/MessageWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/TextbookViewStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>

@@ -18,7 +18,10 @@ namespace StudentManagementSystem.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public CommandBase OpenStudentId { get; set; }//点击Id时执行
         private ObservableCollection<StudentInformation> studentList;
+        private ObservableCollection<StudentInformation> studentsDetailsList;
+
         public ObservableCollection<StudentInformation> StudentList
         {
             get => studentList;
@@ -29,9 +32,14 @@ namespace StudentManagementSystem.ViewModel
             }
         }
 
-        public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
-
-        public CommandBase OpenStudentId { get; set; }//点击Id时执行
+        public ObservableCollection<StudentInformation> StudentsDetailsList
+        {
+            get => studentsDetailsList; set
+            {
+                studentsDetailsList = value;
+                DoNotify();
+            }
+        }
 
         public StudentInformationViewModel()
         {

@@ -34,6 +34,10 @@ namespace StudentManagementSystem.View
         }
 
         ContactsView contacts = new ContactsView();
+        private string[] GetVs = new string[7];
+        private int age;
+        private ObservableCollection<StudentInformation> amendStudenList;
+        private ObservableCollection<StudentInformation> deleteStudenList;
 
         public Students()
         {
@@ -56,9 +60,6 @@ namespace StudentManagementSystem.View
             };
         }
 
-        private string[] GetVs = new string[7];
-
-        private int age;
         /// <summary>
         /// 年龄
         /// </summary>
@@ -72,7 +73,14 @@ namespace StudentManagementSystem.View
             }
         }
 
-        public ObservableCollection<StudentInformation> AmendStudenList { get; set; }
+        public ObservableCollection<StudentInformation> AmendStudenList
+        {
+            get => amendStudenList; set
+            {
+                amendStudenList = value;
+                DoNotify();
+            }
+        }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -165,7 +173,15 @@ namespace StudentManagementSystem.View
         /// <summary>
         /// 删除操作
         /// </summary>
-        public ObservableCollection<StudentInformation> DeleteStudenList { get; set; }
+        public ObservableCollection<StudentInformation> DeleteStudenList
+        {
+            get => deleteStudenList;
+            set
+            {
+                deleteStudenList = value;
+                DoNotify();
+            }
+        }
 
         /// <summary>
         /// 修改操作

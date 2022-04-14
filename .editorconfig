@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# PropertyDocumentationHeader: The property must have a documentation header.
+dotnet_diagnostic.PropertyDocumentationHeader.severity = none

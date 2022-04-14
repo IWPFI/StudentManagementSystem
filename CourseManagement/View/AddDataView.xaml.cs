@@ -132,11 +132,6 @@ namespace StudentManagementSystem.View
             }
         }
 
-        private void SexExpanderLostFocus(object sender, RoutedEventArgs e)
-        {
-            sexRadio.IsExpanded = false;
-        }
-
         private void SexExpanderLostStylusCapture(object sender, StylusEventArgs e)
         {
             sexRadio.IsExpanded = false;
@@ -145,6 +140,11 @@ namespace StudentManagementSystem.View
         private void GetNation()
         {
             throw new NotImplementedException();
+        }
+
+        private void Border_LostFocus(object sender, RoutedEventArgs e)
+        {
+            sexRadio.IsExpanded = false;
         }
     }
 }

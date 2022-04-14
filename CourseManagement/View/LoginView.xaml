@@ -49,7 +49,7 @@
                     </Border.Effect>
                     <Border Width="80" Height="80" CornerRadius="40" HorizontalAlignment="Center">
                         <Border.Background>
-                            <ImageBrush ImageSource="../Assets/Image/Logo.png"/>
+                            <ImageBrush ImageSource="/Assets/Image/xiamu.jpg"/>
                         </Border.Background>
                     </Border>
                 </Border>

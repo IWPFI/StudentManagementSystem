@@ -9,7 +9,8 @@
         AllowsTransparency="True"
         Background="{x:Null}" WindowStyle="None" 
         WindowStartupLocation="CenterScreen"
-        MouseLeftButtonDown="WindowsMouseLeftButtonDown">
+        MouseLeftButtonDown="WindowsMouseLeftButtonDown"
+        >
     <Window.Resources>
         <ResourceDictionary Source="../Assets/Style/ComboBoxStyle.xaml"/>
     </Window.Resources>
@@ -63,7 +64,7 @@
                     <Label Content="&#xe62d;" ToolTip="性别" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
                     <TextBox Name="addSex" Text="{Binding RadioButtonText}" Margin="22,0,0,0" Tag="请选择性别" Style="{DynamicResource AddDataSexTextBox}"/>
                     <Expander x:Name="sexRadio" Margin="0,0,35,0" Panel.ZIndex="5" VerticalAlignment="Center" HorizontalAlignment="Right" LostStylusCapture="SexExpanderLostStylusCapture">
-                        <Border Margin="-80,0,0,-50" Background="Gainsboro" CornerRadius="10" Padding="5">
+                        <Border Margin="-80,0,0,-50" Background="Gainsboro" CornerRadius="10" Padding="5" LostFocus="Border_LostFocus">
                             <StackPanel>
                                 <RadioButton Content="男" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="RadioButtonChecked"/>
                                 <RadioButton Content="女" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" Checked="RadioButtonChecked"/>

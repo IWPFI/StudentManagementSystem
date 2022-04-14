@@ -7,7 +7,7 @@
     <StartupObject></StartupObject>
     <Nullable>enable</Nullable>
     <UserSecretsId>752e6dab-5380-4909-930c-411fdd8f73f3</UserSecretsId>
-    <ApplicationIcon>App.ico</ApplicationIcon>
+    <ApplicationIcon>MEmu.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +38,8 @@
     <None Remove="Assets\Image\3.jpg" />
     <None Remove="Assets\Image\Logo.png" />
     <None Remove="Assets\Image\WPF.jpg" />
+    <None Remove="Assets\Image\xiamu.jpg" />
+    <None Remove="Assets\Image\xiamu.png" />
     <None Remove="Assets\Image\[2].png" />
     <None Remove="Assets\Typeface\iconfont.ttf" />
     <None Remove="View\12.jpg" />
@@ -45,6 +47,10 @@
 
   <ItemGroup>
     <Page Remove="Assets\Style\DefaultStyle.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MEmu.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +69,8 @@
     <Resource Include="Assets\Icon\古风巨龙水墨龙墨迹.png" />
     <Resource Include="Assets\Image\Logo.png" />
     <Resource Include="Assets\Image\WPF.jpg" />
+    <Resource Include="Assets\Image\xiamu.jpg" />
+    <Resource Include="Assets\Image\xiamu.png" />
     <Resource Include="Assets\Image\[2].png" />
   </ItemGroup>
 

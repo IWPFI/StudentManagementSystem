@@ -40,5 +40,14 @@ namespace StudentManagementSystem.View
         {
             InterfaceData();
         }
+
+        /// <summary>
+        /// 搜索按钮
+        /// </summary>
+        private void SearchStudentButtonClick(object sender, RoutedEventArgs e)
+        {
+            SearchView search = new SearchView();
+            search.ShowDialog();
+        }
     }
 }

@@ -49,7 +49,7 @@
                 <!--刷新-->
                 <Button Style="{StaticResource ContactsFlushbutton}" Click="FlushStudentButtonClick"/>
                 <!--搜索-->
-                <Button Style="{StaticResource ContactsSearchbutton}" Click="FlushStudentButtonClick"/>
+                <Button Style="{StaticResource ContactsSearchbutton}" Click="SearchStudentButtonClick"/>
                 <!--添加-->
                 <Button Style="{StaticResource ContactsAddbutton}" Click="AddStudentButtonClick"/>
             </Grid>

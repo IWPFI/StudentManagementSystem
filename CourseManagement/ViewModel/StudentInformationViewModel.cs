@@ -4,12 +4,30 @@ using StudentManagementSystem.Model;
 using StudentManagementSystem.View;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class StudentInformationViewModel
+    public class StudentInformationViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<StudentInformation> StudentList { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void DoNotify([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private ObservableCollection<StudentInformation> studentList;
+        public ObservableCollection<StudentInformation> StudentList
+        {
+            get => studentList;
+            set
+            {
+                studentList = value;
+                DoNotify();
+            }
+        }
 
         public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
 
@@ -28,14 +46,13 @@ namespace StudentManagementSystem.ViewModel
             });
         }
 
-        /// <summary>
-        /// 搜索学生信息
-        /// </summary>
-        public void SearchStudents()
-        {
-            StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents());
-            MainView.search = false;
-        }
+        ///// <summary>
+        ///// 搜索学生信息
+        ///// </summary>
+        //public void SearchStudents()
+        //{
+        //    StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents());
+        //}
 
         /// <summary>
         /// 获取学生列表

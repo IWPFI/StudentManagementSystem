@@ -59,7 +59,6 @@ namespace StudentManagementSystem.ViewModel
             /* ConstructorInfo 类：发现类构造函数的属性，并提供对构造函数元数据的访问权限。
                https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.constructorinfo?redirectedfrom=MSDN&view=net-6.0 */
             #endregion
-
             Type type = Type.GetType("StudentManagementSystem.View." + obj.ToString());//通过反射的方式实现窗口切换
             ConstructorInfo cti = type.GetConstructor(System.Type.EmptyTypes);
             this.MainContent = (FrameworkElement)cti.Invoke(null);

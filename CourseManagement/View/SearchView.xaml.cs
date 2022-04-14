@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentManagementSystem.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace StudentManagementSystem.View
         public SearchView()
         {
             InitializeComponent();
+            searchView.DataContext = new SearchViewModel();
+        }
+
+        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }//登录窗口拖动
         }
     }
 }

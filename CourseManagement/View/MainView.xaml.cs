@@ -86,7 +86,7 @@ namespace StudentManagementSystem.View
                         {
                             if (Search.Text != "")
                             {
-                                LocalDataAccess.GetInstance().Search(Search.Text);
+                                //LocalDataAccess.GetInstance().Search(Search.Text);
                             }
                             break;
                         }
@@ -143,10 +143,10 @@ namespace StudentManagementSystem.View
                     {
                         if (Search.Text != "")
                         {
-                            LocalDataAccess.GetInstance().Search(Search.Text);
-                            search = true;
-                            StudentInformationViewModel stu = new StudentInformationViewModel();
-                            stu.SearchStudents();
+                            //LocalDataAccess.GetInstance().Search(Search.Text);
+                            //search = true;
+                            //StudentInformationViewModel stu = new StudentInformationViewModel();
+                            //stu.SearchStudents();
                         }
                         break;
                     }

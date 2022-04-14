@@ -28,7 +28,7 @@ namespace StudentManagementSystem.View
 
         private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }//登录窗口拖动
+            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }//窗口拖动
         }
     }
 }

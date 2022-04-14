@@ -9,41 +9,53 @@ namespace StudentManagementSystem.Model
 {
     public class LoginModel : NotifyBase
     {
-        //用户名
         private string _userName;
+        private string _password;
+        private string _validationCode;
+        private string _randomField;
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
         public string UserName
         {
             get { return _userName; }
             set
             {
                 _userName = value;
-                this.DoNotify();//带通知属性
+                this.DoNotify();
             }
         }
-        //密码
-        private string _password;
+
+        /// <summary>
+        /// 密码
+        /// </summary>
         public string Password
         {
             get { return _password; }
             set
             {
                 _password = value;
-                this.DoNotify();//带通知属性
+                this.DoNotify();
             }
         }
-        //验证码
-        private string _validationCode;
+        
+        /// <summary>
+        /// 验证码
+        /// </summary>
         public string ValidationCode
         {
             get { return _validationCode; }
             set
             {
                 _validationCode = value;
-                this.DoNotify();//带通知属性
+                this.DoNotify();
             }
         }
 
-        private string _randomField;//验证码随机数
+        /// <summary>
+        /// 验证码随机数
+        /// </summary>
         public string RandomField
         {
             get { return _randomField; }

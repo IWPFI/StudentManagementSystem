@@ -83,24 +83,27 @@ namespace StudentManagementSystem.View
         /// <summary>
         /// 添加操作
         /// </summary>
-        public ObservableCollection<StudentInformation> AddStudenList { get; set; 
-        }
+        public ObservableCollection<StudentInformation> AddStudenList { get; set; }
 
+        /// <summary>
+        /// 添加按钮
+        /// </summary>
         private void AddStudentButtonClick(object sender, RoutedEventArgs e)
         {
             GetStudentData();
         }
 
+        /// <summary>
+        /// 窗口拖动
+        /// </summary>
         private void WindowsMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();//窗口拖动
+            DragMove();
         }
+
 
         private void RadioButtonChecked(object sender, RoutedEventArgs e)
         {
-            //char[] delimiterChars = { ' ', ':' };
-            //string text = sender.ToString();
-            //string[] words = text.Split(delimiterChars);
             data.RadioButtonText = (string)(sender as RadioButton).Content;
             Judge((string)(sender as RadioButton).Content);
         }

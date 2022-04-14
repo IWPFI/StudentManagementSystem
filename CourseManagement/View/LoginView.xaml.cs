@@ -16,6 +16,9 @@ namespace StudentManagementSystem.View
             this.DataContext = new LoginViewModel();
         }
 
+        /// <summary>
+        /// 登录窗口拖动
+        /// </summary>
         private void WinMove_LeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             #region Notes
@@ -29,7 +32,7 @@ namespace StudentManagementSystem.View
             #endregion
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                this.DragMove();//登录窗口拖动
+                this.DragMove();
             }
         }
     }

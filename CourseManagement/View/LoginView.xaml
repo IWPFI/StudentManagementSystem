@@ -40,7 +40,6 @@
             Command="{Binding CloseWindowCommand}"绑定命令
             CommandParameter="{Binding ElementName=window}"传递一个参数,把当前窗口传进去
             -->
-
             <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="0,0,0,30">
                 <Border Width="80" Height="80" Margin="0,0,0,20" Background="White" CornerRadius="40" 
                         VerticalAlignment="Center" HorizontalAlignment="Center">

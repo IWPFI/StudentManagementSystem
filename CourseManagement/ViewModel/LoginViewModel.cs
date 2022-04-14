@@ -14,7 +14,6 @@ namespace StudentManagementSystem.ViewModel
     {
         public View.LoginView login;
 
-
         public LoginModel LoginModel { get; set; } = new LoginModel();
 
         public CommandBase CloseWindowCommand { get; set; }
@@ -22,13 +21,19 @@ namespace StudentManagementSystem.ViewModel
         public CommandBase LoginCommand { get; set; }
 
         private string _errorMessage;
+
+        private Visibility _showProgress = Visibility.Collapsed;
+
+        /// <summary>
+        /// 错误提示信息
+        /// </summary>
+        /// <remarks>绑定到LoginView的文本框</remarks>
         public string ErrorMessage
         {
             get { return _errorMessage; }
             set { _errorMessage = value; this.DoNotify(); }
         }
 
-        private Visibility _showProgress = Visibility.Collapsed;
         public Visibility ShowProgress
         {
             get { return _showProgress; }
@@ -39,19 +44,16 @@ namespace StudentManagementSystem.ViewModel
             }
         }
 
-
-
-
         public LoginViewModel()
         {
             this.CloseWindowCommand = new CommandBase();
             this.CloseWindowCommand.DoExecute = new Action<object>((o) =>
               {
-                  (o as Window).Close();//接收到window参数以后
+                  (o as Window).Close();
               });
             this.CloseWindowCommand.DoCanExecute = new Func<object, bool>((o) =>
               {
-                  return true;//关闭按钮不需要判断，直接返回true让按钮一直可用
+                  return true;
               });
 
             this.LoginCommand = new CommandBase();
@@ -64,14 +66,20 @@ namespace StudentManagementSystem.ViewModel
             Stochastic();
         }
 
-        public void Stochastic()//用于验证码随机数
+        /// <summary>
+        /// 用于验证码随机数
+        /// </summary>
+        public void Stochastic()
         {
             //获取随机数
             string i = new Random().Next(1000, 9999).ToString();
             LoginModel.RandomField = i;
         }
 
-        private void DoLogin(object o)//主要的登录逻辑在DoLogin这个方法里面
+        /// <summary>
+        /// 登录逻辑
+        /// </summary>
+        private void DoLogin(object o)
         {
             #region Notes
             /* Visibility 枚举：指定元素的显示状态
@@ -88,34 +96,34 @@ namespace StudentManagementSystem.ViewModel
             this.ErrorMessage = "";
             if (string.IsNullOrEmpty(LoginModel.UserName))//判断输入账号是否为空
             {
-                this.ErrorMessage = "请输入用户名！";//绑定到Login View的文本框里面
+                this.ErrorMessage = "请输入用户名！";
                 this.ShowProgress = Visibility.Collapsed;
                 return;
             }
             if (string.IsNullOrEmpty(LoginModel.Password))//判断输入密码是否为空
             {
-                this.ErrorMessage = "请输入密码！";//绑定到Login View的文本框里面
+                this.ErrorMessage = "请输入密码！";
                 this.ShowProgress = Visibility.Collapsed;
                 return;
             }
             if (string.IsNullOrEmpty(LoginModel.ValidationCode))//判断输入验证码是否为空
             {
-                this.ErrorMessage = "请输入验证码！";//绑定到Login View的文本框里面
+                this.ErrorMessage = "请输入验证码！";
                 this.ShowProgress = Visibility.Collapsed;
                 return;
             }
-            if (LoginModel.ValidationCode.ToLower() != LoginModel.RandomField)/*验证码*/
+            if (LoginModel.ValidationCode.ToLower() != LoginModel.RandomField)//验证码
             {
                 this.ErrorMessage = "验证码输入不正确！"; Stochastic();
                 this.ShowProgress = Visibility.Collapsed;
                 return;
             }
 
-            Task.Run(new Action(/*async*//*[₃]*/() =>/*[₂]|线程*/
+            Task.Run(new Action(async/*₃*/() =>/*₂Action线程*/
             {
-                //await Task.Delay(2000);//登录时设置2秒延迟,如不需要就将async[₃]删除(注意:需保留括号)在将本行代码注释
+                await Task.Delay(1000);//登录时设置1秒延迟,如不需要就将async₃删除(注意:需保留括号)
 
-                try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个[₂]线程
+                try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个₂Action线程
                 {
                     var user = LocalDataAccess.GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
                     if (user == null)
@@ -123,19 +131,15 @@ namespace StudentManagementSystem.ViewModel
                         throw new Exception("登录失败！用户名或密码错误！");
                     }
 
-                    GlobalValues.UserInfo = user;//如果↑上面的代码没有报错，这里已经取得用户的基本信息了，需要新建一个类保存信息
-                    
+                    GlobalValues.UserInfo = user;//If ↑ the above code does not report an error,
+                                                 //the basic information of the user has been obtained here.
+                                                 //You need to create a new class to save the information
+
 
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        /*Window.DialogResult 属性：获取或设置对话框结果值，此值是从 ShowDialog 方法返回的值  默认值为 false*/
-                        (o as Window).DialogResult = true; /* 《App.xaml.cs_₁》    |执行时跳转到这里，切换主窗口*/
-
-
-                        //View.MainView main = new View.MainView();
-                        //main.ShowDialog();
-                        //login = (View.LoginView)o;//传递一个参数给login，否则login为null会报错
-                        //login.Close();
+                        //Window.DialogResult 属性：获取或设置对话框结果值，此值是从 ShowDialog 方法返回的值 默认值为 false
+                        (o as Window).DialogResult = true; // App.xaml.cs_₁ Jump here during execution, Switch main window
                     }));
                 }
                 catch (Exception ex)

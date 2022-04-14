@@ -10,8 +10,10 @@ namespace StudentManagementSystem.Common
 {
     public class PasswordHelper
     {
+        #region Notes
         //DependencyProperty:表示可通过方法设置的属性，如样式、数据绑定、动画和继承
         //附加的依赖属性，与界面进行交互和Common进行绑定
+        #endregion
         public static readonly DependencyProperty PassWordProperty = DependencyProperty.RegisterAttached("Password"/*名称*/, typeof(string)/*类型*/, typeof(PasswordHelper)/*所有者类型*/, new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnPropertyChanged)));/*step1：a1|对依赖属性判断的时候会触发OnPropertyChanged委托*/
 
         public static string GetPassword(DependencyObject d)/*step3：封装两个依赖属性的方法*/

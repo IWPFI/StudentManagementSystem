@@ -12,14 +12,14 @@ namespace StudentManagementSystem.View
     /// </summary>
     public partial class MainView : Window
     {
-        private string parameters;
         public MainView()
         {
             InitializeComponent();
 
-            MainViewModel model = new MainViewModel/*₆*/();
+            MainViewModel model = new MainViewModel();
             this.DataContext = model;
-            model.UserInfo.Avatar = GlobalValues.UserInfo.Avatar;/*需要对其进行初始化，在₆构造函数里面进行初始化*/
+
+            model.UserInfo.Avatar = GlobalValues.UserInfo.Avatar;/*It needs to be initialized,Initialize in ₆ constructor*/
             model.UserInfo.UserName = GlobalValues.UserInfo.RealName;
             model.UserInfo.Gender = GlobalValues.UserInfo.Gender;
 
@@ -27,19 +27,31 @@ namespace StudentManagementSystem.View
             //SystemParameters: 可用来查询系统设置的属性
             //SystemParameters.PrimaryScreenHeight 属性: 获取一个值，该值指示主监视器的屏幕高度（以像素为单位）[屏幕的高度]
             #endregion
-            this.MaxHeight = SystemParameters.PrimaryScreenHeight;/*为了防止₄最大化时系统任务栏被遮盖*/
+            this.MaxHeight = SystemParameters.PrimaryScreenHeight;/*防止最大化时系统任务栏被遮盖*/
         }
 
+        private string parameters;
+        public static bool search;
+
+        /// <summary>
+        /// 登录窗口拖动
+        /// </summary>
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }//登录窗口拖动
+            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }
         }
 
+        /// <summary>
+        /// 窗口最小化
+        /// </summary>
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;//窗口最小化
+            this.WindowState = WindowState.Minimized;
         }
 
+        /// <summary>
+        /// 窗口最大化
+        /// </summary>
         private void btnMax_Click(object sender, RoutedEventArgs e)
         {
             #region Notes 
@@ -49,15 +61,20 @@ namespace StudentManagementSystem.View
                Normal 还原窗口。 
             */
             #endregion
-            this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;//₄窗口最大化(需要判断,点一下默认状态,在点一下放大)
+            this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
 
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        public static bool search;
+
+
+
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             #region Notes
@@ -95,8 +112,6 @@ namespace StudentManagementSystem.View
                 }
             }
         }
-
-
         #region Notes
         /* ButtonBase.CommandParameter 属性：获取或设置要传递给 Command 属性的参数。*/
         #endregion

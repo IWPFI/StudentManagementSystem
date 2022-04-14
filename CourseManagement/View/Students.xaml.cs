@@ -30,7 +30,7 @@ namespace StudentManagementSystem.View
         public event PropertyChangedEventHandler? PropertyChanged;
         public void DoNotify([CallerMemberName] string propName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));//达到通知效果
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         ContactsView contacts = new ContactsView();

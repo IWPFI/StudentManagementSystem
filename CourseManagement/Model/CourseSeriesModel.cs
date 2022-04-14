@@ -3,12 +3,24 @@ using System.Collections.ObjectModel;
 
 namespace StudentManagementSystem.Model
 {
-    public class CourseSeriesModel/*₉首页课程总览列表*/
+    /// <summary>
+    /// 首页课程总览列表
+    /// </summary>
+    public class CourseSeriesModel
     {
-        public string CourseName { get; set; }//课程名称,如果需要调整就要带通知属性
+        /// <summary>
+        /// 课程名称
+        /// </summary>
+        public string CourseName { get; set; }
 
-        public SeriesCollection SeriesColection { get; set; }//首页课程总览中间列  这里是一个序列
+        /// <summary>
+        /// 首页课程总览中间列--序列
+        /// </summary>
+        public SeriesCollection SeriesColection { get; set; }
 
-        public ObservableCollection<SeriesModel> SeriesList { get; set; }//右边列  集合  因为这里面一个项就是一个对象，需要单独一个类进行承载
+        /// <summary>
+        /// 右边列--集合  因为这里面一个项就是一个对象，需要单独一个类进行承载
+        /// </summary>
+        public ObservableCollection<SeriesModel> SeriesList { get; set; }
     }
 }

@@ -54,14 +54,6 @@ namespace StudentManagementSystem.ViewModel
             });
         }
 
-        ///// <summary>
-        ///// 搜索学生信息
-        ///// </summary>
-        //public void SearchStudents()
-        //{
-        //    StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents());
-        //}
-
         /// <summary>
         /// 获取学生列表
         /// </summary>

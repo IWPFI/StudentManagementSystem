@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Model
 {
-    public class UserModel : NotifyBase/*NotifyBase改变时通知界面*//*₅用来存放用户信息*/
+    /// <summary>
+    /// 用户信息
+    /// </summary>
+    public class UserModel : NotifyBase
     {
         private string _avatar;
 

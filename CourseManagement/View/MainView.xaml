@@ -77,7 +77,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
-                    <!--绑定到切换命令₇-->
+                    <!--Bind to switch command₇-->
                     <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True" Command="{Binding NavChangedCommand}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
                     <RadioButton Content="课程管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
                     <RadioButton Content="通讯录管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>

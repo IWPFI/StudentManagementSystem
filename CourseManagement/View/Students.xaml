@@ -32,7 +32,7 @@
                             <Grid>
                                 <Border Panel.ZIndex="1" Width="100" Height="100" Margin="4,0,0,0">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/Icon/古风巨龙水墨龙墨迹.png"/>
+                                        <ImageBrush ImageSource="/Assets/Icon/Ancient_style_dragon_ink.png"/>
                                     </Border.Background>
                                 </Border>
                                 <Border CornerRadius="35" Width="70" Height="70">
@@ -66,7 +66,7 @@
                     <!--分割线-->
                     <Border Grid.Row="0" Width="450" Height="85" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Assets/Icon/书本铅笔分割线 (1).png"/>
+                            <ImageBrush ImageSource="/Assets/Icon/Book_pencil_split_line.png"/>
                         </Border.Background>
                     </Border>
                     <!--<Border Grid.Row="2" Width="400" Height="2" BorderThickness="0 0 0 1" BorderBrush="#FF9DB7E4" VerticalAlignment="Top" HorizontalAlignment="Left"/>-->
@@ -109,12 +109,6 @@
                                 <TextBox x:Name="nianling" Text="{Binding Students.Age,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
-                            <!-- 默认
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >
-                                <TextBlock Text="电话：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="dianhau" Text="{Binding StudentPhone}" Width="390" Style="{DynamicResource StudentTextBox}"/>
-                            </StackPanel>
-                            -->
                             <StackPanel Grid.Row="2" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="电话：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <TextBox x:Name="dianhau" Text="{Binding StudentPhone}" MaxLength="13" Style="{DynamicResource StudentTextBox}"/>
@@ -123,7 +117,6 @@
                             <!--生日-->
                             <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="生日：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <!--<TextBox x:Name="shengri" Style="{DynamicResource StudentBirthdayTextBox}"/>-->
                                 <DatePicker Name="shengri" SelectedDate="{Binding StudentBirthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>

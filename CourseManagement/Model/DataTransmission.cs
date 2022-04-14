@@ -5,6 +5,9 @@ namespace StudentManagementSystem.Model
     public class DataTransmission : NotifyBase
     {
         private string _radioButtonText;
+        private string _nation;
+        private string _politicsStatus;
+
         /// <summary>
         /// 性别
         /// </summary>
@@ -18,7 +21,6 @@ namespace StudentManagementSystem.Model
             }
         }
 
-        private string _nation;
         /// <summary>
         /// 民族
         /// </summary>
@@ -28,7 +30,6 @@ namespace StudentManagementSystem.Model
             set { _nation = value; DoNotify(); }
         }
 
-        private string _politicsStatus;
         /// <summary>
         /// 政治面貌
         /// </summary>
@@ -37,6 +38,5 @@ namespace StudentManagementSystem.Model
             get { return _politicsStatus; }
             set { _politicsStatus = value; DoNotify(); }
         }
-
     }
 }

@@ -13,21 +13,40 @@ namespace StudentManagementSystem.ViewModel
 {
     public class CoursePageViewModel
     {
-        public ObservableCollection<CategoryItemModel> CategoryCourses { get; set; }//绑定到界面课程分类
-        public ObservableCollection<CategoryItemModel> CategoryTechnology { get; set; }//绑定到界面技术分类
-        public ObservableCollection<CategoryItemModel> CategoryTeacher { get; set; }//绑定到界面授课老师
+        /// <summary>
+        /// 课程分类
+        /// </summary>
+        public ObservableCollection<CategoryItemModel> CategoryCourses { get; set; }
+
+        /// <summary>
+        /// 技术分类
+        /// </summary>
+        public ObservableCollection<CategoryItemModel> CategoryTechnology { get; set; }
+
+        /// <summary>
+        /// 授课老师
+        /// </summary>
+        public ObservableCollection<CategoryItemModel> CategoryTeacher { get; set; }
 
         public ObservableCollection<CourseModel> CourseList { get; set; } = new ObservableCollection<CourseModel>();
-        private List<CourseModel> courseAll;//对授课老师进行筛选，点击相应的老师对应相应的课程
 
-        public CommandBase OpenCourseUrlCommand { get; set; }//点击课程名称时跳转到网页₁₀
+        /// <summary>
+        /// 对授课老师进行筛选，点击相应的老师对应相应的课程
+        /// </summary>
+        private List<CourseModel> courseAll;
+
+        /// <summary>
+        /// 点击课程名称时跳转到网页
+        /// </summary>
+        public CommandBase OpenCourseUrlCommand { get; set; }
+
         public CommandBase TeacherFilterCommand { get; set; }
 
         public CoursePageViewModel()
         {
-            this.OpenCourseUrlCommand = new CommandBase();//₁₀实例化
-            this.OpenCourseUrlCommand.DoCanExecute = new Func<object, bool>((o) => true);//₁₀
-            this.OpenCourseUrlCommand.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start("explorer.exe", o.ToString()); });//₁₀可以打开界面了
+            this.OpenCourseUrlCommand = new CommandBase();
+            this.OpenCourseUrlCommand.DoCanExecute = new Func<object, bool>((o) => true);
+            this.OpenCourseUrlCommand.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start("explorer.exe", o.ToString()); });//调用浏览器打开url
 
             this.TeacherFilterCommand = new CommandBase();
             this.TeacherFilterCommand.DoCanExecute = new Func<object, bool>((o) => true);
@@ -46,14 +65,16 @@ namespace StudentManagementSystem.ViewModel
             {
                 temp = courseAll.Where(c => c.Teachers.Exists(e => e == teacher)).ToList();
             }
-            CourseList.Clear();//清空₁₁
+            CourseList.Clear();//₁₁Empty data
 
             foreach (var item in temp)
-                CourseList.Add(item);/*₁₁在重新遍历之前需要清空之前的数据*/
+                CourseList.Add(item);/*₁₁You need to clear the previous data before re traversing*/
         }
 
-
-        private void InitCategory()//初始化课程列表
+        /// <summary>
+        /// 初始化课程列表
+        /// </summary>
+        private void InitCategory()
         {
             this.CategoryCourses = new ObservableCollection<CategoryItemModel>();
             this.CategoryCourses.Add(new CategoryItemModel("全部", true));

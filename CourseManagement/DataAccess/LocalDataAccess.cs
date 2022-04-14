@@ -79,12 +79,12 @@ namespace StudentManagementSystem.DataAccess
             try
             {
 
-                conn.Open();/*尝试打开*/
+                conn.Open();/*打开数据库*/
                 return true;
             }
             catch
             {
-                return false;/*如果不能打开报异常*/
+                return false;/*如果不能打开 报异常*/
             }
         }
 
@@ -98,7 +98,7 @@ namespace StudentManagementSystem.DataAccess
                     adapter = new SqlDataAdapter(userSql, conn);
                     adapter.SelectCommand.Parameters.Add(new SqlParameter("@user_name"/*名称*/, SqlDbType.VarChar) { Value = userName });
                     adapter.SelectCommand.Parameters.Add(new SqlParameter("@pwd", SqlDbType.VarChar) { Value = pwd });
-                    //adapter.SelectCommand.Parameters.Add(new SqlParameter("@pwd", SqlDbType.VarChar) { Value = MD5Provider.GetMD5String(pwd + "@" + userName) });//调用[MD5Procider.cs]类进行加密处理，暂时不需要
+                    //adapter.SelectCommand.Parameters.Add(new SqlParameter("@pwd", SqlDbType.VarChar) { Value = MD5Provider.GetMD5String(pwd + "@" + userName) });//调用[MD5Procider.cs]类进行加密处理
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);

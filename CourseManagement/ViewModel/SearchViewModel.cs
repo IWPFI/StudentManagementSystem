@@ -1,16 +1,10 @@
 ﻿using StudentManagementSystem.Common;
 using StudentManagementSystem.DataAccess;
 using StudentManagementSystem.Model;
-using StudentManagementSystem.View;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -28,6 +22,10 @@ namespace StudentManagementSystem.ViewModel
 
         }
 
+        private CommandBase _closeCommand;
+        private CommandBase _seekCommand;
+        private ObservableCollection<StudentInformation> studentList;
+
         public ObservableCollection<StudentInformation> StudentList
         {
             get => studentList; set
@@ -37,7 +35,6 @@ namespace StudentManagementSystem.ViewModel
             }
         }
 
-        private CommandBase _closeCommand;
         /// <summary>
         /// Gets the close command.
         /// </summary>
@@ -61,9 +58,10 @@ namespace StudentManagementSystem.ViewModel
                 return _closeCommand;
             }
         }
-        private CommandBase _seekCommand;
-        private ObservableCollection<StudentInformation> studentList;
 
+        /// <summary>
+        /// 搜索命令
+        /// </summary>
         public CommandBase SeekCommand
         {
             get
@@ -73,9 +71,7 @@ namespace StudentManagementSystem.ViewModel
                     _seekCommand = new CommandBase();
                     _seekCommand.DoExecute = new Action<object>(obj =>
                     {
-                        //LocalDataAccess.GetInstance().SearchStudents(obj.ToString());
                         StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents(obj.ToString()));
-                        //MessageBox.Show(obj.ToString());
                     });
                     _seekCommand.DoCanExecute = new Func<object, bool>((o) =>
                     {

@@ -20,34 +20,48 @@ namespace StudentManagementSystem.ViewModel
 
     /* ConstructorInfo 类：发现类构造函数的属性并提供对构造函数元数据的访问权。
        https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.constructorinfo?redirectedfrom=MSDN&view=net-6.0 */
+
+    /* It is mainly used for user information in the main interface 
+     * (because there are many user information that need to be bound, a new UserModel₅ "class" is created separately),
+     * search box input and window interface*/
     #endregion
-    /*主要用于主界面用户信息（因为用户信息很多需要绑定所以单独新建一个UserModel₅类），搜索框输入，窗口界面*/
     public class MainViewModel : NotifyBase
     {
         public UserModel UserInfo { get; set; }
 
         private string _searchText;
-        public string SearchText//主窗口搜索框绑定
+        private FrameworkElement _mainContent;
+
+        /// <summary>
+        /// 主窗口搜索框绑定
+        /// </summary>
+        public string SearchText
         {
             get { return _searchText; }
             set { _searchText = value; this.DoNotify(); }
         }
 
-        private FrameworkElement _mainContent;
         public FrameworkElement MainContent
         {
             get { return _mainContent; }
             set { _mainContent = value; this.DoNotify(); }
         }
-        
-        public CommandBase NavChangedCommand { get; set; }//₇导航切换命令（需要初始化，在构造函数里初始化）
+
+        /// <summary>
+        /// Navigation switching command
+        /// </summary>
+        /// <remarks>
+        /// 导航切换命令<br/>
+        /// It needs to be initialized in the constructor
+        /// </remarks>
+        public CommandBase NavChangedCommand { get; set; }
 
         public MainViewModel()
         {
-            UserInfo = new UserModel();/*₆初始化只要在用到这个东西前初始化都可以，写在哪里都可以*/
+            UserInfo = new UserModel();/*₆Initialization is OK as long as it is initialized before using this thing. It can be written anywhere */
             this.NavChangedCommand = new CommandBase();
             this.NavChangedCommand.DoExecute = new Action<object>(DoNavChanged);//₇⇢₈ Action接收一个object参数调用DoNavChanged委托
-            this.NavChangedCommand.DoCanExecute = new Func<object, bool>((o) => true);//按钮是否可用（需要委托）
+            this.NavChangedCommand.DoCanExecute = new Func<object, bool>((o) => true);//Whether the button is available (delegation required)
             DoNavChanged("FirstPageView");
         }
         private void DoNavChanged(object obj)/*₈*/

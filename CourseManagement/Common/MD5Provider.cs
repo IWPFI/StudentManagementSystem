@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 //对用户密码进行加密
 namespace StudentManagementSystem.Common
 {
+    /// <summary>
+    /// 密码加密处理
+    /// </summary>
     class MD5Provider
     {
         //public static string GetMD5String(string str)

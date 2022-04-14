@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <None Remove="Assets\Icon\13.png" />
+    <None Remove="Assets\Icon\Ancient_style_dragon_ink.png" />
     <None Remove="Assets\Icon\Background_InkLandscape.png" />
+    <None Remove="Assets\Icon\Book_pencil_split_line.png" />
     <None Remove="Assets\Icon\Border_1.png" />
     <None Remove="Assets\Icon\Border_2.png" />
     <None Remove="Assets\Icon\Border_3.png" />
@@ -30,10 +32,6 @@
     <None Remove="Assets\Icon\pair_illustration_error.png" />
     <None Remove="Assets\Icon\pair_illustration_prompt1.png" />
     <None Remove="Assets\Icon\StudentManagementSystem.png" />
-    <None Remove="Assets\Icon\StudentManagementSystem_2.jpg" />
-    <None Remove="Assets\Icon\StudentManagementSystem_3.jpg" />
-    <None Remove="Assets\Icon\书本铅笔分割线 %281%29.png" />
-    <None Remove="Assets\Icon\古风巨龙水墨龙墨迹.png" />
     <None Remove="Assets\Image\12.jpg" />
     <None Remove="Assets\Image\3.jpg" />
     <None Remove="Assets\Image\Logo.png" />
@@ -63,10 +61,8 @@
     <Resource Include="Assets\Icon\Border_7.png" />
     <Resource Include="Assets\Icon\Border_8.png" />
     <Resource Include="Assets\Icon\StudentManagementSystem.png" />
-    <Resource Include="Assets\Icon\StudentManagementSystem_2.jpg" />
-    <Resource Include="Assets\Icon\StudentManagementSystem_3.jpg" />
-    <Resource Include="Assets\Icon\书本铅笔分割线 (1).png" />
-    <Resource Include="Assets\Icon\古风巨龙水墨龙墨迹.png" />
+    <Resource Include="Assets\Icon\Book_pencil_split_line.png" />
+    <Resource Include="Assets\Icon\Ancient_style_dragon_ink.png" />
     <Resource Include="Assets\Image\Logo.png" />
     <Resource Include="Assets\Image\WPF.jpg" />
     <Resource Include="Assets\Image\xiamu.jpg" />

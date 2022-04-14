@@ -8,12 +8,30 @@ namespace StudentManagementSystem.Model
 {
     public class CourseModel
     {
-        public string CourseName { get; set; }//课程名称
-        public string Cover { get; set; }//左侧课程封面
-        public string Url { get; set; }
-        public string Description { get; set; }//描述
+        /// <summary>
+        /// 课程名称
+        /// </summary>
+        public string CourseName { get; set; }
 
-        public List<string> Teachers { get; set; }//老师，这里需要一个列表
+        /// <summary>
+        /// 左侧课程封面
+        /// </summary>
+        public string Cover { get; set; }
+
+        /// <summary>
+        /// 链接
+        /// </summary>
+        public string Url { get; set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 老师--需要一个列表
+        /// </summary>
+        public List<string> Teachers { get; set; }
 
         public bool IsShowSkeleton { get; set; }
     }

@@ -28,7 +28,6 @@
             <!--顶部布局-->
             <Grid>
                 <TextBlock x:Name="TopTitleTextBlock" Text="添  加" FontSize="30" Foreground="#FF5D6B99" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <!--<TextBlock x:Name="TopTitleTextBlock" Text="{Binding Path=RadioButtonText,Mode=TwoWay,UpdateSourceTrigger=Default}" FontSize="30" FontWeight="Bold" Foreground="#FF5D6B99" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
                 <Button Style="{DynamicResource AddDataCloseButton}" Click="CloseButtonClick"/>
                 <Border Width="720" Height="3" BorderThickness="0 0 0 2" BorderBrush="#FF3B4F81" VerticalAlignment="Bottom"/>
             </Grid>

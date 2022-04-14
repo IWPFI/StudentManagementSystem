@@ -8,10 +8,29 @@ namespace StudentManagementSystem.DataAccess.DataEntity
 {
     public class UserEntity
     {
+        /// <summary>
+        /// 账号名称
+        /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// 用户名称
+        /// </summary>
         public string RealName { get; set; }
-        public string Password { get; set; }//密码
-        public string Avatar { get; set; }//是否有效
-        public int Gender { get; set; }//性别
+
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// 是否有效
+        /// </summary>
+        public string Avatar { get; set; }
+
+        /// <summary>
+        /// 性别
+        /// </summary>
+        public int Gender { get; set; }
     }
 }

@@ -9,39 +9,46 @@
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Title="SearchView" Height="500" Width="700">
     <Window.Resources>
-        <ResourceDictionary Source="../Assets/Style/SearchViewStyle.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/Style/SearchViewStyle.xaml"/>
+                <ResourceDictionary Source="../Assets/Style/DataGridStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
-    <Border CornerRadius="1" BorderThickness="13" Background="#FF5D6B99" BorderBrush="#FF7582AC" MouseLeftButtonDown="MouseLeftButtonDown">
+    <Border CornerRadius="5" Margin="5" Background="#40568D" BorderBrush="#333353" MouseLeftButtonDown="MouseLeftButtonDown">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Direction="0" Color="Gray" Opacity="0.2"/>
+        </Border.Effect>
         <Grid Name="searchView" TextBlock.Foreground="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="45"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Finding Student Information" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Style="{StaticResource TitleTestBlockStyle}"/>
 
-            <TextBlock Grid.Row="1" Text="search string:" Margin="31,0,0,0" Width="100" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox Name="studentTextBox" Grid.Row="1" Text="Please enter the student ID or name you want to search for" Margin="131,0,0,0" Width="399" Height="20" x:FieldModifier="public" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Name="studentTextBox" Text="" x:FieldModifier="public" Style="{DynamicResource studentTextBoxStyle}"/>
 
-
-
-            <Button Name="seekButton" Grid.Row="1" Content="seek" Margin="569,0,0,0" Width="95" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" 
+            <Button Name="seekButton" Style="{DynamicResource SeekButtonStyle}"
                     Command="{Binding SeekCommand}"
                     CommandParameter="{Binding ElementName=studentTextBox,Path=Text}"/>
 
             <Button Name="closeButton" Style="{StaticResource CloceButtonStyle}"    
                     Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=window}"/>
-
-            <DataGrid Grid.Row="2" ItemsSource="{Binding StudentList,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+            
+            <Border Grid.Row="2" CornerRadius="0 0 5 5" Background="White">
+                <DataGrid Grid.Row="2" ItemsSource="{Binding StudentList,UpdateSourceTrigger=PropertyChanged}" Margin="10 5" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="序号" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="学号" Binding="{Binding StudentID}"/>
-                    <DataGridTextColumn Header="姓名" Binding="{Binding StudentName}"/>
-                    <DataGridTextColumn Header="班级" Binding="{Binding StudentGrade}"/>
-                    <DataGridTextColumn Header="电话" Binding="{Binding StudentPhone}"/>
+                    <DataGridTextColumn Header="序号" Width="25" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="学号" Width="*" Binding="{Binding StudentID}"/>
+                    <DataGridTextColumn Header="姓名" Width="*" Binding="{Binding StudentName}"/>
+                    <DataGridTextColumn Header="班级" Width="*" Binding="{Binding StudentGrade}"/>
+                    <DataGridTextColumn Header="电话" Width="*" Binding="{Binding StudentPhone}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            </Border>
         </Grid>
     </Border>
 </Window>

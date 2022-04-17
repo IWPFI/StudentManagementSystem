@@ -35,9 +35,22 @@ namespace StudentManagementSystem.View
 
         ContactsView contacts = new ContactsView();
         private string[] GetVs = new string[7];
+        public int UpdateStudentData { get; set; }
+        public int DeleteStudenData { get; set; }
+
         private int age;
-        private ObservableCollection<StudentInformation> amendStudenList;
-        private ObservableCollection<StudentInformation> deleteStudenList;
+        /// <summary>
+        /// 年龄
+        /// </summary>
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                age = value;
+                DoNotify();
+            }
+        }
 
         public Students()
         {
@@ -60,28 +73,6 @@ namespace StudentManagementSystem.View
             };
         }
 
-        /// <summary>
-        /// 年龄
-        /// </summary>
-        public int Age
-        {
-            get { return age; }
-            set
-            {
-                age = value;
-                DoNotify();
-            }
-        }
-
-        public ObservableCollection<StudentInformation> AmendStudenList
-        {
-            get => amendStudenList; set
-            {
-                amendStudenList = value;
-                DoNotify();
-            }
-        }
-
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();//窗口拖动
@@ -99,14 +90,21 @@ namespace StudentManagementSystem.View
             }
             else
             {
-                bool? r = false;
-                r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (r != null && r == true)
+                if (!string.IsNullOrEmpty(xingming.Text))
                 {
-                    Content();
-                    Amend();
-                    MessageWindow.ShowWindow("修改成功", "修改成功");
-                    Close();
+                    bool? r = false;
+                    r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (r != null && r == true)
+                    {
+                        Content();
+                        LocalDataAccess.GetInstance().StudentsAmend(GetVs);
+                        MessageWindow.ShowWindow("修改成功");
+                        Close();
+                    }
+                }
+                else
+                {
+                    MessageWindow.ShowWindow("姓名字段不能为空！");
                 }
             }
         }
@@ -128,7 +126,7 @@ namespace StudentManagementSystem.View
                 if (r != null && r == true)
                 {
                     Content();
-                    Delete();
+                    DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(GetVs));
                     MessageWindow.ShowWindow("删除成功,请刷新数据库。");
                     contacts.InterfaceData();
                     this.Close();
@@ -147,58 +145,20 @@ namespace StudentManagementSystem.View
         //获取数据
         private void Content()
         {
-            if (xingming.Text != "")
+            GetVs[0] = xuehao.Text;
+            GetVs[1] = xingming.Text;
+            if (shengri.Text != "")
             {
-                GetVs[0] = xingming.Text;
-                GetVs[1] = xuehao.Text;
-                if (shengri.Text != "")
-                {
-                    GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
-                }
-                else
-                {
-                    GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
-                }
-                GetVs[2] = xingbie.Text;
-                GetVs[4] = bangji.Text;
-                GetVs[5] = dianhau.Text;
-                GetVs[6] = dizhi.Text;
+                GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
             }
             else
             {
-                MessageBox.Show("学生姓名不能为空！");
+                GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
             }
-        }
-
-        /// <summary>
-        /// 删除操作
-        /// </summary>
-        public ObservableCollection<StudentInformation> DeleteStudenList
-        {
-            get => deleteStudenList;
-            set
-            {
-                deleteStudenList = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 修改操作
-        /// </summary>
-        public void Amend()
-        {
-            LocalDataAccess.GetInstance().Transmit(GetVs);
-            AmendStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsAmend());
-        }
-
-        /// <summary>
-        /// 删除操作
-        /// </summary>
-        public void Delete()
-        {
-            LocalDataAccess.GetInstance().Transmit(GetVs);
-            DeleteStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDelete());
+            GetVs[2] = xingbie.Text;
+            GetVs[4] = bangji.Text;
+            GetVs[5] = dianhau.Text;
+            GetVs[6] = dizhi.Text;
         }
 
         /// <summary>

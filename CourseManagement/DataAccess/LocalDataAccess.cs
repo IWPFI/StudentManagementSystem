@@ -20,11 +20,6 @@ namespace StudentManagementSystem.DataAccess
         public string[] GetVs = new string[7];
         public string[] GetAdd = new string[7];
 
-        public string[] Transmit(string[] vs)
-        {
-            GetVs = vs;
-            return GetVs;
-        }
         public string[] Tianjia(string[] vs)
         {
             GetAdd = vs;
@@ -402,13 +397,12 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
         /// <summary>
         /// 修改学生信息
         /// </summary>
-        /// 使用更新实现
         /// <returns></returns>
-        public List<StudentInformation> StudentsAmend()
+        public void StudentsAmend(string[] GetVs)
         {
             try
             {
-                List<StudentInformation> result = new List<StudentInformation>();
+                int result = 0;
                 if (this.DBConnection())
                 {
                     string sql = "UPDATE students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
@@ -416,14 +410,9 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
                         "site = ('" + GetVs[6] + "'),gmt_modified = GETDATE() WHERE number = ('" + GetVs[0] + "')";
                     adapter = new SqlDataAdapter(sql, conn);
 
-                    DataTable table = new DataTable();
-                    int count = adapter.Fill(table);
-                    if (count > 0)
-                    {
-                        MessageBox.Show("");
-                    }
+                    DataSet table = new DataSet();
+                    adapter.Fill(table);
                 }
-                return result;
             }
             catch (Exception ex)
             {
@@ -439,23 +428,21 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
         /// 删除学生信息
         /// </summary>
         /// <returns></returns>
-        public List<StudentInformation> StudentsDelete()
+        public int StudentsDelete(string[] GetVs)
         {
             try
             {
-                List<StudentInformation> result = new List<StudentInformation>();
+                int result = 0;
                 if (this.DBConnection())
                 {
-                    string sql = @"
-UPDATE students 
+                    string sql = @"UPDATE students 
 SET is_delete = 1, gmt_modified = GETDATE()
 WHERE
 	number = ( '" + GetVs[0] + "' )";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
-                    int count = adapter.Fill(table);
-
+                    result = adapter.Fill(table);
                 }
                 return result;
             }
@@ -550,7 +537,7 @@ VALUES
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (DBConnection())
                 {
-                    string sql = string.Format("SELECT id, number, name, grade, phone FROM students WHERE number LIKE '%{0}%' OR name LIKE '%{0}%'", seek);
+                    string sql = string.Format("SELECT id, number, name, grade, phone FROM students WHERE number LIKE '%{0}%' AND name LIKE '%{0}%' AND is_delete = 0;", seek);
                     adapter = new SqlDataAdapter(sql, conn);
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);

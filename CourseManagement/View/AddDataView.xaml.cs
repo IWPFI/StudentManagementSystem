@@ -2,9 +2,11 @@
 using StudentManagementSystem.Model;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace StudentManagementSystem.View
@@ -12,19 +14,36 @@ namespace StudentManagementSystem.View
     /// <summary>
     /// AddDataView.xaml 的交互逻辑
     /// </summary>
-    public partial class AddDataView : Window
+    public partial class AddDataView : Window, INotifyPropertyChanged
     {
         private readonly string[] GetAdd = new string[7];
         private string setRadioButton;
         DataTransmission data;
+        //NationModel nation;
+        private string _nation;
+        private string _politicsStatus;
+        public ObservableCollection<NationModel> NationModelList { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public AddDataView()
         {
             InitializeComponent();
             this.DataContext = data = new DataTransmission();
+            nationGrid.DataContext = this;
+            NationModelList.Clear();
+            NationModelList = new ObservableCollection<NationModel>(LocalDataAccess.GetInstance().GeiNation());
+            //MessageBox.Show(NationModelList[0].ToString());
         }
 
+        /// <summary>
+        /// Closes the button click.
+        /// </summary>
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
@@ -76,14 +95,9 @@ namespace StudentManagementSystem.View
         public void AddStudentInformation()
         {
             LocalDataAccess.GetInstance().Tianjia(GetAdd);
-            AddStudenList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().AddStudents());
+            LocalDataAccess.GetInstance().AddStudents();
             Close();
         }
-
-        /// <summary>
-        /// 添加操作
-        /// </summary>
-        public ObservableCollection<StudentInformation> AddStudenList { get; set; }
 
         /// <summary>
         /// 添加按钮

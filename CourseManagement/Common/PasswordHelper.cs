@@ -15,7 +15,10 @@ namespace StudentManagementSystem.Common
         //附加的依赖属性，与界面进行交互和Common进行绑定
         #endregion
         public static readonly DependencyProperty PassWordProperty = 
-            DependencyProperty.RegisterAttached("Password"/*名称*/, typeof(string)/*类型*/, typeof(PasswordHelper)/*所有者类型*/, new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnPropertyChanged)));/*step1：a1|对依赖属性判断的时候会触发OnPropertyChanged委托*/
+            DependencyProperty.RegisterAttached("Password"/*名称*/,
+                typeof(string)/*类型*/,
+                typeof(PasswordHelper)/*所有者类型*/,
+                new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnPropertyChanged)));/*step1：a1|对依赖属性判断的时候会触发OnPropertyChanged委托*/
 
         public static string GetPassword(DependencyObject d)/*step3：封装两个依赖属性的方法*/
         {
@@ -27,7 +30,12 @@ namespace StudentManagementSystem.Common
             d.SetValue(PassWordProperty, value);
         }
 
-        public static readonly DependencyProperty AttachProperty = DependencyProperty.RegisterAttached("Attach", typeof(bool), typeof(PasswordHelper), new FrameworkPropertyMetadata(default(bool), new PropertyChangedCallback(OnAttached)));
+        public static readonly DependencyProperty AttachProperty = 
+            DependencyProperty.RegisterAttached("Attach",
+                typeof(bool), 
+                typeof(PasswordHelper), 
+                new FrameworkPropertyMetadata(default(bool),
+                    new PropertyChangedCallback(OnAttached)));
 
         public static bool GetAttached(DependencyObject d)
         {

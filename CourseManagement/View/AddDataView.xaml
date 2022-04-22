@@ -79,10 +79,11 @@
                 </StackPanel>
 
                 <!--民族-->
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Name="nationGrid" Grid.Row="1" Grid.Column="1">
                     <Label Content="&#xe66f;" ToolTip="民族" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族">
-                        <ComboBoxItem Content="功能开发中"/>
+                    <ComboBox Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族" >
+                        <ComboBoxItem Content="{Binding NationModelList.Id}"/>
+                        <ComboBoxItem Content="{Binding NationModelList.NationName}"/>
                     </ComboBox>
                 </Grid>
 

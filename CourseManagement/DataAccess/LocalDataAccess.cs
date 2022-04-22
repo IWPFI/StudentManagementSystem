@@ -537,7 +537,7 @@ VALUES
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (DBConnection())
                 {
-                    string sql = string.Format("SELECT id, number, name, grade, phone FROM students WHERE number LIKE '%{0}%' AND name LIKE '%{0}%' AND is_delete = 0;", seek);
+                    string sql = string.Format("SELECT id, number, name, grade, phone FROM students WHERE ( number LIKE '%{0}%' OR name LIKE '%{0}%') AND is_delete = 0;", seek);
                     adapter = new SqlDataAdapter(sql, conn);
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -599,18 +599,18 @@ VALUES
                     int count = adapter.Fill(table);
                     if (count > 0)//大于零说明有数据
                     {
-                        string courseId = "";
+                        int courseId = 0;
                         NationModel model = null;
 
                         foreach (DataRow dr in table.AsEnumerable())
                         {
-                            string tempId = dr.Field<string>("id");
+                            int tempId = dr.Field<int>("id");
                             if (courseId != tempId)
                             {
                                 courseId = tempId;
                                 model = new NationModel();
                                 model.Id = dr.Field<int>("id");//学号
-                                model.NationName = dr.Field<string>("nations_name");
+                                model.NationName = dr.Field<string>("nations_name");//民族
                                 result.Add(model);
                             }
                         }

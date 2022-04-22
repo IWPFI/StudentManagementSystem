@@ -73,7 +73,8 @@ namespace StudentManagementSystem.ViewModel
         {
             //获取随机数
             string i = new Random().Next(1000, 9999).ToString();
-            LoginModel.RandomField = i;
+            //LoginModel.RandomField = i;
+            LoginModel.RandomField = "1234";
         }
 
         /// <summary>

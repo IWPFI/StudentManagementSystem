@@ -12,15 +12,24 @@ namespace StudentManagementSystem.Model
     /// </summary>
     public class NationModel : NotifyBase
     {
-        private int id;
+        private int _id;
+        private string _nationName;
+
+        public NationModel()
+        {
+        }
+
+        public NationModel(int id,string nation)
+        {
+            _id = id;
+            _nationName = nation;
+        }
 
         public int Id
         {
-            get { return id; }
-            set { id = value; DoNotify(); }
+            get { return _id; }
+            set { _id = value; DoNotify(); }
         }
-
-        private string _nationName;
 
         public string NationName
         {

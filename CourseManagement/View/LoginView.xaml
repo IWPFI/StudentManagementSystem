@@ -48,7 +48,7 @@
                     </Border.Effect>
                     <Border Width="80" Height="80" CornerRadius="40" HorizontalAlignment="Center">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Assets/Image/xiamu.jpg"/>
+                            <ImageBrush ImageSource="../WPFBC.ico"/>
                         </Border.Background>
                     </Border>
                 </Border>

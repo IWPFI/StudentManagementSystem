@@ -3,16 +3,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:add="clr-namespace:StudentManagementSystem.ViewModel"
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="添加" 
         Height="500" Width="800"
         AllowsTransparency="True"
         Background="{x:Null}" WindowStyle="None" 
         WindowStartupLocation="CenterScreen"
-        MouseLeftButtonDown="WindowsMouseLeftButtonDown"
-        >
+        MouseLeftButtonDown="WindowsMouseLeftButtonDown">
     <Window.Resources>
-        <ResourceDictionary Source="../Assets/Style/ComboBoxStyle.xaml"/>
+        <ResourceDictionary>
+            <add:AddDataViewModel x:Key="AddDataViewModel"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/Style/ComboBoxStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Border Margin="10" CornerRadius="4" Style="{StaticResource WinBorderEffect}">
         <Grid>
@@ -79,20 +84,15 @@
                 </StackPanel>
 
                 <!--民族-->
-                <Grid Name="nationGrid" Grid.Row="1" Grid.Column="1">
+                <Grid Name="nationGrid" Grid.Row="1" Grid.Column="1" DataContext="{Binding Source={StaticResource AddDataViewModel}}">
                     <Label Content="&#xe66f;" ToolTip="民族" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族" >
-                        <ComboBoxItem Content="{Binding NationModelList.Id}"/>
-                        <ComboBoxItem Content="{Binding NationModelList.NationName}"/>
-                    </ComboBox>
+                    <ComboBox Name="nationComboBox" Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族" ItemsSource="{Binding NationModelList}"></ComboBox>
                 </Grid>
 
                 <!--政治面貌-->
-                <Grid Grid.Row="1" Grid.Column="2">
+                <Grid Grid.Row="1" Grid.Column="2"  DataContext="{Binding Source={StaticResource AddDataViewModel}}">
                     <Label Content="&#xe643;" ToolTip="政治面貌" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Height="40" Width="179" Margin="20 0 0 0" Tag="请选择政治面貌">
-                        <ComboBoxItem Content="功能开发中"/>
-                    </ComboBox>
+                    <ComboBox Name="politicalOutlookComboBox" Height="40" Width="179" Margin="20 0 0 0" Tag="请选择政治面貌" ItemsSource="{Binding PoliticalOutlookList}"></ComboBox>
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.ColumnSpan="3">

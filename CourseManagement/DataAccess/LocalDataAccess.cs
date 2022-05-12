@@ -18,7 +18,7 @@ namespace StudentManagementSystem.DataAccess
     {
         //修改操作
         public string[] GetVs = new string[7];
-        public string[] GetAdd = new string[7];
+        public string[] GetAdd = new string[9];
 
         public string[] Tianjia(string[] vs)
         {
@@ -499,14 +499,14 @@ WHERE
                     }
                     else
                     {
-                        string sql = @"INSERT INTO students ( number, name, sex, birthday, phone, grade, site, is_delete, gmt_create )
+                        string sql = @"INSERT INTO students ( number, name, sex, birthday, phone, grade, site, nation_id, politics_status_id, is_delete, gmt_create )
 VALUES
-	( '" + GetAdd[0] + "', '" + GetAdd[1] + "', '" + GetAdd[2] + "', '" + GetAdd[3] + "', '" + GetAdd[4] + "', '" + GetAdd[5] + "', '" + GetAdd[6] + "', 0, GETDATE() );";
+	( '" + GetAdd[0] + "', '" + GetAdd[1] + "', '" + GetAdd[2] + "', '" + GetAdd[3] + "', '" + GetAdd[4] + "', '" + GetAdd[5] + "', '" + GetAdd[6] + "', '" + GetAdd[7] + "', '" + GetAdd[8] + "', 0, GETDATE() );";
                         adapter = new SqlDataAdapter(sql, conn);
 
                         DataTable table = new DataTable();
                         int count = adapter.Fill(table);
-                        MessageWindow.ShowWindow("添加成功！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageWindow.ShowWindow("添加成功，请手动刷新界面！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 return result;
@@ -585,35 +585,55 @@ VALUES
         /// <summary>
         /// 获取民族信息
         /// </summary>
-        public List<NationModel> GeiNation()
+        public List<string> GeiNation()
         {
             try
             {
-                List<NationModel> result = new List<NationModel>();
+                List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT * FROM nations";
+                    string sql = @"SELECT nations_name FROM nations";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
                     if (count > 0)//大于零说明有数据
                     {
-                        int courseId = 0;
-                        NationModel model = null;
+                        result = table.AsEnumerable().Select(c => c.Field<string>("nations_name")).ToList();
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+        }
 
-                        foreach (DataRow dr in table.AsEnumerable())
-                        {
-                            int tempId = dr.Field<int>("id");
-                            if (courseId != tempId)
-                            {
-                                courseId = tempId;
-                                model = new NationModel();
-                                model.Id = dr.Field<int>("id");//学号
-                                model.NationName = dr.Field<string>("nations_name");//民族
-                                result.Add(model);
-                            }
-                        }
+        /// <summary>
+        /// 获取政治面貌
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetPoliticalOutlook()
+        {
+            try
+            {
+                List<string> result = new List<string>();
+                if (this.DBConnection())
+                {
+                    string sql = @"SELECT politics_status FROM politics_status";
+                    adapter = new SqlDataAdapter(sql, conn);
+
+                    DataTable table = new DataTable();
+                    int count = adapter.Fill(table);
+
+                    if (count > 0)
+                    {
+                        result = table.AsEnumerable().Select(c => c.Field<string>("politics_status")).ToList();
                     }
                 }
                 return result;

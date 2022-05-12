@@ -1,4 +1,8 @@
 ﻿using StudentManagementSystem.Common;
+using StudentManagementSystem.DataAccess;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace StudentManagementSystem.Model
 {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StudentManagementSystem.Model
 {
     /// <summary>
-    /// 民族
+    /// --民族
     /// </summary>
     public class NationModel : NotifyBase
     {

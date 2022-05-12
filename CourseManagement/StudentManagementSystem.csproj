@@ -7,7 +7,7 @@
     <StartupObject></StartupObject>
     <Nullable>enable</Nullable>
     <UserSecretsId>752e6dab-5380-4909-930c-411fdd8f73f3</UserSecretsId>
-    <ApplicationIcon>MEmu.ico</ApplicationIcon>
+    <ApplicationIcon>WPFBC.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MEmu.ico" />
+    <Resource Include="WPFBC.ico" />
   </ItemGroup>
 
   <ItemGroup>

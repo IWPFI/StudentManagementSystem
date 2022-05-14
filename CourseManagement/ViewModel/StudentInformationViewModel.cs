@@ -9,37 +9,14 @@ using System.Runtime.CompilerServices;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class StudentInformationViewModel : INotifyPropertyChanged
+    public class StudentInformationViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void DoNotify([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public CommandBase OpenStudentId { get; set; }//点击Id时执行
-        private ObservableCollection<StudentInformation> studentList;
-        private ObservableCollection<StudentInformation> studentsDetailsList;
 
-        public ObservableCollection<StudentInformation> StudentList
-        {
-            get => studentList;
-            set
-            {
-                studentList = value;
-                DoNotify();
-            }
-        }
+        public ObservableCollection<StudentInformation> StudentList { get; set; }
 
-        public ObservableCollection<StudentInformation> StudentsDetailsList
-        {
-            get => studentsDetailsList; set
-            {
-                studentsDetailsList = value;
-                DoNotify();
-            }
-        }
+        public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
+
 
         public StudentInformationViewModel()
         {

@@ -1,11 +1,11 @@
-﻿<Window
+﻿<Window x:Class="StudentManagementSystem.View.Students"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagementSystem.ViewModel"
         xmlns:converter1="clr-namespace:StudentManagementSystem.Converter"
-        x:Class="StudentManagementSystem.View.Students"
+        xmlns:poput="clr-namespace:StudentManagementSystem.Controls"
         mc:Ignorable="d"
         Title="学生详细信息"
         Height="450" Width="700"
@@ -19,7 +19,9 @@
         <converter1:GenderConverter x:Key="genderConverter"/>
     </Window.Resources>
 
-    <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}">
+    <Border Margin="30,35,30,55"
+            DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+            Style="{DynamicResource WinBorderEffect}" >
         <Grid x:Name="GridDataContext">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -49,7 +51,6 @@
                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
                     <TextBlock Text="** 学号字段暂不支持修改，如需要请删除后重新添加，或联系管理员开通此功能." Visibility="Collapsed" Margin="5,0,0,5" TextWrapping="Wrap" Foreground="White" FontSize="10" VerticalAlignment="Bottom" />
-                    <Button Style="{DynamicResource ExchangeAllButtonStyle}"/>
                 </Grid>
             </Border>
             <Border Grid.Column="1" CornerRadius="0 10 10 0">
@@ -71,13 +72,14 @@
                     </Border>
                     <!--<Border Grid.Row="2" Width="400" Height="2" BorderThickness="0 0 0 1" BorderBrush="#FF9DB7E4" VerticalAlignment="Top" HorizontalAlignment="Left"/>-->
                     <!--学生信息部分-->
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" Visibility="Visible">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -121,13 +123,25 @@
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >
+                            <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}" >
+                                <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding NationsName}"  Cursor="Hand" Style="{DynamicResource StudentTextBox}" MouseDown="TextBox_MouseDown" MouseUp="TextBox_MouseUp" KeyUp="TextBox_KeyUp"/>
+                                <Popup Name="popup" StaysOpen="False" AllowsTransparency="True">
+                                    <poput:PopupControl/>
+                                </Popup>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
+                                <TextBlock Text="政治面貌：" Margin="-5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding PoliticsStatus}" IsEnabled="False" Cursor="Hand" Style="{DynamicResource StudentTextBox}"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="地址：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <TextBox x:Name="dizhi" Text="{Binding StudentSite}" Width="390" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
                         </Grid>
                     </ScrollViewer>
-
                     <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Content="保存修改" Margin="0 0 40 0" Template="{DynamicResource ButtonTemplate}" Click="AlterButton_Click"/>
                         <Button Content="删除" Margin="40 0 0 0" Template="{DynamicResource ButtonTemplate_1}" Click="DelectButton_Click"/>

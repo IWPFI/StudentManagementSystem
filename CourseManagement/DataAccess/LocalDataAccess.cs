@@ -349,11 +349,13 @@ WHERE
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT a.id, a.number, a.name, a.sex, a.birthday, a.grade, a.site, a.phone, b.politics_status, c.nations_name 
-FROM dbo.students AS a 
-INNER JOIN dbo.politics_status AS b ON a.nation_id= b.id	
-INNER JOIN dbo.nations AS c ON a.nation_id= c.id 
-WHERE a.number = ('" + a + "') AND  is_delete = 0;";
+                    string sql = @"SELECT s.id, s.number, s.name, s.sex, s.birthday, s.grade, s.site, s.phone, n.nations_name, p.politics_status 
+FROM
+	dbo.students AS s
+	INNER JOIN dbo.nations AS n ON s.nation_id = n.id
+	INNER JOIN dbo.politics_status AS p ON s.politics_status_id = p.id 
+WHERE
+	s.number = ('" + a + "') AND is_delete = 0;";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -377,6 +379,8 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
                                 model.StudentGrade = dr.Field<string>("grade");//班级
                                 model.StudentSite = dr.Field<string>("site");//地址
                                 model.StudentBirthday = dr.Field<DateTime>("birthday");//生日
+                                model.NationsName = dr.Field<string>("nations_name");
+                                model.PoliticsStatus = dr.Field<string>("politics_status");
                                 result.Add(model);
                             }
                         }
@@ -402,7 +406,6 @@ WHERE a.number = ('" + a + "') AND  is_delete = 0;";
         {
             try
             {
-                int result = 0;
                 if (this.DBConnection())
                 {
                     string sql = "UPDATE students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +

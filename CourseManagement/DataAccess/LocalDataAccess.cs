@@ -495,8 +495,8 @@ WHERE
                     comm = conn.CreateCommand();
                     comm.CommandText = @"SELECT id FROM students WHERE number = ('" + GetAdd[0] + "')AND is_delete = 0;";
 
-                    string s = (string)comm.ExecuteScalar();//ExecuteScalar()一般用来执行只有一行一列放回值的SQL查询
-                    if (s != null)
+                    //ExecuteScalar()一般用来执行只有一行一列放回值的SQL查询
+                    if (comm.ExecuteScalar() != null)
                     {
                         MessageWindow.ShowWindow("已存在该学生或输入有误！添加失败！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }

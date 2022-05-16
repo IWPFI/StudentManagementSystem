@@ -19,14 +19,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using StudentManagementSystem.Common;
+using StudentManagementSystem.Controls;
 
 namespace StudentManagementSystem.View
 {
     /// <summary>
     /// Students.xaml 的交互逻辑
     /// </summary>
-    public partial class Students : Window
+    public partial class Students : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         ContactsView contacts = new ContactsView();
 
@@ -39,7 +47,14 @@ namespace StudentManagementSystem.View
         /// <summary>
         /// 年龄
         /// </summary>
-        public int Age { get; set; }
+        private int age;
+
+        public int Age
+        {
+            get { return age; }
+            set { age = value; OnPropertyChanged(); }
+        }
+
 
         public Students()
         {
@@ -169,23 +184,34 @@ namespace StudentManagementSystem.View
             return Age < 0 ? 0 : Age;
         }
 
-        private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        private CommandBase _popupCommand;
+
+        public CommandBase PopupCommand
         {
-            popup.IsOpen = false;
-            popup.IsOpen = true;
+            get
+            {
+                if (_popupCommand == null)
+                {
+                    _popupCommand = new CommandBase();
+                    _popupCommand.DoExecute = new Action<object>(obj =>
+                    {
+                        if (obj.ToString() == "1")
+                        {
+                            popup.IsOpen = false;
+                            popup.IsOpen = true;
+                        }
+                        else
+                        {
+                            popup1.IsOpen = false;
+                            popup1.IsOpen = true;
+                        }
+                    });
+                    _popupCommand.DoCanExecute = new Func<object, bool>((o) => true);
+                }
+                return _popupCommand;
+            }
         }
 
-        private void TextBox_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            popup.IsOpen = false;
-            popup.IsOpen = true;
-        }
-
-        private void TextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            popup.IsOpen = false;
-            popup.IsOpen = true;
-        }
 
         //更换头像
         //private void ImgBorder_MouseUp(object sender, RoutedEventArgs e)

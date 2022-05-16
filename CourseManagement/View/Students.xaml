@@ -19,9 +19,7 @@
         <converter1:GenderConverter x:Key="genderConverter"/>
     </Window.Resources>
 
-    <Border Margin="30,35,30,55"
-            DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-            Style="{DynamicResource WinBorderEffect}" >
+    <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
         <Grid x:Name="GridDataContext">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -123,17 +121,22 @@
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}" >
+                            <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding NationsName}"  Cursor="Hand" Style="{DynamicResource StudentTextBox}" MouseDown="TextBox_MouseDown" MouseUp="TextBox_MouseUp" KeyUp="TextBox_KeyUp"/>
+                                <Button Content="{Binding NationsName}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
+                                        Command="{Binding PopupCommand}" CommandParameter="1"/>
                                 <Popup Name="popup" StaysOpen="False" AllowsTransparency="True">
-                                    <poput:PopupControl/>
+                                    <poput:PopupControl PopupStr="1"/>
                                 </Popup>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
+                            <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
                                 <TextBlock Text="政治面貌：" Margin="-5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding PoliticsStatus}" IsEnabled="False" Cursor="Hand" Style="{DynamicResource StudentTextBox}"/>
+                                <Button Content="{Binding PoliticsStatus}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
+                                         Command="{Binding PopupCommand}" CommandParameter="2"/>
+                                <Popup Name="popup1" StaysOpen="False" AllowsTransparency="True">
+                                    <poput:PopupControl PopupStr="2"/>
+                                </Popup>
                             </StackPanel>
                             
                             <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >

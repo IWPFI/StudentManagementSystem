@@ -398,4 +398,36 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <!--民族/政治面貌|按鈕-->
+    <Style x:Key="InformationButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="140"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border Name="back" CornerRadius="10" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                                BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <TextBlock Text="{TemplateBinding Content}" Margin="10 4 10 -4" 
+                                           Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           HorizontalAlignment="Left" 
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -15,7 +15,7 @@ namespace StudentManagementSystem.View
     /// <summary>
     /// AddDataView.xaml 的交互逻辑
     /// </summary>
-    public partial class AddDataView : Window, INotifyPropertyChanged
+    public partial class AddStudentWindow : Window, INotifyPropertyChanged
     {
         private readonly string[] GetAdd = new string[9];
         private string setRadioButton;
@@ -28,7 +28,7 @@ namespace StudentManagementSystem.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public AddDataView()
+        public AddStudentWindow()
         {
             InitializeComponent();
             this.DataContext = data = new DataTransmission();

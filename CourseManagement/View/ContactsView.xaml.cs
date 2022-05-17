@@ -29,7 +29,7 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void AddStudentButtonClick(object sender, RoutedEventArgs e)
         {
-            AddDataView addData = new AddDataView();
+            AddStudentWindow addData = new AddStudentWindow();
             addData.ShowDialog();
         }
 
@@ -46,8 +46,8 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void SearchStudentButtonClick(object sender, RoutedEventArgs e)
         {
-            SearchView search = new SearchView();
-            search.ShowDialog();
+            SearchStudentWindow searchStudent = new SearchStudentWindow();
+            searchStudent.ShowDialog();
         }
     }
 }

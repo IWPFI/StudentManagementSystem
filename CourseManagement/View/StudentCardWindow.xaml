@@ -1,4 +1,4 @@
-﻿<Window x:Class="StudentManagementSystem.View.Students"
+﻿<Window x:Class="StudentManagementSystem.View.StudentCardWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,7 +16,12 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.Resources>
-        <converter1:GenderConverter x:Key="genderConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/Style/StudentCardWindowStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converter1:GenderConverter x:Key="genderConverter"/>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
@@ -138,7 +143,7 @@
                                     <poput:PopupControl PopupStr="2"/>
                                 </Popup>
                             </StackPanel>
-                            
+
                             <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="地址：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <TextBox x:Name="dizhi" Text="{Binding StudentSite}" Width="390" Style="{DynamicResource StudentTextBox}"/>

@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace StudentManagementSystem.View
 {
     /// <summary>
-    /// SearchView.xaml 的交互逻辑
+    /// SearchWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SearchView : Window
+    public partial class SearchStudentWindow : Window
     {
-        public SearchView()
+        public SearchStudentWindow()
         {
             InitializeComponent();
-            searchView.DataContext = new SearchViewModel();
+            this.DataContext = new SearchStudentViewModel();
         }
 
         private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

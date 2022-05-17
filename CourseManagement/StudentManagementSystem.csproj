@@ -40,7 +40,6 @@
     <None Remove="Assets\Image\xiamu.png" />
     <None Remove="Assets\Image\[2].png" />
     <None Remove="Assets\Typeface\iconfont.ttf" />
-    <None Remove="View\12.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,10 +91,6 @@
     <Resource Include="Assets\Image\3.jpg" />
     <Resource Include="Assets\Style\DefaultStyle.xaml" />
     <Resource Include="Assets\Typeface\iconfont.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="View\12.jpg" />
   </ItemGroup>
 
   <ItemGroup>

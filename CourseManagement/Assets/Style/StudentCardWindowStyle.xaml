@@ -48,44 +48,6 @@
         <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate}"/>
     </Style>
 
-    <!--切换全部按钮-->
-    <Style x:Key="ExchangeAllButtonStyle" TargetType="Button">
-        <Setter Property="Content" Value="&#xe614;"/>
-        <Setter Property="Height" Value="20"/>
-        <Setter Property="Width" Value="20"/>
-        <Setter Property="Margin" Value="0 0 0 2"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontFamily" Value="{DynamicResource Iconfont}"/>
-        <Setter Property="Background" Value="{x:Null}"/>
-        <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Name="back" CornerRadius="5" Width="24" Height="24" Grid.ColumnSpan="2" Background="Transparent">
-                        <Grid>
-                            <ContentControl Content="{TemplateBinding Content}"
-                                FontSize="12" Margin="0,0,0,0"
-                                Foreground="White" 
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#22FFFFFF"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#44FFFFFF"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <!--编辑按钮-->
     <ControlTemplate TargetType="Button" x:Key="ButtonTemplate">
         <Border CornerRadius="5" Width="138" Height="46">

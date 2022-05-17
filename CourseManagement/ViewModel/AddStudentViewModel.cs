@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class AddDataViewModel : BaseViewModel
+    public class AddStudentViewModel : BaseViewModel
     {
-        public AddDataViewModel()
+        public AddStudentViewModel()
         {
             NationModelList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GeiNation());
             PoliticalOutlookList =  new ObservableCollection<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());

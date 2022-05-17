@@ -46,8 +46,8 @@ namespace StudentManagementSystem.ViewModel
         public string InitStudentList(string a)
         {
             LocalDataAccess.GetInstance().Chuangdi(a);
-            Students students = new Students();
-            students.ShowDialog();
+            StudentCardWindow studentCard = new StudentCardWindow();
+            studentCard.ShowDialog();//打开卡片窗口
             return a;
         }
 

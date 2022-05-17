@@ -21,7 +21,7 @@ namespace StudentManagementSystem
             if (new LoginView().ShowDialog() == true)//窗口切换
             {
                 //₁
-                new MainView().ShowDialog();
+                new MainWindow().ShowDialog();
             }
             Application.Current.Shutdown();//关闭窗口
         }

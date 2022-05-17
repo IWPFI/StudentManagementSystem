@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class SearchViewModel : INotifyPropertyChanged
+    public class SearchStudentViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,7 +17,7 @@ namespace StudentManagementSystem.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public SearchViewModel()
+        public SearchStudentViewModel()
         {
 
         }

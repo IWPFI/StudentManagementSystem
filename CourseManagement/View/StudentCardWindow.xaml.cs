@@ -25,9 +25,9 @@ using StudentManagementSystem.Controls;
 namespace StudentManagementSystem.View
 {
     /// <summary>
-    /// Students.xaml 的交互逻辑
+    /// StudentCardWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class Students : Window, INotifyPropertyChanged
+    public partial class StudentCardWindow : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -56,7 +56,7 @@ namespace StudentManagementSystem.View
         }
 
 
-        public Students()
+        public StudentCardWindow()
         {
             InitializeComponent();
 

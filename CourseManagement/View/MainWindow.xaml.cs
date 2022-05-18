@@ -72,9 +72,6 @@ namespace StudentManagementSystem.View
             this.Close();
         }
 
-
-
-
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             #region Notes
@@ -112,6 +109,7 @@ namespace StudentManagementSystem.View
                 }
             }
         }
+
         #region Notes
         /* ButtonBase.CommandParameter 属性：获取或设置要传递给 Command 属性的参数。*/
         #endregion

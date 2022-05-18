@@ -36,7 +36,7 @@
             <!--窗口控制按钮-->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Button Content="&#xe65a;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMin_Click"/>
-                <Button Content="&#xe603;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMax_Click"/>
+                <Button Style="{StaticResource WindowMaxButtonStyle}" Click="btnMax_Click"/>
                 <Button Content="&#xe605;" Style="{StaticResource WindowControlButtonStyle}" Click="btnClose_Click"/>
             </StackPanel>
 

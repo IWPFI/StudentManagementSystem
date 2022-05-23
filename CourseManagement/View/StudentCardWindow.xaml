@@ -13,7 +13,8 @@
         FontFamily="Microsoft YaHei" FontWeight="ExtraLight"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" 
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -23,8 +24,11 @@
             <converter1:GenderConverter x:Key="genderConverter"/>
         </ResourceDictionary>
     </Window.Resources>
+    <!--<Window.DataContext>
+        <converter1:GenderConverter/>
+    </Window.DataContext>-->
 
-    <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+    <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}">
         <Grid x:Name="GridDataContext">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -49,7 +53,7 @@
                                 <!--<Image Name="image" Width="20" Height="20" Source="../Assets/Image/3.jpg" Margin="10"/>-->
                             </Grid>
                         </Border>
-                        <TextBox x:Name="xuehao" Text="{Binding StudentID}" Margin="0 5" BorderThickness="0 0 0 0" FontSize="24" MinWidth="60" IsReadOnly="True"  FontWeight="Bold" TextWrapping="Wrap"
+                        <TextBox x:Name="xuehao" Text="{Binding StudentName}" Margin="0 5" BorderThickness="0 0 0 0" FontSize="24" MinWidth="60" IsReadOnly="True"  FontWeight="Bold" TextWrapping="Wrap"
                                  Background="Transparent" BorderBrush="Gray" Foreground="White"
                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
@@ -126,16 +130,16 @@
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                            <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <Button Content="{Binding NationsName}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
-                                        Command="{Binding PopupCommand}" CommandParameter="1"/>
+                                        Click="NationsButton_Click"/>
                                 <Popup Name="popup" StaysOpen="False" AllowsTransparency="True">
-                                    <poput:PopupControl PopupStr="1"/>
+                                    <poput:PopupControl/>
                                 </Popup>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220"  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                            <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
                                 <TextBlock Text="政治面貌：" Margin="-5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <Button Content="{Binding PoliticsStatus}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
                                          Command="{Binding PopupCommand}" CommandParameter="2"/>

@@ -105,8 +105,7 @@ namespace StudentManagementSystem.View
 
         public void AddStudentInformation()
         {
-            LocalDataAccess.GetInstance().Tianjia(GetAdd);
-            LocalDataAccess.GetInstance().AddStudents();
+            LocalDataAccess.GetInstance().AddStudents(GetAdd);
             Close();
         }
 

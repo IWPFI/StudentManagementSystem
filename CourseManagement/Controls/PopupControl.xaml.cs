@@ -45,9 +45,12 @@ namespace StudentManagementSystem.Controls
 
         // Using a DependencyProperty as the backing store for PopupStr.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PopupStrProperty =
-            DependencyProperty.Register("PopupStr", typeof(string), typeof(PopupControl), new PropertyMetadata(""));
+            DependencyProperty.Register("PopupStr", typeof(string), typeof(PopupControl), new PropertyMetadata(""/*,new PropertyChangedCallback(GetPopupStr)*/));
 
-
+        private static void GetPopupStr(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         public ObservableCollection<string> PopupContentlList { get; set; }
         public void Controls(string str)
@@ -79,7 +82,6 @@ namespace StudentManagementSystem.Controls
 
         private void Radio_Click(object sender, RoutedEventArgs e)
         {
-
             MessageBox.Show((sender as RadioButton).Content.ToString());
         }
     }

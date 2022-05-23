@@ -13,15 +13,13 @@ namespace StudentManagementSystem.ViewModel
     {
         public CommandBase OpenStudentId { get; set; }//点击Id时执行
 
+        public StudentCardWindow StudentCardWindow { get; set; }
+
         public ObservableCollection<StudentInformation> StudentList { get; set; }
-
-        public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
-
 
         public StudentInformationViewModel()
         {
             GetSearchStudents();
-            CardList();
 
             OpenStudentId = new CommandBase();
             OpenStudentId.DoCanExecute = new Func<object, bool>((o) => true);
@@ -43,20 +41,10 @@ namespace StudentManagementSystem.ViewModel
             StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
         }
 
-        public string InitStudentList(string a)
+        public void InitStudentList(string str)
         {
-            LocalDataAccess.GetInstance().Chuangdi(a);
-            StudentCardWindow studentCard = new StudentCardWindow();
+            StudentCardWindow studentCard = new StudentCardWindow(str);
             studentCard.ShowDialog();//打开卡片窗口
-            return a;
-        }
-
-        /// <summary>
-        /// 卡片信息
-        /// </summary>
-        private void CardList()
-        {
-            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails());//卡片信息
         }
     }
 }

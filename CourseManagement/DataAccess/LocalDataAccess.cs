@@ -16,24 +16,6 @@ namespace StudentManagementSystem.DataAccess
 {
     public class LocalDataAccess
     {
-        //修改操作
-        public string[] GetVs = new string[7];
-        public string[] GetAdd = new string[9];
-
-        public string[] Tianjia(string[] vs)
-        {
-            GetAdd = vs;
-            return GetAdd;
-        }
-
-        //点击ID时跳转
-        private string a = "1111";
-        public string Chuangdi(string u)
-        {
-            a = u;
-            return a;
-        }
-
         private static LocalDataAccess instance;
 
         private LocalDataAccess() { }
@@ -339,10 +321,10 @@ WHERE
         }
 
         /// <summary>
-        /// 学生详细资料
+        /// 学生详细资料1
         /// </summary>
         /// <returns>全部</returns>
-        public List<StudentInformation> StudentsDetails()
+        public List<StudentInformation> StudentsDetails1(string str)
         {
             try
             {
@@ -355,7 +337,7 @@ FROM
 	INNER JOIN dbo.nations AS n ON s.nation_id = n.id
 	INNER JOIN dbo.politics_status AS p ON s.politics_status_id = p.id 
 WHERE
-	s.number = ('" + a + "') AND is_delete = 0;";
+	s.number = ('" + str + "') AND is_delete = 0;";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -431,7 +413,7 @@ WHERE
         /// 删除学生信息
         /// </summary>
         /// <returns></returns>
-        public int StudentsDelete(string[] GetVs)
+        public int StudentsDelete(string str)
         {
             try
             {
@@ -441,7 +423,7 @@ WHERE
                     string sql = @"UPDATE students 
 SET is_delete = 1, gmt_modified = GETDATE()
 WHERE
-	number = ( '" + GetVs[0] + "' )";
+	number = ( '" + str + "' )";
                     adapter = new SqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -463,7 +445,7 @@ WHERE
         /// 添加学生
         /// </summary>
         /// <returns></returns>
-        public List<StudentInformation> AddStudents()
+        public List<StudentInformation> AddStudents(string[] GetAdd)
         {
             try
             {

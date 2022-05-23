@@ -55,13 +55,14 @@ namespace StudentManagementSystem.View
             set { age = value; OnPropertyChanged(); }
         }
 
+        public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
 
-        public StudentCardWindow()
+
+        public StudentCardWindow(string str)
         {
             InitializeComponent();
-
-            GridDataContext.DataContext = new StudentInformationViewModel().StudentsDetailsList;
-
+            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails1(str));//卡片信息
+            this.GridDataContext.DataContext = StudentsDetailsList;
             Binding binding = new Binding();
             binding.Source = this;
             binding.Path = new PropertyPath("Age");
@@ -130,7 +131,7 @@ namespace StudentManagementSystem.View
                 if (r != null && r == true)
                 {
                     Content();
-                    DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(GetVs));
+                    DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(xuehao.Text));
                     MessageWindow.ShowWindow("删除成功,请刷新数据库。");
                     contacts.InterfaceData();
                     this.Close();
@@ -210,6 +211,12 @@ namespace StudentManagementSystem.View
                 }
                 return _popupCommand;
             }
+        }
+
+        private void NationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            popup.IsOpen = false;
+            popup.IsOpen = true;
         }
 
 

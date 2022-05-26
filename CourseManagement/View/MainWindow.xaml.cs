@@ -1,5 +1,4 @@
 ﻿using StudentManagementSystem.Common;
-using StudentManagementSystem.DataAccess;
 using StudentManagementSystem.ViewModel;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -21,7 +20,7 @@ namespace StudentManagementSystem.View
 
             model.UserInfo.Avatar = GlobalValues.UserInfo.Avatar;/*It needs to be initialized,Initialize in ₆ constructor*/
             model.UserInfo.UserName = GlobalValues.UserInfo.RealName;
-            model.UserInfo.Gender = GlobalValues.UserInfo.Gender;
+            model.UserInfo.Gender = (int)GlobalValues.UserInfo.Gender;
 
             #region Notes 
             //SystemParameters: 可用来查询系统设置的属性

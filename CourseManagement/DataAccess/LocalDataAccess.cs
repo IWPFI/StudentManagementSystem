@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Npgsql;
 using StudentManagementSystem.DataAccess.DataEntity;
 using StudentManagementSystem.Model;
 using StudentManagementSystem.View;
@@ -24,9 +25,9 @@ namespace StudentManagementSystem.DataAccess
             return instance ?? (instance = new LocalDataAccess());
         }
         /*?? 运算符称作 null 合并运算符。如果此运算符的左操作数不为 null，则此运算符将返回左操作数；否则返回右操作数 */
-        SqlConnection conn;
-        SqlCommand comm;
-        SqlDataAdapter adapter;
+        NpgsqlConnection conn;
+        NpgsqlCommand comm;
+        NpgsqlDataAdapter adapter;
 
         private void Dispose()
         {
@@ -52,7 +53,7 @@ namespace StudentManagementSystem.DataAccess
         {
             string connStr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;/*配置管理器*/
             if (conn == null)
-                conn = new SqlConnection(connStr);
+                conn = new NpgsqlConnection(connStr);
             try
             {
 
@@ -71,10 +72,10 @@ namespace StudentManagementSystem.DataAccess
             {
                 if (DBConnection()/*如果₁₃连接成功的话进行*/)
                 {
-                    string userSql = "select * from users where user_name=@user_name and password=@pwd and is_validation=1";
-                    adapter = new SqlDataAdapter(userSql, conn);
-                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@user_name"/*名称*/, SqlDbType.VarChar) { Value = userName });
-                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@pwd", SqlDbType.VarChar) { Value = pwd });
+                    string userSql = "select * from \"public\".\"sms_users\" where user_name=@user_name and password=@pwd and is_validation=1";
+                    adapter = new NpgsqlDataAdapter(userSql, conn);
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@user_name"/*名称*/, SqlDbType.VarChar) { Value = userName });
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@pwd", SqlDbType.VarChar) { Value = pwd });
                     //adapter.SelectCommand.Parameters.Add(new SqlParameter("@pwd", SqlDbType.VarChar) { Value = MD5Provider.GetMD5String(pwd + "@" + userName) });//调用[MD5Procider.cs]类进行加密处理
 
                     DataTable table = new DataTable();
@@ -84,14 +85,14 @@ namespace StudentManagementSystem.DataAccess
                         throw new Exception("用户名或密码不正确！");
 
                     DataRow dr = table.Rows[0];
-                    if (dr.Field<Int32>("is_can_login") == 0) { throw new Exception("当前用户没有权限使用此平台！"); }
+                    if (dr.Field<Int64>("is_can_login") == 0) { throw new Exception("当前用户没有权限使用此平台！"); }
 
                     UserEntity userInfo = new UserEntity();
                     userInfo.UserName = dr.Field<string>("user_name");
                     userInfo.RealName = dr.Field<string>("real_name");
                     userInfo.Password = dr.Field<string>("password");
                     userInfo.Avatar = dr.Field<string>("avatar");
-                    userInfo.Gender = dr.Field<Int32>("gender");
+                    userInfo.Gender = dr.Field<long>("gender");
                     return userInfo;
                 }
             }
@@ -113,8 +114,8 @@ namespace StudentManagementSystem.DataAccess
                 List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = "select real_name from users where is_teacher=1";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    string sql = "select real_name from sms_users where is_teacher=1";
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -144,15 +145,14 @@ namespace StudentManagementSystem.DataAccess
                 if (DBConnection())
                 {
                     //@：回车换行不报错
-                    string userSql = @"select parameters.course_name,parameters.course_id,b.play_count,b.is_growing,b.growing_rate ,
-c.platform_name
-from courses parameters
-left join play_record b
-on parameters.course_id = b.course_id
-left join platforms c
-on b.platform_id = c.platform_id
-order by parameters.course_id,c.platform_id";
-                    adapter = new SqlDataAdapter(userSql, conn);
+                    string userSql = @"SELECT a.course_name, a.course_id, b.play_count, b.is_growing, b.growing_rate , c.platform_name
+FROM ""public"".""sms_course"" a
+LEFT JOIN ""public"".""sms_play_record"" b
+ON a.course_id = b.course_id
+LEFT JOIN ""public"".""sms_platforms"" c
+ON b.platform_id = c.platform_id
+ORDER BY a.course_id,c.platform_id";
+                    adapter = new NpgsqlDataAdapter(userSql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -178,16 +178,16 @@ order by parameters.course_id,c.platform_id";
                             cModel.SeriesColection.Add(new PieSeries
                             {
                                 Title = dr.Field<string>("platform_name"),
-                                Values = new ChartValues<ObservableValue> { new ObservableValue((double)dr.Field<decimal>("play_count")) },
+                                Values = new ChartValues<ObservableValue> { new ObservableValue((double)dr.Field<long>("play_count")) },
                                 DataContext = false
                             });
 
                             cModel.SeriesList.Add(new SeriesModel
                             {
                                 SeriesName = dr.Field<string>("platform_name"),
-                                CurrentValue = dr.Field<decimal>("play_count"),
-                                IsGrowing = dr.Field<Int32>("is_growing") == 1,
-                                ChangeRate = (int)dr.Field<decimal>("growing_rate")
+                                CurrentValue = dr.Field<long>("play_count"),
+                                IsGrowing = dr.Field<Int64>("is_growing") == 1,
+                                ChangeRate = (short)dr.Field<Int64>("growing_rate")
                             });
                         }
                     }
@@ -211,13 +211,13 @@ order by parameters.course_id,c.platform_id";
                 List<CourseModel> result = new List<CourseModel>();
                 if (this.DBConnection())
                 {
-                    string sql = @"select parameters.course_id,parameters.course_name,parameters.course_cover,parameters.course_url,parameters.description,c.real_name from courses parameters
-                                   left join course_teacher_relation b
-                                   on parameters.course_id=b.course_id
-                                   left join users c
-                                   on b.teacher_id=c.user_id
-                                   order by parameters.course_id";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    string sql = @"SELECT parameters.course_id,parameters.course_name,parameters.course_cover,parameters.course_url,parameters.description,c.real_name FROM sms_course parameters
+                                   LEFT JOIN sms_course_teacher_relation b
+                                   ON parameters.course_id=b.course_id
+                                   LEFT JOIN ""public"".""sms_users"" c
+                                   ON b.teacher_id=c.user_id
+                                   ORDER BY parameters.course_id";
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -280,10 +280,10 @@ order by parameters.course_id,c.platform_id";
 	number,
 	grade 
 FROM
-	students
+	sms_students
 WHERE
     is_delete = 0;";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -333,12 +333,12 @@ WHERE
                 {
                     string sql = @"SELECT s.id, s.number, s.name, s.sex, s.birthday, s.grade, s.site, s.phone, n.nations_name, p.politics_status 
 FROM
-	dbo.students AS s
-	INNER JOIN dbo.nations AS n ON s.nation_id = n.id
-	INNER JOIN dbo.politics_status AS p ON s.politics_status_id = p.id 
+	sms_students AS s
+	INNER JOIN sms_nations AS n ON s.nation_id = n.id
+	INNER JOIN sms_politics_status AS p ON s.politics_status_id = p.id 
 WHERE
 	s.number = ('" + str + "') AND is_delete = 0;";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -390,10 +390,10 @@ WHERE
             {
                 if (this.DBConnection())
                 {
-                    string sql = "UPDATE students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
-                        "sex = ('" + GetVs[2] + "'),birthday = '" + GetVs[3] + "',phone = ('" + GetVs[5] + "'),grade = ('" + GetVs[4] + "')," +
-                        "site = ('" + GetVs[6] + "'),gmt_modified = GETDATE() WHERE number = ('" + GetVs[0] + "')";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    string sql = "UPDATE sms_students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
+                        "sex = (" + GetVs[2] + "),birthday = '" + GetVs[3] + "',phone = ('" + GetVs[5] + "'),grade = ('" + GetVs[4] + "')," +
+                        "site = ('" + GetVs[6] + "'),gmt_modified = now() WHERE number = ('" + GetVs[0] + "')";
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataSet table = new DataSet();
                     adapter.Fill(table);
@@ -420,11 +420,11 @@ WHERE
                 int result = 0;
                 if (this.DBConnection())
                 {
-                    string sql = @"UPDATE students 
+                    string sql = @"UPDATE sms_students 
 SET is_delete = 1, gmt_modified = GETDATE()
 WHERE
 	number = ( '" + str + "' )";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     result = adapter.Fill(table);
@@ -475,7 +475,7 @@ WHERE
                     #endregion
 
                     comm = conn.CreateCommand();
-                    comm.CommandText = @"SELECT id FROM students WHERE number = ('" + GetAdd[0] + "')AND is_delete = 0;";
+                    comm.CommandText = @"SELECT id FROM sms_students WHERE number = ('" + GetAdd[0] + "')AND is_delete = 0;";
 
                     //ExecuteScalar()一般用来执行只有一行一列放回值的SQL查询
                     if (comm.ExecuteScalar() != null)
@@ -484,10 +484,10 @@ WHERE
                     }
                     else
                     {
-                        string sql = @"INSERT INTO students ( number, name, sex, birthday, phone, grade, site, nation_id, politics_status_id, is_delete, gmt_create )
+                        string sql = @"INSERT INTO sms_students ( number, name, sex, birthday, phone, grade, site, nation_id, politics_status_id, is_delete, gmt_create )
 VALUES
-	( '" + GetAdd[0] + "', '" + GetAdd[1] + "', '" + GetAdd[2] + "', '" + GetAdd[3] + "', '" + GetAdd[4] + "', '" + GetAdd[5] + "', '" + GetAdd[6] + "', '" + GetAdd[7] + "', '" + GetAdd[8] + "', 0, GETDATE() );";
-                        adapter = new SqlDataAdapter(sql, conn);
+	( '" + GetAdd[0] + "', '" + GetAdd[1] + "', " + GetAdd[2] + ", '" + GetAdd[3] + "', '" + GetAdd[4] + "', '" + GetAdd[5] + "', '" + GetAdd[6] + "', " + GetAdd[7] + ", " + GetAdd[8] + ", 0, now() );";
+                        adapter = new NpgsqlDataAdapter(sql, conn);
 
                         DataTable table = new DataTable();
                         int count = adapter.Fill(table);
@@ -522,8 +522,8 @@ VALUES
                 List<StudentInformation> result = new List<StudentInformation>();
                 if (DBConnection())
                 {
-                    string sql = string.Format("SELECT id, number, name, grade, phone FROM students WHERE ( number LIKE '%{0}%' OR name LIKE '%{0}%') AND is_delete = 0;", seek);
-                    adapter = new SqlDataAdapter(sql, conn);
+                    string sql = string.Format("SELECT id, number, name, grade, phone FROM sms_students WHERE ( number LIKE '%{0}%' OR name LIKE '%{0}%') AND is_delete = 0;", seek);
+                    adapter = new NpgsqlDataAdapter(sql, conn);
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
                     if (count > 0)
@@ -577,8 +577,8 @@ VALUES
                 List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT nations_name FROM nations";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    string sql = @"SELECT nations_name FROM sms_nations";
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -610,8 +610,8 @@ VALUES
                 List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT politics_status FROM politics_status";
-                    adapter = new SqlDataAdapter(sql, conn);
+                    string sql = @"SELECT politics_status FROM sms_politics_status";
+                    adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);

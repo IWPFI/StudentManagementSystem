@@ -31,6 +31,6 @@ namespace StudentManagementSystem.DataAccess.DataEntity
         /// <summary>
         /// 性别
         /// </summary>
-        public int Gender { get; set; }
+        public long Gender { get; set; }
     }
 }

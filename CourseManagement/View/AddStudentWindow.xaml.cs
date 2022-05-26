@@ -55,7 +55,15 @@ namespace StudentManagementSystem.View
                 {
                     GetAdd[0] = addId.Text;
                     GetAdd[1] = addName.Text;
-                    GetAdd[2] = setRadioButton;
+                    if (string.IsNullOrEmpty(setRadioButton))
+                    {
+                        GetAdd[2] = "0";
+                    }
+                    else
+                    {
+                        GetAdd[2] = setRadioButton;
+                    }
+
                     if (addBirthday.Text == "")
                     {
                         GetAdd[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
@@ -64,6 +72,7 @@ namespace StudentManagementSystem.View
                     {
                         GetAdd[3] = addBirthday.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
                     }
+
                     GetAdd[4] = addNumber.Text;
                     GetAdd[5] = addClass.Text;
                     GetAdd[6] = addAddress.Text;
@@ -129,12 +138,7 @@ namespace StudentManagementSystem.View
         private void RadioButtonChecked(object sender, RoutedEventArgs e)
         {
             data.RadioButtonText = (string)(sender as RadioButton).Content;
-            Judge((string)(sender as RadioButton).Content);
-        }
-
-        private void Judge(string a)
-        {
-            switch (a)
+            switch ((sender as RadioButton).Content)
             {
                 case "男":
                     {
@@ -144,11 +148,6 @@ namespace StudentManagementSystem.View
                 case "女":
                     {
                         setRadioButton = "2";
-                        break;
-                    }
-                case "未知":
-                    {
-                        setRadioButton = "0";
                         break;
                     }
                 default:
@@ -162,11 +161,6 @@ namespace StudentManagementSystem.View
         private void SexExpanderLostStylusCapture(object sender, StylusEventArgs e)
         {
             sexRadio.IsExpanded = false;
-        }
-
-        private void GetNation()
-        {
-            throw new NotImplementedException();
         }
 
         private void Border_LostFocus(object sender, RoutedEventArgs e)

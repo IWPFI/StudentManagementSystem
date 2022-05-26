@@ -34,23 +34,25 @@ namespace StudentManagementSystem.View
             RadioButton button = sender as RadioButton;
             string teacher = button.Content.ToString();
 
-
-
             ICollectionView view = CollectionViewSource.GetDefaultView(this.icCourses.ItemsSource);
-            if (teacher == "全部")
+            try
             {
-                view.Filter = null;
-
-                //排序
-                //view.SortDescriptions.Add(new SortDescription("CourseName", ListSortDirection.Descending));
-            }
-            else
-            {
-                view.Filter = new Predicate<object>((o) =>
+                if (teacher == "全部")
                 {
-                    return (o as CourseModel).Teachers.Exists(t => t == teacher);
-                });
+                    view.Filter = null;
+
+                    //排序
+                    //view.SortDescriptions.Add(new SortDescription("CourseName", ListSortDirection.Descending));
+                }
+                else
+                {
+                    view.Filter = new Predicate<object>((o) =>
+                    {
+                        return (o as CourseModel).Teachers.Exists(t => t == teacher);
+                    });
+                }
             }
+            catch { }
         }
     }
 }

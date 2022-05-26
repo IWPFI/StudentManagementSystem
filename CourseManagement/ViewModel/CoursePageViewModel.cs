@@ -111,7 +111,7 @@ namespace StudentManagementSystem.ViewModel
             Task.Run(new Action(async () =>
             {
                 courseAll = LocalDataAccess.GetInstance().GetCourses();
-                await Task.Delay(4000);
+                await Task.Delay(1000);
 
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {

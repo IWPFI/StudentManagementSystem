@@ -72,7 +72,7 @@ namespace StudentManagementSystem.DataAccess
             {
                 if (DBConnection()/*如果₁₃连接成功的话进行*/)
                 {
-                    string userSql = "select * from \"public\".\"sms_users\" where user_name=@user_name and password=@pwd and is_validation=1";
+                    string userSql = "select * from \"public\".\"sms_member\" where user_name=@user_name and password=@pwd and is_validation=1";
                     adapter = new NpgsqlDataAdapter(userSql, conn);
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@user_name"/*名称*/, SqlDbType.VarChar) { Value = userName });
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@pwd", SqlDbType.VarChar) { Value = pwd });
@@ -114,7 +114,7 @@ namespace StudentManagementSystem.DataAccess
                 List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = "select real_name from sms_users where is_teacher=1";
+                    string sql = "select real_name from sms_member where is_teacher=1";
                     adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -214,7 +214,7 @@ ORDER BY a.course_id,c.platform_id";
                     string sql = @"SELECT parameters.course_id,parameters.course_name,parameters.course_cover,parameters.course_url,parameters.description,c.real_name FROM sms_course parameters
                                    LEFT JOIN sms_course_teacher_relation b
                                    ON parameters.course_id=b.course_id
-                                   LEFT JOIN ""public"".""sms_users"" c
+                                   LEFT JOIN ""public"".""sms_member"" c
                                    ON b.teacher_id=c.user_id
                                    ORDER BY parameters.course_id";
                     adapter = new NpgsqlDataAdapter(sql, conn);
@@ -294,12 +294,12 @@ WHERE
 
                         foreach (DataRow dr in table.AsEnumerable())
                         {
-                            int tempId = dr.Field<int>("id");
+                            int tempId = (int)dr.Field<Int64>("id");
                             if (courseId != tempId)
                             {
                                 courseId = tempId;
                                 model = new StudentInformation();
-                                model.Id = dr.Field<int>("id");
+                                model.Id = (int)dr.Field<Int64>("id");
                                 model.StudentID = dr.Field<string>("number");
                                 model.StudentName = dr.Field<string>("name");
                                 model.StudentGrade = dr.Field<string>("grade");
@@ -354,9 +354,9 @@ WHERE
                                 courseId = tempId;
                                 model = new StudentInformation();
                                 model.StudentID = dr.Field<string>("number");//学号
-                                model.Id = dr.Field<int>("id");//Id
+                                model.Id = (int)dr.Field<Int64>("id");//Id
                                 model.StudentName = dr.Field<string>("name");//姓名
-                                model.StudentSex = dr.Field<int>("sex");//性别
+                                model.StudentSex = (int)dr.Field<Int64>("sex");//性别
                                 model.StudentPhone = dr.Field<string>("phone");//电话
                                 model.StudentGrade = dr.Field<string>("grade");//班级
                                 model.StudentSite = dr.Field<string>("site");//地址
@@ -538,7 +538,7 @@ VALUES
                             {
                                 courseId = tempId;
                                 model = new StudentInformation();
-                                model.Id = dr.Field<int>("id");//Id
+                                model.Id = (int)dr.Field<Int64>("id");//Id
                                 model.StudentID = dr.Field<string>("number");//学号
                                 model.StudentName = dr.Field<string>("name");//姓名
                                 model.StudentGrade = dr.Field<string>("grade");//班级

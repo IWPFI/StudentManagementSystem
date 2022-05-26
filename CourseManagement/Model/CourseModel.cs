@@ -26,13 +26,16 @@ namespace StudentManagementSystem.Model
         /// <summary>
         /// 描述
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } 
 
         /// <summary>
         /// 老师--需要一个列表
         /// </summary>
         public List<string> Teachers { get; set; }
 
+        /// <summary>
+        /// 骨架屏
+        /// </summary>
         public bool IsShowSkeleton { get; set; }
     }
 }

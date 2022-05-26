@@ -5,9 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using System.Windows;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -102,25 +101,25 @@ namespace StudentManagementSystem.ViewModel
 
         private void InitCourseList()
         {
-            CourseList = new ObservableCollection<CourseModel>(LocalDataAccess.GetInstance().GetCourses());
+            //CourseList = new ObservableCollection<CourseModel>(LocalDataAccess.GetInstance().GetCourses());
             //CourseList = new ObservableCollection<CourseModel>(courseAll);
 
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    CourseList.Add(new CourseModel { IsShowSkeleton = true });
-            //}
-            //Task.Run(new Action(async () =>
-            //{
-            courseAll = LocalDataAccess.GetInstance().GetCourses();
-            //    await Task.Delay(4000);
+            for (int i = 0; i < 10; i++)
+            {
+                CourseList.Add(new CourseModel { IsShowSkeleton = true });
+            }
+            Task.Run(new Action(async () =>
+            {
+                courseAll = LocalDataAccess.GetInstance().GetCourses();
+                await Task.Delay(4000);
 
-            //    Application.Current.Dispatcher.Invoke(new Action(() =>
-            //    {
-            //        CourseList.Clear();
-            //        foreach (var item in courseAll)
-            //            CourseList.Add(item);
-            //    }));
-            //}));
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    CourseList.Clear();
+                    foreach (var item in courseAll)
+                        CourseList.Add(item);
+                }));
+            }));
         }
     }
 }

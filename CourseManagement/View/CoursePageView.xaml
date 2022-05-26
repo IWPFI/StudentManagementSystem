@@ -132,25 +132,26 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="100"/>
-                                </Grid.ColumnDefinitions>
-                                <!--左侧课程封面-->
-                                <Border Width="90" Height="60" Margin="0 15" CornerRadius="5">
-                                    <Border.Effect>
-                                        <DropShadowEffect BlurRadius="10" Color="Gray" Direction="0" Opacity="0.3" ShadowDepth="0"/>
-                                    </Border.Effect>
-                                    <Border.Background>
-                                        <ImageBrush ImageSource="{Binding Cover}" Stretch="UniformToFill"/>
-                                    </Border.Background>
-                                </Border>
-                                <!--中间课程信息部分-->
-                                <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <StackPanel Margin=" 0 0 0 10" Orientation="Horizontal">
-                                        <!--课程名称-->
-                                        <TextBlock FontSize="16" >
+                                <Grid Name="courseContent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--左侧课程封面-->
+                                    <Border Width="90" Height="60" Margin="0 15" CornerRadius="5">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="10" Color="Gray" Direction="0" Opacity="0.3" ShadowDepth="0"/>
+                                        </Border.Effect>
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Cover}" Stretch="UniformToFill"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <!--中间课程信息部分-->
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <StackPanel Margin=" 0 0 0 10" Orientation="Horizontal">
+                                            <!--课程名称-->
+                                            <TextBlock FontSize="16" >
                                         <Hyperlink Foreground="#333" Command="{Binding DataContext.OpenCourseUrlCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">
                                             <Hyperlink.Style>
                                                 <Style>
@@ -171,36 +172,48 @@
                                             <TextBlock Text="{Binding CourseName}"/>
                                         </Hyperlink>
                                     </TextBlock>
-                                        <!--授课老师-->
-                                        <ItemsControl Margin=" 15 0 " ItemsSource="{Binding Teachers}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <VirtualizingStackPanel Orientation="Horizontal"/>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border Margin="5 0" CornerRadius="5" Background="#eee">
-                                                        <TextBlock Text="{Binding Path=.}" Margin="12 3"/>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </StackPanel>
-                                    <!--描述信息-->
-                                    <TextBlock Text="{Binding Description}" 
+                                            <!--授课老师-->
+                                            <ItemsControl Margin=" 15 0 " ItemsSource="{Binding Teachers}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Margin="5 0" CornerRadius="5" Background="#eee">
+                                                            <TextBlock Text="{Binding Path=.}" Margin="12 3"/>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <!--描述信息-->
+                                        <TextBlock Text="{Binding Description}" 
                                                LineHeight="23" TextWrapping="Wrap" Foreground="#aaa"/>
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Margin="5 0">
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="5 0">
                                         <Hyperlink>详情</Hyperlink>
-                                    </TextBlock>
-                                    <TextBlock Margin="5 0">
+                                        </TextBlock>
+                                        <TextBlock Margin="5 0">
                                         <Hyperlink>删除</Hyperlink>
-                                    </TextBlock>
-                                </StackPanel>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <cto:SkeletonScreen Name="skeleton" Grid.Row="1"/>
                             </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsShowSkeleton}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="skeleton"/>
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="courseContent"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsShowSkeleton}" Value="false">
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="skeleton"/>
+                                    <Setter Property="Visibility" Value="Visible" TargetName="courseContent"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

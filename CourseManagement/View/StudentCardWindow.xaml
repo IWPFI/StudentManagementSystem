@@ -53,7 +53,7 @@
                                 <!--<Image Name="image" Width="20" Height="20" Source="../Assets/Image/3.jpg" Margin="10"/>-->
                             </Grid>
                         </Border>
-                        <TextBox x:Name="xuehao" Text="{Binding StudentName}" Margin="0 5" BorderThickness="0 0 0 0" FontSize="24" MinWidth="60" IsReadOnly="True"  FontWeight="Bold" TextWrapping="Wrap"
+                        <TextBox x:Name="xuehao" Text="{Binding StudentID}" Margin="0 5" BorderThickness="0 0 0 0" FontSize="24" MinWidth="60" IsReadOnly="True"  FontWeight="Bold" TextWrapping="Wrap"
                                  Background="Transparent" BorderBrush="Gray" Foreground="White"
                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>

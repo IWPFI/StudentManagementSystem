@@ -55,7 +55,6 @@ namespace StudentManagementSystem.DataAccess
                 conn = new SqlConnection(connStr);
             try
             {
-
                 conn.Open();/*打开数据库*/
                 return true;
             }

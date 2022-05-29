@@ -86,7 +86,7 @@ namespace StudentManagementSystem.View
                     }
 
                     //手机号
-                    if (!string.IsNullOrEmpty(addNumber.Text) || !DoValidate.CheckCellPhone(addNumber.Text.Trim()))
+                    if (!string.IsNullOrEmpty(addNumber.Text) && !DoValidate.CheckCellPhone(addNumber.Text.Trim()))
                     {
                         MessageBox.Show("手机号不合法!");
                         return;

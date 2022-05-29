@@ -103,6 +103,12 @@ namespace StudentManagementSystem.View
                         MessageWindow.ShowWindow("姓名应为汉字或英文!");
                         return;
                     }
+
+                    if (!string.IsNullOrEmpty(dianhau.Text) || !DoValidate.CheckCellPhone(dianhau.Text.Trim()))
+                    {
+                        MessageWindow.ShowWindow("手机号不合法!");
+                        return;
+                    }
                     bool? r = false;
                     r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (r != null && r == true)
@@ -136,7 +142,6 @@ namespace StudentManagementSystem.View
                 r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if (r != null && r == true)
                 {
-                    Content();
                     DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(xuehao.Text));
                     MessageWindow.ShowWindow("删除成功,请刷新数据库。");
                     contacts.InterfaceData();
@@ -181,12 +186,6 @@ namespace StudentManagementSystem.View
             GetVs[4] = bangji.Text;
 
             //手机号
-            if (!string.IsNullOrEmpty(dianhau.Text) || !DoValidate.CheckCellPhone(dianhau.Text.Trim()))
-            {
-                MessageBox.Show("手机号不合法!");
-                return;
-            }
-            //地址
             GetVs[5] = dianhau.Text;
 
             //地址

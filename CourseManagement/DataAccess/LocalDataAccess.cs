@@ -72,7 +72,7 @@ namespace StudentManagementSystem.DataAccess
             {
                 if (DBConnection()/*如果₁₃连接成功的话进行*/)
                 {
-                    string userSql = "select * from \"public\".\"sms_member\" where user_name=@user_name and password=@pwd and is_validation=1";
+                    string userSql = "select * from sms_member where user_name=@user_name and password=@pwd and is_validation=1";
                     adapter = new NpgsqlDataAdapter(userSql, conn);
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@user_name"/*名称*/, SqlDbType.VarChar) { Value = userName });
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@pwd", SqlDbType.VarChar) { Value = pwd });
@@ -146,10 +146,10 @@ namespace StudentManagementSystem.DataAccess
                 {
                     //@：回车换行不报错
                     string userSql = @"SELECT a.course_name, a.course_id, b.play_count, b.is_growing, b.growing_rate , c.platform_name
-FROM ""public"".""sms_course"" a
-LEFT JOIN ""public"".""sms_play_record"" b
+FROM sms_course a
+LEFT JOIN sms_play_record b
 ON a.course_id = b.course_id
-LEFT JOIN ""public"".""sms_platforms"" c
+LEFT JOIN sms_platforms c
 ON b.platform_id = c.platform_id
 ORDER BY a.course_id,c.platform_id";
                     adapter = new NpgsqlDataAdapter(userSql, conn);
@@ -214,7 +214,7 @@ ORDER BY a.course_id,c.platform_id";
                     string sql = @"SELECT parameters.course_id,parameters.course_name,parameters.course_cover,parameters.course_url,parameters.description,c.real_name FROM sms_course parameters
                                    LEFT JOIN sms_course_teacher_relation b
                                    ON parameters.course_id=b.course_id
-                                   LEFT JOIN ""public"".""sms_member"" c
+                                   LEFT JOIN sms_member c
                                    ON b.teacher_id=c.user_id
                                    ORDER BY parameters.course_id";
                     adapter = new NpgsqlDataAdapter(sql, conn);

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using StudentManagementSystem.Common;
 
 namespace StudentManagementSystem.View
 {
@@ -53,9 +54,28 @@ namespace StudentManagementSystem.View
             {
                 if (!string.IsNullOrEmpty(addName.Text))
                 {
+                    //学号
                     GetAdd[0] = addId.Text;
+
+                    //姓名 检查是否为汉字或字母
+                    if (!DoValidate.CheckName(addName.Text.Trim()))
+                    {
+                        MessageBox.Show("姓名应为汉字或英文!");
+                        return;
+                    }
                     GetAdd[1] = addName.Text;
-                    GetAdd[2] = setRadioButton;
+
+                    //性别  0：未知；1：男；2：女
+                    if (string.IsNullOrEmpty(setRadioButton))
+                    {
+                        GetAdd[2] = "0";
+                    }
+                    else
+                    {
+                        GetAdd[2] = setRadioButton;
+                    }
+                    
+                    //生日
                     if (addBirthday.Text == "")
                     {
                         GetAdd[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
@@ -64,25 +84,45 @@ namespace StudentManagementSystem.View
                     {
                         GetAdd[3] = addBirthday.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
                     }
-                    GetAdd[4] = addNumber.Text;
+
+                    //手机号
+                    if (!string.IsNullOrEmpty(addNumber.Text) || !DoValidate.CheckCellPhone(addNumber.Text.Trim()))
+                    {
+                        MessageBox.Show("手机号不合法!");
+                        return;
+                    }
+                    else
+                    {
+                        GetAdd[4] = addNumber.Text;
+                    }
+
+                    //班级
                     GetAdd[5] = addClass.Text;
+
+                    //地址
                     GetAdd[6] = addAddress.Text;
+
+                    //民族
                     if (string.IsNullOrEmpty(nationComboBox.Text))
                     {
-                        GetAdd[7] = "1";
+                        GetAdd[7] = "1";//为空时设置默认为第一项
                     }
                     else
                     {
                         GetAdd[7] = (nationComboBox.SelectedIndex + 1).ToString();
                     }
+
+                    //政治面貌
                     if (string.IsNullOrEmpty(politicalOutlookComboBox.Text))
                     {
-                        GetAdd[8] = "1";
+                        GetAdd[8] = "1";//为空时设置默认为第一项
                     }
                     else
                     {
                         GetAdd[8] = (politicalOutlookComboBox.SelectedIndex + 1).ToString();
                     }
+
+                    //执行添加学生SQL
                     AddStudentInformation();
                 }
                 else
@@ -103,6 +143,9 @@ namespace StudentManagementSystem.View
             //}
         }
 
+        /// <summary>
+        /// 执行添加学生SQL
+        /// </summary>
         public void AddStudentInformation()
         {
             LocalDataAccess.GetInstance().AddStudents(GetAdd);

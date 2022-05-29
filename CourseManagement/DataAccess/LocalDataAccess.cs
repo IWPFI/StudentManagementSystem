@@ -421,7 +421,7 @@ WHERE
                 if (this.DBConnection())
                 {
                     string sql = @"UPDATE sms_students 
-SET is_delete = 1, gmt_modified = GETDATE()
+SET is_delete = 1, gmt_modified = now()
 WHERE
 	number = ( '" + str + "' )";
                     adapter = new NpgsqlDataAdapter(sql, conn);

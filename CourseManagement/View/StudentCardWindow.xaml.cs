@@ -97,6 +97,12 @@ namespace StudentManagementSystem.View
             {
                 if (!string.IsNullOrEmpty(xingming.Text))
                 {
+                    //姓名 检查是否为汉字 或字母
+                    if (!DoValidate.CheckName(xingming.Text.Trim()))
+                    {
+                        MessageWindow.ShowWindow("姓名应为汉字或英文!");
+                        return;
+                    }
                     bool? r = false;
                     r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (r != null && r == true)
@@ -152,9 +158,16 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void Content()
         {
+            //学号
             GetVs[0] = xuehao.Text;
+
+            //姓名
             GetVs[1] = xingming.Text;
+
+            //性别
             GetVs[2] = xingbie.Text;
+
+            //生日
             if (shengri.Text != "")
             {
                 GetVs[3] = shengri.Text.Split(new char[] { ' ' })[0]; //Split(new char[] { ' ' })[0]:截取让DateTime的值为"2011/12/9",即去掉空格以及后面的字符
@@ -163,8 +176,20 @@ namespace StudentManagementSystem.View
             {
                 GetVs[3] = DateTime.Now.ToString("yyyy-MM-dd");//获取系统当前时间，使用yyyyMMdd 格式作为字符串展示
             }
+
+            //班级
             GetVs[4] = bangji.Text;
+
+            //手机号
+            if (!string.IsNullOrEmpty(dianhau.Text) || !DoValidate.CheckCellPhone(dianhau.Text.Trim()))
+            {
+                MessageBox.Show("手机号不合法!");
+                return;
+            }
+            //地址
             GetVs[5] = dianhau.Text;
+
+            //地址
             GetVs[6] = dizhi.Text;
         }
 

@@ -104,7 +104,7 @@ namespace StudentManagementSystem.View
                         return;
                     }
 
-                    if (!string.IsNullOrEmpty(dianhau.Text) || !DoValidate.CheckCellPhone(dianhau.Text.Trim()))
+                    if (!string.IsNullOrEmpty(dianhau.Text) && !DoValidate.CheckCellPhone(dianhau.Text.Trim()))
                     {
                         MessageWindow.ShowWindow("手机号不合法!");
                         return;

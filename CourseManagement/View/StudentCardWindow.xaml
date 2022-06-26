@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StudentManagementSystem.ViewModel"
         xmlns:converter1="clr-namespace:StudentManagementSystem.Converter"
         xmlns:poput="clr-namespace:StudentManagementSystem.Controls"
+        xmlns:local="clr-namespace:StudentManagementSystem.View"
         mc:Ignorable="d"
         Title="学生详细信息"
         Height="450" Width="700"
@@ -14,7 +14,7 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" 
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+        DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StudentCardWindow}}}">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -101,9 +101,9 @@
                                 <TextBlock Text="性别：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <TextBox x:Name="xingbie" Text="{Binding StudentSex}" Width="100" Margin="2"  BorderThickness="0 0 0 1" Visibility="Collapsed" Background="{x:Null}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <RadioButton Content="男" Margin="0 0 0 0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentSex, Converter={StaticResource genderConverter}, ConverterParameter=1}"/>
-                                    <RadioButton Content="女" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentSex, Converter={StaticResource genderConverter}, ConverterParameter=2}"/>
-                                    <RadioButton Content="未知" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentSex, Converter={StaticResource genderConverter}, ConverterParameter=0}"/>
+                                    <RadioButton Content="男" Margin="0 0 0 0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentSex, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
+                                    <RadioButton Content="女" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentSex, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
+                                    <RadioButton Content="未知" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentSex, ConverterParameter=0, Converter={StaticResource genderConverter}}"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -114,7 +114,7 @@
 
                             <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="年龄：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="nianling" Text="{Binding Students.Age,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="nianling" Text="{Binding Students.Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2" Style="{StaticResource StudentStackpanelStyle}" >
@@ -125,7 +125,7 @@
                             <!--生日-->
                             <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="生日：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <DatePicker Name="shengri" SelectedDate="{Binding StudentBirthday,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                <DatePicker x:Name="shengri" SelectedDate="{Binding StudentBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 
@@ -133,7 +133,7 @@
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <Button Content="{Binding NationsName}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
                                         Click="NationsButton_Click"/>
-                                <Popup Name="popup" StaysOpen="False" AllowsTransparency="True">
+                                <Popup x:Name="popup" StaysOpen="False" AllowsTransparency="True">
                                     <poput:PopupControl/>
                                 </Popup>
                             </StackPanel>
@@ -142,7 +142,7 @@
                                 <TextBlock Text="政治面貌：" Margin="-5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                 <Button Content="{Binding PoliticsStatus}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
                                          Command="{Binding PopupCommand}" CommandParameter="2"/>
-                                <Popup Name="popup1" StaysOpen="False" AllowsTransparency="True">
+                                <Popup x:Name="popup1" StaysOpen="False" AllowsTransparency="True">
                                     <poput:PopupControl PopupStr="2"/>
                                 </Popup>
                             </StackPanel>

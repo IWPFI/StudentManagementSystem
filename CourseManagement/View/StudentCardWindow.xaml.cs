@@ -57,12 +57,10 @@ namespace StudentManagementSystem.View
 
         public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
 
-
-        public StudentCardWindow(string str)
+        public StudentCardWindow()
         {
             InitializeComponent();
-            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails1(str));//卡片信息
-            this.GridDataContext.DataContext = StudentsDetailsList;
+
             Binding binding = new Binding();
             binding.Source = this;
             binding.Path = new PropertyPath("Age");
@@ -76,6 +74,12 @@ namespace StudentManagementSystem.View
                     GetAgeByBirthdate(dt);
                 }
             };
+        }
+
+        public void SelectedStudents(string str)
+        {
+            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails1(str));//卡片信息
+            this.GridDataContext.DataContext = StudentsDetailsList;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -100,7 +104,7 @@ namespace StudentManagementSystem.View
                     //姓名 检查是否为汉字 或字母
                     if (!DoValidate.CheckName(xingming.Text.Trim()))
                     {
-                        MessageWindow.ShowWindow("姓名应为汉字或英文!","错误");
+                        MessageWindow.ShowWindow("姓名应为汉字或英文!", "错误");
                         return;
                     }
                     if (!string.IsNullOrEmpty(dianhau.Text) && !DoValidate.CheckCellPhone(dianhau.Text.Trim()))

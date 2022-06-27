@@ -47,7 +47,7 @@
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="Background" TargetName="radioButtonBorder">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Assets/Icon/nav_sel_2.png"/>
+                                    <ImageBrush ImageSource="pack://application:,,,/StudentManagementSystem;component//Assets/Icon/nav_sel_2.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

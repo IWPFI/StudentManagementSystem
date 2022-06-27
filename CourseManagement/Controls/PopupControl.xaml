@@ -9,8 +9,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Assets/Style/ScrollViewerStyle.xaml"/>
-                <ResourceDictionary Source="/Assets/Style/PopupControlStyle.xaml"/>
+                <ResourceDictionary Source="../Assets/Style/ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="../Assets/Style/PopupControlStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

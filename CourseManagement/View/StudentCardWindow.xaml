@@ -24,9 +24,6 @@
             <converter1:GenderConverter x:Key="genderConverter"/>
         </ResourceDictionary>
     </Window.Resources>
-    <!--<Window.DataContext>
-        <converter1:GenderConverter/>
-    </Window.DataContext>-->
 
     <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}">
         <Grid x:Name="GridDataContext">

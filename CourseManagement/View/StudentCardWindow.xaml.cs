@@ -77,8 +77,7 @@ namespace StudentManagementSystem.View
             {
                 if (!string.IsNullOrEmpty(shengri.Text))
                 {
-                    DateTime dt = Convert.ToDateTime(shengri.Text);
-                    GetAgeByBirthdate(dt);
+                    GetAgeByBirthdate(Convert.ToDateTime(shengri.Text));
                 }
             };
         }
@@ -250,6 +249,11 @@ namespace StudentManagementSystem.View
         {
             popup.IsOpen = false;
             popup.IsOpen = true;
+        }
+
+        private void BirthdayDatePicker_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            GetAgeByBirthdate((DateTime)((System.Windows.Controls.DatePicker)sender).DisplayDate);
         }
 
         //更换头像

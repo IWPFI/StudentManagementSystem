@@ -123,7 +123,7 @@
                             <!--生日-->
                             <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="生日：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <DatePicker x:Name="shengri" SelectedDate="{Binding StudentInfo.StudentBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                <DatePicker x:Name="shengri" CalendarClosed="BirthdayDatePicker_CalendarClosed"  SelectedDate="{Binding StudentInfo.StudentBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 

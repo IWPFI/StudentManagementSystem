@@ -55,11 +55,18 @@ namespace StudentManagementSystem.View
             set { age = value; OnPropertyChanged(); }
         }
 
-        public ObservableCollection<StudentInformation> StudentsDetailsList { get; set; }
+        private StudentInformation _studentInfo;
+        //学生信息
+        public StudentInformation StudentInfo
+        {
+            get { return _studentInfo; }
+            set { _studentInfo = value; OnPropertyChanged(); }
+        }
 
         public StudentCardWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
 
             Binding binding = new Binding();
             binding.Source = this;
@@ -78,8 +85,7 @@ namespace StudentManagementSystem.View
 
         public void SelectedStudents(string str)
         {
-            StudentsDetailsList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().StudentsDetails1(str));//卡片信息
-            this.GridDataContext.DataContext = StudentsDetailsList;
+            StudentInfo = LocalDataAccess.GetInstance().StudentsDetails(str);//卡片信息
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -214,7 +220,6 @@ namespace StudentManagementSystem.View
         }
 
         private CommandBase _popupCommand;
-
         public CommandBase PopupCommand
         {
             get
@@ -246,7 +251,6 @@ namespace StudentManagementSystem.View
             popup.IsOpen = false;
             popup.IsOpen = true;
         }
-
 
         //更换头像
         //private void ImgBorder_MouseUp(object sender, RoutedEventArgs e)

@@ -23,3 +23,6 @@ dotnet_analyzer_diagnostic.severity = none
 
 # CS8767: 参数类型中引用类型的为 Null 性与隐式实现的成员不匹配(可能是由于为 Null 性特性)。
 dotnet_diagnostic.CS8767.severity = none
+
+# CS8602: 解引用可能出现空引用。
+dotnet_diagnostic.CS8602.severity = silent

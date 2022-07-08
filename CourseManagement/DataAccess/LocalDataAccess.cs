@@ -320,14 +320,13 @@ WHERE
         }
 
         /// <summary>
-        /// 学生详细资料1
+        /// 学生详细资料
         /// </summary>
         /// <returns>全部</returns>
-        public List<StudentInformation> StudentsDetails1(string str)
+        public StudentInformation StudentsDetails(string str)
         {
             try
             {
-                List<StudentInformation> result = new List<StudentInformation>();
                 if (this.DBConnection())
                 {
                     string sql = @"SELECT s.id, s.number, s.name, s.sex, s.birthday, s.grade, s.site, s.phone, n.nations_name, p.politics_status 
@@ -336,38 +335,31 @@ FROM
 	INNER JOIN dbo.nations AS n ON s.nation_id = n.id
 	INNER JOIN dbo.politics_status AS p ON s.politics_status_id = p.id 
 WHERE
-	s.number = ('" + str + "') AND is_delete = 0;";
+	s.number = @number AND is_delete = 0;";
                     adapter = new SqlDataAdapter(sql, conn);
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@number", str) );
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
-                    if (count > 0)//大于零说明有数据
-                    {
-                        string courseId = "";
-                        StudentInformation model = null;
-                        foreach (DataRow dr in table.AsEnumerable())
-                        {
-                            string tempId = dr.Field<string>("number");
-                            if (courseId != tempId)
-                            {
-                                courseId = tempId;
-                                model = new StudentInformation();
-                                model.StudentID = dr.Field<string>("number");//学号
-                                model.Id = dr.Field<int>("id");//Id
-                                model.StudentName = dr.Field<string>("name");//姓名
-                                model.StudentSex = dr.Field<int>("sex");//性别
-                                model.StudentPhone = dr.Field<string>("phone");//电话
-                                model.StudentGrade = dr.Field<string>("grade");//班级
-                                model.StudentSite = dr.Field<string>("site");//地址
-                                model.StudentBirthday = dr.Field<DateTime>("birthday");//生日
-                                model.NationsName = dr.Field<string>("nations_name");
-                                model.PoliticsStatus = dr.Field<string>("politics_status");
-                                result.Add(model);
-                            }
-                        }
-                    }
+
+                    if (count <= 0)
+                        throw new Exception("数据不存在！");
+
+                    DataRow dr = table.Rows[0];
+                    StudentInformation model = new StudentInformation();
+                    model.StudentID = dr.Field<string>("number");//学号
+                    model.Id = dr.Field<int>("id");//Id
+                    model.StudentName = dr.Field<string>("name");//姓名
+                    model.StudentSex = dr.Field<int>("sex");//性别
+                    model.StudentPhone = dr.Field<string>("phone");//电话
+                    model.StudentGrade = dr.Field<string>("grade");//班级
+                    model.StudentSite = dr.Field<string>("site");//地址
+                    model.StudentBirthday = dr.Field<DateTime>("birthday");//生日
+                    model.NationsName = dr.Field<string>("nations_name");//民族
+                    model.PoliticsStatus = dr.Field<string>("politics_status");//政治面貌
+                    return model;
                 }
-                return result;
+                return null;
             }
             catch (Exception ex)
             {

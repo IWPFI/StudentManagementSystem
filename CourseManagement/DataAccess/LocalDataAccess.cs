@@ -332,8 +332,8 @@ WHERE
                     string sql = @"SELECT s.id, s.number, s.name, s.sex, s.birthday, s.grade, s.site, s.phone, n.nations_name, p.politics_status 
 FROM
 	dbo.students AS s
-	INNER JOIN dbo.nations AS n ON s.nation_id = n.id
-	INNER JOIN dbo.politics_status AS p ON s.politics_status_id = p.id 
+	LEFT OUTER JOIN dbo.nations AS n ON s.nation_id = n.id
+	LEFT OUTER JOIN dbo.politics_status AS p ON s.politics_status_id = p.id 
 WHERE
 	s.number = @number AND is_delete = 0;";
                     adapter = new SqlDataAdapter(sql, conn);

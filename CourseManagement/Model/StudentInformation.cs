@@ -40,11 +40,11 @@ namespace StudentManagementSystem.Model
             }
         }
 
-        private int _studentSex;
+        private int? _studentSex = 0;
         /// <summary>
         /// 学生性别
         /// </summary>
-        public int StudentSex
+        public int? StudentSex
         {
             get => _studentSex;
             set
@@ -68,11 +68,11 @@ namespace StudentManagementSystem.Model
             }
         }
 
-        private DateTime _studentBirthday;
+        private DateTime? _studentBirthday;
         /// <summary>
         /// 学生生日
         /// </summary>
-        public DateTime StudentBirthday
+        public DateTime? StudentBirthday
         {
             get { return _studentBirthday; }
             set

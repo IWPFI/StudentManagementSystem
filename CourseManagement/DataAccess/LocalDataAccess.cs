@@ -338,7 +338,7 @@ FROM
 WHERE
 	s.number = @number AND is_delete = 0;";
                     adapter = new NpgsqlDataAdapter(sql, conn);
-                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@number", str) );
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@number", str));
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
@@ -487,6 +487,75 @@ VALUES
                     }
                 }
                 return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+        }
+        public int AddStudents(StudentInformation student)
+        {
+            try
+            {
+                int count = -1;
+                if (this.DBConnection())
+                {
+                    #region Notes
+                    /* SqlConnection.CreateCommand 方法：创建并返回一个与 SqlConnection 关联的 SqlCommand 对象；
+                       https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.createcommand?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlConnection_CreateCommand */
+
+
+                    /* SqlCommand.CommandText 属性：获取或设置要在数据源中执行的 Transact-SQL 语句、表名或存储过程。[要执行的 SQL 语句或存储，默认值为一个空字符串。]
+                       https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlcommand.commandtext?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlCommand_CommandText */
+
+
+                    /* SqlCommand.ExecuteScalar 方法：执行查询，并返回由查询返回的结果集中的第一行的第一列。 其他列或行将被忽略。
+                       返回值类型： System.Object
+                       为结果集中的第一行的第一列，如果结果集为空，则为 null 引用（Visual Basic 中 Nothing）。
+                       [一般用来执行只有一行一列放回值的SQL查询]
+                       https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlcommand.executescalar?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlCommand_ExecuteScalar */
+
+
+                    /* SqlCommand.ExecuteNonQuery 方法：对连接执行 Transact-SQL 语句并返回受影响的行数。
+                     * 对于 UPDATE、INSERT 和 DELETE 语句，返回值为该命令所影响的行数。 对于其他所有类型的语句，返回值为 -1。
+                       [通常用于执行增加、删除、修改等SQL语句]
+                       https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlcommand.executenonquery?redirectedfrom=MSDN&view=dotnet-plat-ext-6.0#System_Data_SqlClient_SqlCommand_ExecuteNonQuery */
+                    #endregion
+
+                    comm = conn.CreateCommand();
+                    comm.CommandText = @"SELECT id FROM sms_students WHERE number = '" + student.StudentID + "'AND is_delete = 0;";
+
+                    //ExecuteScalar()一般用来执行只有一行一列放回值的SQL查询
+                    if (comm.ExecuteScalar() != null)
+                    {
+                        MessageWindow.ShowWindow("已存在该学生或输入有误！添加失败！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        string sql = @"INSERT INTO sms_students ( number, name, sex, birthday, phone, grade, site, nation_id, politics_status_id, is_delete, gmt_create )
+VALUES 
+( @number, @name, @sex, @birthday, @phone, @grade, @site, 
+( SELECT id FROM sms_nations WHERE nations_name = @nation ), 
+( SELECT id FROM sms_politics_status WHERE politics_status = @politics_status ), 0, now() );";
+                        adapter = new NpgsqlDataAdapter(sql, conn);
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@number", student.StudentID == null ? DBNull.Value : student.StudentID));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@name", student.StudentName == null ? DBNull.Value : student.StudentName));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@sex", student.StudentSex == null ? DBNull.Value : student.StudentSex));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@birthday", student.StudentBirthday == null ? DBNull.Value : student.StudentBirthday));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@phone", student.StudentPhone == null ? DBNull.Value : student.StudentPhone));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@grade", student.StudentGrade == null ? DBNull.Value : student.StudentGrade));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@site", student.StudentSite == null ? DBNull.Value : student.StudentSite));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@nation", student.NationsName == null ? DBNull.Value : student.NationsName));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@politics_status", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
+                        DataTable table = new DataTable();
+                        count = adapter.Fill(table);
+                    }
+                }
+                return count;
             }
             catch (Exception ex)
             {

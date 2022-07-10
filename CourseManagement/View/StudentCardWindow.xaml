@@ -96,7 +96,7 @@
 
                             <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="性别：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="xingbie" Text="{Binding SStudentInfo.tudentSex}" Width="100" Margin="2"  BorderThickness="0 0 0 1" Visibility="Collapsed" Background="{x:Null}"/>
+                                <TextBox x:Name="xingbie" Text="{Binding StudentInfo.StudentSex}" Width="100" Margin="2"  BorderThickness="0 0 0 1" Visibility="Collapsed" Background="{x:Null}"/>
                                 <StackPanel Orientation="Horizontal">
                                     <RadioButton Content="男" Margin="0 0 0 0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
                                     <RadioButton Content="女" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>

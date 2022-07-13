@@ -96,13 +96,13 @@
                 <!--民族-->
                 <Grid Name="nationGrid" Grid.Row="1" Grid.Column="1">
                     <Label Content="&#xe66f;" ToolTip="民族" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Name="nationComboBox" Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族" ItemsSource="{Binding NationModelList}" SelectedItem="{Binding StudentInfo.NationsName}"/>
+                    <ComboBox Name="nationComboBox" Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族" Style="{DynamicResource ComBoxStyle}" ItemsSource="{Binding NationModelList}" SelectedItem="{Binding StudentInfo.NationsName}"/>
                 </Grid>
 
                 <!--政治面貌-->
                 <Grid Grid.Row="1" Grid.Column="2">
                     <Label Content="&#xe643;" ToolTip="政治面貌" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Name="politicalOutlookComboBox" Height="40" Width="179" Margin="20 0 0 0" Tag="请选择政治面貌" ItemsSource="{Binding PoliticalOutlookList}" SelectedItem="{Binding StudentInfo.PoliticsStatus}"/>
+                    <ComboBox Name="politicalOutlookComboBox" Height="40" Width="179" Style="{DynamicResource ComBoxStyle}" Margin="20 0 0 0" Tag="请选择政治面貌" ItemsSource="{Binding PoliticalOutlookList}" SelectedItem="{Binding StudentInfo.PoliticsStatus}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.ColumnSpan="3">

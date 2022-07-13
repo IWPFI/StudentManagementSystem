@@ -8,6 +8,8 @@
         <ResourceDictionary Source="../Assets/Style/MainWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/MessageWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/TextbookViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/ScrollViewerStyle.xaml"/>
+  
     </ResourceDictionary.MergedDictionaries>
     <FontFamily x:Key="Iconfont">pack://application:,,,/StudentManagementSystem;component/Assets/Typeface/#iconfont</FontFamily>
 </ResourceDictionary>

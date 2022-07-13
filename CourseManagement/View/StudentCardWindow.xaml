@@ -123,26 +123,19 @@
                             <!--生日-->
                             <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="生日：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <DatePicker x:Name="shengri" CalendarClosed="BirthdayDatePicker_CalendarClosed"  SelectedDate="{Binding StudentInfo.StudentBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                <DatePicker x:Name="shengri" CalendarClosed="BirthdayDatePicker_CalendarClosed"
+                                            SelectedDate="{Binding StudentInfo.StudentBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <Button Content="{Binding StudentInfo.NationsName}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
-                                        Click="NationsButton_Click"/>
-                                <Popup x:Name="popup" StaysOpen="False" AllowsTransparency="True">
-                                    <poput:PopupControl/>
-                                </Popup>
+                                <ComboBox x:Name="NationsComboBox" SelectedItem="{Binding StudentInfo.NationsName}" ItemsSource="{Binding NationModelList}" Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
                                 <TextBlock Text="政治面貌：" Margin="-5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <Button Content="{Binding StudentInfo.PoliticsStatus}" Cursor="Hand" Style="{DynamicResource InformationButtonStyle}"
-                                         Command="{Binding PopupCommand}" CommandParameter="2"/>
-                                <Popup x:Name="popup1" StaysOpen="False" AllowsTransparency="True">
-                                    <poput:PopupControl PopupStr="2"/>
-                                </Popup>
+                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedItem="{Binding StudentInfo.PoliticsStatus}" ItemsSource="{Binding PoliticalOutlookList}" Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >

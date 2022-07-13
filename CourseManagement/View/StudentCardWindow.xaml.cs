@@ -80,7 +80,19 @@ namespace StudentManagementSystem.View
                     GetAgeByBirthdate(Convert.ToDateTime(shengri.Text));
                 }
             };
+            NationModelList = new List<string>(LocalDataAccess.GetInstance().GeiNation());
+            PoliticalOutlookList = new List<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());
         }
+
+        /// <summary>
+        /// 民族
+        /// </summary>
+        public List<string> NationModelList { get; set; }
+
+        /// <summary>
+        /// 政治面貌
+        /// </summary>
+        public List<string> PoliticalOutlookList { get; set; }
 
         public void SelectedStudents(string str)
         {
@@ -214,39 +226,6 @@ namespace StudentManagementSystem.View
                 Age--;
             }
             return Age < 0 ? 0 : Age;
-        }
-
-        private CommandBase _popupCommand;
-        public CommandBase PopupCommand
-        {
-            get
-            {
-                if (_popupCommand == null)
-                {
-                    _popupCommand = new CommandBase();
-                    _popupCommand.DoExecute = new Action<object>(obj =>
-                    {
-                        if (obj.ToString() == "1")
-                        {
-                            popup.IsOpen = false;
-                            popup.IsOpen = true;
-                        }
-                        else
-                        {
-                            popup1.IsOpen = false;
-                            popup1.IsOpen = true;
-                        }
-                    });
-                    _popupCommand.DoCanExecute = new Func<object, bool>((o) => true);
-                }
-                return _popupCommand;
-            }
-        }
-
-        private void NationsButton_Click(object sender, RoutedEventArgs e)
-        {
-            popup.IsOpen = false;
-            popup.IsOpen = true;
         }
 
         private void BirthdayDatePicker_CalendarClosed(object sender, RoutedEventArgs e)

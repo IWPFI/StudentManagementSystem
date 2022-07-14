@@ -13,14 +13,8 @@
         WindowStyle="None" 
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Assets/Style/ComboBoxStyle.xaml"/>
-                <ResourceDictionary Source="../Assets/Style/AddStudentWindowStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-            <converter1:IntToStringConverter x:Key="IntToStringConverter"/>
-            <converter1:GenderConverter x:Key="genderConverter"/>
-        </ResourceDictionary>
+        <converter1:IntToStringConverter x:Key="IntToStringConverter"/>
+        <converter1:GenderConverter x:Key="genderConverter"/>
     </Window.Resources>
     <Window.DataContext>
         <add:AddStudentViewModel/>

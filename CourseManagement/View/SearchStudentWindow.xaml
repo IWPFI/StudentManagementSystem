@@ -8,14 +8,6 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Title="SearchView" Height="500" Width="700">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Assets/Style/SearchStudentWindowStyle.xaml"/>
-                <ResourceDictionary Source="../Assets/Style/DataGridStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Border CornerRadius="5" Margin="5" Background="#40568D" BorderBrush="#333353" MouseLeftButtonDown="MouseLeftButtonDown">
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" ShadowDepth="0" Direction="0" Color="Gray" Opacity="0.2"/>

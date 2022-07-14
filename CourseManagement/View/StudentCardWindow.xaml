@@ -15,16 +15,9 @@
         WindowStyle="None" AllowsTransparency="True" 
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StudentCardWindow}}}">
-
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Assets/Style/StudentCardWindowStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-            <converter1:GenderConverter x:Key="genderConverter"/>
-        </ResourceDictionary>
+        <converter1:GenderConverter x:Key="genderConverter"/>
     </Window.Resources>
-
     <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}">
         <Grid x:Name="GridDataContext">
             <Grid.ColumnDefinitions>

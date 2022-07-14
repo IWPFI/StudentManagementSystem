@@ -375,20 +375,30 @@ WHERE
         /// 修改学生信息
         /// </summary>
         /// <returns></returns>
-        public void StudentsAmend(string[] GetVs)
+        public int StudentsAmend(StudentInformation student)
         {
             try
             {
+                int count = -1;
                 if (this.DBConnection())
                 {
-                    string sql = "UPDATE students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
-                        "sex = ('" + GetVs[2] + "'),birthday = '" + GetVs[3] + "',phone = ('" + GetVs[5] + "'),grade = ('" + GetVs[4] + "')," +
-                        "site = ('" + GetVs[6] + "'),gmt_modified = GETDATE() WHERE number = ('" + GetVs[0] + "')";
+                    string sql = @"UPDATE students SET number = @number, name = @name, sex = @sex, birthday = @birthday, phone = @phone, grade = @grade, site = @site, gmt_modified = GETDATE(),
+nation_id = ( SELECT id FROM nations WHERE nations_name = @nation ), 
+politics_status_id = ( SELECT id FROM politics_status WHERE politics_status = @politics_status ) WHERE number = @number;";
                     adapter = new SqlDataAdapter(sql, conn);
-
-                    DataSet table = new DataSet();
-                    adapter.Fill(table);
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@number", student.StudentID == null ? DBNull.Value : student.StudentID));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@name", student.StudentName == null ? DBNull.Value : student.StudentName));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@sex", student.StudentSex == null ? DBNull.Value : student.StudentSex));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@birthday", student.StudentBirthday == null ? DBNull.Value : student.StudentBirthday));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@phone", student.StudentPhone == null ? DBNull.Value : student.StudentPhone));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@grade", student.StudentGrade == null ? DBNull.Value : student.StudentGrade));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@site", student.StudentSite == null ? DBNull.Value : student.StudentSite));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@nation", student.NationsName == null ? DBNull.Value : student.NationsName));
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("@politics_status", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
+                    DataTable table = new DataTable();
+                    count = adapter.Fill(table);
                 }
+                return count;
             }
             catch (Exception ex)
             {

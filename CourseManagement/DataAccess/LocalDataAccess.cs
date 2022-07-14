@@ -376,20 +376,30 @@ WHERE
         /// 修改学生信息
         /// </summary>
         /// <returns></returns>
-        public void StudentsAmend(string[] GetVs)
+        public int StudentsAmend(StudentInformation student)
         {
             try
             {
+                int count = -1;
                 if (this.DBConnection())
                 {
-                    string sql = "UPDATE sms_students SET number = ( '" + GetVs[0] + "' ),name = ('" + GetVs[1] + "')," +
-                        "sex = (" + GetVs[2] + "),birthday = '" + GetVs[3] + "',phone = ('" + GetVs[5] + "'),grade = ('" + GetVs[4] + "')," +
-                        "site = ('" + GetVs[6] + "'),gmt_modified = now() WHERE number = ('" + GetVs[0] + "')";
+                    string sql = @"UPDATE sms_students SET number = @number, name = @name, sex = @sex, birthday = @birthday, phone = @phone, grade = @grade, site = @site, gmt_modified = now(),
+nation_id = ( SELECT id FROM sms_nations WHERE nations_name = @nation ), 
+politics_status_id = ( SELECT id FROM sms_politics_status WHERE politics_status = @politics_status ) WHERE number = @number;";
                     adapter = new NpgsqlDataAdapter(sql, conn);
-
-                    DataSet table = new DataSet();
-                    adapter.Fill(table);
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@number", student.StudentID == null ? DBNull.Value : student.StudentID));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@name", student.StudentName == null ? DBNull.Value : student.StudentName));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@sex", student.StudentSex == null ? DBNull.Value : student.StudentSex));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@birthday", student.StudentBirthday == null ? DBNull.Value : student.StudentBirthday));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@phone", student.StudentPhone == null ? DBNull.Value : student.StudentPhone));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@grade", student.StudentGrade == null ? DBNull.Value : student.StudentGrade));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@site", student.StudentSite == null ? DBNull.Value : student.StudentSite));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@nation", student.NationsName == null ? DBNull.Value : student.NationsName));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@politics_status", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
+                    DataTable table = new DataTable();
+                    count = adapter.Fill(table);
                 }
+                return count;
             }
             catch (Exception ex)
             {

@@ -20,13 +20,13 @@
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource TitleTestBlockStyle}"/>
 
-            <TextBox Name="studentTextBox" Text="" x:FieldModifier="public" Style="{DynamicResource studentTextBoxStyle}"/>
+            <TextBox Name="studentTextBox" Text="" x:FieldModifier="public" Style="{DynamicResource SearchStudentWindow_ContentTextBoxStyle}"/>
 
             <Button Name="seekButton" Style="{DynamicResource SeekButtonStyle}"
                     Command="{Binding SeekCommand}"
                     CommandParameter="{Binding ElementName=studentTextBox,Path=Text}"/>
 
-            <Button Name="closeButton" Style="{StaticResource CloceButtonStyle}"    
+            <Button Name="closeButton" Style="{StaticResource SearchStudentWindow_CloceButtonStyle}"    
                     Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=window}"/>
             

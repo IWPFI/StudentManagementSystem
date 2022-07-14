@@ -10,7 +10,7 @@
     </Style>
 
     <!--输入框-->
-    <Style x:Key="studentTextBoxStyle" TargetType="TextBox">
+    <Style x:Key="SearchStudentWindow_ContentTextBoxStyle" TargetType="TextBox">
         <Setter Property="Grid.Row" Value="1"/>
         <Setter Property="Width" Value="400"/>
         <Setter Property="Height" Value="40"/>
@@ -105,7 +105,7 @@
         <Setter Property="Template" Value="{DynamicResource AddDataTextBoxTemplate}"/>
     </Style>
 
-    <Style x:Key="CloceButtonStyle" TargetType="Button">
+    <Style x:Key="SearchStudentWindow_CloceButtonStyle" TargetType="Button">
         <Setter Property="Margin" Value="0,5,5,0"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Content" Value="&#xe605;"/>

@@ -18,13 +18,13 @@
     <Window.Resources>
         <converter1:GenderConverter x:Key="genderConverter"/>
     </Window.Resources>
-    <Border Margin="30,35,30,55" Style="{DynamicResource WinBorderEffect}">
+    <Border Style="{DynamicResource StudentCardWindow_BorderEffect}">
         <Grid x:Name="GridDataContext">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border CornerRadius="10 0 0 10" Background="#FF5D6B99">
+            <Border Background="#FF5D6B99" Style="{DynamicResource StudentCardWindow_LeftBorderStyle}">
                 <Grid>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <Border x:Name="ImgBorder">

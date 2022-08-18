@@ -4,6 +4,7 @@
         <ResourceDictionary Source="../Assets/Style/AddStudentWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/ComboBoxStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/ContactsViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/CoursePageViewStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/DataGridStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/DefaultStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/DefaultTemplate.xaml"/>
@@ -15,7 +16,7 @@
         <ResourceDictionary Source="../Assets/Style/SearchStudentWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/StudentCardWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/TextbookViewStyle.xaml"/>
-  
     </ResourceDictionary.MergedDictionaries>
     <FontFamily x:Key="Iconfont">pack://application:,,,/StudentManagementSystem;component/Assets/Typeface/#iconfont</FontFamily>
 </ResourceDictionary>
+    

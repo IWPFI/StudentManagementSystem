@@ -18,7 +18,7 @@
     WindowStartupLocation="CenterScreen"设置启动时居中
     -->
     <!--#endregion-->
-    <Border Margin="5" CornerRadius="10" Background="#FFE6EEFA">
+    <Border Style="{DynamicResource LoginBorderStyle}">
         <Border.Effect>
             <DropShadowEffect ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0" Color="Gray" />
         </Border.Effect>
@@ -29,7 +29,7 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="10,10,0,0" Background="#FF5D6B99" PreviewMouseLeftButtonDown="WinMove_LeftButtonDown"/>
+            <Border Style="{DynamicResource LogoBorderStyle}" PreviewMouseLeftButtonDown="WinMove_LeftButtonDown"/>
             <!--右上角关闭图标-->
             <Button Margin="4" Height="30" Width="40" Background="White" 
                     VerticalAlignment="Top" HorizontalAlignment="Right"

@@ -3,9 +3,13 @@
                     xmlns:cm="clr-namespace:StudentManagementSystem.AttachProperties"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     x:Class=" StudentManagementSystem.ResourceEvents.AddDataViewEvents">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Assets/Style/ComboBoxStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <!--窗口边框-->
     <Style x:Key="AddBorderBackgroundStyle" TargetType="Border">
         <Setter Property="Margin" Value="10"/>
-        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Effect">
@@ -15,6 +19,31 @@
         </Setter>
     </Style>
 
+    <!--窗口背景-->
+    <Style x:Key="AddStudentWindowGridStyle" TargetType="Grid">
+        <Setter Property="Background" >
+            <Setter.Value>
+                <ImageBrush ImageSource="/Assets/Icon/Background_InkLandscape.png" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--顶部标题-->
+    <Style x:Key="TopTitleTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Text" Value="添  加  学  生  信  息"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#FF5D6B99"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="AddStudentWindowComBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource ComBoxStyle}">
+        <Setter Property="Width" Value="180"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="30 0 0 0"/>
+    </Style>   
+    
     <Style x:Key="AddDataContentStackPanelStyle" TargetType="StackPanel">
         <Setter Property="Margin" Value="10"/>
         <Setter Property="Orientation" Value="Horizontal"/>
@@ -30,6 +59,7 @@
         <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate}"/>
     </Style>
 
+    <!--图标-->
     <Style x:Key="AddDataLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="26"/>
         <Setter Property="Margin" Value="10 0"/>
@@ -38,6 +68,9 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Template" Value="{DynamicResource AddDataLabelTemplate}"/>
+    </Style>
+    <Style x:Key="AddDataLabelStyle2" TargetType="Label" BasedOn="{StaticResource AddDataLabelStyle}">
+        <Setter Property="Margin" Value="20 0"/>
     </Style>
 
     <Style x:Key="AddDataTextBox" TargetType="TextBox">
@@ -238,6 +271,7 @@
     <Style x:Key="AddDataSexTextBox" TargetType="TextBox">
         <Setter Property="Width" Value="180"/>
         <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="22,0,0,0"/>
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="BorderBrush" Value="#BBBBBB"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>

@@ -6,7 +6,7 @@
         xmlns:add="clr-namespace:StudentManagementSystem.ViewModel" 
         xmlns:converter1="clr-namespace:StudentManagementSystem.Converter"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="添加" 
+        Title="添加学生信息" 
         Height="500" Width="800"
         AllowsTransparency="True"
         Background="{x:Null}"
@@ -20,14 +20,11 @@
         <add:AddStudentViewModel/>
     </Window.DataContext>
 
-    <Border Margin="10" CornerRadius="4" Style="{StaticResource WinBorderEffect}">
+    <Border Style="{DynamicResource AddBorderBackgroundStyle}">
         <Border.InputBindings>
             <MouseBinding Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
         </Border.InputBindings>
-        <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="/Assets/Icon/Background_InkLandscape.png" Opacity="0.2"/>
-            </Grid.Background>
+        <Grid Style="{DynamicResource AddStudentWindowGridStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition/>
@@ -36,7 +33,7 @@
 
             <!--顶部布局-->
             <Grid>
-                <TextBlock x:Name="TopTitleTextBlock" Text="添  加" FontSize="30" Foreground="#FF5D6B99" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TopTitleTextBlock" Style="{DynamicResource TopTitleTextBlockStyle}"/>
                 <Button Style="{DynamicResource AddDataCloseButton}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=window}"/>
                 <Border Width="720" Height="3" BorderThickness="0 0 0 2" BorderBrush="#FF3B4F81" VerticalAlignment="Bottom"/>
             </Grid>
@@ -56,21 +53,22 @@
                 </Grid.RowDefinitions>
 
                 <!--学号-->
-                <StackPanel Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Name="addIdLabel" Content="&#xe61d;" ToolTip="学号" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addId" Text="{Binding StudentInfo.StudentID}" Width="180" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
+                <StackPanel Style="{DynamicResource AddDataContentStackPanelStyle}">
+                    <Label Name="addIdLabel" Content="&#xe61d;" ToolTip="学号" Style="{DynamicResource AddDataLabelStyle}"/>
+                    <TextBox Name="addId" Text="{Binding StudentInfo.StudentID}" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
 
                 <!--姓名-->
-                <StackPanel Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe601;" ToolTip="姓名" Style="{StaticResource AddDataLabelStyle}"/>
+                <StackPanel Grid.Column="1" Style="{DynamicResource AddDataContentStackPanelStyle}">
+                    <Label Content="&#xe601;" ToolTip="姓名" Style="{DynamicResource AddDataLabelStyle}"/>
                     <TextBox Name="addName" Text="{Binding StudentInfo.StudentName}" Tag="请输入姓名" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
 
                 <!--性别-->
                 <Grid Grid.Column="2">
-                    <Label Content="&#xe62d;" ToolTip="性别" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addSex" Text="{Binding StudentInfo.StudentSex, Converter={StaticResource IntToStringConverter}}" Margin="22,0,0,0" Tag="请选择性别" Style="{DynamicResource AddDataSexTextBox}"/>
+                    <Label Content="&#xe62d;" ToolTip="性别" Style="{DynamicResource AddDataLabelStyle2}"/>
+                    <TextBox Name="addSex" Text="{Binding StudentInfo.StudentSex, Converter={StaticResource IntToStringConverter}}" 
+                            Tag="请选择性别" Style="{DynamicResource AddDataSexTextBox}"/>
                     <Expander x:Name="sexRadio" Margin="0,0,35,0" Panel.ZIndex="5" VerticalAlignment="Center" HorizontalAlignment="Right" LostStylusCapture="SexExpanderLostStylusCapture">
                         <Border Margin="-80,0,0,-50" Background="Gainsboro" CornerRadius="10" Padding="5" LostFocus="Border_LostFocus">
                             <StackPanel>
@@ -82,21 +80,24 @@
                 </Grid>
 
                 <!--生日-->
-                <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe653;" ToolTip="生日" Style="{StaticResource AddDataLabelStyle}"/>
+                <StackPanel Grid.Row="1" Grid.Column="0" Style="{DynamicResource AddDataContentStackPanelStyle}">
+                    <Label Content="&#xe653;" ToolTip="生日" Style="{DynamicResource AddDataLabelStyle}"/>
                     <DatePicker Name="addBirthday" SelectedDate="{Binding StudentInfo.StudentBirthday}" Style="{DynamicResource DatePickerStyle}"/>
                 </StackPanel>
 
                 <!--民族-->
                 <Grid Name="nationGrid" Grid.Row="1" Grid.Column="1">
-                    <Label Content="&#xe66f;" ToolTip="民族" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Name="nationComboBox" Height="40" Width="180" Margin="30 0 0 0" Tag="请选择民族" Style="{DynamicResource ComBoxStyle}" ItemsSource="{Binding NationModelList}" SelectedItem="{Binding StudentInfo.NationsName}"/>
+                    <Label Content="&#xe66f;" ToolTip="民族" Style="{DynamicResource AddDataLabelStyle2}"/>
+                    <ComboBox Name="nationComboBox" Tag="请选择民族"
+                              Style="{DynamicResource AddStudentWindowComBoxStyle}"
+                              ItemsSource="{Binding NationModelList}" SelectedItem="{Binding StudentInfo.NationsName}"/>
                 </Grid>
 
                 <!--政治面貌-->
                 <Grid Grid.Row="1" Grid.Column="2">
-                    <Label Content="&#xe643;" ToolTip="政治面貌" Margin="20,0,0,0" Style="{StaticResource AddDataLabelStyle}"/>
-                    <ComboBox Name="politicalOutlookComboBox" Height="40" Width="179" Style="{DynamicResource ComBoxStyle}" Margin="20 0 0 0" Tag="请选择政治面貌" ItemsSource="{Binding PoliticalOutlookList}" SelectedItem="{Binding StudentInfo.PoliticsStatus}"/>
+                    <Label Content="&#xe643;" ToolTip="政治面貌" Style="{DynamicResource AddDataLabelStyle2}"/>
+                    <ComboBox Name="politicalOutlookComboBox" Tag="请选择政治面貌" Style="{DynamicResource AddStudentWindowComBoxStyle}" Margin="20 0 0 0"
+                              ItemsSource="{Binding PoliticalOutlookList}" SelectedItem="{Binding StudentInfo.PoliticsStatus}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.ColumnSpan="3">
@@ -105,8 +106,8 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <!--班级-->
-                    <StackPanel Grid.Column="0" Style="{StaticResource AddDataContentStackPanelStyle}">
-                        <Label Content="&#xe630;" ToolTip="班级" Style="{StaticResource AddDataLabelStyle}"/>
+                    <StackPanel Grid.Column="0" Style="{DynamicResource AddDataContentStackPanelStyle}">
+                        <Label Content="&#xe630;" ToolTip="班级" Style="{DynamicResource AddDataLabelStyle}"/>
                         <TextBox Name="addClass" Text="{Binding StudentInfo.StudentGrade}" Width="300" Tag="请输入班级名称" Style="{DynamicResource AddDataTextBox}"/>
                     </StackPanel>
 
@@ -114,23 +115,25 @@
                     <!--#region Notes -->
                     <!--TextBox.MaxLength 属性：获取或设置可在文本框中手动输入的最大字符数。-->
                     <!--#endregion-->
-                    <StackPanel Grid.Column="1" Style="{StaticResource AddDataContentStackPanelStyle}">
-                        <Label Content="&#xe88b;" ToolTip="电话" Style="{StaticResource AddDataLabelStyle}"/>
-                        <TextBox Name="addNumber" Text="{Binding StudentInfo.StudentPhone}" Tag="请输入电话号码" TextBox.MaxLength="11" Width="305" Style="{DynamicResource AddDataTextBox}"/>
+                    <StackPanel Grid.Column="1" Style="{DynamicResource AddDataContentStackPanelStyle}">
+                        <Label Content="&#xe88b;" ToolTip="电话" Style="{DynamicResource AddDataLabelStyle}"/>
+                        <TextBox Name="addNumber" Text="{Binding StudentInfo.StudentPhone}" Tag="请输入电话号码" 
+                                 TextBox.MaxLength="11" Width="305" Style="{DynamicResource AddDataTextBox}"/>
                     </StackPanel>
                 </Grid>
 
                 <!--地址-->
-                <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource AddDataContentStackPanelStyle}">
-                    <Label Content="&#xe641;" ToolTip="地址" Style="{StaticResource AddDataLabelStyle}"/>
-                    <TextBox Name="addAddress" Text="{Binding StudentInfo.StudentSite}" Width="692" Tag="请输入地址" Style="{DynamicResource AddDataTextBox}"/>
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Style="{DynamicResource AddDataContentStackPanelStyle}">
+                    <Label Content="&#xe641;" ToolTip="地址" Style="{DynamicResource AddDataLabelStyle}"/>
+                    <TextBox Name="addAddress" Text="{Binding StudentInfo.StudentSite}" Width="692" Tag="请输入地址"
+                             Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
             </Grid>
 
             <!--底部按钮-->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Style="{StaticResource CompleteButtonStyle}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
-                <Button Style="{StaticResource CancelButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=window}"/>
+                <Button Style="{DynamicResource CompleteButtonStyle}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
+                <Button Style="{DynamicResource CancelButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=window}"/>
             </StackPanel>
 
         </Grid>

@@ -8,6 +8,34 @@
         <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate}"/>
     </Style>
 
+    <!--窗口顶部背景-->
+    <Style x:Key="MainTopBorderStyle" TargetType="Border">
+        <Setter Property="Height" Value="200"/>
+        <Setter Property="CornerRadius" Value="5 5 0 0"/>
+        <Setter Property="Background" Value="#FF3B4F81"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <!--窗口背景-->
+    <Style x:Key="MainBorderStyle" TargetType="Border">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="White"/>
+    </Style>
+
+    <!--抽屉侧边栏-->
+    <Style x:Key="DrawerSideSlideBorderStyle" TargetType="Border">
+        <Setter Property="Width" Value="240"/>
+        <Setter Property="CornerRadius" Value="0 5 5 0"/>
+        <Setter Property="Background" Value="#DD444444"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="180"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--主窗口|最大化/最小化|按钮-->
     <Style x:Key="WindowMaxButtonStyle" TargetType="Button">
         <Setter Property="Margin" Value="0 5 5 0"/>
@@ -117,6 +145,15 @@
     </ControlTemplate>
 
     <!--右上方搜索框-->
+    <Style x:Key="StaticResourceSearchTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Template" Value="{DynamicResource StaticResourceSearchTextBoxTemplate}"/>
+    </Style>
     <ControlTemplate x:Key="StaticResourceSearchTextBoxTemplate" TargetType="{x:Type TextBox}">
         <Border x:Name="border" CornerRadius="10" SnapsToDevicePixels="True" BorderThickness="{TemplateBinding BorderThickness}" 
                         Background="#33CBCBCB" BorderBrush="{TemplateBinding BorderBrush}">

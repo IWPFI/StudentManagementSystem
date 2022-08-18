@@ -25,14 +25,14 @@
         </EventTrigger>
     </Window.Triggers>
 
-    <Border Margin="5" Background="White" CornerRadius="5" Name="layout">
+    <Border Name="layout" Style="{DynamicResource MainBorderStyle}">
         <!--边框阴影-->
         <Border.Effect>
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="3"/>
         </Border.Effect>
         <Grid>
             <!--窗口上方背景-->
-            <Border Background="#FF3B4F81" Height=" 200" VerticalAlignment="Top" CornerRadius="5 5 0 0" MouseLeftButtonDown="Border_MouseLeftButtonDown"/>
+            <Border Style="{DynamicResource MainTopBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown"/>
             <!--窗口控制按钮-->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Button Content="&#xe65a;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMin_Click"/>
@@ -78,26 +78,26 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
                     <!--Bind to switch command₇-->
-                    <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True" Command="{Binding NavChangedCommand}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
-                    <RadioButton Content="课程管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
-                    <RadioButton Content="通讯录管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
-
-                    <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
-                    <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
-                    <!--开发中<RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}" Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>
-                    -->
+                    <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
+                    <RadioButton Content="课程管理" Style="{StaticResource NavButtonStyle}" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
+                    <RadioButton Content="通讯录管理" Style="{StaticResource NavButtonStyle}" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
+                    <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}"
+                                 Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
+                    <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                    <RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}"
+                                 Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>
                 </StackPanel>
-                <TextBox Name="Search" Template="{DynamicResource StaticResourceSearchTextBoxTemplate}" Grid.Row="1" VerticalAlignment="Center" Margin="0 0 0 0"
-                         HorizontalAlignment="Right" Width="300" Height="32" Foreground="White" Text="{Binding SearchText}"/>
+                <TextBox Name="Search" Text="{Binding SearchText}" Style="{DynamicResource StaticResourceSearchTextBoxStyle}"/>
                 <Button Grid.Row="1" Style="{StaticResource SearchButtonStyle}" Click="SearchButton_Click" Visibility="Hidden"/>
 
                 <ContentControl Grid.Row="2" Content="{Binding MainContent}"></ContentControl>
             </Grid>
             <!--抽屉侧滑栏-->
-            <Border Background="#DD444444" Width="240" HorizontalAlignment="Right" CornerRadius="0 5 5 0" >
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="180"/>
-                </Border.Effect>
+            <Border Style="{DynamicResource DrawerSideSlideBorderStyle}">
                 <Border.RenderTransform>
                     <TranslateTransform X="250" x:Name="tt"/>
                 </Border.RenderTransform>

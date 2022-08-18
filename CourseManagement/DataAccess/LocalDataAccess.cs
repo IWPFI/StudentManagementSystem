@@ -56,7 +56,6 @@ namespace StudentManagementSystem.DataAccess
                 conn = new NpgsqlConnection(connStr);
             try
             {
-
                 conn.Open();/*打开数据库*/
                 return true;
             }

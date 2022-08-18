@@ -7,44 +7,6 @@
              xmlns:cto="clr-namespace:Controls;assembly=Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <ControlTemplate x:Key="CategoryButtonTemplate" TargetType="RadioButton">
-            <Grid Background="Transparent">
-                <Border Name="back" CornerRadius="5" Background="#eee">
-                    <TextBlock Text="{TemplateBinding Content}" Margin="15 5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsChecked" Value="true">
-                    <Setter Property="Background" Value="orange" TargetName="back"/>
-                    <Setter Property="Foreground" Value="white"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-
-        <!--添加课程按钮-->
-        <ControlTemplate TargetType="Button" x:Key="AddButton">
-            <Border  Width="100" Height="30" CornerRadius="10" Background="#3F8DC1FF">
-                <Grid>
-                    <Border Name="back" CornerRadius="9" Visibility="Hidden" Background="#22FFFFFF"/>
-                    <Border Name="back_1" CornerRadius="9" Visibility="Hidden" Background="#44FFFFFF"/>
-                    <ContentControl Content="{TemplateBinding Content}" 
-                                Foreground="#FF7C7C7C" 
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
-                </Grid>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Visibility" Value="Visible" TargetName="back"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Visibility" Value="Visible" TargetName="back_1"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-    </UserControl.Resources>
-
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
             <Grid.RowDefinitions>
@@ -62,7 +24,7 @@
 
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="课程分类" Margin="0 0 10 0" Foreground="#666" VerticalAlignment="Center"/>
+                        <TextBlock Text="课程分类" Style="{DynamicResource CoursePageViewTextBlockStyle}"/>
                         <ItemsControl ItemsSource="{Binding CategoryCourses}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -71,15 +33,15 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding CategoryName}" Margin="5 0" GroupName="course"
-                                                 IsChecked="{Binding IsSelected}" Template="{DynamicResource CategoryButtonTemplate}" />
+                                    <RadioButton Content="{Binding CategoryName}" GroupName="course" IsChecked="{Binding IsSelected}" 
+                                                 Style="{DynamicResource CurriculumRadioButtonStyle}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="技术分类" Margin="0 0 10 0" Foreground="#666" VerticalAlignment="Center"/>
+                        <TextBlock Text="技术分类"  Style="{DynamicResource CoursePageViewTextBlockStyle}"/>
                         <ItemsControl ItemsSource="{Binding CategoryTechnology}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -88,14 +50,15 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding CategoryName}" Margin="5 0" IsChecked="{Binding IsSelected}" GroupName="technology" Template="{DynamicResource CategoryButtonTemplate}"/>
+                                    <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected}" GroupName="technology"
+                                                 Style="{DynamicResource CurriculumRadioButtonStyle}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="授课老师" Margin="0 0 10 0" Foreground="#666" VerticalAlignment="Center"/>
+                        <TextBlock Text="授课老师" Style="{DynamicResource CoursePageViewTextBlockStyle}"/>
                         <ItemsControl ItemsSource="{Binding CategoryTeacher}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -112,13 +75,13 @@
                                     <!--方法一-->
                                     <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected}"
                                                  GroupName="teacher"
-                                                 Template="{DynamicResource CategoryButtonTemplate}" Margin="5,0"
+                                                 Style="{DynamicResource CurriculumRadioButtonStyle}"
                                                  Click="RadioButton_Click"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
-                    <Button Grid.Row="2" Content="+添加课程" HorizontalAlignment="Right" VerticalAlignment="Center" Template="{DynamicResource AddButton}"/>
+                    <Button Style="{DynamicResource AddCurriculumButtonStyle}"/>
                 </Grid>
             </Border>
 
@@ -139,10 +102,7 @@
                                         <ColumnDefinition Width="100"/>
                                     </Grid.ColumnDefinitions>
                                     <!--左侧课程封面-->
-                                    <Border Width="90" Height="60" Margin="0 15" CornerRadius="5">
-                                        <Border.Effect>
-                                            <DropShadowEffect BlurRadius="10" Color="Gray" Direction="0" Opacity="0.3" ShadowDepth="0"/>
-                                        </Border.Effect>
+                                    <Border Style="{DynamicResource CourseCoverBorderStyle}">
                                         <Border.Background>
                                             <ImageBrush ImageSource="{Binding Cover}" Stretch="UniformToFill"/>
                                         </Border.Background>
@@ -152,25 +112,25 @@
                                         <StackPanel Margin=" 0 0 0 10" Orientation="Horizontal">
                                             <!--课程名称-->
                                             <TextBlock FontSize="16" >
-                                        <Hyperlink Foreground="#333" Command="{Binding DataContext.OpenCourseUrlCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">
-                                            <Hyperlink.Style>
-                                                <Style>
-                                                    <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="Hyperlink.IsMouseOver" Value="True">
-                                                            <Setter Property="TextBlock.TextDecorations">
-                                                                <Setter.Value>
-                                                                    <TextDecorationCollection>
-                                                                        <TextDecoration Location="Underline"/>
-                                                                    </TextDecorationCollection>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Hyperlink.Style>
-                                            <TextBlock Text="{Binding CourseName}"/>
-                                        </Hyperlink>
+                                                <Hyperlink Foreground="#333" Command="{Binding DataContext.OpenCourseUrlCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">
+                                                    <Hyperlink.Style>
+                                                        <Style>
+                                                            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="Hyperlink.IsMouseOver" Value="True">
+                                                                    <Setter Property="TextBlock.TextDecorations">
+                                                                        <Setter.Value>
+                                                                            <TextDecorationCollection>
+                                                                                <TextDecoration Location="Underline"/>
+                                                                            </TextDecorationCollection>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Hyperlink.Style>
+                                                    <TextBlock Text="{Binding CourseName}"/>
+                                                </Hyperlink>
                                     </TextBlock>
                                             <!--授课老师-->
                                             <ItemsControl Margin=" 15 0 " ItemsSource="{Binding Teachers}">

@@ -8,11 +8,8 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Title="SearchView" Height="500" Width="700">
-    <Border CornerRadius="5" Margin="5" Background="#40568D" BorderBrush="#333353" MouseLeftButtonDown="MouseLeftButtonDown">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Direction="0" Color="Gray" Opacity="0.2"/>
-        </Border.Effect>
-        <Grid TextBlock.Foreground="White">
+    <Border Style="{DynamicResource SearchStudentWindow_BorderStyle}" MouseLeftButtonDown="MouseLeftButtonDown">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="80"/>
@@ -29,17 +26,17 @@
             <Button Name="closeButton" Style="{StaticResource SearchStudentWindow_CloceButtonStyle}"    
                     Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=window}"/>
-            
+
             <Border Grid.Row="2" CornerRadius="0 0 5 5" Background="White">
                 <DataGrid Grid.Row="2" ItemsSource="{Binding StudentList,UpdateSourceTrigger=PropertyChanged}" Margin="10 5" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="序号" Width="25" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="学号" Width="*" Binding="{Binding StudentID}"/>
-                    <DataGridTextColumn Header="姓名" Width="*" Binding="{Binding StudentName}"/>
-                    <DataGridTextColumn Header="班级" Width="*" Binding="{Binding StudentGrade}"/>
-                    <DataGridTextColumn Header="电话" Width="*" Binding="{Binding StudentPhone}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="序号" Width="25" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="学号" Width="*" Binding="{Binding StudentID}"/>
+                        <DataGridTextColumn Header="姓名" Width="*" Binding="{Binding StudentName}"/>
+                        <DataGridTextColumn Header="班级" Width="*" Binding="{Binding StudentGrade}"/>
+                        <DataGridTextColumn Header="电话" Width="*" Binding="{Binding StudentPhone}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Border>
         </Grid>
     </Border>

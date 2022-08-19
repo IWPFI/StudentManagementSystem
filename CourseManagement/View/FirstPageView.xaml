@@ -32,10 +32,7 @@
             <!--监控数据4个表格-->
             <UniformGrid Columns="4">
 
-                <Border CornerRadius="5" Background="White" Margin="10">
-                    <Border.Effect>
-                        <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="96" Opacity="0.4" Direction="270"/>
-                    </Border.Effect>
+                <Border Style="{DynamicResource FirstPageView_MonitoringFormBorderStyle}">
                     <Grid>
                         <lvc:CartesianChart Margin="0 0 0 45">
                             <lvc:CartesianChart.Series>
@@ -66,7 +63,7 @@
                     </Grid>
                 </Border>
 
-                <Border Margin="10" CornerRadius="5" Background="White">
+                <Border Style="{DynamicResource FirstPageView_MonitoringFormBorderStyle}">
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
                     </Border.Effect>
@@ -100,7 +97,7 @@
                     </Grid>
                 </Border>
 
-                <Border Margin="10" CornerRadius="5" Background="White">
+                <Border Style="{DynamicResource FirstPageView_MonitoringFormBorderStyle}">
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
                     </Border.Effect>
@@ -134,7 +131,7 @@
                     </Grid>
                 </Border>
 
-                <Border Margin="10" CornerRadius="5" Background="White">
+                <Border Style="{DynamicResource FirstPageView_MonitoringFormBorderStyle}">
                     <Border.Effect>
                         <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="105" Opacity="0.4" Direction="270"/>
                     </Border.Effect>
@@ -233,10 +230,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="学生管理系统" FontSize="15" FontWeight="Bold" Foreground="#3f4c5d" VerticalAlignment="Center"/>
-                    <Border Grid.Row="2" CornerRadius="10" Background="#FF3B4F81">
-                        <Border.Effect>
-                            <DropShadowEffect Color="#f2f2f2" ShadowDepth="10" BlurRadius="105" Direction="10" Opacity="0.4"/>
-                        </Border.Effect>
+                    <Border Style="{DynamicResource FirstPageView_SynopsisBorderStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>

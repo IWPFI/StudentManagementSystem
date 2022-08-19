@@ -5,7 +5,7 @@
     <Style x:Key="StudentCardWindow_LeftBorderStyle" TargetType="Border">
         <Setter Property="Margin" Value="10"/>
         <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Background" Value="#FF5D6B99"/>
+        <Setter Property="Background" Value="#FF3362D8"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Effect">
             <Setter.Value>
@@ -23,11 +23,11 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="Gray" ShadowDepth="1" BlurRadius="5" Opacity="0.5" Direction="1"/>
+                <DropShadowEffect Color="#FF3362D8" ShadowDepth="1" BlurRadius="10" Opacity="0.3" Direction="1"/>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!--StackPanel-->
     <Style x:Key="StudentStackpanelStyle" TargetType="StackPanel">
         <Setter Property="Width" Value="200"/>
@@ -43,21 +43,19 @@
         <Setter Property="Width" Value="140"/>
         <Setter Property="Height" Value="26"/>
         <Setter Property="Background" Value="{x:Null}"/>
-        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderBrush" Value="#9F3362D8"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template" Value="{DynamicResource DataTextBoxTemplate}"/>
-    </Style> 
-    
+    </Style>
+
     <!--基本信息-->
     <Style x:Key="EssentialInformationTextBlockStyle" TargetType="TextBlock">
         <Setter Property="Text" Value="基本信息"/>
-        <Setter Property="Width" Value="140"/>
-        <Setter Property="Height" Value="26"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Foreground" Value="#FF5D6B99"/>
+        <Setter Property="Foreground" Value="#FF3362D8"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
@@ -80,7 +78,7 @@
         <Setter Property="FontFamily" Value="{DynamicResource Iconfont}"/>
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="Foreground" Value="#FF3B4F81"/>
+        <Setter Property="Foreground" Value="#FF3362D8"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="cm:UIProperties.MouseOverForeground" Value="#FFE88686"/>
@@ -90,16 +88,16 @@
 
     <!--编辑按钮-->
     <ControlTemplate TargetType="Button" x:Key="ButtonTemplate">
-        <Border CornerRadius="5" Width="138" Height="46">
-            <Border.Background>
-                <ImageBrush ImageSource="/Assets/Icon/Border_1.png"/>
-            </Border.Background>
+        <Border>
+            <Border.Effect>
+                <DropShadowEffect Color="#FF3362D8" ShadowDepth="1" BlurRadius="5" Opacity="0.6" Direction="1"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Name="back" Grid.ColumnSpan="2" Width="123" Height="40" CornerRadius="10" Visibility="Visible">
+                <Border Name="back" Grid.ColumnSpan="2" Width="140" Height="40" CornerRadius="7" Visibility="Visible">
                     <Border.Background>
                         <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
                             <GradientStop Color="#7F5C97EE" Offset="0"/>
@@ -108,7 +106,6 @@
                         </RadialGradientBrush>
                     </Border.Background>
                 </Border>
-                <Border Name="back_1" Grid.ColumnSpan="2" CornerRadius="4" Visibility="Hidden" Background="#44FFFFFF"/>
                 <TextBlock Text="&#xe631;" Margin="10 0 -10 0" FontSize="20" FontFamily="{DynamicResource Iconfont}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ContentControl Grid.Column="1" Content="{TemplateBinding Content}"
                                 FontSize="18" Margin="0,0,10,0"
@@ -130,33 +127,23 @@
                 </Setter>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="back_1"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!--删除按钮-->
     <ControlTemplate x:Key="ButtonTemplate_1" TargetType="Button">
-        <Border Width="137" Height="46">
-            <Border.Background>
-                <ImageBrush ImageSource="/Assets/Icon/Border_1.png"/>
-            </Border.Background>
+        <Border>
+            <Border.Effect>
+                <DropShadowEffect Color="#F05050" ShadowDepth="1" BlurRadius="5" Opacity="0.6" Direction="1"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Name="back" Grid.ColumnSpan="2" Width="123" Height="40" CornerRadius="4">
-                    <Border.Background>
-                        <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
-                            <GradientStop Color="#7FFF003B"/>
-                            <GradientStop Color="#7FF92E4C" Offset="0.504"/>
-                            <GradientStop Color="#7FDC868A" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
+                <Border Name="back" Grid.ColumnSpan="2" Width="140" Height="40" CornerRadius="7" Visibility="Visible" Background="#F05050">
                 </Border>
-                <Border Name="back_1" Grid.ColumnSpan="2" CornerRadius="4" Visibility="Hidden" Background="#44FFFFFF"/>
-                <Border Name="back_2" Grid.ColumnSpan="2" CornerRadius="4" Visibility="Hidden" Background="#22FFFFFF"/>
                 <TextBlock Text="&#xe721;" Foreground="White" FontFamily="{DynamicResource Iconfont}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="35 0 -15 0"/>
                 <ContentControl Grid.Column="1" Content="{TemplateBinding Content}" FontSize="18"
                                 Margin="0 0 10 0" Foreground="White" 
@@ -165,19 +152,8 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="back_2"/>
-                <!--<Setter Property="Background" TargetName="back">
-                    <Setter.Value>
-                        <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
-                            <GradientStop Color="#7FFF003B"/>
-                            <GradientStop Color="#7FF92E4C" Offset="0.504"/>
-                            <GradientStop Color="#7FDC868A" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Setter.Value>
-                </Setter>-->
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="back_1"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -248,16 +224,7 @@
         <Setter Property="SelectedDateFormat" Value="Short"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="10 2 2 2"/>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint=".5,0" StartPoint=".5,1">
-                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
-                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
-                    <GradientStop Color="#FF718597" Offset="0.375"/>
-                    <GradientStop Color="#FF617584" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderBrush" Value="#9F3362D8"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
@@ -265,7 +232,7 @@
                 <ControlTemplate TargetType="{x:Type DatePicker}">
                     <Border Name="border"
                             BorderThickness="{TemplateBinding BorderThickness}" 
-                            CornerRadius="10"
+                            CornerRadius="3"
                             Padding="{TemplateBinding Padding}" 
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -391,7 +358,7 @@
                                     HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
                             <DatePickerTextBox x:Name="PART_TextBox" Grid.Row="0" Grid.Column="0" Margin="0 0 0 0" IsReadOnly="True"  Focusable="{TemplateBinding Focusable}"
                                                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-                            <Border x:Name="border1" Height="24" Margin="0 -3 2 -2" BorderThickness="0 0 1 0" BorderBrush="Gray"/>
+                            <Border x:Name="border1" Height="24" Margin="0 -3 2 -2" BorderThickness="0 0 1 0" BorderBrush="#9F3362D8"/>
                             <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -418,7 +385,7 @@
     </Style>
 
     <ControlTemplate x:Key="DataTextBoxTemplate" TargetType="TextBox">
-        <Border Name="back" CornerRadius="10" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+        <Border Name="back" CornerRadius="2" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
                 BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
             <Grid>
                 <ScrollViewer Focusable="false" x:Name="PART_ContentHost" Margin="10 0"
@@ -428,7 +395,7 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
+                <Setter Property="BorderBrush" TargetName="back" Value="#FF3362D8"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -442,12 +409,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="templateRoot" 
-                            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
-                        <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" CornerRadius="10"
+                    <Border x:Name="templateRoot" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"
+                            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="3" 
+                            Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" CornerRadius="5"
                                 Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                             <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
-                                  Fill="#FF606060" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                                  Fill="#9F3362D8" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -464,7 +432,7 @@
                             <Setter Property="BorderBrush" TargetName="splitBorder" Value="Transparent"/>
                         </MultiDataTrigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="arrow" Value="#FF000000"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="#FF3362D8"/>
                         </Trigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -499,7 +467,7 @@
                             <Setter Property="BorderBrush" TargetName="splitBorder" Value="#FF7EB4EA"/>
                         </MultiDataTrigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Fill" TargetName="arrow" Value="#FF000000"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="#FF3362D8"/>
                         </Trigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -534,7 +502,7 @@
                             <Setter Property="BorderBrush" TargetName="splitBorder" Value="#FF569DE5"/>
                         </MultiDataTrigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Fill" TargetName="arrow" Value="#FFBFBFBF"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="#9F3362D8"/>
                         </Trigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -559,7 +527,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
@@ -569,8 +537,8 @@
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" 
                    IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                    Margin="1" Placement="Bottom" PopupAnimation="Slide" VerticalOffset="5">
-                <Border x:Name="dropDownBorder" Background="White" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" CornerRadius="10" MaxHeight="200"
-                        BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
+                <Border x:Name="dropDownBorder" Background="White" Width="{TemplateBinding Width}" CornerRadius="3" MaxHeight="200"
+                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
                     <ScrollViewer x:Name="DropDownScrollViewer" Margin="5">
                         <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                             <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -615,13 +583,14 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
+
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="#FFACACAC"/>
+        <Setter Property="BorderBrush" Value="#9F3362D8"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Width" Value="140"/>
+        <Setter Property="Height" Value="26"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Padding" Value="14 0 0 0"/>

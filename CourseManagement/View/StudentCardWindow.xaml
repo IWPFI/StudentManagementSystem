@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Background="#FF5D6B99" Style="{DynamicResource StudentCardWindow_LeftBorderStyle}">
+            <Border Style="{DynamicResource StudentCardWindow_LeftBorderStyle}">
                 <Grid>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <Border x:Name="ImgBorder">
@@ -58,7 +58,7 @@
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid>
-                        <TextBlock Text="基本信息" Margin="0,0,0,0" FontSize="24" FontWeight="Normal" Foreground="#FF5D6B99" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Style="{DynamicResource EssentialInformationTextBlockStyle}"/>
                         <Button Style="{DynamicResource CloceButtonStyle}" Click="CloseButton_Click" />
                     </Grid>
                     <!--分割线-->
@@ -123,12 +123,14 @@
 
                             <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="NationsComboBox" SelectedItem="{Binding StudentInfo.NationsName}" ItemsSource="{Binding NationModelList}" Style="{DynamicResource ComboBoxStyle}"/>
+                                <ComboBox x:Name="NationsComboBox" SelectedItem="{Binding StudentInfo.NationsName}" ItemsSource="{Binding NationModelList}"
+                                          Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
-                                <TextBlock Text="政治面貌：" Margin="-5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedItem="{Binding StudentInfo.PoliticsStatus}" ItemsSource="{Binding PoliticalOutlookList}" Style="{DynamicResource ComboBoxStyle}"/>
+                                <TextBlock Text="政治面貌：" Margin="-2 0 0 0" FontSize="16" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedItem="{Binding StudentInfo.PoliticsStatus}" ItemsSource="{Binding PoliticalOutlookList}" 
+                                          Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >

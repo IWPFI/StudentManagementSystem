@@ -8,6 +8,7 @@
         <ResourceDictionary Source="../Assets/Style/DataGridStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/DefaultStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/DefaultTemplate.xaml"/>
+        <ResourceDictionary Source="../Assets/Style/FirstPageViewStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/LoginViewStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/MainWindowStyle.xaml"/>
         <ResourceDictionary Source="../Assets/Style/MessageWindowStyle.xaml"/>

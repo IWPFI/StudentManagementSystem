@@ -329,11 +329,11 @@ WHERE
             {
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT s.id, s.number, s.name, s.sex, s.birthday, s.grade, s.site, s.phone, n.nations_name, p.politics_status 
+                    string sql = @"SELECT s.id, s.number, s.name, s.sex, s.birthday, s.grade, s.site, s.phone, n.nations, p.visage 
 FROM
 	sms_students AS s
-	LEFT OUTER JOIN sms_nations AS n ON s.nation_id = n.id
-	LEFT OUTER JOIN sms_politics_status AS p ON s.politics_status_id = p.id 
+	LEFT OUTER JOIN nations AS n ON s.nation_id = n.id
+	LEFT OUTER JOIN visage AS p ON s.politics_status_id = p.id 
 WHERE
 	s.number = @number AND is_delete = 0;";
                     adapter = new NpgsqlDataAdapter(sql, conn);
@@ -355,8 +355,8 @@ WHERE
                     model.StudentGrade = dr.Field<string>("grade");//班级
                     model.StudentSite = dr.Field<string>("site");//地址
                     model.StudentBirthday = dr.Field<DateTime>("birthday");//生日
-                    model.NationsName = dr.Field<string>("nations_name");//民族
-                    model.PoliticsStatus = dr.Field<string>("politics_status");//政治面貌
+                    model.NationsName = dr.Field<string>("nations");//民族
+                    model.PoliticsStatus = dr.Field<string>("visage");//政治面貌
                     return model;
                 }
                 return null;
@@ -383,8 +383,8 @@ WHERE
                 if (this.DBConnection())
                 {
                     string sql = @"UPDATE sms_students SET number = @number, name = @name, sex = @sex, birthday = @birthday, phone = @phone, grade = @grade, site = @site, gmt_modified = now(),
-nation_id = ( SELECT id FROM sms_nations WHERE nations_name = @nation ), 
-politics_status_id = ( SELECT id FROM sms_politics_status WHERE politics_status = @politics_status ) WHERE number = @number;";
+nation_id = ( SELECT id FROM nations WHERE nations = @nation ), 
+politics_status_id = ( SELECT id FROM visage WHERE visage = @visage ) WHERE number = @number;";
                     adapter = new NpgsqlDataAdapter(sql, conn);
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@number", student.StudentID == null ? DBNull.Value : student.StudentID));
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@name", student.StudentName == null ? DBNull.Value : student.StudentName));
@@ -394,7 +394,7 @@ politics_status_id = ( SELECT id FROM sms_politics_status WHERE politics_status 
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@grade", student.StudentGrade == null ? DBNull.Value : student.StudentGrade));
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@site", student.StudentSite == null ? DBNull.Value : student.StudentSite));
                     adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@nation", student.NationsName == null ? DBNull.Value : student.NationsName));
-                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@politics_status", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
+                    adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@visage", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
                     DataTable table = new DataTable();
                     count = adapter.Fill(table);
                 }
@@ -548,8 +548,8 @@ VALUES
                         string sql = @"INSERT INTO sms_students ( number, name, sex, birthday, phone, grade, site, nation_id, politics_status_id, is_delete, gmt_create )
 VALUES 
 ( @number, @name, @sex, @birthday, @phone, @grade, @site, 
-( SELECT id FROM sms_nations WHERE nations_name = @nation ), 
-( SELECT id FROM sms_politics_status WHERE politics_status = @politics_status ), 0, now() );";
+( SELECT id FROM nations WHERE nations = @nation ), 
+( SELECT id FROM visage WHERE visage = @visage ), 0, now() );";
                         adapter = new NpgsqlDataAdapter(sql, conn);
                         adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@number", student.StudentID == null ? DBNull.Value : student.StudentID));
                         adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@name", student.StudentName == null ? DBNull.Value : student.StudentName));
@@ -559,7 +559,7 @@ VALUES
                         adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@grade", student.StudentGrade == null ? DBNull.Value : student.StudentGrade));
                         adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@site", student.StudentSite == null ? DBNull.Value : student.StudentSite));
                         adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@nation", student.NationsName == null ? DBNull.Value : student.NationsName));
-                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@politics_status", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
+                        adapter.SelectCommand.Parameters.Add(new NpgsqlParameter("@visage", student.PoliticsStatus == null ? DBNull.Value : student.PoliticsStatus));
                         DataTable table = new DataTable();
                         count = adapter.Fill(table);
                     }
@@ -647,14 +647,14 @@ VALUES
                 List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT nations_name FROM sms_nations";
+                    string sql = @"SELECT nations FROM nations";
                     adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
                     int count = adapter.Fill(table);
                     if (count > 0)//大于零说明有数据
                     {
-                        result = table.AsEnumerable().Select(c => c.Field<string>("nations_name")).ToList();
+                        result = table.AsEnumerable().Select(c => c.Field<string>("nations")).ToList();
                     }
                 }
                 return result;
@@ -680,7 +680,7 @@ VALUES
                 List<string> result = new List<string>();
                 if (this.DBConnection())
                 {
-                    string sql = @"SELECT politics_status FROM sms_politics_status";
+                    string sql = @"SELECT visage FROM visage";
                     adapter = new NpgsqlDataAdapter(sql, conn);
 
                     DataTable table = new DataTable();
@@ -688,7 +688,7 @@ VALUES
 
                     if (count > 0)
                     {
-                        result = table.AsEnumerable().Select(c => c.Field<string>("politics_status")).ToList();
+                        result = table.AsEnumerable().Select(c => c.Field<string>("visage")).ToList();
                     }
                 }
                 return result;

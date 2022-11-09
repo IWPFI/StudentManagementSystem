@@ -27,7 +27,7 @@ namespace StudentManagementSystem.Common
         /// <returns>合法返回 true</returns>
         public static bool CheckCellPhone(string Str)//手机
         {
-            Regex CellPhoneReg = new Regex(@"^1[358][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$");
+            Regex CellPhoneReg = new Regex(@"^1[3578][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$");
             return CellPhoneReg.IsMatch(Str);
         }
 

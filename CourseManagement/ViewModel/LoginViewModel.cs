@@ -6,7 +6,7 @@ using StudentManagementSystem.Model;
 using System.Threading.Tasks;
 using StudentManagementSystem.Common;
 using System.Collections.Generic;
-using StudentManagementSystem.DataAccess;
+using static StudentManagementSystem.DataAccess.LocalDataAccess;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -69,12 +69,11 @@ namespace StudentManagementSystem.ViewModel
         /// <summary>
         /// 用于验证码随机数
         /// </summary>
-        public void Stochastic()
+        private void Stochastic()
         {
             //获取随机数
             string i = new Random().Next(1000, 9999).ToString();
-            //LoginModel.RandomField = i;
-            LoginModel.RandomField = "1234";
+            LoginModel.RandomField = i;
         }
 
         /// <summary>
@@ -115,7 +114,9 @@ namespace StudentManagementSystem.ViewModel
             }
             if (LoginModel.ValidationCode.ToLower() != LoginModel.RandomField)//验证码
             {
-                this.ErrorMessage = "验证码输入不正确！"; Stochastic();
+                this.ErrorMessage = "验证码输入不正确！";
+                LoginModel.ValidationCode = "";//清空验证码输入框
+                Stochastic();
                 this.ShowProgress = Visibility.Collapsed;
                 return;
             }
@@ -126,9 +127,11 @@ namespace StudentManagementSystem.ViewModel
 
                 try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个₂Action线程
                 {
-                    var user = LocalDataAccess.GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
+                    var user = GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
                     if (user == null)
                     {
+                        LoginModel.ValidationCode = "";//清空验证码输入框
+                        Stochastic();//密码不正确时刷新验证码，防暴力破解密码
                         throw new Exception("登录失败！用户名或密码错误！");
                     }
 
@@ -145,6 +148,8 @@ namespace StudentManagementSystem.ViewModel
                 }
                 catch (Exception ex)
                 {
+                    LoginModel.ValidationCode = "";//清空验证码输入框
+                    Stochastic();//密码不正确时刷新验证码，防暴力破解密码
                     this.ErrorMessage = ex.Message;
                 }
                 finally

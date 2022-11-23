@@ -9,10 +9,10 @@ namespace StudentManagementSystem.Model
 {
     public class LoginModel : NotifyBase
     {
-        private string _userName="admin";
-        private string _password="123456";
-        private string _validationCode="1234";
-        private string _randomField="1234";
+        private string _userName;
+        private string _password;
+        private string _validationCode;
+        private string _randomField;
 
         /// <summary>
         /// 用户名
@@ -43,6 +43,9 @@ namespace StudentManagementSystem.Model
         /// <summary>
         /// 验证码
         /// </summary>
+        /// <remarks>
+        /// 用于绑定到界面
+        /// </remarks>
         public string ValidationCode
         {
             get { return _validationCode; }
@@ -56,6 +59,9 @@ namespace StudentManagementSystem.Model
         /// <summary>
         /// 验证码随机数
         /// </summary>
+        /// <remarks>
+        /// 用于绑定到模板
+        /// </remarks>
         public string RandomField
         {
             get { return _randomField; }

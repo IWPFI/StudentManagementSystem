@@ -1,14 +1,22 @@
-﻿<Window x:Class="StudentManagementSystem.View.SearchStudentWindow"
+﻿<Window x:Class="StudentManagementSystem.View.SearchStudentWindow" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagementSystem.View" 
-        mc:Ignorable="d" FontWeight="ExtraLight"  Name="window"
+        xmlns:ViewModel="clr-namespace:StudentManagementSystem.ViewModel"
+        mc:Ignorable="d" FontWeight="ExtraLight" 
+        x:Name="window"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Title="SearchView" Height="500" Width="700">
-    <Border Style="{DynamicResource SearchStudentWindow_BorderStyle}" MouseLeftButtonDown="MouseLeftButtonDown">
+    <Window.DataContext>
+        <ViewModel:SearchStudentViewModel/>
+    </Window.DataContext>
+    <Border Style="{DynamicResource SearchStudentWindow_BorderStyle}">
+        <Border.InputBindings>
+            <MouseBinding Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+        </Border.InputBindings>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -17,18 +25,18 @@
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource TitleTestBlockStyle}"/>
 
-            <TextBox Name="studentTextBox" Text="" x:FieldModifier="public" Style="{DynamicResource SearchStudentWindow_ContentTextBoxStyle}"/>
+            <TextBox x:Name="studentTextBox" Text="" x:FieldModifier="public" Style="{DynamicResource SearchStudentWindow_ContentTextBoxStyle}"/>
 
-            <Button Name="seekButton" Style="{DynamicResource SeekButtonStyle}"
+            <Button x:Name="seekButton" Style="{DynamicResource SeekButtonStyle}"
                     Command="{Binding SeekCommand}"
-                    CommandParameter="{Binding ElementName=studentTextBox,Path=Text}"/>
+                    CommandParameter="{Binding Text, ElementName=studentTextBox}"/>
 
-            <Button Name="closeButton" Style="{StaticResource SearchStudentWindow_CloceButtonStyle}"    
+            <Button x:Name="closeButton" Style="{StaticResource SearchStudentWindow_CloceButtonStyle}"    
                     Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=window}"/>
 
             <Border Grid.Row="2" CornerRadius="0 0 5 5" Background="White">
-                <DataGrid Grid.Row="2" ItemsSource="{Binding StudentList,UpdateSourceTrigger=PropertyChanged}" Margin="10 5" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <DataGrid Grid.Row="2" ItemsSource="{Binding StudentList, UpdateSourceTrigger=PropertyChanged}" Margin="10 5" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="序号" Width="25" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="学号" Width="*" Binding="{Binding StudentID}"/>

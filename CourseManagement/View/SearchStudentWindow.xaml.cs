@@ -23,12 +23,6 @@ namespace StudentManagementSystem.View
         public SearchStudentWindow()
         {
             InitializeComponent();
-            this.DataContext = new SearchStudentViewModel();
-        }
-
-        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }//窗口拖动
         }
     }
 }

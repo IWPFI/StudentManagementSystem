@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class StudentInformationViewModel
+    public class StudentInformationViewModel : ViewModelBase
     {
         public CommandBase OpenStudentId { get; set; }//点击Id时执行
 

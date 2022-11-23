@@ -200,10 +200,12 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="tbk" Text="&#xee9b;" FontFamily="{DynamicResource Iconfont}" FontSize="16" Foreground="{StaticResource TextBox.Static.Border}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="tbk" Text="&#xee9b;" FontFamily="{DynamicResource Iconfont}" FontSize="16" Foreground="{StaticResource TextBox.Static.Border}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1" Focusable="false" Height="22" Width="178" Margin="0 5 0 0"
-                                              HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalContentAlignment="Center"/>
-                            <TextBlock Text="{Binding LoginModel.RandomField,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="2" HorizontalAlignment="Center" 
+                                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalContentAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LoginModel.RandomField,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                       HorizontalAlignment="Center" 
                                        VerticalAlignment="Center" FontFamily="Microsoft Himalaya" FontSize="20"
                                        TextDecorations="Underline" FontStyle="Italic" FontWeight="Normal" Foreground="#66000000" />
                         </Grid>

@@ -27,7 +27,7 @@ namespace StudentManagementSystem.ViewModel
     #endregion
     public class MainViewModel : NotifyBase
     {
-        public UserModel UserInfo { get; set; }
+        public UserModel UserInfo { get; set; } = new UserModel();
 
         private string _searchText;
         private FrameworkElement _mainContent;
@@ -54,14 +54,24 @@ namespace StudentManagementSystem.ViewModel
         /// 导航切换命令<br/>
         /// It needs to be initialized in the constructor
         /// </remarks>
-        public CommandBase NavChangedCommand { get; set; }
+        private CommandBase _navChangedCommand;
+        /// <summary>
+        /// 打开菜单
+        /// </summary>
+        public CommandBase NavChangedCommand
+        {
+            get
+            {
+                _navChangedCommand = new CommandBase();
+                _navChangedCommand.DoCanExecute = new Func<object, bool>((obj) => true);
+                _navChangedCommand.DoExecute = new Action<object>(DoNavChanged);
+                return _navChangedCommand;
+            }
+        }
 
         public MainViewModel()
         {
             UserInfo = new UserModel();/*₆Initialization is OK as long as it is initialized before using this thing. It can be written anywhere */
-            this.NavChangedCommand = new CommandBase();
-            this.NavChangedCommand.DoExecute = new Action<object>(DoNavChanged);//₇⇢₈ Action接收一个object参数调用DoNavChanged委托
-            this.NavChangedCommand.DoCanExecute = new Func<object, bool>((o) => true);//Whether the button is available (delegation required)
             DoNavChanged("FirstPageView");
         }
         private void DoNavChanged(object obj)/*₈*/

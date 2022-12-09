@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:StudentManagementSystem"
         xmlns:converter="clr-CourseManagement.Converter" 
         xmlns:converter1="clr-namespace:StudentManagementSystem.Converter"
+        xmlns:ViewModel="clr-namespace:StudentManagementSystem.ViewModel"
         mc:Ignorable="d"
         Title="学生管理系统" Height="800" Width="1250"
         FontFamily="Microsoft YaHei" FontWeight="ExtraLight" FontSize="12"
@@ -17,7 +18,7 @@
 
     <Window.Triggers>
         <!--触发动画-->
-        <EventTrigger RoutedEvent="Button.Click" SourceName="btnUsreInfo">
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnUsreInfo">
             <BeginStoryboard Storyboard="{StaticResource UserInfoStoryboard}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Button.Click" SourceName="btnCloseUserInfo">
@@ -25,7 +26,11 @@
         </EventTrigger>
     </Window.Triggers>
 
-    <Border Name="layout" Style="{DynamicResource MainBorderStyle}">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border x:Name="layout" Style="{DynamicResource MainBorderStyle}">
         <!--边框阴影-->
         <Border.Effect>
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="3"/>
@@ -35,9 +40,9 @@
             <Border Style="{DynamicResource MainTopBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown"/>
             <!--窗口控制按钮-->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Content="&#xe65a;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMin_Click"/>
+                <Button Content="&#xE65A;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMin_Click"/>
                 <Button Style="{StaticResource WindowMaxButtonStyle}" Click="btnMax_Click"/>
-                <Button Content="&#xe605;" Style="{StaticResource WindowControlButtonStyle}" Click="btnClose_Click"/>
+                <Button Content="&#xE605;" Style="{StaticResource WindowControlButtonStyle}" Click="btnClose_Click"/>
             </StackPanel>
 
             <Grid Margin="50 20">
@@ -67,9 +72,9 @@
                     </Border>
                     <!--Cursor="Hand"设置鼠标移入时的形状-->
                     <Button Margin="5 0 0 0" Foreground="White" Cursor="Hand"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnUsreInfo">
+                            HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="btnUsreInfo">
                         <Button.Template>
-                            <ControlTemplate TargetType="Button">
+                            <ControlTemplate TargetType="{x:Type Button}">
                                 <TextBlock Text="{Binding UserInfo.UserName}"/>
                             </ControlTemplate>
                         </Button.Template>
@@ -91,10 +96,10 @@
                     <RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}"
                                  Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>
                 </StackPanel>
-                <TextBox Name="Search" Text="{Binding SearchText}" Style="{DynamicResource StaticResourceSearchTextBoxStyle}"/>
+                <TextBox x:Name="Search" Text="{Binding SearchText}" Style="{DynamicResource StaticResourceSearchTextBoxStyle}"/>
                 <Button Grid.Row="1" Style="{StaticResource SearchButtonStyle}" Click="SearchButton_Click" Visibility="Hidden"/>
 
-                <ContentControl Grid.Row="2" Content="{Binding MainContent}"></ContentControl>
+                <ContentControl Grid.Row="2" Content="{Binding MainContent}"/>
             </Grid>
             <!--抽屉侧滑栏-->
             <Border Style="{DynamicResource DrawerSideSlideBorderStyle}">
@@ -107,7 +112,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <!--关闭按钮-->
-                    <Button x:Name="btnCloseUserInfo"  Style="{DynamicResource CloseButtonStyle}" Content="&#xe605;" />
+                    <Button x:Name="btnCloseUserInfo"  Style="{DynamicResource CloseButtonStyle}" Content="&#xE605;" />
                     <!--头像-->
                     <Border Height="80" Width="80" CornerRadius="40">
                         <Border.Background>
@@ -119,11 +124,11 @@
                     </Border>
                     <Grid Grid.Row="1" Margin="20 0">
                         <Grid.Resources>
-                            <Style TargetType="TextBlock">
+                            <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontSize" Value="14"/>
                             </Style>
-                            <Style TargetType="RadioButton">
+                            <Style TargetType="{x:Type RadioButton}">
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontSize" Value="14"/>
                             </Style>
@@ -140,8 +145,8 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
                             <TextBlock Text="性   别:"/>
-                            <RadioButton Content="男" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.Gender,Converter={StaticResource genderConverter},ConverterParameter=1}"/>
-                            <RadioButton Content="女" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.Gender,Converter={StaticResource genderConverter},ConverterParameter=2}"/>
+                            <RadioButton Content="男" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.Gender, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
+                            <RadioButton Content="女" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.Gender, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

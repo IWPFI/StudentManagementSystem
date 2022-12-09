@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using StudentManagementSystem.Common;
 using System.Collections.Generic;
 using static StudentManagementSystem.DataAccess.LocalDataAccess;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -16,14 +19,55 @@ namespace StudentManagementSystem.ViewModel
 
         public LoginModel LoginModel { get; set; } = new LoginModel();
 
+        /// <summary>
+        /// 关闭命令
+        /// </summary>
         public CommandBase CloseWindowCommand { get; set; }
 
+        /// <summary>
+        /// 登录命令
+        /// </summary>
         public CommandBase LoginCommand { get; set; }
 
+        private CommandBase openPopupCommand;
+        /// <summary>
+        /// 打开菜单
+        /// </summary>
+        public CommandBase OpenPopupCommand
+        {
+            get
+            {
+                openPopupCommand = new CommandBase();
+                openPopupCommand.DoCanExecute = new Func<object, bool>((obj) => true);
+                openPopupCommand.DoExecute = new Action<object>((obj) =>
+                {
+                    OpenPopup = true ;
+                });
+                return openPopupCommand;
+            }
+        }
+
+        public ICommand CmdOpenMenuPopup = new RelayCommand(() =>
+          {
+
+          });
+
+        private void OpenPopupCmd(object o)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool _openPopup = false;
+        /// <summary>
+        /// [更多]弹出框
+        /// </summary>
+        public bool OpenPopup
+        {
+            get { return _openPopup; }
+            set { _openPopup = value; this.DoNotify(); }
+        }
+
         private string _errorMessage;
-
-        private Visibility _showProgress = Visibility.Collapsed;
-
         /// <summary>
         /// 错误提示信息
         /// </summary>
@@ -34,6 +78,10 @@ namespace StudentManagementSystem.ViewModel
             set { _errorMessage = value; this.DoNotify(); }
         }
 
+        private Visibility _showProgress = Visibility.Collapsed;
+        /// <summary>
+        /// 进度条
+        /// </summary>
         public Visibility ShowProgress
         {
             get { return _showProgress; }

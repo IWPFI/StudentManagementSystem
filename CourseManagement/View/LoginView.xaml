@@ -31,15 +31,29 @@
             </Grid.RowDefinitions>
             <Border Style="{DynamicResource LogoBorderStyle}" PreviewMouseLeftButtonDown="WinMove_LeftButtonDown"/>
             <!--右上角关闭图标-->
-            <Button Margin="4" Height="30" Width="40" Background="White" 
+            <Button Margin="4" ToolTip="关闭"
                     VerticalAlignment="Top" HorizontalAlignment="Right"
                     Template="{StaticResource CloseButtonTemplate}" 
                     Command="{Binding CloseWindowCommand}"
                     CommandParameter="{Binding ElementName=window}"/>
-            <!--
-            Command="{Binding CloseWindowCommand}"绑定命令
-            CommandParameter="{Binding ElementName=window}"传递一个参数,把当前窗口传进去
-            -->
+
+            <Grid Margin="4" >
+                <Button Name="more" Background="White" FontSize="20" Command="{Binding OpenPopupCommand}"
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"
+                    Template="{StaticResource WindowControlButtonTemplate}" Content="&#xe614;"/>
+                <Popup x:Name="popup" IsOpen="{Binding OpenPopup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{DynamicResource LoginPopupStyle}" Height="120" Width="130" Panel.ZIndex="6">
+                    <Border BorderThickness="1" CornerRadius="5" Background="White" BorderBrush="#FF413939">
+                        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                            <StackPanel>
+                                <Button Content="注册账号" Background="#0fff" BorderBrush="#0fff" Padding="0 5 0 5"/>
+                                <Button Content="忘记密码" Background="#0fff" BorderBrush="#0fff" Padding="0 5 0 5"/>
+                                <Button Content="联系客服" Background="#0fff" BorderBrush="#0fff" Padding="0 5 0 5"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </Popup>
+            </Grid>
             <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="0,0,0,30">
                 <Border Width="80" Height="80" Margin="0,0,0,20" Background="White" CornerRadius="40" 
                         VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -86,6 +100,13 @@
                         CommandParameter="{Binding ElementName=window}"/>
                     </TextBox.InputBindings>
                 </TextBox>
+                <TextBox  Grid.Row="2" Text="{Binding LoginModel.ValidationCode,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Height="40" MaxLength="4" 
+                          Style="{DynamicResource VlidationCodeTextBoxStyle}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=window}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
                 <Button Grid.Row="3" Content="登   录" Height="40" FontSize="16" Foreground="White"
                         Template="{StaticResource LoginButtonTemplate}" 
                         Command="{Binding LoginCommand}" 
@@ -110,7 +131,7 @@
                     <Border Grid.Column="2" BorderThickness="0,0,0,1" BorderBrush="#DDD" VerticalAlignment="Center"/>
                     <TextBlock Grid.Column="1" Text="OR" Foreground="#CCC" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
-                
+
                 <UniformGrid Grid.Row="2" Columns="5">
                     <Button Content="&#xe64a;" Template="{DynamicResource IconTextBlockTemplate}"/>
                     <Border Background="Transparent"/>

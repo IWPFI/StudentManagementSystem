@@ -4,7 +4,7 @@
 
     <!--右上角关闭按钮控件模板-->
     <ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
-        <Border Background="Transparent" Name="back" CornerRadius="10">
+        <Border Name="back" Width="30" Height="30" CornerRadius="3" Background="Transparent">
             <Path Data="M0 0 12 12M0 12 12 0" Stroke="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Border>
         <ControlTemplate.Triggers>
@@ -20,7 +20,7 @@
     </ControlTemplate>
 
     <!--登录按钮模板-->
-    <ControlTemplate TargetType="Button" x:Key="LoginButtonTemplate">
+    <ControlTemplate x:Key="LoginButtonTemplate" TargetType="Button">
         <Border Background="#FFA8BCF0" CornerRadius="5">
             <Grid>
                 <Border CornerRadius="4" Background="#22FFFFFF" Name="back" Visibility="Hidden"/>
@@ -83,9 +83,10 @@
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="tbk" Text="&#xe601;" FontFamily="{DynamicResource Iconfont}" FontSize="16" Foreground="{StaticResource TextBox.Static.Border}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1" Focusable="false" Height="22" Width="260"
-                                              HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="0 5 0 0"
+                            <TextBlock x:Name="tbk" Text="&#xe601;" FontSize="16" FontFamily="{DynamicResource Iconfont}" 
+                                       Foreground="{StaticResource TextBox.Static.Border}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1" Height="22" Width="260" Margin="0 5 0 0" Focusable="false"
+                                              HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </Grid>
                     </Border>
@@ -247,5 +248,20 @@
     <Style x:Key="LogoBorderStyle" TargetType="Border">
         <Setter Property="CornerRadius" Value="10,10,0,0"/>
         <Setter Property="Background" Value="#FF5D6B99"/>
+    </Style>
+
+    <!--首页主题弹出菜单-->
+    <Style x:Key="LoginPopupStyle" TargetType="Popup">
+        <!--AllowsTransparency 透明度-->
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <!--HorizontalOffset 水平偏移-->
+        <Setter Property="HorizontalOffset" Value="0"/>
+        <!--VerticalOffset 垂直偏移-->
+        <Setter Property="VerticalOffset" Value="-155"/>
+        <!--PopupAnimation 弹出动画-->
+        <Setter Property="PopupAnimation" Value="Slide"/>
+        <Setter Property="StaysOpen" Value="False"/>
+        <Setter Property="Width" Value="460"/>
+        <Setter Property="Height" Value="480"/>
     </Style>
 </ResourceDictionary>

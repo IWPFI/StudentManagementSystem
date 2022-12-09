@@ -25,7 +25,7 @@ namespace StudentManagementSystem.ViewModel
      * (because there are many user information that need to be bound, a new UserModel₅ "class" is created separately),
      * search box input and window interface*/
     #endregion
-    public class MainViewModel : NotifyBase
+    public class MainViewModel : ViewModelBase
     {
         public UserModel UserInfo { get; set; } = new UserModel();
 
@@ -47,17 +47,13 @@ namespace StudentManagementSystem.ViewModel
             set { _mainContent = value; this.DoNotify(); }
         }
 
+        private CommandBase _navChangedCommand;
         /// <summary>
         /// Navigation switching command
         /// </summary>
         /// <remarks>
-        /// 导航切换命令<br/>
-        /// It needs to be initialized in the constructor
+        /// 导航切换命令
         /// </remarks>
-        private CommandBase _navChangedCommand;
-        /// <summary>
-        /// 打开菜单
-        /// </summary>
         public CommandBase NavChangedCommand
         {
             get

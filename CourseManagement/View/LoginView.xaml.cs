@@ -12,8 +12,6 @@ namespace StudentManagementSystem.View
         public LoginView()
         {
             InitializeComponent();
-
-            this.DataContext = new LoginViewModel();
         }
 
         /// <summary>

@@ -86,19 +86,20 @@ public class APIHelp
     public static string HttpGet(string Url)
     {
         string retString;
-
-        Url = RootUrl + Url;
-        HttpClient http = new HttpClient();
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
-        request.Proxy = null;
-        request.KeepAlive = false;
-        request.Method = "GET";
-        request.ContentType = "application/json; charset=UTF-8";
-        request.Headers["apikey"] = apikey; //添加头
-                                            //request.Headers["Authorization"] = Authorization);
-        request.AutomaticDecompression = DecompressionMethods.GZip;
         try
         {
+            Url = RootUrl + Url;
+            HttpClient http = new HttpClient();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Proxy = null;
+            request.KeepAlive = false;
+            request.Method = "GET";
+            request.ContentType = "application/json; charset=UTF-8";
+            //添加头
+            request.Headers["apikey"] = apikey;
+            //request.Headers["Authorization"] = Authorization);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream myResponseStream = response.GetResponseStream();
             StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);

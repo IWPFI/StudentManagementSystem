@@ -1,12 +1,11 @@
-﻿using StudentManagementSystem.Model;
+﻿using StudentManagementSystem.DataAccess.DataEntity;
+using StudentManagementSystem.Model;
 using static StudentManagementSystem.DataAccess.LocalDataAccess;
 
 namespace StudentManagementSystem.ViewModel
 {
     public class LoginViewModel : NotifyBase
     {
-        public View.LoginView login;
-
         public LoginModel LoginModel { get; set; } = new LoginModel();
 
         /// <summary>
@@ -37,15 +36,13 @@ namespace StudentManagementSystem.ViewModel
             }
         }
 
-        public ICommand CmdOpenMenuPopup = new RelayCommand(() =>
+        /// <summary>
+        /// 注册账号
+        /// </summary>
+        public ICommand CmdRegister = new RelayCommand(() =>
           {
 
           });
-
-        private void OpenPopupCmd(object o)
-        {
-            throw new NotImplementedException();
-        }
 
         private bool _openPopup = false;
         /// <summary>
@@ -165,6 +162,12 @@ namespace StudentManagementSystem.ViewModel
 
                 try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个₂Action线程
                 {
+                    var userInfo = HttpGetHelp(String.Format("sms_member?user_name=eq.{0}&password=eq.{1}&select=user_id,user_name,real_name,is_teacher,gender", LoginModel.UserName, LoginModel.Password));
+                    if (userInfo != null)
+                    {
+                        var s = JsonToList<LoginModels>(userInfo);
+                    }
+
                     var user = GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
                     if (user == null)
                     {

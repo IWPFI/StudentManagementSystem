@@ -24,7 +24,7 @@ namespace StudentManagementSystem.DataAccess.DataEntity
         public string Password { get; set; }
 
         /// <summary>
-        /// 是否有效
+        /// 用户头像
         /// </summary>
         public string Avatar { get; set; }
 

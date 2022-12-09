@@ -4,16 +4,16 @@
     
     <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="#F0F0F0"/>
     <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="#F0F0F0"/>
-    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#CDCDCD"/>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#A6A6A6"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#606060"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#eee"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#ddd"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#ccc"/>
 
     <Style TargetType="ScrollViewer">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                    <Grid x:Name="Grid" Background="{TemplateBinding Background}" Margin="0 0 4 0">
                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" 
                                                 CanHorizontallyScroll="False" CanVerticallyScroll="False" 
                                                 ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" 

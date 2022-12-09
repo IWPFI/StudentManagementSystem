@@ -23,7 +23,7 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <ScrollViewer>
                     <ItemsControl ItemsSource="{Binding StudentList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>

@@ -85,7 +85,7 @@
                 </Grid>
             </Border>
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+            <ScrollViewer Grid.Row="1">
                 <ItemsControl Name="icCourses" ItemsSource="{Binding CourseList}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

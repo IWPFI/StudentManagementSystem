@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMS_Models", "SMS_Models\SMS_Models.csproj", "{8C355C47-50AF-4054-BC28-60C88CB4FD51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{0F4356FF-AFCC-4E72-B9C9-ED54AF3D632D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4356FF-AFCC-4E72-B9C9-ED54AF3D632D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4356FF-AFCC-4E72-B9C9-ED54AF3D632D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C355C47-50AF-4054-BC28-60C88CB4FD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C355C47-50AF-4054-BC28-60C88CB4FD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C355C47-50AF-4054-BC28-60C88CB4FD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C355C47-50AF-4054-BC28-60C88CB4FD51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

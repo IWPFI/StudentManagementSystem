@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Runtime.Serialization.Json;
-using System.Text;
 namespace StudentManagementSystem.Common;
 
 public class JsonBase

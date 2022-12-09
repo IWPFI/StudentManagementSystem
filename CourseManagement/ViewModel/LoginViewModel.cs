@@ -1,15 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Linq;
-using System.Windows;
-using StudentManagementSystem.Model;
-using System.Threading.Tasks;
-using StudentManagementSystem.Common;
-using System.Collections.Generic;
+﻿using StudentManagementSystem.Model;
 using static StudentManagementSystem.DataAccess.LocalDataAccess;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Input;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -41,7 +31,7 @@ namespace StudentManagementSystem.ViewModel
                 openPopupCommand.DoCanExecute = new Func<object, bool>((obj) => true);
                 openPopupCommand.DoExecute = new Action<object>((obj) =>
                 {
-                    OpenPopup = true ;
+                    OpenPopup = true;
                 });
                 return openPopupCommand;
             }

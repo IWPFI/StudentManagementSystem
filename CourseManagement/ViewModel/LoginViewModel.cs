@@ -9,11 +9,6 @@ namespace StudentManagementSystem.ViewModel
         public LoginModel LoginModel { get; set; } = new LoginModel();
 
         /// <summary>
-        /// 关闭命令
-        /// </summary>
-        public CommandBase CloseWindowCommand { get; set; }
-
-        /// <summary>
         /// 登录命令
         /// </summary>
         public CommandBase LoginCommand { get; set; }
@@ -81,16 +76,6 @@ namespace StudentManagementSystem.ViewModel
 
         public LoginViewModel()
         {
-            this.CloseWindowCommand = new CommandBase();
-            this.CloseWindowCommand.DoExecute = new Action<object>((o) =>
-              {
-                  (o as Window).Close();
-              });
-            this.CloseWindowCommand.DoCanExecute = new Func<object, bool>((o) =>
-              {
-                  return true;
-              });
-
             this.LoginCommand = new CommandBase();
             this.LoginCommand.DoExecute = new Action<object>(DoLogin);
             this.LoginCommand.DoCanExecute = new Func<object, bool>((o) =>

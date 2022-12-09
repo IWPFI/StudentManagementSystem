@@ -18,27 +18,31 @@
     ResizeMode="NoResize"设置窗口拖到顶不放大,禁止放大
     WindowStartupLocation="CenterScreen"设置启动时居中
     -->
+    <!--#endregion-->
+
     <Window.DataContext>
         <ViewModel:LoginViewModel/>
     </Window.DataContext>
-    <!--#endregion-->
     <Border Style="{DynamicResource LoginBorderStyle}">
         <Border.Effect>
             <DropShadowEffect ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0" Color="Gray" />
         </Border.Effect>
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-            <Border Style="{DynamicResource LogoBorderStyle}" PreviewMouseLeftButtonDown="WinMove_LeftButtonDown"/>
+            <Border Style="{DynamicResource LogoBorderStyle}">
+                <Border.InputBindings>
+                    <MouseBinding Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+                </Border.InputBindings>
+            </Border>
             <!--右上角关闭图标-->
             <Button Margin="4" ToolTip="关闭"
                     VerticalAlignment="Top" HorizontalAlignment="Right"
                     Template="{StaticResource CloseButtonTemplate}" 
-                    Command="{Binding CloseWindowCommand}"
+                    Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=window}"/>
 
             <Grid Margin="4" >

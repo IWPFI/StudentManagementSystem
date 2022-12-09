@@ -4,7 +4,7 @@ using static StudentManagementSystem.DataAccess.LocalDataAccess;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class LoginViewModel : NotifyBase
+    public class LoginViewModel : ViewModelBase
     {
         public LoginModel LoginModel { get; set; } = new LoginModel();
 
@@ -162,7 +162,7 @@ namespace StudentManagementSystem.ViewModel
 
                 try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个₂Action线程
                 {
-                    var userInfo = HttpGetHelp(String.Format("sms_member?user_name=eq.{0}&password=eq.{1}&select=user_id,user_name,real_name,is_teacher,gender", LoginModel.UserName, LoginModel.Password));
+                    var userInfo = HttpGetHelp(String.Format("sms_member?user_name=eq.{0}&password=eq.{1}&select=user_id,user_name,real_name,is_teacher,avatar,gender", LoginModel.UserName, LoginModel.Password));
                     if (userInfo != null)
                     {
                         var s = JsonToList<LoginModels>(userInfo);

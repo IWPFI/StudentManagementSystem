@@ -167,7 +167,6 @@ namespace StudentManagementSystem.ViewModel
                 catch (Exception ex)
                 {
                     LoginModel.ValidationCode = "";//清空验证码输入框
-                    Stochastic();//密码不正确时刷新验证码，防暴力破解密码
                     this.ErrorMessage = ex.Message;
                 }
                 finally

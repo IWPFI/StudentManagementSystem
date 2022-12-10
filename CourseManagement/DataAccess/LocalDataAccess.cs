@@ -106,6 +106,10 @@ namespace StudentManagementSystem.DataAccess
             return null;
         }
 
+        /// <summary>
+        /// 获取教师列表
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetTeachers()
         {
             try

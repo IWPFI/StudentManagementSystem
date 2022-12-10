@@ -60,22 +60,12 @@ public class APIHelp
             using Stream myResponseStream = response.GetResponseStream();
             using StreamReader myStreamReader = new(myResponseStream, Encoding.UTF8);
             retString = myStreamReader.ReadToEnd();
-
-            //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            //Stream myResponseStream = response.GetResponseStream();
-            //StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
-            //retString = myStreamReader.ReadToEnd();
-            //myStreamReader.Close();
-            //myResponseStream.Close();
-
-            //if (response != null)
-            //{
-            //    response.Close();
-            //}
-            //if (request != null)
-            //{
-            //    request.Abort();
-            //}
+            myStreamReader.Close();
+            myResponseStream.Close();
+            if (response != null)
+                response.Close();
+            if (request != null)
+                request.Abort();
         }
         catch (Exception ex)
         {
@@ -121,6 +111,19 @@ public class APIHelp
             retString = ex.Message;
         }
         return retString;
+    }
+
+    /// <summary>
+    /// 将api信息转换成列表
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="Url"></param>
+    /// <returns></returns>
+    public static List<T> GetListInfo<T>(string Url)
+    {
+        List<T> vs = new List<T>();
+        vs = JsonToList<T>(HttpGetHelp(Url));
+        return vs;
     }
 }
 

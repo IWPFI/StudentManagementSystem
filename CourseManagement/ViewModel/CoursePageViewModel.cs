@@ -94,8 +94,15 @@ namespace StudentManagementSystem.ViewModel
 
             this.CategoryTeacher = new ObservableCollection<CategoryItemModel>();
             this.CategoryTeacher.Add(new CategoryItemModel("全部", true));
-            foreach (var item in LocalDataAccess.GetInstance().GetTeachers())
-                this.CategoryTeacher.Add(new CategoryItemModel(item));
+            /*foreach (var item in LocalDataAccess.GetInstance().GetTeachers())
+                this.CategoryTeacher.Add(new CategoryItemModel(item));*/
+
+            var vs = GetListInfo<CourseCategory>("sms_member?select=real_name");
+            if (vs != null && vs.Count > 0)
+            {
+                foreach (var item in vs)
+                    this.CategoryTeacher.Add(new CategoryItemModel(item.real_name));
+            }
         }
 
 

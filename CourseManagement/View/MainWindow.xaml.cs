@@ -14,14 +14,6 @@ namespace StudentManagementSystem.View
         public MainWindow()
         {
             InitializeComponent();
-
-            MainViewModel model = new MainViewModel();
-            this.DataContext = model;
-
-            model.UserInfo.Avatar = GlobalValues.UserInfo.Avatar;/*It needs to be initialized,Initialize in ₆ constructor*/
-            model.UserInfo.UserName = GlobalValues.UserInfo.RealName;
-            model.UserInfo.Gender = (int)GlobalValues.UserInfo.Gender;
-
             #region Notes 
             //SystemParameters: 可用来查询系统设置的属性
             //SystemParameters.PrimaryScreenHeight 属性: 获取一个值，该值指示主监视器的屏幕高度（以像素为单位）[屏幕的高度]

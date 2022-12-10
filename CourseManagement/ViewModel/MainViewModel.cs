@@ -27,7 +27,8 @@ namespace StudentManagementSystem.ViewModel
     #endregion
     public class MainViewModel : ViewModelBase
     {
-        public UserModel UserInfo { get; set; } = new UserModel();
+
+        public LoginModels UserInfo { get; set; } = new LoginModels();
 
         private string _searchText;
         private FrameworkElement _mainContent;
@@ -67,7 +68,7 @@ namespace StudentManagementSystem.ViewModel
 
         public MainViewModel()
         {
-            UserInfo = new UserModel();/*₆Initialization is OK as long as it is initialized before using this thing. It can be written anywhere */
+            UserInfo = GlobalValues.UserInfo;
             DoNavChanged("FirstPageView");
         }
         private void DoNavChanged(object obj)/*₈*/

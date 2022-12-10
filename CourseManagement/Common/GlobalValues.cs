@@ -1,4 +1,5 @@
-﻿using StudentManagementSystem.DataAccess.DataEntity;
+﻿using SMS_Models;
+using StudentManagementSystem.DataAccess.DataEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace StudentManagementSystem.Common
 {
     public class GlobalValues
     {
-        public static UserEntity UserInfo { get; set; }
+        //public static UserEntity UserInfo { get; set; }
+
+        public static LoginModels UserInfo { get; set; }
     }
 }

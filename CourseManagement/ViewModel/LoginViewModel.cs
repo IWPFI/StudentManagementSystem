@@ -148,23 +148,15 @@ namespace StudentManagementSystem.ViewModel
                 try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个₂Action线程
                 {
                     var userInfo = HttpGetHelp(String.Format("sms_member?user_name=eq.{0}&password=eq.{1}&select=user_id,user_name,real_name,is_teacher,avatar,gender", LoginModel.UserName, LoginModel.Password));
-                    if (userInfo != null)
-                    {
-                        var s = JsonToList<LoginModels>(userInfo);
-                    }
-
-                    var user = GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
-                    if (user == null)
+                    var s = JsonToList<LoginModels>(userInfo);
+                    if (s == null || s.Count <= 0)
                     {
                         LoginModel.ValidationCode = "";//清空验证码输入框
                         Stochastic();//密码不正确时刷新验证码，防暴力破解密码
                         throw new Exception("登录失败！用户名或密码错误！");
                     }
 
-                    GlobalValues.UserInfo = user;//If ↑ the above code does not report an error,
-                                                 //the basic information of the user has been obtained here.
-                                                 //You need to create a new class to save the information
-
+                    GlobalValues.UserInfo = s[0];
 
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {

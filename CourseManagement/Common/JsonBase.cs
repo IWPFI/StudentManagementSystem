@@ -1,5 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization.Json;
+using System.Windows.Markup;
+
 namespace StudentManagementSystem.Common;
 
 public class JsonBase
@@ -71,7 +74,7 @@ public class JsonBase
     /// 对象转换为Json字符串
     /// </summary>
     /// <param name="obj">需要转换的对象</param>
-    /// <returns></returns>
+    /// <returns>string</returns>
     public static string ObjectToJson(object obj)
     {
         try
@@ -97,7 +100,7 @@ public class JsonBase
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="str"></param>
-    /// <returns></returns>
+    /// <returns>List</returns>
     public static List<T> JsonToList<T>(string str)
     {
         try
@@ -106,6 +109,24 @@ public class JsonBase
             var list = new List<T>(JsonConvert.DeserializeObject<List<T>>(str));
 
             return list;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+    /// <summary>
+    /// Json字符串转JArray[数组]
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns>JArray</returns>
+    public static dynamic JsonToJArray(string str)
+    {
+        try
+        {
+            JArray data = (JArray)JsonConvert.DeserializeObject(str);
+            //dynamic data1 = JsonConvert.DeserializeObject(str);
+            return data;
         }
         catch
         {

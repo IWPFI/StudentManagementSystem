@@ -11,7 +11,7 @@ namespace SMS_Models
         /// <summary>
         /// 教师名称
         /// </summary>
-        public string RealName { get; set; }
+        public string user_id { get; set; }
 
         public string real_name { get; set; }
     }

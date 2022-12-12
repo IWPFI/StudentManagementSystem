@@ -125,5 +125,16 @@ public class APIHelp
         vs = JsonToList<T>(HttpGetHelp(Url));
         return vs;
     }
+
+    /// <summary>
+    /// 将api信息转换成数组
+    /// </summary>
+    /// <param name="Url"></param>
+    /// <returns>JArray</returns>
+    public static dynamic GetArrayInfo(string Url)
+    {
+        var vs = JsonToJArray(HttpGetHelp(Url));
+        return vs;
+    }
 }
 

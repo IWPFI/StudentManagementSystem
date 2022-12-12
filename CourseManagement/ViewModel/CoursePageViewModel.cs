@@ -28,11 +28,13 @@ namespace StudentManagementSystem.ViewModel
         public ObservableCollection<CategoryItemModel> CategoryTeacher { get; set; }
 
         public ObservableCollection<CourseModel> CourseList { get; set; } = new ObservableCollection<CourseModel>();
+        public ObservableCollection<CourseModels> CourseLists { get; set; } = new ObservableCollection<CourseModels>();
 
         /// <summary>
         /// 对授课老师进行筛选，点击相应的老师对应相应的课程
         /// </summary>
         private List<CourseModel> courseAll;
+        private List<CourseModels> courseAlls;
 
         /// <summary>
         /// 点击课程名称时跳转到网页
@@ -97,7 +99,7 @@ namespace StudentManagementSystem.ViewModel
             /*foreach (var item in LocalDataAccess.GetInstance().GetTeachers())
                 this.CategoryTeacher.Add(new CategoryItemModel(item));*/
 
-            var vs = GetListInfo<CourseCategory>("sms_member?select=real_name");
+            var vs = GetListInfo<CourseCategory>("sms_member?is_validation=eq.1&select=user_id,real_name");
             if (vs != null && vs.Count > 0)
             {
                 foreach (var item in vs)
@@ -114,15 +116,18 @@ namespace StudentManagementSystem.ViewModel
             for (int i = 0; i < 10; i++)
             {
                 CourseList.Add(new CourseModel { IsShowSkeleton = true });
+                CourseLists.Add(new CourseModels { IsShowSkeleton = true });
             }
             Task.Run(new Action(async () =>
             {
                 courseAll = LocalDataAccess.GetInstance().GetCourses();
+                courseAlls = APIDataAccess.GetCourseModels();
                 await Task.Delay(1000);
 
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
                     CourseList.Clear();
+
                     foreach (var item in courseAll)
                         CourseList.Add(item);
                 }));

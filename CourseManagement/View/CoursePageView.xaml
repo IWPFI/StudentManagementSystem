@@ -22,8 +22,7 @@
                         <RowDefinition MinHeight="35" Height="auto"/>
                     </Grid.RowDefinitions>
 
-
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="课程分类" Style="{DynamicResource CoursePageViewTextBlockStyle}"/>
                         <ItemsControl ItemsSource="{Binding CategoryCourses}">
                             <ItemsControl.ItemsPanel>
@@ -33,7 +32,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Content="{Binding CategoryName}" GroupName="course" IsChecked="{Binding IsSelected}" 
+                                    <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected,UpdateSourceTrigger=PropertyChanged}" GroupName="category"
                                                  Style="{DynamicResource CurriculumRadioButtonStyle}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -67,16 +66,11 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <!--<RadioButton Content="{Binding CategoryName}" GroupName="teacher"
-                                                 IsChecked="{Binding IsSelected}" Margin="5 0" 
-                                                 Template="{DynamicResource CategoryButtonTemplate}" 
-                                                 Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
-                                                 CommandParameter="{Binding CategoryName}"/>-->
-                                    <!--方法一-->
-                                    <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected}"
-                                                 GroupName="teacher"
+                                    <RadioButton Content="{Binding CategoryName}" GroupName="teacher"
+                                                 IsChecked="{Binding IsSelected}"
                                                  Style="{DynamicResource CurriculumRadioButtonStyle}"
-                                                 Click="RadioButton_Click"/>
+                                                 Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
+                                                 CommandParameter="{Binding CategoryName}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -86,7 +80,7 @@
             </Border>
 
             <ScrollViewer Grid.Row="1">
-                <ItemsControl Name="icCourses" ItemsSource="{Binding CourseList}">
+                <ItemsControl Name="icCourses" ItemsSource="{Binding CourseLists}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel/>

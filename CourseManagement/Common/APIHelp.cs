@@ -136,5 +136,16 @@ public class APIHelp
         var vs = JsonToJArray(HttpGetHelp(Url));
         return vs;
     }
+
+    /// <summary>
+    /// 将api信息转换成对象
+    /// </summary>
+    /// <param name="Url"></param>
+    /// <returns>Object</returns>
+    public static T GetObjectInfo<T>(string Url)
+    {
+        var vs = JsonToObject<T>(HttpGetHelp(Url));
+        return vs;
+    }
 }
 

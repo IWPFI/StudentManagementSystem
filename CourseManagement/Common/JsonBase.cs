@@ -133,4 +133,21 @@ public class JsonBase
             return null;
         }
     }
+
+    /// <summary>
+    /// Json字符串转Object
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns>JArray</returns>
+    public static T JsonToObject<T>(string str)
+    {
+        try
+        {
+            return JsonConvert.DeserializeObject<T>(str);
+        }
+        catch
+        {
+            return default(T);
+        }
+    }
 }

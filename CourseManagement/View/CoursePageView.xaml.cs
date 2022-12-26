@@ -48,6 +48,7 @@ namespace StudentManagementSystem.View
                 {
                     view.Filter = new Predicate<object>((o) =>
                     {
+                        if ((o as CourseModel).Teachers == null) return false;
                         return (o as CourseModel).Teachers.Exists(t => t == teacher);
                     });
                 }

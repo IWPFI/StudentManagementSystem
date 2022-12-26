@@ -42,4 +42,55 @@ namespace SMS_Models
         /// </summary>
         public bool IsShowSkeleton { get; set; }
     }
+
+    /// <summary>
+    /// 课程
+    /// </summary>
+    public class Courses
+    {
+        /// <summary>
+        /// id
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime? created_at { get; set; }
+        /// <summary>
+        /// 修改时间
+        /// </summary>
+        public DateTime? updated_at { get; set; }
+        /// <summary>
+        /// 课程id
+        /// </summary>
+        public string? course_id { get; set; }
+        /// <summary>
+        /// 课程名称
+        /// </summary>
+        public string? course_name { get; set; }
+        /// <summary>
+        /// 简介
+        /// </summary>
+        public string? description { get; set; }
+        /// <summary>
+        /// 是否发布：<br/>0：未发布<br/>1：已发布
+        /// </summary>
+        public int? is_publish { get; set; }
+        /// <summary>
+        /// 课程封面
+        /// </summary>
+        public string? course_cover { get; set; }
+        /// <summary>
+        /// 课程链接
+        /// </summary>
+        public string? course_url { get; set; }
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        public int? is_delete { get; set; }
+        /// <summary>
+        /// 课程分类id
+        /// </summary>
+        public int? course_type_id { get; set; }
+    }
 }

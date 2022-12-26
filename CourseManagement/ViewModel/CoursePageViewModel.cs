@@ -100,7 +100,7 @@ namespace StudentManagementSystem.ViewModel
             //授课教师
             this.CategoryTeacher = new ObservableCollection<CategoryItemModel>();
             this.CategoryTeacher.Add(new CategoryItemModel("全部", true));
-            var TeacherListTemp = GetListInfo<CourseCategory>("sms_member?is_validation=eq.1&select=user_id,real_name");
+            var TeacherListTemp = GetListInfo<CourseCategory>("sms_member?is_teacher=eq.1&select=user_id,real_name");
             if (TeacherListTemp != null && TeacherListTemp.Count > 0)
             {
                 foreach (var item in TeacherListTemp)

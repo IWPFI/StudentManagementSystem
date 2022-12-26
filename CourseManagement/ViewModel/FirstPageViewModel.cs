@@ -31,6 +31,9 @@ namespace StudentManagementSystem.ViewModel
             set { _itemCount = value; this.DoNotify(); }
         }
 
+        /// <summary>
+        /// 课程总览列表
+        /// </summary>
         public ObservableCollection<CourseSeriesModel> CourseSeriesList { get; set; } = new ObservableCollection<CourseSeriesModel>();//绑定到课程总览列表里面
 
 

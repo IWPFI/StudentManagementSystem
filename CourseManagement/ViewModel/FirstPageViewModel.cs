@@ -35,6 +35,7 @@ namespace StudentManagementSystem.ViewModel
         /// 课程总览列表
         /// </summary>
         public ObservableCollection<CourseSeriesModel> CourseSeriesList { get; set; } = new ObservableCollection<CourseSeriesModel>();//绑定到课程总览列表里面
+        public ObservableCollection<CourseSeriesModel> CourseSeriesLists { get; set; } = new ObservableCollection<CourseSeriesModel>();//绑定到课程总览列表里面
 
 
         Random random = new Random();
@@ -88,10 +89,11 @@ namespace StudentManagementSystem.ViewModel
             //    }
             //});
 
-            var cList = LocalDataAccess.GetInstance().GetCoursePlayRecord();
+            //var cList = LocalDataAccess.GetInstance().GetCoursePlayRecord();
+            var cList = APIDataAccess.GetInstance().GetCourseSeries();
             this.ItemCount = cList.Max(c => c.SeriesList.Count);//动态分列
             foreach (var item in cList)
-                this.CourseSeriesList.Add(item);       
+                this.CourseSeriesList.Add(item);
         }
         private void RefreshInstrumentValue()
         {

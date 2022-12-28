@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Newtonsoft.Json.Linq;
+using System.Net;
 using System.Net.Http;
 
 namespace StudentManagementSystem.Common;
@@ -118,7 +119,7 @@ public class APIHelp
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="Url"></param>
-    /// <returns></returns>
+    /// <returns>List</returns>
     public static List<T> GetListInfo<T>(string Url)
     {
         List<T> vs = new List<T>();
@@ -145,6 +146,17 @@ public class APIHelp
     public static T GetObjectInfo<T>(string Url)
     {
         var vs = JsonToObject<T>(HttpGetHelp(Url));
+        return vs;
+    }
+
+    /// <summary>
+    /// 将api信息转换成JTOken对象
+    /// </summary>
+    /// <param name="Url"></param>
+    /// <returns>JToken</returns>
+    public static JToken GetJTokenInfo(string Url)
+    {
+        var vs = JsonToJToken(HttpGetHelp(Url));
         return vs;
     }
 }

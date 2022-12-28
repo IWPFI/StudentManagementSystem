@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization.Json;
+using System.Text.RegularExpressions;
 using System.Windows.Markup;
 
 namespace StudentManagementSystem.Common;
@@ -148,6 +149,92 @@ public class JsonBase
         catch
         {
             return default(T);
+        }
+    }
+
+    /// <summary>
+    /// Json字符串转JToken
+    /// </summary>
+    /// <param name="jsonStr">Json字符串</param>
+    /// <returns>JToken</returns>
+    public static JToken JsonToJToken(string jsonStr)
+    {
+        try
+        {
+            JObject jobj = JObject.Parse(jsonStr);
+            JToken result = jobj as JToken;
+            return result;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+}
+
+public class JsonOperate
+{
+    /// <summary>
+    /// 遍历所有节点，替换其中某个节点的值
+    /// </summary>
+    /// <param name="jobj">json数据</param>
+    /// <param name="nodeName">节点名</param>
+    /// <param name="value">新值</param>
+    private static void JsonSetChildNodes(ref JToken jobj, string nodeName, string value)
+    {
+        try
+        {
+            JToken result = jobj as JToken;//转换为JToken
+            JToken result2 = result.DeepClone();//复制一个返回值，由于遍历的时候JToken的修改回终止遍历，因此需要复制一个新的返回json
+
+            //遍历
+            var reader = result.CreateReader();
+            while (reader.Read())
+            {
+                if (reader.Value != null)
+                {
+                    if (reader.TokenType == JsonToken.String || reader.TokenType == JsonToken.Integer || reader.TokenType == JsonToken.Float)
+                    {
+                        Regex reg = new Regex(@"" + nodeName + "$");
+                        //SelectToken(Path)方法可查找某路径下的节点
+                        if (reg.IsMatch(reader.Path))
+                        {
+                            result2.SelectToken(reader.Path).Replace(value);
+                        }
+                    }
+                }
+            }
+            jobj = result2;
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// 获取相应子节点的值
+    /// </summary>
+    /// <param name="json">json数据</param>
+    /// <param name="ReName">节点名称</param>
+    /// <returns></returns>
+    private static string JsonSeleteNode(JToken json, string ReName)
+    {
+        try
+        {
+            string result = string.Empty;
+            var node = json.SelectToken("$.." + ReName);
+            if (node != null)
+            {
+                //判断节点类型
+                if (node.Type == JTokenType.String || node.Type == JTokenType.Integer || node.Type == JTokenType.Float)
+                {
+                    //返回string值
+                    result = node.Value<object>().ToString();
+                }
+            }
+            return result;
+        }
+        catch
+        {
+            return null;
         }
     }
 }

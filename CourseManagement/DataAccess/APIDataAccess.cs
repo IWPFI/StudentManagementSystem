@@ -8,12 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
 using System.Windows.Controls;
+using StudentManagementSystem.Model;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
+using LiveCharts;
 
 namespace StudentManagementSystem.DataAccess
 {
     public class APIDataAccess
     {
-        public APIDataAccess() { }
+        private static APIDataAccess instance;
+
+        private APIDataAccess() { }
+        public static APIDataAccess GetInstance()
+        {
+            return instance ?? (instance = new APIDataAccess());
+        }
 
         /// <summary>
         /// 获取课程信息
@@ -88,6 +98,64 @@ namespace StudentManagementSystem.DataAccess
             {
             }
             return courses;
+        }
+
+        /// <summary>
+        /// 获取课程播放信息
+        /// </summary>
+        /// <returns></returns>
+        public List<CourseSeriesModel> GetCourseSeries()
+        {
+            List<CourseSeriesModel> data = new List<CourseSeriesModel>();
+            try
+            {
+                JArray CourseSeriesJArray = GetArrayInfo("sms_play_record?select=course_id,platform_id,play_count,is_growing,growing_rate");//课程播放信息
+                JArray CourseNameArray = GetArrayInfo("sms_course?select=course_name,course_id");
+                JArray PlatformsArray = GetArrayInfo("sms_platforms?select=platform_id,platform_name");
+
+                string courseId = "";
+                CourseSeriesModel cModel = null;
+
+                foreach (var item in CourseSeriesJArray)
+                {
+                    string tempId = item.Value<string>("course_id");
+                    //课程名称
+                    var courseName = CourseNameArray.ToList().First(x => ((JObject)x).Value<string>("course_id") == item.Value<string>("course_id"));
+                  
+                    if (courseId != tempId)
+                    {
+                        courseId = tempId;
+                        cModel = new CourseSeriesModel();
+                        data.Add(cModel);
+
+                        cModel.CourseName = courseName.Value<string>("course_name");
+                        cModel.SeriesColection = new LiveCharts.SeriesCollection();
+                        cModel.SeriesList = new System.Collections.ObjectModel.ObservableCollection<SeriesModel>();
+                    }
+                    if (cModel != null)
+                    {
+                        //平台名称
+                        string platformName = (PlatformsArray.First(x => x.Value<string>("platform_id") == item.Value<string>("platform_id"))).Value<string>("platform_name");
+                        
+                        cModel.SeriesColection.Add(new PieSeries
+                        {
+                            Title = platformName,
+                            Values = new ChartValues<ObservableValue> { new ObservableValue((double)item.Value<long>("play_count")) },
+                            DataContext = false
+                        });
+
+                        cModel.SeriesList.Add(new SeriesModel
+                        {
+                            SeriesName = platformName,
+                            CurrentValue = item.Value<long>("play_count"),
+                            IsGrowing = item.Value<Int64>("is_growing") == 1,
+                            ChangeRate = item.Value<int>("growing_rate")
+                        });
+                    }
+                }
+            }
+            catch { }
+            return data;
         }
     }
 }

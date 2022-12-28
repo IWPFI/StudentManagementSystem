@@ -8,13 +8,22 @@ namespace StudentManagementSystem.Model
 {
     public class SeriesModel
     {
-        public string SeriesName { get; set; }/*名称*/
-
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string SeriesName { get; set; }
+        /// <summary>
+        /// 当前值
+        /// </summary>
+        public decimal CurrentValue { get; set; }
         //public int CurrentValue { get; set; }
-        public decimal CurrentValue { get; set; }/*当前值*/
-
+        /// <summary>
+        /// 是否增长
+        /// </summary>
         public bool IsGrowing { get; set; }
-
+        /// <summary>
+        /// 增长率
+        /// </summary>
         public int ChangeRate { get; set; }
     }
 }

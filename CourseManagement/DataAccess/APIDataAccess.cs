@@ -12,6 +12,9 @@ using StudentManagementSystem.Model;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using LiveCharts;
+using Npgsql;
+using static CommunityToolkit.Mvvm.ComponentModel.__Internals.__TaskExtensions.TaskAwaitableWithoutEndValidation;
+using System.Data;
 
 namespace StudentManagementSystem.DataAccess
 {
@@ -121,7 +124,7 @@ namespace StudentManagementSystem.DataAccess
                     string tempId = item.Value<string>("course_id");
                     //课程名称
                     var courseName = CourseNameArray.ToList().First(x => ((JObject)x).Value<string>("course_id") == item.Value<string>("course_id"));
-                  
+
                     if (courseId != tempId)
                     {
                         courseId = tempId;
@@ -136,7 +139,7 @@ namespace StudentManagementSystem.DataAccess
                     {
                         //平台名称
                         string platformName = (PlatformsArray.First(x => x.Value<string>("platform_id") == item.Value<string>("platform_id"))).Value<string>("platform_name");
-                        
+
                         cModel.SeriesColection.Add(new PieSeries
                         {
                             Title = platformName,
@@ -157,5 +160,58 @@ namespace StudentManagementSystem.DataAccess
             catch { }
             return data;
         }
+        /// <summary>
+        /// 学生信息列表
+        /// </summary>
+        /// <returns>学生Id、姓名,表ID</returns>
+        public List<StudentInformation> GetStudentList()
+        {
+            List<StudentInformation> result = new List<StudentInformation>();
+            try
+            {
+                JArray StudentJArray = GetArrayInfo("sms_students?select=*");
+                foreach (var item in StudentJArray)
+                {
+                    result.Add(new StudentInformation
+                    {
+                        Id = (int)item.Value<Int64>("id"),
+                        StudentName = item.Value<String>("name"),
+                        StudentID = item.Value<string>("number"),
+                        StudentGrade = item.Value<string>("grade")
+                    });
+                }
+            }
+            catch { }
+            return result;
+        }
+
+        /// <summary>
+        /// 学生详细资料
+        /// </summary>
+        /// <returns>全部</returns>
+        public StudentInformation? StudentDetails(string str)
+        {
+            try
+            {
+                JObject StudentJArray = JObject.Parse(HttpGetHelp(String.Format("sms_students?select=*&number=eq.{0}", str)));
+                JArray nations = GetArrayInfo("nations");
+                JArray visage = GetArrayInfo("visage");
+
+                StudentInformation model = new StudentInformation();
+                model.Id = (int)StudentJArray.Value<Int64>("id");
+                model.StudentID = StudentJArray.Value<string>("number");
+                model.StudentName = StudentJArray.Value<string>("name");
+                model.StudentSex = (int)StudentJArray.Value<Int64>("sex");
+                model.StudentPhone = StudentJArray.Value<string>("phone");
+                model.StudentGrade = StudentJArray.Value<string>("grade");
+                model.StudentSite = StudentJArray.Value<string>("site");
+                model.StudentBirthday = StudentJArray.Value<DateTime>("birthday");
+                model.NationsName = nations.First(x => x["id"] == StudentJArray["nations_id"]).Value<string>("nations");
+                model.PoliticsStatus = visage.First(x => x["id"] == StudentJArray["platform_id"]).Value<string>("visage");
+                return model;
+            }
+            catch { return null; }
+        }
+
     }
 }

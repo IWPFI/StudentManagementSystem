@@ -64,7 +64,8 @@ namespace StudentManagementSystem.ViewModel
             {
                 StudentList.Clear();
             }
-            StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
+            //StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
+            StudentList = new ObservableCollection<StudentInformation>(APIDataAccess.GetInstance().GetStudentList());
         }
 
         /// <summary>

@@ -94,7 +94,8 @@ namespace StudentManagementSystem.View
 
         public void SelectedStudents(string str)
         {
-            StudentInfo = LocalDataAccess.GetInstance().StudentsDetails(str);//卡片信息
+            //StudentInfo = LocalDataAccess.GetInstance().StudentsDetails(str);//卡片信息
+            StudentInfo = APIDataAccess.GetInstance().StudentDetails(str);
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

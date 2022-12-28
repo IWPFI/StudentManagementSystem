@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagementSystem.View"
              xmlns:viewmodel="clr-namespace:StudentManagementSystem.ViewModel" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:SearchStudentViewModel}"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:StudentInformationViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
@@ -49,11 +49,11 @@
                 </ScrollViewer>
                 
                 <!--刷新-->
-                <Button Style="{StaticResource ContactsFlushbutton}" Click="FlushStudentButtonClick"/>
+                <Button Style="{StaticResource ContactsFlushbutton}" Command="{Binding CmdFlushStudentButtonClick}"/>
                 <!--搜索-->
-                <Button Style="{StaticResource ContactsSearchbutton}" Click="SearchStudentButtonClick"/>
+                <Button Style="{StaticResource ContactsSearchbutton}" Command="{Binding CmdSearchStudentButtonClick}"/>
                 <!--添加-->
-                <Button Style="{StaticResource ContactsAddbutton}" Click="AddStudentButtonClick"/>
+                <Button Style="{StaticResource ContactsAddbutton}" Command="{Binding CmdAddStudentButtonClick}"/>
             </Grid>
         </Grid>
     </Border>

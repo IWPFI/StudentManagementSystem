@@ -36,8 +36,6 @@ namespace StudentManagementSystem.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        ContactsView contacts = new ContactsView();
-
         private string[] GetVs = new string[7];
 
         public int UpdateStudentData { get; set; }
@@ -163,7 +161,6 @@ namespace StudentManagementSystem.View
                 {
                     DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(xuehao.Text));
                     MessageWindow.ShowWindow("删除成功,请刷新数据库。");
-                    contacts.InterfaceData();
                     this.Close();
                 }
             }

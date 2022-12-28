@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:add="clr-namespace:StudentManagementSystem.ViewModel" 
         xmlns:converter1="clr-namespace:StudentManagementSystem.Converter"
-        mc:Ignorable="d" ResizeMode="NoResize"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance Type=add:StudentInformationViewModel}"
+        ResizeMode="NoResize"
         Title="添加学生信息" 
         Height="500" Width="800"
         AllowsTransparency="True"
@@ -17,7 +19,7 @@
         <converter1:GenderConverter x:Key="genderConverter"/>
     </Window.Resources>
     <Window.DataContext>
-        <add:AddStudentViewModel/>
+        <add:StudentInformationViewModel/>
     </Window.DataContext>
 
     <Border Style="{DynamicResource AddBorderBackgroundStyle}">
@@ -132,7 +134,7 @@
 
             <!--底部按钮-->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Style="{DynamicResource CompleteButtonStyle}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
+                <Button Style="{DynamicResource CompleteButtonStyle}" Command="{Binding AddStudentBtnClickCommand}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
                 <Button Style="{DynamicResource CancelButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=window}"/>
             </StackPanel>
 

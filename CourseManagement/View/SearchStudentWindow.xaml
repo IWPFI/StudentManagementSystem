@@ -9,9 +9,10 @@
         x:Name="window"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
-        Title="SearchView" Height="500" Width="700">
+        Title="SearchView" Height="500" Width="700" 
+        d:DataContext="{d:DesignInstance Type=ViewModel:StudentInformationViewModel}">
     <Window.DataContext>
-        <ViewModel:SearchStudentViewModel/>
+        <ViewModel:StudentInformationViewModel/>
     </Window.DataContext>
     <Border Style="{DynamicResource SearchStudentWindow_BorderStyle}">
         <Border.InputBindings>
@@ -36,7 +37,7 @@
                     CommandParameter="{Binding ElementName=window}"/>
 
             <Border Grid.Row="2" CornerRadius="0 0 5 5" Background="White">
-                <DataGrid Grid.Row="2" ItemsSource="{Binding StudentList, UpdateSourceTrigger=PropertyChanged}" Margin="10 5" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <DataGrid Grid.Row="2" ItemsSource="{Binding StudentSeekList, UpdateSourceTrigger=PropertyChanged}" Margin="10 5" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="序号" Width="25" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="学号" Width="*" Binding="{Binding StudentID}"/>

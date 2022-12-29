@@ -193,25 +193,26 @@ namespace StudentManagementSystem.DataAccess
         {
             try
             {
-                JObject StudentJArray = JObject.Parse(HttpGetHelp(String.Format("sms_students?select=*&number=eq.{0}", str)));
+                JArray StudentJArray = GetArrayInfo((String.Format("sms_students?select=*&number=eq.{0}", str)));
+                if (StudentJArray == null || StudentJArray.Count <= 0)
+                    return null;
                 JArray nations = GetArrayInfo("nations");
                 JArray visage = GetArrayInfo("visage");
 
                 StudentInformation model = new StudentInformation();
-                model.Id = (int)StudentJArray.Value<Int64>("id");
-                model.StudentID = StudentJArray.Value<string>("number");
-                model.StudentName = StudentJArray.Value<string>("name");
-                model.StudentSex = (int)StudentJArray.Value<Int64>("sex");
-                model.StudentPhone = StudentJArray.Value<string>("phone");
-                model.StudentGrade = StudentJArray.Value<string>("grade");
-                model.StudentSite = StudentJArray.Value<string>("site");
-                model.StudentBirthday = StudentJArray.Value<DateTime>("birthday");
-                model.NationsName = nations.First(x => x["id"] == StudentJArray["nations_id"]).Value<string>("nations");
-                model.PoliticsStatus = visage.First(x => x["id"] == StudentJArray["platform_id"]).Value<string>("visage");
+                model.Id = (int)StudentJArray[0].Value<Int64>("id");
+                model.StudentID = StudentJArray[0].Value<string>("number");
+                model.StudentName = StudentJArray[0].Value<string>("name");
+                model.StudentSex = (int)StudentJArray[0].Value<Int64>("sex");
+                model.StudentPhone = StudentJArray[0].Value<string>("phone");
+                model.StudentGrade = StudentJArray[0].Value<string>("grade");
+                model.StudentSite = StudentJArray[0].Value<string>("site");
+                model.StudentBirthday = StudentJArray[0].Value<DateTime>("birthday");
+                model.NationsName = nations.First(x => x["id"].ToString() == StudentJArray[0]["nation_id"].ToString()).Value<string>("nations");
+                model.PoliticsStatus = visage.First(x => x["id"].ToString() == StudentJArray[0]["politics_status_id"].ToString()).Value<string>("visage");
                 return model;
             }
             catch { return null; }
         }
-
     }
 }

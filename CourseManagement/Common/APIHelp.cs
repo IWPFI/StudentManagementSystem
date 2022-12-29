@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
 
 namespace StudentManagementSystem.Common;
 
@@ -14,6 +15,7 @@ public class APIHelp
         try
         {
             string paramData = data;
+            url = RootUrl + url;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             byte[] bytes = Encoding.UTF8.GetBytes(paramData);
             request.Method = "POST";

@@ -57,25 +57,25 @@
                 <!--学号-->
                 <StackPanel Style="{DynamicResource AddDataContentStackPanelStyle}">
                     <Label Name="addIdLabel" Content="&#xe61d;" ToolTip="学号" Style="{DynamicResource AddDataLabelStyle}"/>
-                    <TextBox Name="addId" Text="{Binding StudentInfo.StudentID}" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
+                    <TextBox Name="addId" Text="{Binding StudentInfoModels.number}" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
 
                 <!--姓名-->
                 <StackPanel Grid.Column="1" Style="{DynamicResource AddDataContentStackPanelStyle}">
                     <Label Content="&#xe601;" ToolTip="姓名" Style="{DynamicResource AddDataLabelStyle}"/>
-                    <TextBox Name="addName" Text="{Binding StudentInfo.StudentName}" Tag="请输入姓名" Style="{DynamicResource AddDataTextBox}"/>
+                    <TextBox Name="addName" Text="{Binding StudentInfo.name}" Tag="请输入姓名" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
 
                 <!--性别-->
                 <Grid Grid.Column="2">
                     <Label Content="&#xe62d;" ToolTip="性别" Style="{DynamicResource AddDataLabelStyle2}"/>
-                    <TextBox Name="addSex" Text="{Binding StudentInfo.StudentSex, Converter={StaticResource IntToStringConverter}}" 
+                    <TextBox Name="addSex" Text="{Binding StudentInfo.sex, Converter={StaticResource IntToStringConverter}}" 
                             Tag="请选择性别" Style="{DynamicResource AddDataSexTextBox}"/>
                     <Expander x:Name="sexRadio" Margin="0,0,35,0" Panel.ZIndex="5" VerticalAlignment="Center" HorizontalAlignment="Right" LostStylusCapture="SexExpanderLostStylusCapture">
                         <Border Margin="-80,0,0,-50" Background="Gainsboro" CornerRadius="10" Padding="5" LostFocus="Border_LostFocus">
                             <StackPanel>
-                                <RadioButton Content="男" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
-                                <RadioButton Content="女" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
+                                <RadioButton Content="男" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.sex, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
+                                <RadioButton Content="女" Height="20" Template="{DynamicResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.sex, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
                             </StackPanel>
                         </Border>
                     </Expander>
@@ -84,22 +84,22 @@
                 <!--生日-->
                 <StackPanel Grid.Row="1" Grid.Column="0" Style="{DynamicResource AddDataContentStackPanelStyle}">
                     <Label Content="&#xe653;" ToolTip="生日" Style="{DynamicResource AddDataLabelStyle}"/>
-                    <DatePicker Name="addBirthday" SelectedDate="{Binding StudentInfo.StudentBirthday}" Style="{DynamicResource DatePickerStyle}"/>
+                    <DatePicker Name="addBirthday" SelectedDate="{Binding StudentInfo.birthday}" Style="{DynamicResource DatePickerStyle}"/>
                 </StackPanel>
 
                 <!--民族-->
                 <Grid Name="nationGrid" Grid.Row="1" Grid.Column="1">
                     <Label Content="&#xe66f;" ToolTip="民族" Style="{DynamicResource AddDataLabelStyle2}"/>
                     <ComboBox Name="nationComboBox" Tag="请选择民族"
-                              Style="{DynamicResource AddStudentWindowComBoxStyle}"
-                              ItemsSource="{Binding NationModelList}" SelectedItem="{Binding StudentInfo.NationsName}"/>
+                              Style="{DynamicResource AddStudentWindowComBoxStyle}" SelectedValue="{Binding StudentInfo.nation}"
+                              ItemsSource="{Binding NationModelList}"/>
                 </Grid>
 
                 <!--政治面貌-->
                 <Grid Grid.Row="1" Grid.Column="2">
                     <Label Content="&#xe643;" ToolTip="政治面貌" Style="{DynamicResource AddDataLabelStyle2}"/>
                     <ComboBox Name="politicalOutlookComboBox" Tag="请选择政治面貌" Style="{DynamicResource AddStudentWindowComBoxStyle}" Margin="20 0 0 0"
-                              ItemsSource="{Binding PoliticalOutlookList}" SelectedItem="{Binding StudentInfo.PoliticsStatus}"/>
+                              ItemsSource="{Binding PoliticalOutlookList}" SelectedValue="{Binding StudentInfo.politics}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.ColumnSpan="3">
@@ -110,7 +110,7 @@
                     <!--班级-->
                     <StackPanel Grid.Column="0" Style="{DynamicResource AddDataContentStackPanelStyle}">
                         <Label Content="&#xe630;" ToolTip="班级" Style="{DynamicResource AddDataLabelStyle}"/>
-                        <TextBox Name="addClass" Text="{Binding StudentInfo.StudentGrade}" Width="300" Tag="请输入班级名称" Style="{DynamicResource AddDataTextBox}"/>
+                        <TextBox Name="addClass" Text="{Binding StudentInfo.grade}" Width="300" Tag="请输入班级名称" Style="{DynamicResource AddDataTextBox}"/>
                     </StackPanel>
 
                     <!--电话-->
@@ -119,7 +119,7 @@
                     <!--#endregion-->
                     <StackPanel Grid.Column="1" Style="{DynamicResource AddDataContentStackPanelStyle}">
                         <Label Content="&#xe88b;" ToolTip="电话" Style="{DynamicResource AddDataLabelStyle}"/>
-                        <TextBox Name="addNumber" Text="{Binding StudentInfo.StudentPhone}" Tag="请输入电话号码" 
+                        <TextBox Name="addNumber" Text="{Binding StudentInfo.phone}" Tag="请输入电话号码" 
                                  TextBox.MaxLength="11" Width="305" Style="{DynamicResource AddDataTextBox}"/>
                     </StackPanel>
                 </Grid>
@@ -127,7 +127,7 @@
                 <!--地址-->
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Style="{DynamicResource AddDataContentStackPanelStyle}">
                     <Label Content="&#xe641;" ToolTip="地址" Style="{DynamicResource AddDataLabelStyle}"/>
-                    <TextBox Name="addAddress" Text="{Binding StudentInfo.StudentSite}" Width="692" Tag="请输入地址"
+                    <TextBox Name="addAddress" Text="{Binding StudentInfo.site}" Width="692" Tag="请输入地址"
                              Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
             </Grid>

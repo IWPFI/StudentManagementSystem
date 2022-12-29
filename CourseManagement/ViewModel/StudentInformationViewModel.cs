@@ -39,11 +39,11 @@ namespace StudentManagementSystem.ViewModel
         /// </summary>
         public ObservableCollection<string> PoliticalOutlookList { get; set; } = new ObservableCollection<string>();
 
-        private StudentInformation _studentInfo = new StudentInformation();
+        private StudentInfoModels _studentInfo = new StudentInfoModels();
         /// <summary>
         /// 学生信息
         /// </summary>
-        public StudentInformation StudentInfo
+        public StudentInfoModels StudentInfo
         {
             get { return _studentInfo; }
             set { _studentInfo = value; DoNotify(); }
@@ -52,6 +52,9 @@ namespace StudentManagementSystem.ViewModel
         public StudentInformationViewModel()
         {
             GetStudentsInfo();
+            NationModelList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GeiNation());
+            PoliticalOutlookList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());
+
         }
 
         /// <summary>
@@ -89,9 +92,6 @@ namespace StudentManagementSystem.ViewModel
         /// <remarks></remarks>
         public ICommand CmdAddStudentButtonClick => new RelayCommand(() =>
         {
-            NationModelList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GeiNation());
-            PoliticalOutlookList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());
-
             AddStudentWindow addData = new AddStudentWindow();
             addData.ShowDialog();
         });
@@ -150,25 +150,33 @@ namespace StudentManagementSystem.ViewModel
         {
             if (obj == null) return;
 
-            if (string.IsNullOrEmpty(StudentInfo.StudentName) || !DoValidate.CheckName(StudentInfo.StudentName))
+            if (string.IsNullOrEmpty(StudentInfo.name) || !DoValidate.CheckName(StudentInfo.name))
             {
                 MessageWindow.ShowWindow("输入姓名有误，请重新输入！", "警告");
                 return;
             }
-            if (!string.IsNullOrEmpty(StudentInfo.StudentPhone) && !DoValidate.CheckCellPhone(StudentInfo.StudentPhone))
+            if (!string.IsNullOrEmpty(StudentInfo.phone) && !DoValidate.CheckCellPhone(StudentInfo.phone))
             {
                 MessageWindow.ShowWindow("输入手机号有误，请重新输入！", "警告");
                 return;
             }
 
-            if (StudentInfo.StudentBirthday == null) StudentInfo.StudentBirthday = DateTime.Now;
-            if (StudentInfo.NationsName == null) StudentInfo.NationsName = "1";
-            if (StudentInfo.PoliticsStatus == null) StudentInfo.PoliticsStatus = "1";
+            if (StudentInfo.birthday == null) StudentInfo.birthday = DateTime.Now;
+            if (StudentInfo.nation == null) StudentInfo.nation_id = 1;
+            else
+            {
+                StudentInfo.nation_id = NationModelList.ToList().FindIndex(item => item.Equals(StudentInfo.nation)) + 1;
+            }
+            if (StudentInfo.politics == null) StudentInfo.politics_status_id = 1;
+            else
+            {
+                StudentInfo.politics_status_id = PoliticalOutlookList.ToList().FindIndex(item => item.Equals(StudentInfo.politics)) + 1;
+            }
 
-            if (LocalDataAccess.GetInstance().AddStudents(StudentInfo) >= 0)
-                MessageWindow.ShowWindow("添加成功，如界面无显示请手动刷新界面！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            var msg = APIDataAccess.GetInstance().AddStudentData(StudentInfo);
+            MessageWindow.ShowWindow(msg, "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
             GetStudentsInfo();
-            (obj as Window).Close();
+            //(obj as Window).Close();
         });
     }
 }

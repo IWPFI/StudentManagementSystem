@@ -1,19 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
-using System.Windows.Controls;
-using StudentManagementSystem.Model;
+﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using LiveCharts;
-using Npgsql;
-using static CommunityToolkit.Mvvm.ComponentModel.__Internals.__TaskExtensions.TaskAwaitableWithoutEndValidation;
+using Newtonsoft.Json.Linq;
+using StudentManagementSystem.Model;
 using System.Data;
 
 namespace StudentManagementSystem.DataAccess
@@ -213,6 +202,15 @@ namespace StudentManagementSystem.DataAccess
                 return model;
             }
             catch { return null; }
+        }
+
+        public string AddStudentData(StudentInfoModels student)
+        {
+            var result = string.Empty;
+            student.gmt_create = DateTime.Now.ToString();
+            var stu = ObjectToJson(student);
+            result = HttpPostHelp("sms_students", stu);
+            return result;
         }
     }
 }

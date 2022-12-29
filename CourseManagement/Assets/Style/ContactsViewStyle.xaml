@@ -113,7 +113,7 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
-            </Trigger>
+            </Trigger>   
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Foreground" Value="#FFAED3AB"/>
             </Trigger>

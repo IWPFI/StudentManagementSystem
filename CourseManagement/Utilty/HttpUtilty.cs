@@ -175,7 +175,7 @@ public class HttpUtilty
     /// <param name="timeOut">默认20秒</param>
     /// <param name="encoding">响应内容的编码类型（默认utf-8）</param>
     /// <returns></returns>
-    public static string PostFormWithFile(string url, List<FormItemModel> formItems, CookieContainer cookieContainer = null, string refererUrl = null, Encoding encoding = null, int timeOut = 20000000)
+    public static string PostFormWithFile(string url, List<FormItemModel> formItems, CookieContainer? cookieContainer = null, string? refererUrl = null, Encoding? encoding = null, int timeOut = 20000000)
     {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         #region 初始化请求对象
@@ -300,11 +300,11 @@ public class HttpUtilty
             using (StreamReader myStreamReader = new StreamReader(responseStream, encoding ?? Encoding.UTF8))
             {
                 //string tempPath = AppDomain.CurrentDomain.BaseDirectory+ @"\musicxmltemp";
-                //System.IO.Directory.CreateDirectory(tempPath);  //创建临时文件目录
+                //System.IO.Directory.CreateDirectory(tempPath);//创建临时文件目录
                 //string tempFile = tempPath + @"\" + name.ToString() + ".temp"; //临时文件
                 //if (System.IO.File.Exists(tempFile))
                 //{
-                //    System.IO.File.Delete(tempFile);    //存在则删除
+                //    System.IO.File.Delete(tempFile);//存在则删除
                 //}
                 //try
                 //{
@@ -422,7 +422,11 @@ public class HttpUtilty
         return flag;
     }
 
-    // 从文件头得到远程文件的长度
+    /// <summary>
+    /// 从文件头得到远程文件的长度
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
     private static long GetHttpLength(string url)
     {
         long length = 0;
@@ -466,6 +470,7 @@ public class HttpUtilty
 
     }
 }
+
 public class FormItemModel
 {
     /// <summary>  

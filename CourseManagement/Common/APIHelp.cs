@@ -58,7 +58,7 @@ public class APIHelp
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("application/json", data, ParameterType.RequestBody);
             RestResponse response = client.Execute(request);
-            return Task.FromResult(response.Content);
+            return Task.FromResult(response.StatusCode.ToString());
         }
         catch (Exception ex)
         {

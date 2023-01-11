@@ -77,7 +77,7 @@ namespace StudentManagementSystem.ViewModel
                 StudentList.Clear();
             }
             //StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
-            StudentList = new ObservableCollection<StudentInformation> (await APIDataAccess.GetInstance().GetStudentList());
+            StudentList = new ObservableCollection<StudentInformation>(await APIDataAccess.GetInstance().GetStudentList());
         }
 
         /// <summary>
@@ -182,11 +182,16 @@ namespace StudentManagementSystem.ViewModel
                 StudentInfo.politics_status_id = PoliticalOutlookList.ToList().FindIndex(item => item.Equals(StudentInfo.politics)) + 1;
             }
 
-            var msg = APIDataAccess.GetInstance().AddStudentDataAsync(StudentInfo);
-            if(msg.Result== "Created")
+            if (StudentList.ToList().Exists(x => x.StudentID == StudentInfo.number))
             {
+                MessageWindow.ShowWindow("Current student already exists !");
+                return;
+            }
 
-            MessageWindow.ShowWindow("创建成功！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            var msg = APIDataAccess.GetInstance().AddStudentDataAsync(StudentInfo);
+            if (msg.Result == "Created")
+            {
+                MessageWindow.ShowWindow("创建成功！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             GetStudentsInfo();
             //(obj as Window).Close();

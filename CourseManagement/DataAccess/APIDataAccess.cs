@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StudentManagementSystem.Model;
 using System.Data;
@@ -153,7 +154,7 @@ namespace StudentManagementSystem.DataAccess
         /// 学生信息列表
         /// </summary>
         /// <returns>学生Id、姓名,表ID</returns>
-        public List<StudentInformation> GetStudentList()
+        public Task<List<StudentInformation>> GetStudentList()
         {
             List<StudentInformation> result = new List<StudentInformation>();
             try
@@ -169,16 +170,16 @@ namespace StudentManagementSystem.DataAccess
                         StudentGrade = item.Value<string>("grade")
                     });
                 }
+                return Task.FromResult(result);
             }
-            catch { }
-            return result;
+            catch { return null; }
         }
 
         /// <summary>
         /// 学生详细资料
         /// </summary>
         /// <returns>全部</returns>
-        public StudentInformation? StudentDetails(string str)
+        public Task<StudentInformation?> StudentDetails(string str)
         {
             try
             {
@@ -199,17 +200,34 @@ namespace StudentManagementSystem.DataAccess
                 model.StudentBirthday = StudentJArray[0].Value<DateTime>("birthday");
                 model.NationsName = nations.First(x => x["id"].ToString() == StudentJArray[0]["nation_id"].ToString()).Value<string>("nations");
                 model.PoliticsStatus = visage.First(x => x["id"].ToString() == StudentJArray[0]["politics_status_id"].ToString()).Value<string>("visage");
-                return model;
+                return Task.FromResult(model);
             }
             catch { return null; }
         }
 
-        public string AddStudentData(StudentInfoModels student)
+        /// <summary>
+        /// 添加学生数据
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns></returns>
+        public async Task<string> AddStudentDataAsync(StudentInfoModels student)
         {
             var result = string.Empty;
-            student.gmt_create = DateTime.Now.ToString();
-            var stu = ObjectToJson(student);
-            result = HttpPostHelp("sms_students", stu);
+            StudentInfoModels studentlist = new StudentInfoModels()
+            {
+                number = student.number,
+                name = student.name,
+                phone = student.phone,
+                birthday = student.birthday,
+                grade = student.grade,
+                nation_id = student.nation_id,
+                politics_status_id = student.politics_status_id,
+                sex = student.sex,
+                site = student.site,
+                gmt_create = DateTime.Now.ToString("d")
+            };
+            //result = HttpPostHelp("sms_students", ObjectToJsonNonempty(student));
+            result = await HttpPost("sms_students", ObjectToJsonNonempty(student));
             return result;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Markup;
@@ -97,6 +98,26 @@ public class JsonBase
     }
 
     /// <summary>
+    /// 对象转换为Json字符串[去除null值]
+    /// </summary>
+    /// <param name="obj">需要转换的对象</param>
+    /// <param name="T">实体类</param>
+    /// <returns>string</returns>
+    public static string ObjectToJsonNonempty<T>(T obj)
+    {
+        try
+        {
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            string messageOut = JsonConvert.SerializeObject(obj, Formatting.Indented, jsonSetting);
+            return messageOut;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
     /// Json字符串转List
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -172,6 +193,9 @@ public class JsonBase
     }
 }
 
+/// <summary>
+/// Json操作类
+/// </summary>
 public class JsonOperate
 {
     /// <summary>
@@ -236,5 +260,164 @@ public class JsonOperate
         {
             return null;
         }
+    }
+}
+
+/// <summary>
+/// Json辅助类（此类依赖Newtonsoft.Json库）
+/// </summary>
+public static class JsonHelper
+{
+    private static MethodInfo SerializeObjectMethodInfo;
+    private static MethodInfo DeserializeObjectMethodInfo;
+    private static MethodInfo JsonParseMethodInfo;
+    private static MethodInfo JsonTostringMethodInfo;
+    private static Type IsoDateTimeConverterType;
+    private static Type JsonConverterType;
+
+    static JsonHelper()
+    {
+        try
+        {
+            LoadAssembly("Newtonsoft.Json.dll");
+        }
+        catch
+        {
+            Console.WriteLine("未加载【Newtonsoft.Json.dll】");
+        }
+    }
+
+    /// <summary>
+    /// 加载Newtonsoft.Json.dll
+    /// </summary>
+    /// <param name="assemblyPath"></param>
+    /// <returns></returns>
+    public static bool LoadAssembly(string assemblyPath)
+    {
+        var assembly = Assembly.LoadFrom(assemblyPath);
+        if (assembly == null) return false;
+        var type = assembly.GetType("Newtonsoft.Json.JsonConvert");
+        if (type == null) return false;
+        JsonConverterType = assembly.GetType("Newtonsoft.Json.JsonConverter");
+        var jsonFormattingType = assembly.GetType("Newtonsoft.Json.Formatting");
+        SerializeObjectMethodInfo = type.GetMethod("SerializeObject", new[] { typeof(object), JsonConverterType.MakeArrayType() });
+        IsoDateTimeConverterType = assembly.GetType("Newtonsoft.Json.Converters.IsoDateTimeConverter");
+
+        DeserializeObjectMethodInfo = type.GetMethod("DeserializeObject", new[] { typeof(string), JsonConverterType.MakeArrayType() });
+
+        type = assembly.GetType("Newtonsoft.Json.Linq.JToken");
+        if (type == null) return false;
+        JsonParseMethodInfo = type.GetMethod("Parse", new[] { typeof(string) });
+        JsonTostringMethodInfo = type.GetMethod("ToString", new[] { jsonFormattingType, JsonConverterType.MakeArrayType() });
+
+        return true;
+    }
+
+    /// <summary>
+    /// 将对象序列化为JSON格式
+    /// </summary>
+    /// <param name="o">对象</param>
+    /// <param name="dateTimeFormat">时间格式</param>
+    /// <returns>json字符串</returns>
+    public static string SerializeObject(object o, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+    {
+        return SerializeObjectMethodInfo.Invoke(null, new[] { o, GetIsoDateTimeConverterArray(dateTimeFormat) }) as string;
+    }
+
+    /// <summary>
+    /// 将对象序列化为格式化的JSON
+    /// </summary>
+    /// <param name="o"></param>
+    /// <param name="dateTimeFormat"></param>
+    /// <returns></returns>
+    public static string SerializeObjectToFormatJson(object o, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+    {
+        return FormatJson(SerializeObject(o, dateTimeFormat));
+    }
+
+    /// <summary>
+    /// 反序列化为对象
+    /// </summary>
+    /// <typeparam name="T">对象类型</typeparam>
+    /// <param name="json">json字符串(eg.{"ID":"112","Name":"石子儿"})</param>
+    /// <param name="dateTimeFormat">时间格式</param>
+    /// <returns>对象实体</returns>
+    public static T DeserializeToObject<T>(string json, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+    {
+        return DeserializeObjectMethodInfo.MakeGenericMethod(typeof(T))
+            .Invoke(null, new object[] { json, GetIsoDateTimeConverterArray(dateTimeFormat) }) as T;
+    }
+
+    /// <summary>
+    /// 从文件读取并反序列化为对象
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="filePath"></param>
+    /// <param name="dateTimeFormat"></param>
+    /// <returns></returns>
+    public static T LoadFromFileToObject<T>(string filePath, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+    {
+        var data = File.ReadAllText(filePath);
+        return DeserializeToObject<T>(data, dateTimeFormat);
+    }
+
+    /// <summary>
+    /// 反序列化为对象集合
+    /// </summary>
+    /// <typeparam name="T">对象类型</typeparam>
+    /// <param name="json">json数组字符串(eg.[{"ID":"112","Name":"石子儿"}])</param>
+    /// <param name="dateTimeFormat">时间格式</param>
+    /// <returns>对象实体集合</returns>
+    public static List<T> DeserializeToList<T>(string json, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+    {
+        return DeserializeObjectMethodInfo.MakeGenericMethod(typeof(List<T>)).Invoke(null, new object[] { json, GetIsoDateTimeConverterArray(dateTimeFormat) }) as List<T>;
+    }
+
+    /// <summary>
+    /// 从文件读取并反序列化为对象集合
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="filePath"></param>
+    /// <param name="dateTimeFormat"></param>
+    /// <returns></returns>
+    public static List<T> LoadFromFileToList<T>(string filePath, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+    {
+        var data = File.ReadAllText(filePath);
+        return DeserializeToList<T>(data, dateTimeFormat);
+    }
+
+    /// <summary>
+    /// 格式化Json
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns></returns>
+    public static string FormatJson(string json)
+    {
+        var jt = JsonParseMethodInfo.Invoke(null, new object[] { json });
+        return JsonTostringMethodInfo.Invoke(jt, new object[] { 1, null }) as string;
+    }
+
+    /// <summary>
+    /// 压缩Json
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns></returns>
+    public static string UnFormatJson(string json)
+    {
+        var jt = JsonParseMethodInfo.Invoke(null, new object[] { json });
+        return JsonTostringMethodInfo.Invoke(jt, new object[] { 0, null }) as string;
+    }
+
+    private static Array GetIsoDateTimeConverterArray(string dateTimeFormat)
+    {
+        if (JsonConverterType == null)
+            throw new Exception("未加载【Newtonsoft.Json.dll】,请确保添加了该动态库");
+
+        dynamic instance = Activator.CreateInstance(IsoDateTimeConverterType);
+        instance.DateTimeFormat = dateTimeFormat;
+
+        var convertArray = Array.CreateInstance(JsonConverterType, 1);
+        convertArray.SetValue(instance, 0);
+        return convertArray;
     }
 }

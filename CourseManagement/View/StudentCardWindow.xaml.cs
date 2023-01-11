@@ -92,10 +92,10 @@ namespace StudentManagementSystem.View
         /// </summary>
         public List<string> PoliticalOutlookList { get; set; }
 
-        public void SelectedStudents(string str)
+        public async void SelectedStudents(string str)
         {
             //StudentInfo = LocalDataAccess.GetInstance().StudentsDetails(str);//卡片信息
-            StudentInfo = APIDataAccess.GetInstance().StudentDetails(str);
+            StudentInfo = await APIDataAccess.GetInstance().StudentDetails(str);
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

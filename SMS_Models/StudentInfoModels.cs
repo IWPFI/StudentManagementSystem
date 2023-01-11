@@ -14,7 +14,7 @@ namespace SMS_Models
         /// <summary>
         /// 数据库id
         /// </summary>
-        public int id { get; set; }
+        public string? id { get; set; }
         /// <summary>
         /// 学号
         /// </summary>
@@ -30,7 +30,7 @@ namespace SMS_Models
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime? birthday { get; set; }
+        public string? birthday { get; set; }
         /// <summary>
         /// 民族
         /// </summary>

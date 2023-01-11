@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
+using RestSharp;
 using System.Net;
 using System.Net.Http;
 using System.Security.Policy;
+using System.Threading;
 
 namespace StudentManagementSystem.Common;
 
@@ -36,12 +38,32 @@ public class APIHelp
             {
                 retString = "添加成功";
             }
+            return retString;
         }
         catch (Exception ex)
         {
-            retString = ex.Message;
+            return ex.Message;
         }
-        return retString;
+    }
+
+    public static Task<string> HttpPost(string url, string data)
+    {
+        try
+        {
+            url = RootUrl + url;
+            var client = new RestClient(url);
+            var request = new RestRequest("", Method.Post);
+            request.AddHeader("apikey", apikey);
+            request.AddHeader("Authorization", authorization);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json", data, ParameterType.RequestBody);
+            RestResponse response = client.Execute(request);
+            return Task.FromResult(response.Content);
+        }
+        catch (Exception ex)
+        {
+            return Task.FromResult(ex.Message);
+        }
     }
 
     public static string HttpGetHelp(string Url)
@@ -69,12 +91,12 @@ public class APIHelp
                 response.Close();
             if (request != null)
                 request.Abort();
+            return retString;
         }
         catch (Exception ex)
         {
-            retString = ex.Message;
+            return ex.Message;
         }
-        return retString;
     }
     public static string HttpGet(string Url)
     {
@@ -108,12 +130,12 @@ public class APIHelp
             {
                 request.Abort();
             }
+            return retString;
         }
         catch (Exception ex)
         {
-            retString = ex.Message;
+            return ex.Message;
         }
-        return retString;
     }
 
     /// <summary>

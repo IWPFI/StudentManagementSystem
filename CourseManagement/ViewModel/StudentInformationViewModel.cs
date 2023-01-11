@@ -17,7 +17,16 @@ namespace StudentManagementSystem.ViewModel
         /// <summary>
         /// 学生列表
         /// </summary>
-        public ObservableCollection<StudentInformation> StudentList { get; set; }
+        private ObservableCollection<StudentInformation> _studentList;
+        public ObservableCollection<StudentInformation> StudentList
+        {
+            get => _studentList;
+            set
+            {
+                _studentList = value;
+                DoNotify();
+            }
+        }
 
         private ObservableCollection<StudentInformation> _studentSeekList;
         /// <summary>
@@ -61,14 +70,14 @@ namespace StudentManagementSystem.ViewModel
         /// Get Students Info
         /// </summary>
         /// <remarks>获取学生信息</remarks>
-        public void GetStudentsInfo()
+        public async void GetStudentsInfo()
         {
             if (StudentList != null)
             {
                 StudentList.Clear();
             }
             //StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
-            StudentList = new ObservableCollection<StudentInformation>(APIDataAccess.GetInstance().GetStudentList());
+            StudentList = new ObservableCollection<StudentInformation> (await APIDataAccess.GetInstance().GetStudentList());
         }
 
         /// <summary>
@@ -161,7 +170,7 @@ namespace StudentManagementSystem.ViewModel
                 return;
             }
 
-            if (StudentInfo.birthday == null) StudentInfo.birthday = DateTime.Now;
+            if (StudentInfo.birthday == null) StudentInfo.birthday = DateTime.Now.ToString();
             if (StudentInfo.nation == null) StudentInfo.nation_id = 1;
             else
             {
@@ -173,8 +182,12 @@ namespace StudentManagementSystem.ViewModel
                 StudentInfo.politics_status_id = PoliticalOutlookList.ToList().FindIndex(item => item.Equals(StudentInfo.politics)) + 1;
             }
 
-            var msg = APIDataAccess.GetInstance().AddStudentData(StudentInfo);
-            MessageWindow.ShowWindow(msg, "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            var msg = APIDataAccess.GetInstance().AddStudentDataAsync(StudentInfo);
+            if(msg.Result== "Created")
+            {
+
+            MessageWindow.ShowWindow("创建成功！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             GetStudentsInfo();
             //(obj as Window).Close();
         });

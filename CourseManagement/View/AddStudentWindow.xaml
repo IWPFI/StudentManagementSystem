@@ -57,7 +57,7 @@
                 <!--学号-->
                 <StackPanel Style="{DynamicResource AddDataContentStackPanelStyle}">
                     <Label Name="addIdLabel" Content="&#xe61d;" ToolTip="学号" Style="{DynamicResource AddDataLabelStyle}"/>
-                    <TextBox Name="addId" Text="{Binding StudentInfoModels.number}" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
+                    <TextBox Name="addId" Text="{Binding StudentInfo.number}" Tag="请输入学号" Style="{DynamicResource AddDataTextBox}"/>
                 </StackPanel>
 
                 <!--姓名-->

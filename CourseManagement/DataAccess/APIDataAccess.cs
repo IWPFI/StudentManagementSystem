@@ -168,7 +168,7 @@ namespace StudentManagementSystem.DataAccess
                         Id = (int)item.Value<Int64>("id"),
                         StudentName = item.Value<String>("name"),
                         StudentID = item.Value<string>("number"),
-                        StudentGrade = item.Value<string>("grade")
+                        StudentPhone = item.Value<string>("phone")
                     });
                 }
                 return Task.FromResult(result);

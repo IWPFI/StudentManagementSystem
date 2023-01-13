@@ -3,9 +3,11 @@ using StudentManagementSystem.DataAccess;
 using StudentManagementSystem.Model;
 using StudentManagementSystem.View;
 using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -28,11 +30,11 @@ namespace StudentManagementSystem.ViewModel
             }
         }
 
-        private ObservableCollection<StudentInformation> _studentSeekList;
+        private List<StudentInformation> _studentSeekList;
         /// <summary>
         /// 搜索列表
         /// </summary>
-        public ObservableCollection<StudentInformation> StudentSeekList
+        public List<StudentInformation> StudentSeekList
         {
             get => _studentSeekList;
             set { _studentSeekList = value; DoNotify(); }
@@ -140,7 +142,18 @@ namespace StudentManagementSystem.ViewModel
                     {
                         //Null检查 | 异常的时候，就会出现：System.ArgumentNullException: 'Value cannot be null. (Parameter 'str')'
                         //ArgumentNullException.ThrowIfNull(obj);
-                        StudentSeekList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents(obj.ToString()));
+
+                        string temp = obj.ToString();
+                        if (string.IsNullOrEmpty(temp))
+                        {
+                            StudentSeekList = StudentList.ToList(); return;
+                        }
+                        IEnumerable<StudentInformation> queryHighScores = from score in StudentList
+                                                                          where score.StudentID.Contains(temp)  || score.StudentName.Contains(temp)
+                                                                          select score;
+                        StudentSeekList = queryHighScores.ToList();
+
+                        //StudentSeekList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents(obj.ToString()));
                     });
                     _seekCommand.DoCanExecute = new Func<object, bool>((o) =>
                     {

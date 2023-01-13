@@ -121,13 +121,13 @@
 
                             <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="NationsComboBox" SelectedItem="{Binding StudentInfo.nation}" ItemsSource="{Binding NationModelList}"
+                                <ComboBox x:Name="NationsComboBox" SelectedIndex="{Binding StudentInfo.nation_id}" ItemsSource="{Binding NationModelList}"
                                           Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
                                 <TextBlock Text="政治面貌：" Margin="-2 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedItem="{Binding StudentInfo.politics}" ItemsSource="{Binding PoliticalOutlookList}" 
+                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedIndex="{Binding StudentInfo.politics_status_id}" ItemsSource="{Binding PoliticalOutlookList}" 
                                           Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StudentManagementSystem.Model;
 using StudentManagementSystem.View;
+using System.Collections;
 using System.Data;
 
 namespace StudentManagementSystem.DataAccess
@@ -160,7 +161,7 @@ namespace StudentManagementSystem.DataAccess
             List<StudentInformation> result = new List<StudentInformation>();
             try
             {
-                JArray StudentJArray = GetArrayInfo("sms_students?select=*");
+                JArray StudentJArray = GetArrayInfo("sms_students?select=*&is_delete=eq.0");
                 foreach (var item in StudentJArray)
                 {
                     result.Add(new StudentInformation
@@ -190,11 +191,39 @@ namespace StudentManagementSystem.DataAccess
                 {
                     model = temp[0];
                 }
-                JArray nations = GetArrayInfo("nations");
-                JArray visage = GetArrayInfo("visage");
-                model.nation = nations.First(x => x["id"].ToString() == model.nation_id.ToString()).Value<string>("nations");
-                model.politics = visage.First(x => x["id"].ToString() == model.politics_status_id.ToString()).Value<string>("visage");
+                //JArray nations = GetArrayInfo("nations");
+                //JArray visage = GetArrayInfo("visage");
+                //model.nation = nations.First(x => x["id"].ToString() == model.nation_id.ToString()).Value<string>("nations");
+                //model.politics = visage.First(x => x["id"].ToString() == model.politics_status_id.ToString()).Value<string>("visage");
                 return Task.FromResult(model);
+            }
+            catch { return null; }
+        }
+
+        /// <summary>
+        /// 获取民族列表
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetNationsList()
+        {
+            try
+            {
+                JArray temp = GetArrayInfo("nations");
+                return temp.Select(x => x.Value<string>("nations")).ToList();
+            }
+            catch { return null; }
+        }
+
+        /// <summary>
+        /// 获取政治面貌列表
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetVisageList()
+        {
+            try
+            {
+                JArray temp = GetArrayInfo("visage");
+                return temp.Select(x => x.Value<string>("visage")).ToList();
             }
             catch { return null; }
         }
@@ -239,10 +268,32 @@ namespace StudentManagementSystem.DataAccess
         /// <returns></returns>
         public async Task<string> ChangeStudentDate(StudentInfoModels student)
         {
-            var result = string.Empty;
-            student.gmt_modified = DateTime.Now.ToString();
-            result = await HttpPatch(String.Format("sms_students?id=eq.{0}",student.id), ObjectToJsonNonempty(student));
-            return result;
+            try
+            {
+                var result = string.Empty;
+                student.gmt_modified = DateTime.Now.ToString();
+                result = await HttpPatch(String.Format("sms_students?id=eq.{0}", student.id), ObjectToJsonNonempty(student));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 修改学生数据
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns></returns>
+        public async Task DeleteStudentDate(string str)
+        {
+            try
+            {
+                var gmt_modified = DateTime.Now.ToString();
+                await HttpPatch(String.Format("sms_students?id=eq.{0}", str), String.Format($"{{\"is_delete\": \"1\",\"gmt_modified\":\"{0}\" }}",gmt_modified));
+            }
+            catch { }
         }
     }
 }

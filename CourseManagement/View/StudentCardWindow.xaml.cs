@@ -82,8 +82,8 @@ namespace StudentManagementSystem.View
                 }
                 catch { }
             };
-            NationModelList = new List<string>(LocalDataAccess.GetInstance().GeiNation());
-            PoliticalOutlookList = new List<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());
+            NationModelList = APIDataAccess.GetInstance().GetNationsList();
+            PoliticalOutlookList = APIDataAccess.GetInstance().GetVisageList();
         }
 
         /// <summary>
@@ -98,10 +98,11 @@ namespace StudentManagementSystem.View
 
         public async Task SelectedStudents(string str)
         {
-            //StudentInfo = LocalDataAccess.GetInstance().StudentsDetails(str);//卡片信息
             try
             {
                 StudentInfo = await APIDataAccess.GetInstance().StudentDetails(str);
+                --StudentInfo.nation_id;
+                --StudentInfo.politics_status_id;
             }
             catch { }
         }
@@ -118,7 +119,7 @@ namespace StudentManagementSystem.View
         {
             if (string.IsNullOrEmpty(StudentInfo.number))
             {
-                MessageWindow.ShowWindow("数据不存在！", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageWindow.ShowWindow("Data does not exist ！", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
                 return;
             }
@@ -127,58 +128,52 @@ namespace StudentManagementSystem.View
                 //姓名 检查是否为汉字 或字母
                 if (!DoValidate.CheckName(StudentInfo.name.Trim()))
                 {
-                    MessageWindow.ShowWindow("姓名应为汉字或英文!", "提示");
+                    MessageWindow.ShowWindow("Name should be in Chinese or English !", "Tips");
                     return;
                 }
 
                 if (!string.IsNullOrEmpty(StudentInfo.phone) && !DoValidate.CheckCellPhone(StudentInfo.phone.Trim()))
                 {
-                    MessageWindow.ShowWindow("手机号不合法!");
+                    MessageWindow.ShowWindow("The mobile number is illegal !");
                     return;
                 }
-                if (StudentInfo.nation == null) StudentInfo.nation_id = 1;
-                else
-                {
-                    StudentInfo.nation_id = NationModelList.ToList().FindIndex(item => item.Equals(StudentInfo.nation)) + 1;
-                }
-                if (StudentInfo.politics == null) StudentInfo.politics_status_id = 1;
-                else
-                {
-                    StudentInfo.politics_status_id = PoliticalOutlookList.ToList().FindIndex(item => item.Equals(StudentInfo.politics)) + 1;
-                }
+                StudentInfo.nation_id = NationsComboBox.SelectedIndex + 1;
+                StudentInfo.politics_status_id = PoliticsStatusComboBox.SelectedIndex + 1;
+                // StudentInfo.politics_status_id = PoliticalOutlookList.ToList().FindIndex(item => item.Equals(StudentInfo.politics)) + 1;
+
 
                 bool? r = false;
-                r = MessageWindow.ShowWindow("保存将会覆盖之前内容，是否继续 !", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                r = MessageWindow.ShowWindow("Saving will overwrite the previous content. Do you want to continue !", "Update", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (r != null && r == true)
                 {
                     //LocalDataAccess.GetInstance().StudentsAmend(StudentInfo);
                     Task.Run(() => APIDataAccess.GetInstance().ChangeStudentDate(StudentInfo));
-                    MessageWindow.ShowWindow("修改成功");
+                    MessageWindow.ShowWindow("Modified successfully !");
                 }
             }
             else
             {
-                MessageWindow.ShowWindow("姓名字段不能为空 ！");
+                MessageWindow.ShowWindow("Name field cannot be empty ！");
             }
         }
 
         /// <summary>
         /// 删除按钮
         /// </summary>
-        private void DelectButton_Click(object sender, RoutedEventArgs e)
+        private async void DelectButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(StudentInfo.number))
             {
-                MessageWindow.ShowWindow("数据不存在！", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageWindow.ShowWindow("Data does not exist ！", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
                 return;
             }
             bool? r = false;
-            r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            r = MessageWindow.ShowWindow("After deletion, it cannot be restored. Do you want to continue !", "Delete", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (r != null && r == true)
             {
-                DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(StudentInfo.number));
-                MessageWindow.ShowWindow("删除成功,请刷新数据库。");
+                await APIDataAccess.GetInstance().DeleteStudentDate(StudentInfo.id);
+                MessageWindow.ShowWindow("Delete succeeded, please refresh the database !");
                 this.Close();
             }
 

@@ -43,12 +43,12 @@ namespace StudentManagementSystem.ViewModel
         /// <summary>
         /// 民族
         /// </summary>
-        public ObservableCollection<string> NationModelList { get; set; } = new ObservableCollection<string>();
+        public List<string> NationModelList { get; set; } = new List<string>();
 
         /// <summary>
         /// 政治面貌
         /// </summary>
-        public ObservableCollection<string> PoliticalOutlookList { get; set; } = new ObservableCollection<string>();
+        public List<string> PoliticalOutlookList { get; set; } = new List<string>();
 
         private StudentInfoModels _studentInfo = new StudentInfoModels();
         /// <summary>
@@ -63,8 +63,8 @@ namespace StudentManagementSystem.ViewModel
         public StudentInformationViewModel()
         {
             GetStudentsInfo();
-            NationModelList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GeiNation());
-            PoliticalOutlookList = new ObservableCollection<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());
+            NationModelList = APIDataAccess.GetInstance().GetNationsList();
+            PoliticalOutlookList = APIDataAccess.GetInstance().GetVisageList();
 
         }
 

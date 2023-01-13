@@ -53,9 +53,9 @@ namespace StudentManagementSystem.View
             set { age = value; OnPropertyChanged(); }
         }
 
-        private StudentInformation _studentInfo;
+        private StudentInfoModels _studentInfo;
         //学生信息
-        public StudentInformation StudentInfo
+        public StudentInfoModels StudentInfo
         {
             get { return _studentInfo; }
             set { _studentInfo = value; OnPropertyChanged(); }
@@ -73,10 +73,14 @@ namespace StudentManagementSystem.View
 
             Loaded += (s, e) =>
             {
-                if (!string.IsNullOrEmpty(shengri.Text))
+                try
                 {
-                    GetAgeByBirthdate(Convert.ToDateTime(shengri.Text));
+                    if (!string.IsNullOrEmpty(StudentInfo.birthday) && StudentInfo != null)
+                    {
+                        GetAgeByBirthdate(Convert.ToDateTime(StudentInfo.birthday));
+                    }
                 }
+                catch { }
             };
             NationModelList = new List<string>(LocalDataAccess.GetInstance().GeiNation());
             PoliticalOutlookList = new List<string>(LocalDataAccess.GetInstance().GetPoliticalOutlook());
@@ -92,10 +96,14 @@ namespace StudentManagementSystem.View
         /// </summary>
         public List<string> PoliticalOutlookList { get; set; }
 
-        public async void SelectedStudents(string str)
+        public async Task SelectedStudents(string str)
         {
             //StudentInfo = LocalDataAccess.GetInstance().StudentsDetails(str);//卡片信息
-            StudentInfo = await APIDataAccess.GetInstance().StudentDetails(str);
+            try
+            {
+                StudentInfo = await APIDataAccess.GetInstance().StudentDetails(str);
+            }
+            catch { }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -108,39 +116,49 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void AlterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(xuehao.Text))
+            if (string.IsNullOrEmpty(StudentInfo.number))
             {
                 MessageWindow.ShowWindow("数据不存在！", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
+                return;
+            }
+            if (!string.IsNullOrEmpty(StudentInfo.name))
+            {
+                //姓名 检查是否为汉字 或字母
+                if (!DoValidate.CheckName(StudentInfo.name.Trim()))
+                {
+                    MessageWindow.ShowWindow("姓名应为汉字或英文!", "提示");
+                    return;
+                }
+
+                if (!string.IsNullOrEmpty(StudentInfo.phone) && !DoValidate.CheckCellPhone(StudentInfo.phone.Trim()))
+                {
+                    MessageWindow.ShowWindow("手机号不合法!");
+                    return;
+                }
+                if (StudentInfo.nation == null) StudentInfo.nation_id = 1;
+                else
+                {
+                    StudentInfo.nation_id = NationModelList.ToList().FindIndex(item => item.Equals(StudentInfo.nation)) + 1;
+                }
+                if (StudentInfo.politics == null) StudentInfo.politics_status_id = 1;
+                else
+                {
+                    StudentInfo.politics_status_id = PoliticalOutlookList.ToList().FindIndex(item => item.Equals(StudentInfo.politics)) + 1;
+                }
+
+                bool? r = false;
+                r = MessageWindow.ShowWindow("保存将会覆盖之前内容，是否继续 !", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (r != null && r == true)
+                {
+                    //LocalDataAccess.GetInstance().StudentsAmend(StudentInfo);
+                    Task.Run(() => APIDataAccess.GetInstance().ChangeStudentDate(StudentInfo));
+                    MessageWindow.ShowWindow("修改成功");
+                }
             }
             else
             {
-                if (!string.IsNullOrEmpty(xingming.Text))
-                {
-                    //姓名 检查是否为汉字 或字母
-                    if (!DoValidate.CheckName(xingming.Text.Trim()))
-                    {
-                        MessageWindow.ShowWindow("姓名应为汉字或英文!", "错误");
-                        return;
-                    }
-
-                    if (!string.IsNullOrEmpty(dianhau.Text) && !DoValidate.CheckCellPhone(dianhau.Text.Trim()))
-                    {
-                        MessageWindow.ShowWindow("手机号不合法!");
-                        return;
-                    }
-                    bool? r = false;
-                    r = MessageWindow.ShowWindow("保存将会覆盖之前内容哦，是否继续", "更新", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (r != null && r == true)
-                    {
-                        LocalDataAccess.GetInstance().StudentsAmend(StudentInfo);
-                        MessageWindow.ShowWindow("修改成功");
-                    }
-                }
-                else
-                {
-                    MessageWindow.ShowWindow("姓名字段不能为空！");
-                }
+                MessageWindow.ShowWindow("姓名字段不能为空 ！");
             }
         }
 
@@ -149,22 +167,21 @@ namespace StudentManagementSystem.View
         /// </summary>
         private void DelectButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(xuehao.Text))
+            if (string.IsNullOrEmpty(StudentInfo.number))
             {
                 MessageWindow.ShowWindow("数据不存在！", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
+                return;
             }
-            else
+            bool? r = false;
+            r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (r != null && r == true)
             {
-                bool? r = false;
-                r = MessageWindow.ShowWindow("删除后就不能还原了哦，是否继续", "删除", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                if (r != null && r == true)
-                {
-                    DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(xuehao.Text));
-                    MessageWindow.ShowWindow("删除成功,请刷新数据库。");
-                    this.Close();
-                }
+                DeleteStudenData = (LocalDataAccess.GetInstance().StudentsDelete(StudentInfo.number));
+                MessageWindow.ShowWindow("删除成功,请刷新数据库。");
+                this.Close();
             }
+
         }
 
         /// <summary>

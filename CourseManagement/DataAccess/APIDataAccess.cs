@@ -4,6 +4,7 @@ using LiveCharts.Wpf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StudentManagementSystem.Model;
+using StudentManagementSystem.View;
 using System.Data;
 
 namespace StudentManagementSystem.DataAccess
@@ -179,27 +180,20 @@ namespace StudentManagementSystem.DataAccess
         /// 学生详细资料
         /// </summary>
         /// <returns>全部</returns>
-        public Task<StudentInformation?> StudentDetails(string str)
+        public Task<StudentInfoModels?> StudentDetails(string str)
         {
             try
             {
-                JArray StudentJArray = GetArrayInfo((String.Format("sms_students?select=*&number=eq.{0}", str)));
-                if (StudentJArray == null || StudentJArray.Count <= 0)
-                    return null;
+                StudentInfoModels model = new StudentInfoModels();
+                var temp = JsonToList<StudentInfoModels>(HttpGet(String.Format("sms_students?select=*&id=eq.{0}", str)));
+                if (temp != null)
+                {
+                    model = temp[0];
+                }
                 JArray nations = GetArrayInfo("nations");
                 JArray visage = GetArrayInfo("visage");
-
-                StudentInformation model = new StudentInformation();
-                model.Id = (int)StudentJArray[0].Value<Int64>("id");
-                model.StudentID = StudentJArray[0].Value<string>("number");
-                model.StudentName = StudentJArray[0].Value<string>("name");
-                model.StudentSex = (int)StudentJArray[0].Value<Int64>("sex");
-                model.StudentPhone = StudentJArray[0].Value<string>("phone");
-                model.StudentGrade = StudentJArray[0].Value<string>("grade");
-                model.StudentSite = StudentJArray[0].Value<string>("site");
-                model.StudentBirthday = StudentJArray[0].Value<DateTime>("birthday");
-                model.NationsName = nations.First(x => x["id"].ToString() == StudentJArray[0]["nation_id"].ToString()).Value<string>("nations");
-                model.PoliticsStatus = visage.First(x => x["id"].ToString() == StudentJArray[0]["politics_status_id"].ToString()).Value<string>("visage");
+                model.nation = nations.First(x => x["id"].ToString() == model.nation_id.ToString()).Value<string>("nations");
+                model.politics = visage.First(x => x["id"].ToString() == model.politics_status_id.ToString()).Value<string>("visage");
                 return Task.FromResult(model);
             }
             catch { return null; }
@@ -213,21 +207,41 @@ namespace StudentManagementSystem.DataAccess
         public async Task<string> AddStudentDataAsync(StudentInfoModels student)
         {
             var result = string.Empty;
-            StudentInfoModels studentlist = new StudentInfoModels()
+            JArray StudentJArray = GetArrayInfo((String.Format("sms_students?select=*&number=eq.{0}", student.number)));
+            if (StudentJArray.Count > 0)
             {
-                number = student.number,
-                name = student.name,
-                phone = student.phone,
-                birthday = student.birthday,
-                grade = student.grade,
-                nation_id = student.nation_id,
-                politics_status_id = student.politics_status_id,
-                sex = student.sex,
-                site = student.site,
-                gmt_create = DateTime.Now.ToString("d")
-            };
+                bool? r = MessageWindow.ShowWindow("The current student number already exists. Continue to add ?", "Tips", MessageBoxButton.YesNo, MessageBoxImage.Question, true);
+                if (r != null && r == false) { MessageWindow.ShowWindow("The current operation has been canceled !"); return null; }
+            }
+            //StudentInfoModels studentlist = new StudentInfoModels()
+            //{
+            //    number = student.number,
+            //    name = student.name,
+            //    phone = student.phone,
+            //    birthday = student.birthday,
+            //    grade = student.grade,
+            //    nation_id = student.nation_id,
+            //    politics_status_id = student.politics_status_id,
+            //    sex = student.sex,
+            //    site = student.site,
+            //    gmt_create = DateTime.Now.ToString("d")
+            //};
             //result = HttpPostHelp("sms_students", ObjectToJsonNonempty(student));
+            student.gmt_create = DateTime.Now.ToString();
             result = await HttpPost("sms_students", ObjectToJsonNonempty(student));
+            return result;
+        }
+
+        /// <summary>
+        /// 修改学生数据
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns></returns>
+        public async Task<string> ChangeStudentDate(StudentInfoModels student)
+        {
+            var result = string.Empty;
+            student.gmt_modified = DateTime.Now.ToString();
+            result = await HttpPatch(String.Format("sms_students?id=eq.{0}",student.id), ObjectToJsonNonempty(student));
             return result;
         }
     }

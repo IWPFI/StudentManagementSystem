@@ -87,10 +87,10 @@ namespace StudentManagementSystem.ViewModel
         public CommandBase OpenStudentId { get; set; } = new CommandBase()
         {
             DoCanExecute = new Func<object, bool>((o => true)),
-            DoExecute = new Action<object>((o) =>
+            DoExecute = new Action<object>(async (o) =>
             {
                 StudentCardWindow studentCard = new StudentCardWindow();
-                studentCard.SelectedStudents(o.ToString());
+                await studentCard.SelectedStudents(o.ToString());
                 studentCard.ShowDialog();//打开卡片窗口
             })
         };

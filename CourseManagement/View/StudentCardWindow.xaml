@@ -43,7 +43,7 @@
                                 <!--<Image Name="image" Width="20" Height="20" Source="../Assets/Image/3.jpg" Margin="10"/>-->
                             </Grid>
                         </Border>
-                        <TextBox x:Name="xuehao" Text="{Binding StudentInfo.StudentID}" Margin="0 5" BorderThickness="0 0 0 0" FontSize="24" MinWidth="60" IsReadOnly="True"  FontWeight="Bold" TextWrapping="Wrap"
+                        <TextBox x:Name="studentNumberTextBox" Text="{Binding StudentInfo.number}" Margin="0 5" BorderThickness="0 0 0 0" FontSize="24" MinWidth="60" IsReadOnly="True"  FontWeight="Bold" TextWrapping="Wrap"
                                  Background="Transparent" BorderBrush="Gray" Foreground="White"
                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
@@ -84,22 +84,21 @@
 
                             <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="姓名：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="xingming" Text="{Binding StudentInfo.StudentName}" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="StudentNameTextBox" Text="{Binding StudentInfo.name}" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="性别：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="xingbie" Text="{Binding StudentInfo.StudentSex}" Width="100" Margin="2"  BorderThickness="0 0 0 1" Visibility="Collapsed" Background="{x:Null}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <RadioButton Content="男" Margin="0 0 0 0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
-                                    <RadioButton Content="女" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
-                                    <RadioButton Content="未知" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.StudentSex, ConverterParameter=0, Converter={StaticResource genderConverter}}"/>
+                                    <RadioButton Content="男" Margin="0 0 0 0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.sex, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
+                                    <RadioButton Content="女" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.sex, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
+                                    <RadioButton Content="未知" Margin="5,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding StudentInfo.sex, ConverterParameter=0, Converter={StaticResource genderConverter}}"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="班级：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="bangji" Text="{Binding StudentInfo.StudentGrade}" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="StudentGradeTextBox" Text="{Binding StudentInfo.grade}" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}">
@@ -109,32 +108,32 @@
 
                             <StackPanel Grid.Row="2" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="电话：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="dianhau" Text="{Binding StudentInfo.StudentPhone}" MaxLength="13" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="PhoneTextBox" Text="{Binding StudentInfo.phone}" MaxLength="13" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
 
                             <!--生日-->
                             <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="生日：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <DatePicker x:Name="shengri" CalendarClosed="BirthdayDatePicker_CalendarClosed"
-                                            SelectedDate="{Binding StudentInfo.StudentBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                <DatePicker x:Name="BirthdayDatePicker" CalendarClosed="BirthdayDatePicker_CalendarClosed"
+                                            SelectedDate="{Binding StudentInfo.birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Style="{DynamicResource StudentDatePickerStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StudentStackpanelStyle}">
                                 <TextBlock Text="民族：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="NationsComboBox" SelectedItem="{Binding StudentInfo.NationsName}" ItemsSource="{Binding NationModelList}"
+                                <ComboBox x:Name="NationsComboBox" SelectedItem="{Binding StudentInfo.nation}" ItemsSource="{Binding NationModelList}"
                                           Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StudentStackpanelStyle}" HorizontalAlignment="Left" Width="220">
                                 <TextBlock Text="政治面貌：" Margin="-2 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedItem="{Binding StudentInfo.PoliticsStatus}" ItemsSource="{Binding PoliticalOutlookList}" 
+                                <ComboBox x:Name="PoliticsStatusComboBox" SelectedItem="{Binding StudentInfo.politics}" ItemsSource="{Binding PoliticalOutlookList}" 
                                           Style="{DynamicResource ComboBoxStyle}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Width="450" Style="{StaticResource StudentStackpanelStyle}" >
                                 <TextBlock Text="地址：" Margin="5 0 0 0" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox x:Name="dizhi" Text="{Binding StudentInfo.StudentSite}" Width="390" Style="{DynamicResource StudentTextBox}"/>
+                                <TextBox x:Name="SiteTextBox" Text="{Binding StudentInfo.site}" Width="390" Style="{DynamicResource StudentTextBox}"/>
                             </StackPanel>
                         </Grid>
                     </ScrollViewer>

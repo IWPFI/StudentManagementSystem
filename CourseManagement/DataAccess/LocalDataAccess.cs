@@ -623,7 +623,7 @@ VALUES
                     }
                     else
                     {
-                        bool? unused = MessageWindow.ShowWindow("无符合条件的学生信息！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageWindow.ShowWindow("无符合条件的学生信息！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return result;
                     }
                 }

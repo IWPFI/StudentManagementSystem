@@ -35,7 +35,7 @@
                                 <Border Margin="20" Style="{DynamicResource BorderStyle}">
                                     <Grid>
                                         <TextBlock Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Hyperlink Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding StudentID}">
+                                            <Hyperlink Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}">
                                                 <TextBlock Text="{Binding StudentID}"/>
                                             </Hyperlink>
                                         </TextBlock>

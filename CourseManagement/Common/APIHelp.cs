@@ -66,6 +66,25 @@ public class APIHelp
         }
     }
 
+    public static Task<string> HttpPatch(string url, string date)
+    {
+        try
+        {
+            url = RootUrl + url;
+            var client = new RestClient(url);
+            var request = new RestRequest("", Method.Patch);
+            request.AddHeader("apikey", apikey);
+            request.AddHeader("Authorization", authorization);
+            request.AddParameter("application/json", date, ParameterType.RequestBody);
+            RestResponse response = client.Execute(request);
+            return Task.FromResult(response.Content);
+        }
+        catch (Exception ex)
+        {
+            return Task.FromResult(ex.Message);
+        }
+    }
+
     public static string HttpGetHelp(string Url)
     {
         string retString = String.Empty;
@@ -100,37 +119,16 @@ public class APIHelp
     }
     public static string HttpGet(string Url)
     {
-        string retString;
         try
         {
+            string retString;
             Url = RootUrl + Url;
-            HttpClient http = new HttpClient();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
-            request.Proxy = null;
-            request.KeepAlive = false;
-            request.Method = "GET";
-            request.ContentType = "application/json; charset=UTF-8";
-            //添加头
-            request.Headers["apikey"] = apikey;
-            //request.Headers["Authorization"] = Authorization);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream myResponseStream = response.GetResponseStream();
-            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
-            retString = myStreamReader.ReadToEnd();
-            myStreamReader.Close();
-            myResponseStream.Close();
-
-            if (response != null)
-            {
-                response.Close();
-            }
-            if (request != null)
-            {
-                request.Abort();
-            }
-            return retString;
+            var client = new RestClient(Url);
+            var request = new RestRequest("", Method.Get);
+            request.AddHeader("apikey", apikey);
+            RestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+            return response.Content;
         }
         catch (Exception ex)
         {

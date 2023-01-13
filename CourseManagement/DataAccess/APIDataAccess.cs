@@ -291,7 +291,7 @@ namespace StudentManagementSystem.DataAccess
             try
             {
                 var gmt_modified = DateTime.Now.ToString();
-                await HttpPatch(String.Format("sms_students?id=eq.{0}", str), String.Format($"{{\"is_delete\": \"1\",\"gmt_modified\":\"{0}\" }}",gmt_modified));
+                await HttpPatch(String.Format("sms_students?id=eq.{0}", str), String.Format("{{\"is_delete\": \"1\",\"gmt_modified\":\"{0}\" }}",gmt_modified));
             }
             catch { }
         }

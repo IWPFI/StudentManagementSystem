@@ -121,13 +121,11 @@ public class APIHelp
     {
         try
         {
-            string retString;
             Url = RootUrl + Url;
             var client = new RestClient(Url);
             var request = new RestRequest("", Method.Get);
             request.AddHeader("apikey", apikey);
             RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
             return response.Content;
         }
         catch (Exception ex)

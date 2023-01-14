@@ -94,6 +94,11 @@ namespace StudentManagementSystem.ViewModel
             //获取随机数
             string i = new Random().Next(1000, 9999).ToString();
             LoginModel.RandomField = i;
+            #region 临时测试
+            LoginModel.UserName = "admin";
+            LoginModel.Password = "123456";
+            LoginModel.ValidationCode = i; 
+            #endregion
         }
 
         /// <summary>

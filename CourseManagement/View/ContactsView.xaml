@@ -33,6 +33,9 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="20" Style="{DynamicResource BorderStyle}">
+                                    <Border.InputBindings>
+                                        <MouseBinding Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}" MouseAction="LeftDoubleClick"/>
+                                    </Border.InputBindings>
                                     <Grid>
                                         <TextBlock Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Left">
                                             <Hyperlink Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}">

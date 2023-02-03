@@ -174,12 +174,12 @@ namespace StudentManagementSystem.ViewModel
 
             if (string.IsNullOrEmpty(StudentInfo.name) || !DoValidate.CheckName(StudentInfo.name))
             {
-                MessageWindow.ShowWindow("输入姓名有误，请重新输入！", "警告");
+                MessageWindow.ShowWindow("Wrong name, please re-enter ！", "Warning");
                 return;
             }
             if (!string.IsNullOrEmpty(StudentInfo.phone) && !DoValidate.CheckCellPhone(StudentInfo.phone))
             {
-                MessageWindow.ShowWindow("输入手机号有误，请重新输入！", "警告");
+                MessageWindow.ShowWindow("Error in entering mobile phone number, please re-enter ！", "Warning");
                 return;
             }
 
@@ -204,10 +204,10 @@ namespace StudentManagementSystem.ViewModel
             var msg = APIDataAccess.GetInstance().AddStudentDataAsync(StudentInfo);
             if (msg.Result == "Created")
             {
-                MessageWindow.ShowWindow("创建成功！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageWindow.ShowWindow("Created successfully！", "Tips", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             GetStudentsInfo();
-            //(obj as Window).Close();
+            (obj as Window).Close();
         });
     }
 }

@@ -64,8 +64,8 @@ namespace StudentManagementSystem.ViewModel
 
         //定义临时列表
         public List<CourseModels> temp { get; set; }
-        string teacher = string.Empty;
-        string course = string.Empty;
+        string teacher = "全部";
+        string course = "全部";
 
         /// <summary>
         /// 筛选
@@ -78,14 +78,19 @@ namespace StudentManagementSystem.ViewModel
             temp = CourseAll;
             //List<CourseModels> temp = CourseAll;//定义临时列表
 
-            if (course == "全部"&& teacher != "全部")
+            if (course == "全部" && teacher != "全部")
             {
                 temp = CourseAll.Where(c => c.Teachers.Exists(e => e == teacher)).ToList();//只筛选教师
             }
-            else if(course != "全部" && teacher != "全部")
+            else if (course != "全部" && teacher != "全部")
             {
                 temp = CourseAll.Where(c => c.CourseName.Contains(course) && c.Teachers.Exists(e => e == teacher)).ToList();
             }
+            else if (course != "全部" && teacher == "全部")
+            {
+                temp = CourseAll.Where(c => c.CourseName.Contains(course)).ToList();//只筛选课程分类
+            }
+
             CourseLists.Clear();
 
             foreach (var item in temp)
@@ -108,7 +113,7 @@ namespace StudentManagementSystem.ViewModel
             this.CategoryTechnology.Add(new CategoryItemModel("全部", true));
             this.CategoryTechnology.Add(new CategoryItemModel("C#"));
             this.CategoryTechnology.Add(new CategoryItemModel("ASP.NET"));
-            this.CategoryTechnology.Add(new CategoryItemModel("微服务"));
+            this.CategoryTechnology.Add(new CategoryItemModel("Web"));
             this.CategoryTechnology.Add(new CategoryItemModel("Java"));
             this.CategoryTechnology.Add(new CategoryItemModel("Vue"));
             this.CategoryTechnology.Add(new CategoryItemModel("微信小程序"));

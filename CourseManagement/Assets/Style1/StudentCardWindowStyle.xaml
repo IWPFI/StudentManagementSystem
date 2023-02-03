@@ -88,24 +88,22 @@
 
     <!--编辑按钮-->
     <ControlTemplate TargetType="Button" x:Key="ButtonTemplate">
-        <Border>
+        <Border Name="back" Grid.ColumnSpan="2" Width="140" Height="40" CornerRadius="7">
             <Border.Effect>
                 <DropShadowEffect Color="#FF3362D8" ShadowDepth="1" BlurRadius="5" Opacity="0.6" Direction="1"/>
             </Border.Effect>
+            <Border.Background>
+                <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
+                    <GradientStop Color="#7F5C97EE" Offset="0"/>
+                    <GradientStop Color="#7F6778E2" Offset="0.427"/>
+                    <GradientStop Color="#7F7997E4" Offset="1"/>
+                </RadialGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Name="back" Grid.ColumnSpan="2" Width="140" Height="40" CornerRadius="7" Visibility="Visible">
-                    <Border.Background>
-                        <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
-                            <GradientStop Color="#7F5C97EE" Offset="0"/>
-                            <GradientStop Color="#7F6778E2" Offset="0.427"/>
-                            <GradientStop Color="#7F7997E4" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
-                </Border>
                 <TextBlock Text="&#xe631;" Margin="10 0 -10 0" FontSize="20" FontFamily="{DynamicResource Iconfont}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ContentControl Grid.Column="1" Content="{TemplateBinding Content}"
                                 FontSize="18" Margin="0,0,10,0"
@@ -133,7 +131,7 @@
 
     <!--删除按钮-->
     <ControlTemplate x:Key="ButtonTemplate_1" TargetType="Button">
-        <Border>
+        <Border Name="back" Grid.ColumnSpan="2" Width="140" Height="40" CornerRadius="7" Visibility="Visible" Background="#F05050">
             <Border.Effect>
                 <DropShadowEffect Color="#F05050" ShadowDepth="1" BlurRadius="5" Opacity="0.6" Direction="1"/>
             </Border.Effect>
@@ -142,8 +140,6 @@
                     <ColumnDefinition Width="37"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Name="back" Grid.ColumnSpan="2" Width="140" Height="40" CornerRadius="7" Visibility="Visible" Background="#F05050">
-                </Border>
                 <TextBlock Text="&#xe721;" Foreground="White" FontFamily="{DynamicResource Iconfont}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="35 0 -15 0"/>
                 <ContentControl Grid.Column="1" Content="{TemplateBinding Content}" FontSize="18"
                                 Margin="0 0 10 0" Foreground="White" 

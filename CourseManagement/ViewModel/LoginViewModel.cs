@@ -146,11 +146,11 @@ namespace StudentManagementSystem.ViewModel
                 return;
             }
 
-            Task.Run(new Action(async/*₃*/() =>/*₂Action线程*/
+            Task.Run(new Action(async/*₃*/() =>
             {
-                await Task.Delay(1000);//登录时设置1秒延迟,如不需要就将async₃删除(注意:需保留括号)
+                await Task.Delay(1000);
 
-                try//如果是本地数据库处理很快，但不是的话这里会被卡住，所以需要写一个₂Action线程
+                try
                 {
                     var userInfo = HttpGetHelp(String.Format("sms_member?user_name=eq.{0}&password=eq.{1}&select=user_id,user_name,real_name,is_teacher,avatar,gender", LoginModel.UserName, LoginModel.Password));
                     var s = JsonToList<LoginModels>(userInfo);

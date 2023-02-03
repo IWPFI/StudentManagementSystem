@@ -1,5 +1,6 @@
 ﻿using StudentManagementSystem.Common;
 using StudentManagementSystem.Model;
+using StudentManagementSystem.View;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -71,6 +72,7 @@ namespace StudentManagementSystem.ViewModel
             UserInfo = GlobalValues.UserInfo;
             DoNavChanged("FirstPageView");
         }
+
         private void DoNavChanged(object obj)/*₈*/
         {
             #region Notes
@@ -84,5 +86,17 @@ namespace StudentManagementSystem.ViewModel
             ConstructorInfo cti = type.GetConstructor(System.Type.EmptyTypes);
             this.MainContent = (FrameworkElement)cti.Invoke(null);
         }
+
+        /// <summary>
+        /// Search Button Click Command
+        /// </summary>
+        /// <remarks></remarks>
+        public ICommand CmdLogOutBtnClick => new RelayCommand<object>((o) =>
+        {
+            (o as Window).Close();
+            LoginView log = new LoginView();
+            log.Show();
+            new LoginView().Show();
+        });
     }
 }

@@ -282,7 +282,7 @@ namespace StudentManagementSystem.DataAccess
         }
 
         /// <summary>
-        /// 修改学生数据
+        /// 删除学生数据
         /// </summary>
         /// <param name="student"></param>
         /// <returns></returns>

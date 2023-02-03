@@ -137,9 +137,9 @@
                             </StackPanel>
                         </Grid>
                     </ScrollViewer>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="保存修改" Margin="0 0 40 0" Template="{DynamicResource ButtonTemplate}" Click="AlterButton_Click"/>
-                        <Button Content="删除" Margin="40 0 0 0" Template="{DynamicResource ButtonTemplate_1}" Click="DelectButton_Click"/>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="25 0 0 0">
+                        <Button Content="保存修改" Margin="0 0 90 0" Template="{DynamicResource ButtonTemplate}" Click="AlterButton_Click"/>
+                        <Button Content="删      除" Margin="100 0 0 0" Template="{DynamicResource ButtonTemplate_1}" Click="DelectButton_Click"/>
                     </StackPanel>
                 </Grid>
             </Border>

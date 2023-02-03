@@ -1,4 +1,4 @@
-﻿<Window x:Class="StudentManagementSystem.View.MainWindow"
+﻿<Window x:Name="window" x:Class="StudentManagementSystem.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -153,6 +153,8 @@
                             <RadioButton Content="男" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.gender, ConverterParameter=1, Converter={StaticResource genderConverter}}"/>
                             <RadioButton Content="女" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.gender, ConverterParameter=2, Converter={StaticResource genderConverter}}"/>
                         </StackPanel>
+                        <Button Grid.Row="3" Content="修改密码" Height="25" Margin="0 10 0 10"/>
+                        <Button Grid.Row="4" Content="退出登录" Height="25" Margin="0 10 0 10" Command="{Binding CmdLogOutBtnClick}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
                     </Grid>
                 </Grid>
             </Border>

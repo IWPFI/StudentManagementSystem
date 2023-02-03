@@ -88,27 +88,20 @@
         <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate}"/>
     </Style>
 
+    
     <!--编辑按钮-->
     <ControlTemplate TargetType="Button" x:Key="ButtonTemplate">
-        <Border CornerRadius="5" Width="138" Height="46">
-            <Border.Background>
-                <ImageBrush ImageSource="/Assets/Icon/Border_1.png"/>
+        <Border Name="back" Width="123" Height="40" CornerRadius="8" Visibility="Visible">
+            <Border.Background>#9F5C97EE
             </Border.Background>
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" ShadowDepth="1" BlurRadius="8" Opacity="0.5" Direction="1"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Name="back" Grid.ColumnSpan="2" Width="123" Height="40" CornerRadius="10" Visibility="Visible">
-                    <Border.Background>
-                        <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
-                            <GradientStop Color="#7F5C97EE" Offset="0"/>
-                            <GradientStop Color="#7F6778E2" Offset="0.427"/>
-                            <GradientStop Color="#7F7997E4" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
-                </Border>
-                <Border Name="back_1" Grid.ColumnSpan="2" CornerRadius="4" Visibility="Hidden" Background="#44FFFFFF"/>
                 <TextBlock Text="&#xe631;" Margin="10 0 -10 0" FontSize="20" FontFamily="{DynamicResource Iconfont}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ContentControl Grid.Column="1" Content="{TemplateBinding Content}"
                                 FontSize="18" Margin="0,0,10,0"
@@ -130,34 +123,26 @@
                 </Setter>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="back_1"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!--删除按钮-->
     <ControlTemplate x:Key="ButtonTemplate_1" TargetType="Button">
-        <Border Width="137" Height="46">
-            <Border.Background>
-                <ImageBrush ImageSource="/Assets/Icon/Border_1.png"/>
+        <Border Width="123" Height="40" Name="back" CornerRadius="8">
+            <Border.Background>#7FFF003B
             </Border.Background>
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" ShadowDepth="1" BlurRadius="8" Opacity="0.5" Direction="1"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Name="back" Grid.ColumnSpan="2" Width="123" Height="40" CornerRadius="4">
-                    <Border.Background>
-                        <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0.2">
-                            <GradientStop Color="#7FFF003B"/>
-                            <GradientStop Color="#7FF92E4C" Offset="0.504"/>
-                            <GradientStop Color="#7FDC868A" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Border.Background>
-                </Border>
                 <Border Name="back_1" Grid.ColumnSpan="2" CornerRadius="4" Visibility="Hidden" Background="#44FFFFFF"/>
                 <Border Name="back_2" Grid.ColumnSpan="2" CornerRadius="4" Visibility="Hidden" Background="#22FFFFFF"/>
-                <TextBlock Text="&#xe721;" Foreground="White" FontFamily="{DynamicResource Iconfont}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="35 0 -15 0"/>
+                <TextBlock Text="&#xe721;" Margin="10 0 -10 0" Foreground="White" FontFamily="{DynamicResource Iconfont}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
                 <ContentControl Grid.Column="1" Content="{TemplateBinding Content}" FontSize="18"
                                 Margin="0 0 10 0" Foreground="White" 
                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>

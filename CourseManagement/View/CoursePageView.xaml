@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagementSystem.View"
              xmlns:cto="clr-namespace:Controls;assembly=Controls"
+             xmlns:ViewModel="clr-namespace:StudentManagementSystem.ViewModel"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=ViewModel:CoursePageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
@@ -50,7 +52,9 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected}" GroupName="technology"
-                                                 Style="{DynamicResource CurriculumRadioButtonStyle}"/>
+                                                 Style="{DynamicResource CurriculumRadioButtonStyle}"
+                                                 Command="{Binding DataContext.CourseFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
+                                                 CommandParameter="{Binding CategoryName}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -149,7 +153,7 @@
 
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Margin="5 0">
-                                        <Hyperlink>详情</Hyperlink>
+                                        <Hyperlink Command="{Binding DataContext.OpenCourseUrlCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">详情</Hyperlink>
                                         </TextBlock>
                                         <TextBlock Margin="5 0">
                                         <Hyperlink>删除</Hyperlink>

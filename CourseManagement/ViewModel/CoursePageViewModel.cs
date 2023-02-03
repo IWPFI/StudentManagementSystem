@@ -1,6 +1,8 @@
 ﻿using StudentManagementSystem.DataAccess;
 using StudentManagementSystem.Model;
+using StudentManagementSystem.View;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -36,36 +38,53 @@ namespace StudentManagementSystem.ViewModel
         /// </summary>
         public CommandBase OpenCourseUrlCommand { get; set; }
 
-        /// <summary>
-        /// 教师名称筛选命令
-        /// </summary>
-        public CommandBase TeacherFilterCommand { get; set; }
-
         public CoursePageViewModel()
         {
             this.OpenCourseUrlCommand = new CommandBase();
             this.OpenCourseUrlCommand.DoCanExecute = new Func<object, bool>((o) => true);
             this.OpenCourseUrlCommand.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start("explorer.exe", o.ToString()); });//调用浏览器打开url
 
-            this.TeacherFilterCommand = new CommandBase();
-            this.TeacherFilterCommand.DoCanExecute = new Func<object, bool>((o) => true);
-            this.TeacherFilterCommand.DoExecute = new Action<object>(DoTeacherFilter);
-
             this.InitCategory();
             this.InitCourseList();
         }
 
         /// <summary>
-        /// 点击教师筛选时
+        /// 点击课程分类筛选
+        /// </summary>
+        /// <remarks></remarks>
+        public ICommand CourseFilterCommand => new RelayCommand<object>((o) =>
+        {
+            DoFilter(null, o);
+        });
+
+        /// <summary>
+        /// 教师名称筛选命令
+        /// </summary>
+        public ICommand TeacherFilterCommand => new RelayCommand<object>((obj) => { DoFilter(obj); });
+
+        //定义临时列表
+        public List<CourseModels> temp { get; set; }
+        string teacher = string.Empty;
+        string course = string.Empty;
+
+        /// <summary>
+        /// 筛选
         /// </summary>
         /// <param name="o"></param>
-        private void DoTeacherFilter(object o)
+        private void DoFilter(object o = null, object c = null)
         {
-            string teacher = o.ToString();
-            List<CourseModels> temp = CourseAll;//定义临时列表
-            if (teacher != "全部")
+            if (o != null) { teacher = o.ToString(); }
+            if (c != null) { course = c.ToString(); }
+            temp = CourseAll;
+            //List<CourseModels> temp = CourseAll;//定义临时列表
+
+            if (course == "全部"&& teacher != "全部")
             {
-                temp = CourseAll.Where(c => c.Teachers.Exists(e => e == teacher)).ToList();
+                temp = CourseAll.Where(c => c.Teachers.Exists(e => e == teacher)).ToList();//只筛选教师
+            }
+            else if(course != "全部" && teacher != "全部")
+            {
+                temp = CourseAll.Where(c => c.CourseName.Contains(course) && c.Teachers.Exists(e => e == teacher)).ToList();
             }
             CourseLists.Clear();
 

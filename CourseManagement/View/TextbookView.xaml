@@ -4,16 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentManagementSystem.View"
+             xmlns:date="clr-namespace:StudentManagementSystem.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <date:TextbookViewModel/>
+    </UserControl.DataContext>
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
-            <TextBlock Text="功能开发中，敬请期待！" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Foreground="#333" FontFamily="STXingkai" Margin="0,170,0,0" Opacity="0.7"/>
-            <Border Width="200" Height="200" Margin="0,70,0,0"  Opacity="0.6">
-                <Border.Background>
-                    <ImageBrush ImageSource="/Assets/Image/WPF.jpg"/>
-                </Border.Background>
-            </Border>
+            <ItemsControl x:Name="DateList" ItemsSource="{Binding DateList}" Grid.Row="1">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border CornerRadius="10,10,0,0" Background="White">
+                            <Grid>
+                                <TextBox Text="{Binding .}" Background="Transparent" BorderBrush="#0000"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
     </Border>
 </UserControl>

@@ -50,46 +50,6 @@ namespace StudentManagementSystem.ViewModel
 
         private void InitCourseSeries()
         {
-            //CourseSeriesList.Add(new CourseSeriesModel
-            //{
-            //    CourseName = "WPF编程",
-            //    SeriesColection = new LiveCharts.SeriesCollection { new PieSeries {
-            //        Title="云课堂",
-            //        Values=new ChartValues<ObservableValue>{ new ObservableValue(123)},
-            //        DataContext=false},new PieSeries {
-            //        Title="B站",
-            //        Values=new ChartValues<ObservableValue>{ new ObservableValue(123)},
-            //        DataContext=false} },
-            //    SeriesList = new ObservableCollection<SeriesModel>
-            //    {
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=false,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=true,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=false,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=true,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=false,ChangeRate=-75}
-            //    }
-            //});
-            //CourseSeriesList.Add(new CourseSeriesModel
-            //{
-            //    CourseName = "WPF编程",
-            //    SeriesColection = new LiveCharts.SeriesCollection { new PieSeries {
-            //        Title="云课堂",
-            //        Values=new ChartValues<ObservableValue>{ new ObservableValue(123)},
-            //        DataContext=false},new PieSeries {
-            //        Title="B站",
-            //        Values=new ChartValues<ObservableValue>{ new ObservableValue(123)},
-            //        DataContext=false} },
-            //    SeriesList = new ObservableCollection<SeriesModel>
-            //    {
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=false,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=true,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=false,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=true,ChangeRate=-75},
-            //        new SeriesModel{SeriesName="抖音",CurrentValue=764,IsGrowing=false,ChangeRate=-75}
-            //    }
-            //});
-
-            //var cList = LocalDataAccess.GetInstance().GetCoursePlayRecord();
             var cList = APIDataAccess.GetInstance().GetCourseSeries();
             this.ItemCount = cList.Max(c => c.SeriesList.Count);//动态分列
             foreach (var item in cList)

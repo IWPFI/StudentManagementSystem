@@ -9,6 +9,8 @@
              xmlns:zxc="clr-namespace:Controls;assembly=Controls"
              xmlns:converter="clr-namespace:StudentManagementSystem.Converter"
              mc:Ignorable="d" 
+             xmlns:viewmodel="clr-namespace:StudentManagementSystem.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodel:FirstPageViewModel}"
              d:DesignHeight="750" d:DesignWidth="1000" SnapsToDevicePixels="True">
     <UserControl.Resources>
         <converter:BoolToArrowConverter x:Key="BoolToArrowConverter"/>

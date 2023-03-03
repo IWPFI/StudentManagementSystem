@@ -94,7 +94,7 @@
                     <RadioButton Content="教师管理" Style="{StaticResource NavButtonStyle}"
                                  Command="{Binding NavChangedCommand}" CommandParameter="TeacherView"/>
                     <RadioButton Content="成绩管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                                 Command="{Binding NavChangedCommand}" CommandParameter="AchievementView"/>
                     <RadioButton Content="考勤管理" Style="{StaticResource NavButtonStyle}" 
                                  Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
                     <RadioButton Content="班级管理" Style="{StaticResource NavButtonStyle}" 

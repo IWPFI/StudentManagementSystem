@@ -18,9 +18,9 @@ namespace StudentManagementSystem.View
     /// <summary>
     /// GameView.xaml 的交互逻辑
     /// </summary>
-    public partial class GameView : UserControl
+    public partial class TeacherView : UserControl
     {
-        public GameView()
+        public TeacherView()
         {
             InitializeComponent();
         }

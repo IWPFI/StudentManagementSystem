@@ -91,10 +91,16 @@
                                  Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
                     <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}"
                                  Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
-                    <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}" 
+                    <RadioButton Content="教师管理" Style="{StaticResource NavButtonStyle}"
+                                 Command="{Binding NavChangedCommand}" CommandParameter="TeacherView"/>
+                    <RadioButton Content="成绩管理" Style="{StaticResource NavButtonStyle}" 
                                  Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
-                    <RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}"
-                                 Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>
+                    <RadioButton Content="考勤管理" Style="{StaticResource NavButtonStyle}" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                    <RadioButton Content="班级管理" Style="{StaticResource NavButtonStyle}" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                    <RadioButton Content="系统管理" Style="{StaticResource NavButtonStyle}" 
+                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
                 </StackPanel>
                 <TextBox x:Name="Search" Text="{Binding SearchText}" Style="{DynamicResource StaticResourceSearchTextBoxStyle}"/>
                 <Button Grid.Row="1" Style="{StaticResource SearchButtonStyle}" Click="SearchButton_Click" Visibility="Hidden"/>

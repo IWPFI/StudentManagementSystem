@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using StudentManagementSystem.ViewModel;
 
 namespace StudentManagementSystem.View
@@ -32,6 +33,11 @@ namespace StudentManagementSystem.View
             {
                 this.DragMove();
             }
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            //this.NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
         }
     }
 }

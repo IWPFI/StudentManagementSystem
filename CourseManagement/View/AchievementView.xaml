@@ -10,6 +10,21 @@
     <UserControl.DataContext>
         <ViewModel:AchievementViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <!--#region 动画 -->
+        <!--
+        Storyboard.TargetProperty表示此动画要设置哪个属性，在本例中，它表示要设置FrameworkElement.Margin属性。
+        Storyboard.TargetName表示要设置的目标元素，在本例中，它指的是NewPageControl。
+        ThicknessAnimationUsingKeyFrames表示要执行的动画类型，它指的是在指定的时间段内，以指定的速度从一个值变化到另一个值的动画。
+        EasingThicknessKeyFrame表示指定的关键框，它表示动画在0.5秒内从原始值变化到50,50,0,0。
+        -->
+        <!--#endregion-->
+        <Storyboard x:Key="Storyboard1" >
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="NewPageControl" >
+                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="50,50,0,0" />
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
     <Border Style="{DynamicResource WinBorderEffect}">
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
             <Grid>
@@ -20,12 +35,18 @@
                 4、成绩分析：该模块用于对学生的成绩进行综合分析，以提供学校管理者有效的决策支持。
                 5、报表管理：该模块用于生成学生成绩的报表，包括成绩单、绩点表等。
                 -->
-                <Border BorderThickness="1" Height="80" Margin="20 20 20 0" CornerRadius="15" Background="#FFE9EEFF" BorderBrush="#333" Width="auto" VerticalAlignment="Top">
+                <Border BorderThickness="1" Height="80" Margin="20 20 20 0" CornerRadius="15" Background="#fff" BorderBrush="#555" Width="auto" VerticalAlignment="Top">
                     <Border.Effect>
-                        <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4"/>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3"/>
                     </Border.Effect>
-                    <UniformGrid Columns="5" >
-                        <Button Content="成绩录入" Margin="15"/>
+                    <UniformGrid Columns="5"  >
+                        <Button Content="成绩录入" Margin="15">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
                         <Button Content="成绩查询" Margin="15"/>
                         <Button Content="成绩统计" Margin="15"/>
                         <Button Content="成绩分析" Margin="15"/>

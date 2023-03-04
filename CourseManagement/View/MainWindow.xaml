@@ -98,7 +98,7 @@
                     <RadioButton Content="考勤管理" Style="{StaticResource NavButtonStyle}" 
                                  Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
                     <RadioButton Content="班级管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                                 Command="{Binding NavChangedCommand}" CommandParameter="ClassesView"/>
                     <RadioButton Content="系统管理" Style="{StaticResource NavButtonStyle}" 
                                  Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
                 </StackPanel>

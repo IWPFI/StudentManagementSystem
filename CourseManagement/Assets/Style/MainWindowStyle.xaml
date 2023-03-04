@@ -239,7 +239,7 @@
         <Setter Property="Background" Value="#ccc"/>
         <Setter Property="BorderBrush" Value="#fff"/>
         <Setter Property="cm:UIProperties.MouseOverBackground" Value="#eee"/>
-        <Setter Property="cm:UIProperties.PressedBackground" Value="#eee"/>
+        <Setter Property="cm:UIProperties.PressedBackground" Value="#fff"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

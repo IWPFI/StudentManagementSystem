@@ -12,7 +12,7 @@ using static System.Formats.Asn1.AsnWriter;
 namespace StudentManagementSystem.ViewModel
 {
     /// <summary>
-    /// 学生信息
+    /// 通讯录管理
     /// </summary>
     public class StudentInformationViewModel : ViewModelBase
     {

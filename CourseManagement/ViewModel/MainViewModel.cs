@@ -28,6 +28,9 @@ namespace StudentManagementSystem.ViewModel
      * (because there are many user information that need to be bound, a new UserModel₅ "class" is created separately),
      * search box input and window interface*/
     #endregion
+    /// <summary>
+    /// 主窗口
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
 

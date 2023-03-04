@@ -6,6 +6,9 @@ using static StudentManagementSystem.DataAccess.LocalDataAccess;
 
 namespace StudentManagementSystem.ViewModel
 {
+    /// <summary>
+    /// 登录
+    /// </summary>
     public class LoginViewModel : ViewModelBase
     {
         public LoginModel LoginModel { get; set; } = new LoginModel();

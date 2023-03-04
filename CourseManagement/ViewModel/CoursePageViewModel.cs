@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace StudentManagementSystem.ViewModel
 {
+    /// <summary>
+    /// 课程管理
+    /// </summary>
     public class CoursePageViewModel : ViewModelBase
     {
         /// <summary>

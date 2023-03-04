@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.ViewModel
 {
+    /// <summary>
+    /// 首页
+    /// </summary>
     public class FirstPageViewModel : NotifyBase
     {
         private int _instrumentValue = 0;

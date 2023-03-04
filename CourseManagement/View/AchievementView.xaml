@@ -11,12 +11,28 @@
         <ViewModel:AchievementViewModel/>
     </UserControl.DataContext>
     <Border Style="{DynamicResource WinBorderEffect}">
-        <Grid>
-            <TextBlock Text="1、成绩录入：该模块用于录入学生的期中考试、期末测试及考试等成绩。
-                   2、成绩查询：该模块用于查询学生的各科成绩，方便学校管理者和老师对学生的成绩进行分析。 
-                   3、成绩统计：该模块用于对学生的成绩进行统计，如求出学生的总分、最高分、最低分等。 
-                   4、成绩分析：该模块用于对学生的成绩进行综合分析，以提供学校管理者有效的决策支持。
-                   5、报表管理：该模块用于生成学生成绩的报表，包括成绩单、绩点表等。" TextWrapping="WrapWithOverflow"/>
-        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+            <Grid>
+                <!-- 模块设计
+                1、成绩录入：该模块用于录入学生的期中考试、期末测试及考试等成绩。
+                2、成绩查询：该模块用于查询学生的各科成绩，方便学校管理者和老师对学生的成绩进行分析。 
+                3、成绩统计：该模块用于对学生的成绩进行统计，如求出学生的总分、最高分、最低分等。 
+                4、成绩分析：该模块用于对学生的成绩进行综合分析，以提供学校管理者有效的决策支持。
+                5、报表管理：该模块用于生成学生成绩的报表，包括成绩单、绩点表等。
+                -->
+                <Border BorderThickness="1" Height="80" Margin="20 20 20 0" CornerRadius="15" Background="#FFE9EEFF" BorderBrush="#333" Width="auto" VerticalAlignment="Top">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4"/>
+                    </Border.Effect>
+                    <UniformGrid Columns="5" >
+                        <Button Content="成绩录入" Margin="15"/>
+                        <Button Content="成绩查询" Margin="15"/>
+                        <Button Content="成绩统计" Margin="15"/>
+                        <Button Content="成绩分析" Margin="15"/>
+                        <Button Content="报表管理" Margin="15"/>
+                    </UniformGrid>
+                </Border>
+            </Grid>
+        </ScrollViewer>
     </Border>
 </UserControl>

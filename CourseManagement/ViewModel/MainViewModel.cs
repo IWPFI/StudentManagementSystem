@@ -3,7 +3,9 @@ using StudentManagementSystem.Model;
 using StudentManagementSystem.View;
 using System;
 using System.Reflection;
+using System.Security.Policy;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace StudentManagementSystem.ViewModel
 {
@@ -88,15 +90,16 @@ namespace StudentManagementSystem.ViewModel
         }
 
         /// <summary>
-        /// Search Button Click Command
+        /// Exit Login Button Click Command
         /// </summary>
         /// <remarks></remarks>
         public ICommand CmdLogOutBtnClick => new RelayCommand<object>((o) =>
         {
-            (o as Window).Close();
-            LoginView log = new LoginView();
-            log.Show();
             new LoginView().Show();
+            (o as Window).Close();
+            //Application.Current.Shutdown();
+
+            //NavigationService.Navigate(new Url("LoginView.xaml"), UriKind.Relative);
         });
     }
 }

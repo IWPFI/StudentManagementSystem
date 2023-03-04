@@ -14,15 +14,19 @@ namespace StudentManagementSystem
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        //protected override void OnStartup(StartupEventArgs e)
+        //{
+        //    base.OnStartup(e);
 
-            if (new LoginView().ShowDialog() == true)//窗口切换
-            {
-                new MainWindow().ShowDialog();
-            }
-            Application.Current.Shutdown();//关闭窗口
-        }
+        //    if (new LoginView().ShowDialog() == true)//窗口切换
+        //    {
+        //        new MainWindow().ShowDialog();
+        //    }
+        //    if (new MainWindow().ShowDialog() == true)
+        //    {
+        //        new LoginView().ShowDialog();
+        //    }
+        //    Application.Current.Shutdown();//关闭窗口
+        //}
     }
 }

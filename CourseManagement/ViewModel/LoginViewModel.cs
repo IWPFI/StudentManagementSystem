@@ -1,5 +1,7 @@
 ﻿using StudentManagementSystem.DataAccess.DataEntity;
 using StudentManagementSystem.Model;
+using StudentManagementSystem.View;
+using System.Windows;
 using static StudentManagementSystem.DataAccess.LocalDataAccess;
 
 namespace StudentManagementSystem.ViewModel
@@ -97,7 +99,7 @@ namespace StudentManagementSystem.ViewModel
             #region 临时测试
             LoginModel.UserName = "admin";
             LoginModel.Password = "123456";
-            LoginModel.ValidationCode = i; 
+            LoginModel.ValidationCode = i;
             #endregion
         }
 
@@ -166,7 +168,9 @@ namespace StudentManagementSystem.ViewModel
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
                         //Window.DialogResult 属性：获取或设置对话框结果值，此值是从 ShowDialog 方法返回的值 默认值为 false
-                        (o as Window).DialogResult = true; // App.xaml.cs_₁ Jump here during execution, Switch main window
+                        //(o as window).dialogresult = true; // app.xaml.cs_₁ jump here during execution, switch main window
+                        new MainWindow().Show();
+                        (o as Window).Close();
                     }));
                 }
                 catch (Exception ex)

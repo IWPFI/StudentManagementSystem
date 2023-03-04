@@ -24,6 +24,8 @@
         <Setter Property="Background" Value="#FFA8BCF0"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
         <Setter Property="Foreground" Value="White"/>
+        
+        <!--未知报错，暂时不用-->
         <!--
         <Setter Property="cm:UIProperties.CornerRadius" Value="32"/>
         <Setter Property="cm:UIProperties.MouseOverBackground" Value="#FFA8BCF0"/>
@@ -33,7 +35,8 @@
         <Setter Property="cm:UIProperties.MouseOverDropShadowDepth" Value="6"/>
         <Setter Property="cm:UIProperties.MouseOverDropShadowBlurRadius" Value="20"/>
         <Setter Property="cm:UIProperties.MouseOverDropShadowOpcity" Value="0.2"/>
-        未知报错，暂时不用-->
+        -->
+        
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
     </Style>
 

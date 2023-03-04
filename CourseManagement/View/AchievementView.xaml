@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:StudentManagementSystem.View"
+             xmlns:local="clr-namespace:StudentManagementSystem.View" 
+             xmlns:cm="clr-namespace:StudentManagementSystem.AttachProperties"
              xmlns:ViewModel="clr-namespace:StudentManagementSystem.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -24,6 +25,29 @@
                 <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="50,50,0,0" />
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
+        <Style x:Key="MenuBtnStyle" TargetType="Button">
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="等线"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="cm:UIProperties.CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="#FFA8BCF0"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="cm:UIProperties.MouseOverBackground" Value="#FFA8BCF0"/>
+            <Setter Property="cm:UIProperties.MouseOverBorderBrush" Value="Transparent"/>
+            <Setter Property="cm:UIProperties.MouseOverForeground" Value="White"/>
+            <Setter Property="cm:UIProperties.DropShadowColor" Value="#059AA3AC"/>
+            <Setter Property="cm:UIProperties.DropShadowDepth" Value="0"/>
+            <Setter Property="cm:UIProperties.DropShadowBlurRadius" Value="10"/>
+            <Setter Property="cm:UIProperties.MouseOverDropShadowOpcity" Value="0.2"/>
+            <Setter Property="cm:UIProperties.MouseOverDropShadowColor" Value="#059AA3AC"/>
+            <Setter Property="cm:UIProperties.MouseOverDropShadowDepth" Value="0"/>
+            <Setter Property="cm:UIProperties.MouseOverDropShadowBlurRadius" Value="10"/>
+            <Setter Property="Template" Value="{DynamicResource noNormalButtonTemplate}"/>
+        </Style>
     </UserControl.Resources>
     <Border Style="{DynamicResource WinBorderEffect}">
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -35,24 +59,31 @@
                 4、成绩分析：该模块用于对学生的成绩进行综合分析，以提供学校管理者有效的决策支持。
                 5、报表管理：该模块用于生成学生成绩的报表，包括成绩单、绩点表等。
                 -->
-                <Border BorderThickness="1" Height="80" Margin="20 20 20 0" CornerRadius="15" Background="#fff" BorderBrush="#555" Width="auto" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" Height="80" Margin="20 20 20 20" CornerRadius="15" Background="#fff" BorderBrush="#eee" Width="auto" VerticalAlignment="Top">
                     <Border.Effect>
-                        <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.3"/>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2"/>
                     </Border.Effect>
                     <UniformGrid Columns="5"  >
-                        <Button Content="成绩录入" Margin="15">
+                        <Button Content="成绩录入" Style="{DynamicResource MenuBtnStyle}">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.Click">
                                     <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
                                 </EventTrigger>
                             </Button.Triggers>
                         </Button>
-                        <Button Content="成绩查询" Margin="15"/>
-                        <Button Content="成绩统计" Margin="15"/>
-                        <Button Content="成绩分析" Margin="15"/>
-                        <Button Content="报表管理" Margin="15"/>
+                        <Button Content="成绩查询" Style="{DynamicResource MenuBtnStyle}"/>
+                        <Button Content="成绩统计" Style="{DynamicResource MenuBtnStyle}"/>
+                        <Button Content="成绩分析" Style="{DynamicResource MenuBtnStyle}"/>
+                        <Button Content="报表管理" Style="{DynamicResource MenuBtnStyle}"/>
                     </UniformGrid>
                 </Border>
+                <Grid Grid.Row="1">
+                    <ContentControl x:Name="NewPageControl" Content="{Binding .}"/>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Border>

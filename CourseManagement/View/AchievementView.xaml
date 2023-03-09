@@ -68,21 +68,21 @@
                         <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.2"/>
                     </Border.Effect>
                     <UniformGrid Columns="5"  >
-                        <Button Content="成绩录入" Style="{DynamicResource MenuBtnStyle}">
+                        <Button Content="成绩录入" Style="{DynamicResource MenuBtnStyle}" Command="{Binding CmdScoreEntry}">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.Click">
                                     <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
                                 </EventTrigger>
                             </Button.Triggers>
                         </Button>
-                        <Button Content="成绩查询" Style="{DynamicResource MenuBtnStyle}"/>
-                        <Button Content="成绩统计" Style="{DynamicResource MenuBtnStyle}"/>
-                        <Button Content="成绩分析" Style="{DynamicResource MenuBtnStyle}"/>
-                        <Button Content="报表管理" Style="{DynamicResource MenuBtnStyle}"/>
+                        <Button Content="成绩查询" Style="{DynamicResource MenuBtnStyle}" Command="{Binding CmdScoreQuery}"/>
+                        <Button Content="成绩统计" Style="{DynamicResource MenuBtnStyle}" Command="{Binding CmdScoreStatistics}"/>
+                        <Button Content="成绩分析" Style="{DynamicResource MenuBtnStyle}" Command="{Binding CmdScoreAnalyse}"/>
+                        <Button Content="报表管理" Style="{DynamicResource MenuBtnStyle}" Command="{Binding CmdReportManager}"/>
                     </UniformGrid>
                 </Border>
                 <Grid Grid.Row="1">
-                    <ContentControl x:Name="NewPageControl" Content="{Binding .}"/>
+                    <ContentControl x:Name="NewPageControl" Content="{Binding AchievementContent}"/>
                 </Grid>
             </Grid>
         </ScrollViewer>

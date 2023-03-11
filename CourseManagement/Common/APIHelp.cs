@@ -117,7 +117,7 @@ public class APIHelp
             return ex.Message;
         }
     }
-    public static string HttpGet(string Url)
+    public static Task<string> HttpGet(string Url)
     {
         try
         {
@@ -126,11 +126,11 @@ public class APIHelp
             var request = new RestRequest("", Method.Get);
             request.AddHeader("apikey", apikey);
             RestResponse response = client.Execute(request);
-            return response.Content;
+            return Task.FromResult(response.Content);
         }
         catch (Exception ex)
         {
-            return ex.Message;
+            return Task.FromResult(ex.Message);
         }
     }
 

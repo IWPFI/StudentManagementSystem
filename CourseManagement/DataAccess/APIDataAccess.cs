@@ -7,6 +7,7 @@ using StudentManagementSystem.Model;
 using StudentManagementSystem.View;
 using System.Collections;
 using System.Data;
+using System.Net.Http;
 
 namespace StudentManagementSystem.DataAccess
 {
@@ -152,6 +153,7 @@ namespace StudentManagementSystem.DataAccess
             catch { }
             return data;
         }
+
         /// <summary>
         /// 学生信息列表
         /// </summary>
@@ -169,7 +171,7 @@ namespace StudentManagementSystem.DataAccess
                         Id = (int)item.Value<Int64>("id"),
                         StudentName = item.Value<String>("name"),
                         StudentID = item.Value<string>("number"),
-                        StudentGrade=item.Value<string>("grade"),
+                        StudentGrade = item.Value<string>("grade"),
                         StudentPhone = item.Value<string>("phone")
                     });
                 }
@@ -182,12 +184,12 @@ namespace StudentManagementSystem.DataAccess
         /// 学生详细资料
         /// </summary>
         /// <returns>全部</returns>
-        public Task<StudentInfoModels?> StudentDetails(string str)
+        public async Task<StudentInfoModels?> StudentDetails(string str)
         {
             try
             {
                 StudentInfoModels model = new StudentInfoModels();
-                var temp = JsonToList<StudentInfoModels>(HttpGet(String.Format("sms_students?select=*&id=eq.{0}", str)));
+                var temp = JsonToList<StudentInfoModels>(await HttpGet(String.Format("sms_students?select=*&id=eq.{0}", str)));
                 if (temp != null)
                 {
                     model = temp[0];
@@ -196,7 +198,7 @@ namespace StudentManagementSystem.DataAccess
                 //JArray visage = GetArrayInfo("visage");
                 //model.nation = nations.First(x => x["id"].ToString() == model.nation_id.ToString()).Value<string>("nations");
                 //model.politics = visage.First(x => x["id"].ToString() == model.politics_status_id.ToString()).Value<string>("visage");
-                return Task.FromResult(model);
+                return await Task.FromResult(model);
             }
             catch { return null; }
         }
@@ -292,9 +294,34 @@ namespace StudentManagementSystem.DataAccess
             try
             {
                 var gmt_modified = DateTime.Now.ToString();
-                await HttpPatch(String.Format("sms_students?id=eq.{0}", str), String.Format("{{\"is_delete\": \"1\",\"gmt_modified\":\"{0}\" }}",gmt_modified));
+                await HttpPatch(String.Format("sms_students?id=eq.{0}", str), String.Format("{{\"is_delete\": \"1\",\"gmt_modified\":\"{0}\" }}", gmt_modified));
             }
             catch { }
+        }
+
+        /// <summary>
+        /// 获取成绩信息
+        /// </summary>
+        public static async Task<List<AchievementModels>> GetReportInfo()
+        {
+            //var client = new HttpClient();
+            //var request = new HttpRequestMessage(HttpMethod.Get, "https://ca6ssmq5g6hbkhm7c3qg.baseapi.memfiredb.com/rest/v1/sms_report?select=*");
+            //request.Headers.Add("apikey", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImV4cCI6MzE5MTM4MDU5MCwiaWF0IjoxNjUzNDYwNTkwLCJpc3MiOiJzdXBhYmFzZSJ9.BJM4SLhLwt0GOYdyg95dAowa9N6XSDX1D3O88oIclL8");
+            //var response = await client.SendAsync(request);
+            //response.EnsureSuccessStatusCode();
+            //Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+            try
+            {
+                List<AchievementModels> model = new List<AchievementModels>();
+                var temp = JsonToList<AchievementModels>(await HttpGet("sms_report?select=*"));
+                if (temp != null)
+                {
+                    model = temp;
+                }
+                return await Task.FromResult(model);
+            }
+            catch { return null; }
         }
     }
 }

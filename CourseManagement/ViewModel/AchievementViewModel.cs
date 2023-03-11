@@ -1,4 +1,5 @@
 ﻿using StudentManagementSystem.Controls;
+using StudentManagementSystem.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +24,23 @@ namespace StudentManagementSystem.ViewModel
             set { _achievementContent = value; this.DoNotify(); }
         }
 
+        private List<AchievementModels> achievementModels = new List<AchievementModels>();
+
+        public List<AchievementModels> AchievementModels
+        {
+            get { return achievementModels; }
+            set { achievementModels = value; }
+        }
+
         /// <summary>
         /// 成绩查询
         /// </summary>
         public ICommand CmdScoreQuery => new CommandBase()
         {
             DoCanExecute = new Func<object, bool>((o) => { return true; }),
-            DoExecute = new Action<object>((o) =>
+            DoExecute = new Action<object>(async (o) =>
             {
-
+                AchievementModels = await APIDataAccess.GetReportInfo();
             })
         };
 
@@ -46,9 +55,9 @@ namespace StudentManagementSystem.ViewModel
         /// <summary>
         /// 成绩统计
         /// </summary>
-        public ICommand CmdScoreStatistics => new RelayCommand(() =>
+        public ICommand CmdScoreStatistics => new RelayCommand(async () =>
         {
-
+            AchievementModels = await APIDataAccess.GetReportInfo();
         });
 
         /// <summary>

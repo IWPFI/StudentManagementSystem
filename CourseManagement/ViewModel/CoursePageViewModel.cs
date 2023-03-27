@@ -11,6 +11,7 @@ namespace StudentManagementSystem.ViewModel
     /// </summary>
     public class CoursePageViewModel : ViewModelBase
     {
+        #region 属性[Property]
         /// <summary>
         /// 课程分类
         /// </summary>
@@ -35,18 +36,10 @@ namespace StudentManagementSystem.ViewModel
         /// 课程信息 | 获取数据[用于筛选]
         /// </summary>
         private List<CourseModels> CourseAll;
-
-        /// <summary>
-        /// 点击课程名称时跳转到网页
-        /// </summary>
-        public CommandBase OpenCourseUrlCommand { get; set; }
+        #endregion
 
         public CoursePageViewModel()
         {
-            this.OpenCourseUrlCommand = new CommandBase();
-            this.OpenCourseUrlCommand.DoCanExecute = new Func<object, bool>((o) => true);
-            this.OpenCourseUrlCommand.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start("explorer.exe", o.ToString()); });//调用浏览器打开url
-
             this.InitCategory();
             this.InitCourseList();
         }
@@ -55,15 +48,20 @@ namespace StudentManagementSystem.ViewModel
         /// 点击课程分类筛选
         /// </summary>
         /// <remarks></remarks>
-        public ICommand CourseFilterCommand => new RelayCommand<object>((o) =>
+        public ICommand CmdCourseFilter => new RelayCommand<object>((o) =>
         {
             DoFilter(null, o);
         });
 
         /// <summary>
+        /// 点击课程名称时跳转到网页
+        /// </summary>
+        public ICommand CmdOpenCourseUrl=> new RelayCommand<Object>((obj) => { System.Diagnostics.Process.Start("explorer.exe", obj.ToString()); });
+
+        /// <summary>
         /// 教师名称筛选命令
         /// </summary>
-        public ICommand TeacherFilterCommand => new RelayCommand<object>((obj) => { DoFilter(obj); });
+        public ICommand CmdTeacherFilter => new RelayCommand<object>((obj) => { DoFilter(obj); });
 
         //定义临时列表
         public List<CourseModels> temp { get; set; }

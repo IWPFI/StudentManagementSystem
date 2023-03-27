@@ -28,32 +28,5 @@ namespace StudentManagementSystem.View
             InitializeComponent();
             this.DataContext = new CoursePageViewModel();
         }
-
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
-        {
-            RadioButton button = sender as RadioButton;
-            string teacher = button.Content.ToString();
-
-            ICollectionView view = CollectionViewSource.GetDefaultView(this.icCourses.ItemsSource);
-            try
-            {
-                if (teacher == "全部")
-                {
-                    view.Filter = null;
-
-                    //排序
-                    //view.SortDescriptions.Add(new SortDescription("CourseName", ListSortDirection.Descending));
-                }
-                else
-                {
-                    view.Filter = new Predicate<object>((o) =>
-                    {
-                        if ((o as CourseModel).Teachers == null) return false;
-                        return (o as CourseModel).Teachers.Exists(t => t == teacher);
-                    });
-                }
-            }
-            catch { }
-        }
     }
 }

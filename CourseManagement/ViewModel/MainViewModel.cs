@@ -34,11 +34,10 @@ namespace StudentManagementSystem.ViewModel
     public class MainViewModel : ViewModelBase
     {
 
+        #region 属性[Property]
         public LoginModels UserInfo { get; set; } = new LoginModels();
 
         private string _searchText;
-        private FrameworkElement _mainContent;
-
         /// <summary>
         /// 主窗口搜索框绑定
         /// </summary>
@@ -48,29 +47,13 @@ namespace StudentManagementSystem.ViewModel
             set { _searchText = value; this.DoNotify(); }
         }
 
+        private FrameworkElement _mainContent;
         public FrameworkElement MainContent
         {
             get { return _mainContent; }
             set { _mainContent = value; this.DoNotify(); }
-        }
-
-        private CommandBase _navChangedCommand;
-        /// <summary>
-        /// Navigation switching command
-        /// </summary>
-        /// <remarks>
-        /// 导航切换命令
-        /// </remarks>
-        public CommandBase NavChangedCommand
-        {
-            get
-            {
-                _navChangedCommand = new CommandBase();
-                _navChangedCommand.DoCanExecute = new Func<object, bool>((obj) => true);
-                _navChangedCommand.DoExecute = new Action<object>(DoNavChanged);
-                return _navChangedCommand;
-            }
-        }
+        } 
+        #endregion
 
         public MainViewModel()
         {
@@ -78,22 +61,9 @@ namespace StudentManagementSystem.ViewModel
             DoNavChanged("FirstPageView");
         }
 
-        private void DoNavChanged(object obj)/*₈*/
-        {
-            #region Notes
-            /* Type 类：表示类型声明：类类型、接口类型、数组类型、值类型、枚举类型、类型参数、泛型类型定义，以及开放或封闭构造的泛型类型。
-               https://docs.microsoft.com/zh-cn/dotnet/api/system.type?redirectedfrom=MSDN&view=net-6.0 */
-
-            /* ConstructorInfo 类：发现类构造函数的属性，并提供对构造函数元数据的访问权限。
-               https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.constructorinfo?redirectedfrom=MSDN&view=net-6.0 */
-            #endregion
-            Type type = Type.GetType("StudentManagementSystem.View." + obj.ToString());//通过反射的方式实现窗口切换
-            ConstructorInfo cti = type.GetConstructor(System.Type.EmptyTypes);
-            this.MainContent = (FrameworkElement)cti.Invoke(null);
-        }
-
+        #region 命令[Command]
         /// <summary>
-        /// Exit Login Button Click Command
+        ///退出登录命令
         /// </summary>
         /// <remarks></remarks>
         public ICommand CmdLogOutBtnClick => new RelayCommand<object>((o) =>
@@ -104,5 +74,19 @@ namespace StudentManagementSystem.ViewModel
 
             //NavigationService.Navigate(new Url("LoginView.xaml"), UriKind.Relative);
         });
+
+        /// <summary>
+        /// 导航切换命令
+        /// </summary>
+        public ICommand CmdNavChanged => new RelayCommand<object>((obj) => DoNavChanged(obj));
+        #endregion
+
+        private void DoNavChanged(object obj)
+        {
+            //通过反射的方式实现窗口切换
+            Type type = Type.GetType("StudentManagementSystem.View." + obj.ToString());
+            ConstructorInfo cti = type.GetConstructor(System.Type.EmptyTypes);
+            this.MainContent = (FrameworkElement)cti.Invoke(null);
+        }
     }
 }

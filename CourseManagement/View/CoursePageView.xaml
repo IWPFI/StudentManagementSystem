@@ -53,7 +53,7 @@
                                 <DataTemplate>
                                     <RadioButton Content="{Binding CategoryName}" IsChecked="{Binding IsSelected}" GroupName="technology"
                                                  Style="{DynamicResource CurriculumRadioButtonStyle}"
-                                                 Command="{Binding DataContext.CourseFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
+                                                 Command="{Binding DataContext.CmdCourseFilter,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
                                                  CommandParameter="{Binding CategoryName}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -73,7 +73,7 @@
                                     <RadioButton Content="{Binding CategoryName}" GroupName="teacher"
                                                  IsChecked="{Binding IsSelected}"
                                                  Style="{DynamicResource CurriculumRadioButtonStyle}"
-                                                 Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
+                                                 Command="{Binding DataContext.CmdTeacherFilter,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}"
                                                  CommandParameter="{Binding CategoryName}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -110,7 +110,7 @@
                                         <StackPanel Margin=" 0 0 0 10" Orientation="Horizontal">
                                             <!--课程名称-->
                                             <TextBlock FontSize="16" >
-                                                <Hyperlink Foreground="#333" Command="{Binding DataContext.OpenCourseUrlCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">
+                                                <Hyperlink Foreground="#333" Command="{Binding DataContext.CmdOpenCourseUrl,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">
                                                     <Hyperlink.Style>
                                                         <Style>
                                                             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
@@ -153,7 +153,7 @@
 
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Margin="5 0">
-                                        <Hyperlink Command="{Binding DataContext.OpenCourseUrlCommand,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">详情</Hyperlink>
+                                        <Hyperlink Command="{Binding DataContext.CmdOpenCourseUrl,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Url}">详情</Hyperlink>
                                         </TextBlock>
                                         <TextBlock Margin="5 0">
                                         <Hyperlink>删除</Hyperlink>

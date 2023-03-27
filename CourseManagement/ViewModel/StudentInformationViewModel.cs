@@ -16,6 +16,7 @@ namespace StudentManagementSystem.ViewModel
     /// </summary>
     public class StudentInformationViewModel : ViewModelBase
     {
+        #region 属性[Property]
         /// <summary>
         /// 学生列表
         /// </summary>
@@ -59,6 +60,7 @@ namespace StudentManagementSystem.ViewModel
             get { return _studentInfo; }
             set { _studentInfo = value; DoNotify(); }
         }
+        #endregion
 
         public StudentInformationViewModel()
         {
@@ -68,25 +70,12 @@ namespace StudentManagementSystem.ViewModel
 
         }
 
+        #region 命令[Command]
         /// <summary>
-        /// Get Students Info
-        /// </summary>
-        /// <remarks>获取学生信息</remarks>
-        public async void GetStudentsInfo()
-        {
-            if (StudentList != null)
-            {
-                StudentList.Clear();
-            }
-            //StudentList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().GetStudents());
-            StudentList = new ObservableCollection<StudentInformation>(await APIDataAccess.GetInstance().GetStudentList());
-        }
-
-        /// <summary>
-        /// Click the student ID to open the details
+        /// 打开详细信息卡片窗口【ContactsView】
         /// </summary>
         /// <remarks></remarks>
-        public CommandBase OpenStudentId { get; set; } = new CommandBase()
+        public CommandBase CmdOpenStudentInfoCard { get; set; } = new CommandBase()
         {
             DoCanExecute = new Func<object, bool>((o => true)),
             DoExecute = new Action<object>(async (o) =>
@@ -98,77 +87,54 @@ namespace StudentManagementSystem.ViewModel
         };
 
         /// <summary>
-        /// Add Button Click Command
+        /// 打开添加学生窗口【ContactsView】
         /// </summary>
         /// <remarks></remarks>
-        public ICommand CmdAddStudentButtonClick => new RelayCommand(() =>
+        public ICommand CmdOpenAddStudentWindow => new RelayCommand(() =>
         {
             AddStudentWindow addData = new AddStudentWindow();
             addData.ShowDialog();
         });
 
         /// <summary>
-        /// Search Button Click Command
+        /// 打开搜索窗口【ContactsView】
         /// </summary>
         /// <remarks></remarks>
-        public ICommand CmdSearchStudentButtonClick => new RelayCommand(() =>
+        public ICommand CmdOpenSearchStudentWindow => new RelayCommand(() =>
         {
             SearchStudentWindow searchStudent = new SearchStudentWindow();
             searchStudent.ShowDialog();
         });
 
         /// <summary>
-        /// Refresh interface button Click command
+        /// 刷新界面按钮点击命令【ContactsView】
         /// </summary>
-        /// <remarks>刷新界面按钮点击命令</remarks>
-        public ICommand CmdFlushStudentButtonClick => new RelayCommand(() =>
+        public ICommand CmdFlushStudentDate => new RelayCommand(() =>
         {
             GetStudentsInfo();
         });
 
-        private CommandBase _seekCommand;
         /// <summary>
-        /// Search Student Information Command
+        /// 搜索命令【SearchStudentWindow】
         /// </summary>
-        /// <remarks></remarks>
-        public CommandBase SeekCommand
+        public ICommand CmdSeek => new RelayCommand<object>((obj) =>
         {
-            get
+            string temp = obj.ToString();
+            if (string.IsNullOrEmpty(temp))
             {
-                if (_seekCommand == null)
-                {
-                    _seekCommand = new CommandBase();
-                    _seekCommand.DoExecute = new Action<object>(obj =>
-                    {
-                        //Null检查 | 异常的时候，就会出现：System.ArgumentNullException: 'Value cannot be null. (Parameter 'str')'
-                        //ArgumentNullException.ThrowIfNull(obj);
-
-                        string temp = obj.ToString();
-                        if (string.IsNullOrEmpty(temp))
-                        {
-                            StudentSeekList = StudentList.ToList(); return;
-                        }
-                        IEnumerable<StudentInformation> queryHighScores = from score in StudentList
-                                                                          where score.StudentID.Contains(temp)  || score.StudentName.Contains(temp)
-                                                                          select score;
-                        StudentSeekList = queryHighScores.ToList();
-
-                        //StudentSeekList = new ObservableCollection<StudentInformation>(LocalDataAccess.GetInstance().SearchStudents(obj.ToString()));
-                    });
-                    _seekCommand.DoCanExecute = new Func<object, bool>((o) =>
-                    {
-                        return true;
-                    });
-                }
-                return _seekCommand;
+                StudentSeekList = StudentList.ToList(); return;
             }
-        }
+            IEnumerable<StudentInformation> queryHighScores = from score in StudentList
+                                                              where score.StudentID.Contains(temp) || score.StudentName.Contains(temp)
+                                                              select score;
+            StudentSeekList = queryHighScores.ToList();
+        });
 
         /// <summary>
-        /// Add Student Button Click Command
+        /// 添加学生命令【AddStudentWindow】
         /// </summary>
         /// <remarks></remarks>
-        public ICommand AddStudentBtnClickCommand => new RelayCommand<object>((obj) =>
+        public ICommand CmdAddStudentDate => new RelayCommand<object>((obj) =>
         {
             if (obj == null) return;
 
@@ -208,6 +174,19 @@ namespace StudentManagementSystem.ViewModel
             }
             GetStudentsInfo();
             (obj as Window).Close();
-        });
+        }); 
+        #endregion
+
+        /// <summary>
+        /// 获取学生信息
+        /// </summary>
+        private async void GetStudentsInfo()
+        {
+            if (StudentList != null)
+            {
+                StudentList.Clear();
+            }
+            StudentList = new ObservableCollection<StudentInformation>(await APIDataAccess.GetInstance().GetStudentList());
+        }
     }
 }

@@ -42,7 +42,7 @@
             <Button Margin="4" ToolTip="关闭"
                     VerticalAlignment="Top" HorizontalAlignment="Right"
                     Template="{StaticResource CloseButtonTemplate}" 
-                    Command="{Binding CloseCommand}"
+                    Command="{Binding CmdWindowClose}"
                     CommandParameter="{Binding ElementName=window}"/>
 
             <Grid Margin="4" >

@@ -18,6 +18,7 @@ namespace StudentManagementSystem.ViewModel
     /// </summary>
     public class FirstPageViewModel : NotifyBase
     {
+        #region 属性[Command]
         private int _instrumentValue = 0;
 
         public int InstrumentValue
@@ -44,11 +45,26 @@ namespace StudentManagementSystem.ViewModel
         Random random = new Random();
         bool taskSwitch = true;
         List<Task> taskList = new List<Task>();
+
+        private string introduction;
+
+        public string Introduction
+        {
+            get { return introduction; }
+            set { introduction = value; }
+        }
+
+        #endregion
         public FirstPageViewModel()
         {
             this.RefreshInstrumentValue();
 
             this.InitCourseSeries();
+
+            Introduction = @"The student management system is to help teachers and students learn better. 
+The system is composed of course selection management system, 
+textbook management system and classmate address book management system to realize the network course selection,
+textbook management and student information management of higher vocational colleges.";
         }
 
         private void InitCourseSeries()

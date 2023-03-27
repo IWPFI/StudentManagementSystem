@@ -16,7 +16,7 @@
     </Window.DataContext>
     <Border Style="{DynamicResource SearchStudentWindow_BorderStyle}">
         <Border.InputBindings>
-            <MouseBinding Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+            <MouseBinding Command="{Binding CmdWindowDragMove}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
         </Border.InputBindings>
         <Grid>
             <Grid.RowDefinitions>
@@ -29,11 +29,11 @@
             <TextBox x:Name="studentTextBox" Text="" x:FieldModifier="public" Style="{DynamicResource SearchStudentWindow_ContentTextBoxStyle}"/>
 
             <Button x:Name="seekButton" Style="{DynamicResource SeekButtonStyle}"
-                    Command="{Binding SeekCommand}"
+                    Command="{Binding CmdSeek}"
                     CommandParameter="{Binding Text, ElementName=studentTextBox}"/>
 
             <Button x:Name="closeButton" Style="{StaticResource SearchStudentWindow_CloceButtonStyle}"    
-                    Command="{Binding CloseCommand}"
+                    Command="{Binding CmdWindowClose}"
                     CommandParameter="{Binding ElementName=window}"/>
 
             <Border Grid.Row="2" CornerRadius="0 0 5 5" Background="White">

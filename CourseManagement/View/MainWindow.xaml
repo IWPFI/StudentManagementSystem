@@ -37,12 +37,17 @@
         </Border.Effect>
         <Grid>
             <!--窗口上方背景-->
-            <Border Style="{DynamicResource MainTopBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown"/>
+            <Border Style="{DynamicResource MainTopBorderStyle}">
+                <Border.InputBindings>
+                    <MouseBinding Command="{Binding CmdWindowDragMove}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+                </Border.InputBindings>
+            </Border>
+
             <!--窗口控制按钮-->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Content="&#xE65A;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMin_Click"/>
-                <Button Style="{StaticResource WindowMaxButtonStyle}" Click="btnMax_Click"/>
-                <Button Content="&#xE605;" Style="{StaticResource WindowControlButtonStyle}" Click="btnClose_Click"/>
+                <Button Content="&#xE65A;" Style="{StaticResource WindowControlButtonStyle}" Command="{Binding CmdWindowMinimized}" CommandParameter="{Binding ElementName=window}"/>
+                <Button Style="{StaticResource WindowMaxButtonStyle}" Command="{Binding CmdWindowStateChange}" CommandParameter="{Binding ElementName=window}"/>
+                <Button Content="&#xE605;" Style="{StaticResource WindowControlButtonStyle}" Command="{Binding CmdWindowClose}" CommandParameter="{Binding ElementName=window}"/>
             </StackPanel>
 
             <Grid Margin="50 20">
@@ -84,23 +89,23 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
                     <!--Bind to switch command₇-->
                     <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
                     <RadioButton Content="课程管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
                     <RadioButton Content="通讯录管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
                     <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}"
-                                 Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
                     <RadioButton Content="教师管理" Style="{StaticResource NavButtonStyle}"
-                                 Command="{Binding NavChangedCommand}" CommandParameter="TeacherView"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="TeacherView"/>
                     <RadioButton Content="成绩管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="AchievementView"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="AchievementView"/>
                     <RadioButton Content="考勤管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="DocumentEditingView"/>
                     <RadioButton Content="班级管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="ClassesView"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="ClassesView"/>
                     <RadioButton Content="系统管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
+                                 Command="{Binding CmdNavChanged}" CommandParameter="DocumentEditingView"/>
                 </StackPanel>
                 <TextBox x:Name="Search" Text="{Binding SearchText}" Style="{DynamicResource StaticResourceSearchTextBoxStyle}"/>
                 <Button Grid.Row="1" Style="{StaticResource SearchButtonStyle}" Click="SearchButton_Click" Visibility="Hidden"/>

@@ -238,12 +238,14 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Hi，Welcome to the student management system" Margin="15,0,0,10" Foreground="White"/>
-                                <TextBlock Name="Introduction"
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Hi，Welcome to the student management system" Margin="15,0,0,10" Foreground="White"/>
+                                    <TextBlock Name="IntroductionTextBox" Text="{Binding Introduction}"
                                        LineHeight="20" Margin="15,0,0,0" Foreground="#B3E9F1" TextWrapping="Wrap" />
-                            </StackPanel>
-                            <Image Grid.Column="1" Width="60" Height="60" Source="/View/12.jpg"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <Image Grid.Column="1" Width="60" Height="60" Source="/Assets/Image/12.jpg"/>
                         </Grid>
                     </Border>
                 </Grid>

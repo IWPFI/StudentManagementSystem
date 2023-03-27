@@ -34,11 +34,11 @@
                             <DataTemplate>
                                 <Border Margin="20" Style="{DynamicResource BorderStyle}">
                                     <Border.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}" MouseAction="LeftDoubleClick"/>
+                                        <MouseBinding Command="{Binding DataContext.CmdOpenStudentInfoCard,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}" MouseAction="LeftDoubleClick"/>
                                     </Border.InputBindings>
                                     <Grid>
                                         <TextBlock Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Hyperlink Command="{Binding DataContext.OpenStudentId,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}">
+                                            <Hyperlink Command="{Binding DataContext.CmdOpenStudentInfoCard,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}">
                                                 <TextBlock Text="{Binding StudentID}"/>
                                             </Hyperlink>
                                         </TextBlock>
@@ -52,11 +52,13 @@
                 </ScrollViewer>
                 
                 <!--刷新-->
-                <Button Style="{StaticResource ContactsFlushbutton}" Command="{Binding CmdFlushStudentButtonClick}"/>
+                <Button Style="{StaticResource ContactsFlushbutton}" Command="{Binding CmdFlushStudentDate}"/>
+                
                 <!--搜索-->
-                <Button Style="{StaticResource ContactsSearchbutton}" Command="{Binding CmdSearchStudentButtonClick}"/>
+                <Button Style="{StaticResource ContactsSearchbutton}" Command="{Binding CmdOpenSearchStudentWindow}"/>
+                
                 <!--添加-->
-                <Button Style="{StaticResource ContactsAddbutton}" Command="{Binding CmdAddStudentButtonClick}"/>
+                <Button Style="{StaticResource ContactsAddbutton}" Command="{Binding CmdOpenAddStudentWindow}"/>
             </Grid>
         </Grid>
     </Border>

@@ -24,7 +24,7 @@
 
     <Border Style="{DynamicResource AddBorderBackgroundStyle}">
         <Border.InputBindings>
-            <MouseBinding Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+            <MouseBinding Command="{Binding CmdWindowDragMove}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
         </Border.InputBindings>
         <Grid Style="{DynamicResource AddStudentWindowGridStyle}">
             <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
             <!--顶部布局-->
             <Grid>
                 <TextBlock x:Name="TopTitleTextBlock" Style="{DynamicResource TopTitleTextBlockStyle}"/>
-                <Button Style="{DynamicResource AddDataCloseButton}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=window}"/>
+                <Button Style="{DynamicResource AddDataCloseButton}" Command="{Binding CmdWindowClose}" CommandParameter="{Binding ElementName=window}"/>
                 <Border Width="720" Height="3" BorderThickness="0 0 0 2" BorderBrush="#FF3B4F81" VerticalAlignment="Bottom"/>
             </Grid>
 
@@ -134,8 +134,8 @@
 
             <!--底部按钮-->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Style="{DynamicResource CompleteButtonStyle}" Command="{Binding AddStudentBtnClickCommand}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
-                <Button Style="{DynamicResource CancelButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=window}"/>
+                <Button Style="{DynamicResource CompleteButtonStyle}" Command="{Binding CmdAddStudentDate}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
+                <Button Style="{DynamicResource CancelButtonStyle}" Command="{Binding CmdWindowClose}" CommandParameter="{Binding ElementName=window}"/>
             </StackPanel>
 
         </Grid>

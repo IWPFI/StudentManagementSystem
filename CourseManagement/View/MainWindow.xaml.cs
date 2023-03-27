@@ -24,45 +24,6 @@ namespace StudentManagementSystem.View
         private string parameters;
         public static bool search;
 
-        /// <summary>
-        /// 登录窗口拖动
-        /// </summary>
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed) { this.DragMove(); }
-        }
-
-        /// <summary>
-        /// 窗口最小化
-        /// </summary>
-        private void btnMin_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        /// <summary>
-        /// 窗口最大化
-        /// </summary>
-        private void btnMax_Click(object sender, RoutedEventArgs e)
-        {
-            #region Notes 
-            /* WindowState 枚举: 指定是最小化、最大化还是还原窗口。 由 WindowState 属性使用。
-               Maximized 最大化窗口。 
-               Minimized 最小化窗口。 
-               Normal 还原窗口。 
-            */
-            #endregion
-            this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-        }
-
-        /// <summary>
-        /// 关闭窗口
-        /// </summary>
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             #region Notes

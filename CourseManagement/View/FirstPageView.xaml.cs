@@ -26,11 +26,6 @@ namespace StudentManagementSystem.View
             InitializeComponent();
 
             this.DataContext = new FirstPageViewModel();
-            string a="The student management system is to help teachers and students learn better. " +
-                "The system is composed of course selection management system, " +
-                "textbook management system and classmate address book management system to realize the network course selection, " +
-                "textbook management and student information management of higher vocational colleges.";
-            Introduction.Text = a;
         }
     }
 }

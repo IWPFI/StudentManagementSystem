@@ -91,6 +91,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="WPF.UI.AttachProperties">
+      <HintPath>..\..\WPF UI AttachProperties\WPF.UI.AttachProperties\WPF.UI.AttachProperties\bin\Debug\WPF.UI.AttachProperties.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Assets\Icon\btn_more.png" />
     <Resource Include="Assets\Icon\button_close.png" />
     <Resource Include="Assets\Icon\nav_sel_1.png" />
@@ -105,9 +111,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AttachProperties\CommonProperties.cs">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>

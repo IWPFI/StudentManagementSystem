@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:cm="clr-namespace:StudentManagementSystem.AttachProperties">
+                    xmlns:cm="clr-namespace:WPF.UI.AttachProperties;assembly=WPF.UI.AttachProperties">
     <!--左边栏边框-->
     <Style x:Key="StudentCardWindow_LeftBorderStyle" TargetType="Border">
         <Setter Property="Margin" Value="10"/>

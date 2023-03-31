@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:cm="clr-namespace:WPF.UI.AttachProperties;assembly=WPF.UI.AttachProperties"
+                    xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Assets/Style/ComboBoxStyle.xaml"/>
@@ -303,7 +303,7 @@
                 <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
                 <Setter Property="BorderBrush" TargetName="back1" Value="#FF2DABC7"/>
             </Trigger>
-            <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
                 <Setter Property="Visibility" TargetName="markText" Value="Visible"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
@@ -346,7 +346,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" TargetName="back" Value="#FF2DABC7"/>
             </Trigger>
-            <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
                 <Setter Property="Visibility" TargetName="markText" Value="Visible"/>
             </DataTrigger>
         </ControlTemplate.Triggers>

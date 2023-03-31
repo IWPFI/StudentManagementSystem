@@ -61,22 +61,6 @@
     </UserControl.Resources>
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
-            <!--<ItemsControl x:Name="DateList" ItemsSource="{Binding DateList}" Grid.Row="1">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border CornerRadius="10,10,0,0" Background="White">
-                            <Grid>
-                                <TextBox Text="{Binding .}" Background="Transparent" BorderBrush="#0000"/>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>-->
             <Border Width="400" Height="270"
                     BorderBrush="SeaGreen" BorderThickness="2" Margin="10 5 5 5">
                 <Grid Grid.Row="0" Margin="5 0 2 0">

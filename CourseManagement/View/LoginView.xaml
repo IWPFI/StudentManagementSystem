@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
             <Border Style="{DynamicResource LogoBorderStyle}">
                 <Border.InputBindings>
-                    <MouseBinding Command="{Binding DragMoveCommand}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+                    <MouseBinding Command="{Binding CmdWindowDragMove}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
                 </Border.InputBindings>
             </Border>
             <!--右上角关闭图标-->

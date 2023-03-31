@@ -84,7 +84,7 @@
             </Border>
 
             <ScrollViewer Grid.Row="1">
-                <ItemsControl Name="icCourses" ItemsSource="{Binding CourseLists}">
+                <ItemsControl Name="CoursesItemsControl" ItemsSource="{Binding CourseLists}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel/>

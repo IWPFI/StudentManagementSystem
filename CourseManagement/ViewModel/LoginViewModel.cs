@@ -39,10 +39,10 @@ namespace StudentManagementSystem.ViewModel
         /// <summary>
         /// 注册账号
         /// </summary>
-        public ICommand CmdRegister = new RelayCommand(() =>
-          {
+        public ICommand CmdRegister => new RelayCommand(() =>
+        {
 
-          });
+        });
 
         private bool _openPopup = false;
         /// <summary>
@@ -123,7 +123,7 @@ namespace StudentManagementSystem.ViewModel
 
             this.ShowProgress = Visibility.Visible;
 
-            this.ErrorMessage = "";
+            this.ErrorMessage = string.Empty;
             if (string.IsNullOrEmpty(LoginModel.UserName))//判断输入账号是否为空
             {
                 this.ErrorMessage = "请输入用户名！";
@@ -145,13 +145,13 @@ namespace StudentManagementSystem.ViewModel
             if (LoginModel.ValidationCode.ToLower() != LoginModel.RandomField)//验证码
             {
                 this.ErrorMessage = "验证码输入不正确！";
-                LoginModel.ValidationCode = "";//清空验证码输入框
+                LoginModel.ValidationCode = string.Empty;//清空验证码输入框
                 Stochastic();
                 this.ShowProgress = Visibility.Collapsed;
                 return;
             }
 
-            Task.Run(new Action(async/*₃*/() =>
+            Task.Run(new Action(async() =>
             {
                 await Task.Delay(1000);
 
@@ -161,7 +161,7 @@ namespace StudentManagementSystem.ViewModel
                     var s = JsonToList<LoginModels>(userInfo);
                     if (s == null || s.Count <= 0)
                     {
-                        LoginModel.ValidationCode = "";//清空验证码输入框
+                        LoginModel.ValidationCode = string.Empty;//清空验证码输入框
                         Stochastic();//密码不正确时刷新验证码，防暴力破解密码
                         throw new Exception("登录失败！用户名或密码错误！");
                     }
@@ -178,7 +178,7 @@ namespace StudentManagementSystem.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    LoginModel.ValidationCode = "";//清空验证码输入框
+                    LoginModel.ValidationCode = string.Empty;//清空验证码输入框
                     this.ErrorMessage = ex.Message;
                 }
                 finally

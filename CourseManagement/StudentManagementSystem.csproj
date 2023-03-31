@@ -91,8 +91,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="WPF.UI.AttachProperties">
-      <HintPath>..\..\WPF UI AttachProperties\WPF.UI.AttachProperties\WPF.UI.AttachProperties\bin\Debug\WPF.UI.AttachProperties.dll</HintPath>
+    <Reference Include="WPF.UI">
+      <HintPath>..\..\WPF UI AttachProperties\WPF.UI.AttachProperties\WPF.UI.AttachProperties\bin\Debug\WPF.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

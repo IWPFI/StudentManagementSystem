@@ -235,8 +235,8 @@
         <Setter Property="Height" Value="25"/>
         <Setter Property="Background" Value="#ccc"/>
         <Setter Property="BorderBrush" Value="#fff"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#eee"/>
-        <Setter Property="cm:UIProperties.PressedBackground" Value="#fff"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#eee"/>
+        <Setter Property="cm:WPFUI.PressedBackground" Value="#fff"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -250,10 +250,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{Binding Path=(cm:UIProperties.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="Background" TargetName="border" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{Binding Path=(cm:UIProperties.PressedBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="Background" TargetName="border" Value="{Binding Path=(cm:WPFUI.PressedBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

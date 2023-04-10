@@ -62,11 +62,11 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="26"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#FFA8BCF0"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:UIProperties.DropShadowDepth" Value="3"/>
-        <Setter Property="cm:UIProperties.DropShadowBlurRadius" Value="10"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
+        <Setter Property="cm:WPFUI.DropShadowDepth" Value="3"/>
+        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="10"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNo">
@@ -89,17 +89,17 @@
         <Setter Property="Foreground" Value="#7d8494"/>
         <Setter Property="FontFamily" Value="等线"/>
         <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="26"/>
-        <Setter Property="cm:UIProperties.DropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.DropShadowDepth" Value="0"/>
-        <Setter Property="cm:UIProperties.DropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#e8eef6"/>
-        <Setter Property="cm:UIProperties.MouseOverBorderBrush" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="#7d8494"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowDepth" Value="0"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowOpcity" Value="0"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
+        <Setter Property="cm:WPFUI.DropShadowColor" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.DropShadowDepth" Value="0"/>
+        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="0"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#e8eef6"/>
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#7d8494"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowColor" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowDepth" Value="0"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowBlurRadius" Value="0"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowOpcity" Value="0"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNo">
@@ -124,11 +124,11 @@
         <Setter Property="Visibility" Value="Collapsed"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="26"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#3362D8"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:UIProperties.DropShadowDepth" Value="3"/>
-        <Setter Property="cm:UIProperties.DropShadowBlurRadius" Value="10"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#3362D8"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
+        <Setter Property="cm:WPFUI.DropShadowDepth" Value="3"/>
+        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="10"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
         <Setter Property="Effect">
             <Setter.Value>
@@ -157,11 +157,11 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="26"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#3362D8"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:UIProperties.DropShadowDepth" Value="3"/>
-        <Setter Property="cm:UIProperties.DropShadowBlurRadius" Value="10"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#3362D8"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
+        <Setter Property="cm:WPFUI.DropShadowDepth" Value="3"/>
+        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="10"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="OK">
@@ -184,17 +184,17 @@
         <Setter Property="Background" Value="#e8eef6"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Foreground" Value="#7d8494"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="26"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#e8eef6"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="#7d8494"/>
-        <Setter Property="cm:UIProperties.MouseOverBorderBrush" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.DropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.DropShadowDepth" Value="0"/>
-        <Setter Property="cm:UIProperties.DropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowDepth" Value="0"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowOpcity" Value="0"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#e8eef6"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#7d8494"/>
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.DropShadowColor" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.DropShadowDepth" Value="0"/>
+        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="0"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowColor" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowDepth" Value="0"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowBlurRadius" Value="0"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowOpcity" Value="0"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNoCancel">

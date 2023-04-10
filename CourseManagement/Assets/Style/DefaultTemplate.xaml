@@ -124,10 +124,10 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:UIProperties.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:UIProperties.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:UIProperties.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:UIProperties.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
@@ -150,7 +150,7 @@
         <Grid Width="{TemplateBinding Width}"
               Height="{TemplateBinding Height}">
             <Border x:Name="border" 
-                    CornerRadius="{TemplateBinding cm:UIProperties.CornerRadius}" 
+                    CornerRadius="{TemplateBinding cm:WPFUI.CornerRadius}" 
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -174,9 +174,9 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            Effect="{x:Null}"/>
-                    <Image x:Name="image" Grid.Column="1" Source="{TemplateBinding cm:UIProperties.Icon}"
-                           Width="{TemplateBinding cm:UIProperties.IconWidth}" Height="{TemplateBinding cm:UIProperties.IconHeight}" 
-                           Margin="{TemplateBinding cm:UIProperties.IconMargin}" Stretch="None" Effect="{x:Null}">
+                    <Image x:Name="image" Grid.Column="1" Source="{TemplateBinding cm:WPFUI.Icon}"
+                           Width="{TemplateBinding cm:WPFUI.IconWidth}" Height="{TemplateBinding cm:WPFUI.IconHeight}" 
+                           Margin="{TemplateBinding cm:WPFUI.IconMargin}" Stretch="None" Effect="{x:Null}">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
@@ -193,20 +193,20 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Effect" Value="{x:Null}"/>
-                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:UIProperties.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:UIProperties.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:UIProperties.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
                 <Setter TargetName="border" Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Opacity="{Binding Path=(cm:UIProperties.MouseOverDropShadowOpcity),RelativeSource={RelativeSource TemplatedParent}}"
+                        <DropShadowEffect Opacity="{Binding Path=(cm:WPFUI.MouseOverDropShadowOpcity),RelativeSource={RelativeSource TemplatedParent}}"
                                           Direction="-90" 
-                                          Color="{Binding Path=(cm:UIProperties.MouseOverDropShadowColor),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          ShadowDepth="{Binding Path=(cm:UIProperties.MouseOverDropShadowDepth),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          BlurRadius="{Binding Path=(cm:UIProperties.MouseOverDropShadowBlurRadius),RelativeSource={RelativeSource TemplatedParent}}"/>
+                                          Color="{Binding Path=(cm:WPFUI.MouseOverDropShadowColor),RelativeSource={RelativeSource TemplatedParent}}" 
+                                          ShadowDepth="{Binding Path=(cm:WPFUI.MouseOverDropShadowDepth),RelativeSource={RelativeSource TemplatedParent}}" 
+                                          BlurRadius="{Binding Path=(cm:WPFUI.MouseOverDropShadowBlurRadius),RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:UIProperties.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:UIProperties.MouseOverIcon),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:WPFUI.MouseOverIcon),RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
@@ -228,7 +228,7 @@
     <ControlTemplate x:Key="MenuButtonTemplate" TargetType="Button">
         <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="#00000000">
             <Grid>
-                <Image x:Name="image" Source="{TemplateBinding cm:UIProperties.Icon}"
+                <Image x:Name="image" Source="{TemplateBinding cm:WPFUI.Icon}"
                        Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Effect="{x:Null}" RenderTransformOrigin="0.5 0.5">
                     <Image.RenderTransform>
                         <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"/>
@@ -283,7 +283,7 @@
         <Grid Width="{TemplateBinding Width}"
               Height="{TemplateBinding Height}">
             <Border x:Name="border" 
-                    CornerRadius="{TemplateBinding cm:UIProperties.CornerRadius}" 
+                    CornerRadius="{TemplateBinding cm:WPFUI.CornerRadius}" 
                     BorderThickness="{TemplateBinding BorderThickness}"
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
@@ -308,9 +308,9 @@
                            HorizontalAlignment="Center"
                            Effect="{x:Null}"/>
                     <!--
-                    <Image x:Name="image" Source="{TemplateBinding cm:UIProperties.Icon}" Width="{TemplateBinding cm:UIProperties.IconWidth}" 
-                           Height="{TemplateBinding cm:UIProperties.IconHeight}" Stretch="None" Grid.Column="1" Effect="{x:Null}"
-                           Margin="{TemplateBinding cm:UIProperties.IconMargin}">
+                    <Image x:Name="image" Source="{TemplateBinding cm:WPFUI.Icon}" Width="{TemplateBinding cm:WPFUI.IconWidth}" 
+                           Height="{TemplateBinding cm:WPFUI.IconHeight}" Stretch="None" Grid.Column="1" Effect="{x:Null}"
+                           Margin="{TemplateBinding cm:WPFUI.IconMargin}">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
@@ -328,20 +328,20 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Effect" Value="{x:Null}"/>
-                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:UIProperties.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:UIProperties.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:UIProperties.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
                 <Setter TargetName="border" Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Opacity="{Binding Path=(cm:UIProperties.MouseOverDropShadowOpcity),RelativeSource={RelativeSource TemplatedParent}}"
+                        <DropShadowEffect Opacity="{Binding Path=(cm:WPFUI.MouseOverDropShadowOpcity),RelativeSource={RelativeSource TemplatedParent}}"
                                           Direction="-90" 
-                                          Color="{Binding Path=(cm:UIProperties.MouseOverDropShadowColor),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          ShadowDepth="{Binding Path=(cm:UIProperties.MouseOverDropShadowDepth),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          BlurRadius="{Binding Path=(cm:UIProperties.MouseOverDropShadowBlurRadius),RelativeSource={RelativeSource TemplatedParent}}"/>
+                                          Color="{Binding Path=(cm:WPFUI.MouseOverDropShadowColor),RelativeSource={RelativeSource TemplatedParent}}" 
+                                          ShadowDepth="{Binding Path=(cm:WPFUI.MouseOverDropShadowDepth),RelativeSource={RelativeSource TemplatedParent}}" 
+                                          BlurRadius="{Binding Path=(cm:WPFUI.MouseOverDropShadowBlurRadius),RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:UIProperties.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <!--<Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:UIProperties.MouseOverIcon),RelativeSource={RelativeSource TemplatedParent}}"/>-->
+                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <!--<Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:WPFUI.MouseOverIcon),RelativeSource={RelativeSource TemplatedParent}}"/>-->
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">

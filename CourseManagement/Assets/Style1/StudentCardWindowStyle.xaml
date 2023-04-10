@@ -81,8 +81,8 @@
         <Setter Property="Foreground" Value="#FF3362D8"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="#FFE88686"/>
-        <Setter Property="cm:UIProperties.PressedForeground" Value="red"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#FFE88686"/>
+        <Setter Property="cm:WPFUI.PressedForeground" Value="red"/>
         <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate}"/>
     </Style>
 

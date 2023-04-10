@@ -365,11 +365,11 @@
         <Setter Property="BorderBrush" Value="#FFCBCBCB"/>
         <Setter Property="Foreground" Value="#FF787878"/>
         <Setter Property="BorderThickness" Value="0 0 2 2"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="5"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="5"/>
         <Setter Property="FontFamily" Value="{DynamicResource Iconfont}"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
-        <Setter Property="cm:UIProperties.MouseOverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
     </Style>
 
@@ -385,11 +385,11 @@
         <Setter Property="BorderBrush" Value="#FFEEBDBD"/>
         <Setter Property="Foreground" Value="#FF939393"/>
         <Setter Property="BorderThickness" Value="0 0 2 2"/>
-        <Setter Property="cm:UIProperties.CornerRadius" Value="5"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="5"/>
         <Setter Property="FontFamily" Value="{DynamicResource Iconfont}"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
-        <Setter Property="cm:UIProperties.MouseOverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
     </Style>
 

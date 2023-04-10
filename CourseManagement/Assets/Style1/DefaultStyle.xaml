@@ -25,14 +25,14 @@
         <Setter Property="BorderBrush" Value="{x:Null}"/>
         <Setter Property="Foreground" Value="White"/>
         <!--
-        <Setter Property="cm:UIProperties.CornerRadius" Value="32"/>
-        <Setter Property="cm:UIProperties.MouseOverBackground" Value="#FFA8BCF0"/>
-        <Setter Property="cm:UIProperties.MouseOverBorderBrush" Value="Transparent"/>
-        <Setter Property="cm:UIProperties.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowColor" Value="#059AA3AC"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowDepth" Value="6"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowBlurRadius" Value="20"/>
-        <Setter Property="cm:UIProperties.MouseOverDropShadowOpcity" Value="0.2"/>
+        <Setter Property="cm:WPFUI.CornerRadius" Value="32"/>
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0"/>
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent"/>
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowColor" Value="#059AA3AC"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowDepth" Value="6"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowBlurRadius" Value="20"/>
+        <Setter Property="cm:WPFUI.MouseOverDropShadowOpcity" Value="0.2"/>
         未知报错，暂时不用-->
         <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
     </Style>

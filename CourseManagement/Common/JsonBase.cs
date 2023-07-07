@@ -121,7 +121,7 @@ public class JsonBase
     /// Json字符串转List
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="str"></param>
+    /// <param name="str">[{"id":1,"xxx":"xxx"}]</param>
     /// <returns>List</returns>
     public static List<T> JsonToList<T>(string str)
     {

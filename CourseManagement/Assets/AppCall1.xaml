@@ -1,23 +1,21 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Assets/Style1/AddStudentWindowStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/ComboBoxStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/ContactsViewStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/CoursePageViewStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/DataGridStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/DefaultStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/DefaultTemplate.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/FirstPageViewStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/LoginViewStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/MainWindowStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/MessageWindowStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/PopupControlStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/ScrollViewerStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/SearchStudentWindowStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/StudentCardWindowStyle.xaml"/>
-        <ResourceDictionary Source="../Assets/Style1/TextbookViewStyle.xaml"/>
+        <ResourceDictionary Source="../Assets/Style1/AddStudentWindowStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/ContactsViewStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/CoursePageViewStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/DataGridStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/DefaultStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/DefaultTemplate.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/FirstPageViewStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/LoginViewStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/MainWindowStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/MessageWindowStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/PopupControlStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/ScrollViewerStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/SearchStudentWindowStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/StudentCardWindowStyle.xaml" />
+        <ResourceDictionary Source="../Assets/Style1/TextbookViewStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <FontFamily x:Key="Iconfont">pack://application:,,,/StudentManagementSystem;component/Assets/Typeface/#iconfont</FontFamily>
 </ResourceDictionary>
-    

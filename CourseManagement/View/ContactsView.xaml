@@ -1,64 +1,100 @@
 ﻿<UserControl x:Class="StudentManagementSystem.View.ContactsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:StudentManagementSystem.View"
-             xmlns:viewmodel="clr-namespace:StudentManagementSystem.ViewModel" 
-             mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:StudentInformationViewModel}"
-             d:DesignHeight="450" d:DesignWidth="800">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StudentManagementSystem.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:StudentManagementSystem.ViewModel"
+    d:DataContext="{d:DesignInstance Type=viewmodel:StudentInformationViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="9*"/>
+                <RowDefinition />
+                <RowDefinition Height="9*" />
             </Grid.RowDefinitions>
-            
+
             <Grid>
-                <TextBlock Text="学号" Margin="110,0,0,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="姓名" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="序号" Margin="0,0,110,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                <Border Margin="50 0" BorderThickness="0 0 0 2" BorderBrush="Gray" VerticalAlignment="Bottom"/>
+                <TextBlock
+                    Margin="110,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Text="学号" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Text="姓名" />
+                <TextBlock
+                    Margin="0,0,110,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Text="序号" />
+                <Border
+                    Margin="50,0"
+                    VerticalAlignment="Bottom"
+                    BorderBrush="Gray"
+                    BorderThickness="0,0,0,2" />
             </Grid>
 
             <Grid Grid.Row="1">
                 <ScrollViewer>
-                    <ItemsControl ItemsSource="{Binding StudentList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl ItemsSource="{Binding StudentList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <VirtualizingStackPanel/>
+                                <VirtualizingStackPanel />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="20" Style="{DynamicResource BorderStyle}">
                                     <Border.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.CmdOpenStudentInfoCard,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}" MouseAction="LeftDoubleClick"/>
+                                        <MouseBinding Command="{Binding DataContext.CmdOpenStudentInfoCard, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" CommandParameter="{Binding Id}" MouseAction="LeftDoubleClick" />
                                     </Border.InputBindings>
                                     <Grid>
-                                        <TextBlock Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Hyperlink Command="{Binding DataContext.CmdOpenStudentInfoCard,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" CommandParameter="{Binding Id}">
-                                                <TextBlock Text="{Binding StudentID}"/>
+                                        <TextBlock
+                                            Margin="100,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="20"
+                                            Foreground="#FF666161">
+                                            <Hyperlink Command="{Binding DataContext.CmdOpenStudentInfoCard, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" CommandParameter="{Binding Id}">
+                                                <TextBlock Text="{Binding StudentID}" />
                                             </Hyperlink>
                                         </TextBlock>
-                                        <TextBlock Text="{Binding StudentName}" Margin="0 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Id}" Margin="100 0" FontSize="20" Foreground="#FF666161" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                        <TextBlock
+                                            Margin="0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="20"
+                                            Foreground="#FF666161"
+                                            Text="{Binding StudentName}" />
+                                        <TextBlock
+                                            Margin="100,0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            FontSize="20"
+                                            Foreground="#FF666161"
+                                            Text="{Binding Id}" />
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-                
-                <!--刷新-->
-                <Button Style="{StaticResource ContactsFlushbutton}" Command="{Binding CmdFlushStudentDate}"/>
-                
-                <!--搜索-->
-                <Button Style="{StaticResource ContactsSearchbutton}" Command="{Binding CmdOpenSearchStudentWindow}"/>
-                
-                <!--添加-->
-                <Button Style="{StaticResource ContactsAddbutton}" Command="{Binding CmdOpenAddStudentWindow}"/>
+
+                <!--  刷新  -->
+                <Button Command="{Binding CmdFlushStudentDate}" Style="{StaticResource ContactsFlushbutton}" />
+
+                <!--  搜索  -->
+                <Button Command="{Binding CmdOpenSearchStudentWindow}" Style="{StaticResource ContactsSearchbutton}" />
+
+                <!--  添加  -->
+                <Button Command="{Binding CmdOpenAddStudentWindow}" Style="{StaticResource ContactsAddbutton}" />
             </Grid>
         </Grid>
     </Border>

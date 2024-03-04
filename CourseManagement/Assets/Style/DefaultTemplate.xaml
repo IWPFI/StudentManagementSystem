@@ -1,29 +1,55 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI">
 
-    <ControlTemplate TargetType="Button" x:Key="WindowControlButtonTemplate">
-        <Border CornerRadius="3" Background="Transparent" BorderBrush="Transparent" Width="30" Height="30">
+    <ControlTemplate x:Key="WindowControlButtonTemplate" TargetType="Button">
+        <Border
+            Width="30"
+            Height="30"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            CornerRadius="3">
             <Grid>
-                <TextBlock Text="{TemplateBinding Content}" Name="tt" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" FontFamily="{DynamicResource Iconfont}" FontSize="{TemplateBinding FontSize}"/>
-                <Border CornerRadius="3" Background="#22FFFFFF" Name="back" Visibility="Hidden"/>
-                <Border CornerRadius="3" Background="#62FFFFFF" Name="back_1" Visibility="Hidden"/>
+                <TextBlock Name="tt"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{DynamicResource Iconfont}"
+                    FontSize="{TemplateBinding FontSize}"
+                    Foreground="{TemplateBinding Foreground}"
+                    Text="{TemplateBinding Content}" />
+                <Border Name="back"
+                    Background="#22FFFFFF"
+                    CornerRadius="3"
+                    Visibility="Hidden" />
+                <Border Name="back_1"
+                    Background="#62FFFFFF"
+                    CornerRadius="3"
+                    Visibility="Hidden" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="back"/>
+                <Setter TargetName="back" Property="Visibility" Value="Visible" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="back_1"/>
+                <Setter TargetName="back_1" Property="Visibility" Value="Visible" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate TargetType="Button" x:Key="WindowControlButtonTemplate_1">
-        <Border CornerRadius="3" Background="Transparent" BorderBrush="Transparent" Width="30" Height="30">
+    <ControlTemplate x:Key="WindowControlButtonTemplate_1" TargetType="Button">
+        <Border
+            Width="30"
+            Height="30"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            CornerRadius="3">
             <Grid>
-                <TextBlock Text="{TemplateBinding Content}" Name="tt" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" FontFamily="{DynamicResource Iconfont}" FontSize="{TemplateBinding FontSize}"/>
+                <TextBlock Name="tt"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{DynamicResource Iconfont}"
+                    FontSize="{TemplateBinding FontSize}"
+                    Foreground="{TemplateBinding Foreground}"
+                    Text="{TemplateBinding Content}" />
                 <!--
                 <Border CornerRadius="3" Background="#22FFFFFF" Name="back" Visibility="Hidden"/>
                 <Border CornerRadius="3" Background="#62FFFFFF" Name="back_1" Visibility="Hidden"/>
@@ -32,22 +58,31 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="#FFA84141" TargetName="tt"/>
+                <Setter TargetName="tt" Property="Foreground" Value="#FFA84141" />
                 <!--<Setter Property="Visibility" Value="Visible" TargetName="back"/>-->
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Foreground" Value="red" TargetName="tt"/>
+                <Setter TargetName="tt" Property="Foreground" Value="red" />
                 <!--<Setter Property="Visibility" Value="Visible" TargetName="back_1"/>-->
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
 
-    <ControlTemplate TargetType="Button" x:Key="GeneralButtonControlTemplate">
-        <Border Name="border" Width="80" Height="80" CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="Transparent">
+    <ControlTemplate x:Key="GeneralButtonControlTemplate" TargetType="Button">
+        <Border Name="border"
+            Width="80"
+            Height="80"
+            Background="{TemplateBinding Background}"
+            BorderBrush="Transparent"
+            CornerRadius="3">
             <Grid>
-                <ContentControl Content="{TemplateBinding Content}" Margin="20,4" FontSize="13"
-                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ContentControl
+                    Margin="20,4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="{TemplateBinding Content}"
+                    FontSize="13" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -55,16 +90,24 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Width" 
-                                             From="75" To="80" Duration="0:0:0.3">
+                            <DoubleAnimation
+                                Storyboard.TargetName="border"
+                                Storyboard.TargetProperty="Width"
+                                From="75"
+                                To="80"
+                                Duration="0:0:0.3">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
-                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Height" 
-                                             From="75" To="80" Duration="0:0:0.3">
+                            <DoubleAnimation
+                                Storyboard.TargetName="border"
+                                Storyboard.TargetProperty="Height"
+                                From="75"
+                                To="80"
+                                Duration="0:0:0.3">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
                         </Storyboard>
@@ -73,73 +116,78 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Width" 
-                                             From="80" To="75" Duration="0:0:0">
+                            <DoubleAnimation
+                                Storyboard.TargetName="border"
+                                Storyboard.TargetProperty="Width"
+                                From="80"
+                                To="75"
+                                Duration="0:0:0">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
-                            <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Height" 
-                                             From="80" To="75" Duration="0:0:0">
+                            <DoubleAnimation
+                                Storyboard.TargetName="border"
+                                Storyboard.TargetProperty="Height"
+                                From="80"
+                                To="75"
+                                Duration="0:0:0">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
             </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-
-            </Trigger>
+            <Trigger Property="IsPressed" Value="True" />
 
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <ControlTemplate x:Key="GamesExampleItemControlTryTemplate" TargetType="Button">
-        <Grid Width="{TemplateBinding Width}"
-              Height="{TemplateBinding Height}">
-            <Border x:Name="border" 
-                    CornerRadius="25" 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    RenderTransformOrigin="0.5 0.5">
+        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+            <Border x:Name="border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="25"
+                RenderTransformOrigin="0.5 0.5">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="text" 
-                           Text="{TemplateBinding Content}"
-                           FontSize="{TemplateBinding FontSize}"
-                           FontFamily="{TemplateBinding FontFamily}"
-                           FontStyle="{TemplateBinding FontStyle}"
-                           Foreground="{TemplateBinding Foreground}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Effect="{x:Null}"/>
+                    <TextBlock x:Name="text"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Effect="{x:Null}"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        FontSize="{TemplateBinding FontSize}"
+                        FontStyle="{TemplateBinding FontStyle}"
+                        Foreground="{TemplateBinding Foreground}"
+                        Text="{TemplateBinding Content}" />
                 </Grid>
             </Border>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground), RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                        <ScaleTransform ScaleX="0.95" ScaleY="0.95" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -147,14 +195,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="NormalButtonTemplate" TargetType="Button">
-        <Grid Width="{TemplateBinding Width}"
-              Height="{TemplateBinding Height}">
-            <Border x:Name="border" 
-                    CornerRadius="{TemplateBinding cm:WPFUI.CornerRadius}" 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    RenderTransformOrigin="0.5 0.5">
+        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+            <Border x:Name="border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding cm:WPFUI.CornerRadius}"
+                RenderTransformOrigin="0.5 0.5">
                 <!--
                 <Border.RenderTransform>
                     <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"/>
@@ -162,26 +209,30 @@
                 -->
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="text"
-                           Text="{TemplateBinding Content}"
-                           FontFamily="{TemplateBinding FontFamily}"
-                           FontSize="{TemplateBinding FontSize}"
-                           FontStyle="{TemplateBinding FontStyle}"
-                           Foreground="{TemplateBinding Foreground}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Effect="{x:Null}"/>
-                    <Image x:Name="image" Grid.Column="1" Source="{TemplateBinding cm:WPFUI.Icon}"
-                           Width="{TemplateBinding cm:WPFUI.IconWidth}" Height="{TemplateBinding cm:WPFUI.IconHeight}" 
-                           Margin="{TemplateBinding cm:WPFUI.IconMargin}" Stretch="None" Effect="{x:Null}">
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Effect="{x:Null}"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        FontSize="{TemplateBinding FontSize}"
+                        FontStyle="{TemplateBinding FontStyle}"
+                        Foreground="{TemplateBinding Foreground}"
+                        Text="{TemplateBinding Content}" />
+                    <Image x:Name="image" Grid.Column="1"
+                        Width="{TemplateBinding cm:WPFUI.IconWidth}"
+                        Height="{TemplateBinding cm:WPFUI.IconHeight}"
+                        Margin="{TemplateBinding cm:WPFUI.IconMargin}"
+                        Effect="{x:Null}"
+                        Source="{TemplateBinding cm:WPFUI.Icon}"
+                        Stretch="None">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
                                     <Trigger Property="Source" Value="{x:Null}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Visibility" Value="Collapsed" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -192,33 +243,34 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Effect" Value="{x:Null}"/>
-                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter Property="Effect" Value="{x:Null}" />
+                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="border" Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Opacity="{Binding Path=(cm:WPFUI.MouseOverDropShadowOpcity),RelativeSource={RelativeSource TemplatedParent}}"
-                                          Direction="-90" 
-                                          Color="{Binding Path=(cm:WPFUI.MouseOverDropShadowColor),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          ShadowDepth="{Binding Path=(cm:WPFUI.MouseOverDropShadowDepth),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          BlurRadius="{Binding Path=(cm:WPFUI.MouseOverDropShadowBlurRadius),RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <DropShadowEffect
+                            BlurRadius="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectBlurRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            Direction="-90"
+                            Opacity="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectOpcity), RelativeSource={RelativeSource TemplatedParent}}"
+                            ShadowDepth="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectDepth), RelativeSource={RelativeSource TemplatedParent}}"
+                            Color="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectColor), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:WPFUI.MouseOverIcon),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:WPFUI.MouseOverIcon), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground), RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                        <ScaleTransform ScaleX="0.95" ScaleY="0.95" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -228,10 +280,14 @@
     <ControlTemplate x:Key="MenuButtonTemplate" TargetType="Button">
         <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="#00000000">
             <Grid>
-                <Image x:Name="image" Source="{TemplateBinding cm:WPFUI.Icon}"
-                       Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Effect="{x:Null}" RenderTransformOrigin="0.5 0.5">
+                <Image x:Name="image"
+                    Width="{TemplateBinding Width}"
+                    Height="{TemplateBinding Height}"
+                    Effect="{x:Null}"
+                    RenderTransformOrigin="0.5 0.5"
+                    Source="{TemplateBinding cm:WPFUI.Icon}">
                     <Image.RenderTransform>
-                        <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"/>
+                        <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1" />
                     </Image.RenderTransform>
                 </Image>
             </Grid>
@@ -241,16 +297,22 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" 
-                                             To="0.9" Duration="0:0:0.1">
+                            <DoubleAnimation
+                                Storyboard.TargetName="scale"
+                                Storyboard.TargetProperty="ScaleX"
+                                To="0.9"
+                                Duration="0:0:0.1">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
-                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" 
-                                             To="0.9" Duration="0:0:0.1">
+                            <DoubleAnimation
+                                Storyboard.TargetName="scale"
+                                Storyboard.TargetProperty="ScaleY"
+                                To="0.9"
+                                Duration="0:0:0.1">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
                         </Storyboard>
@@ -259,16 +321,22 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" 
-                                             To="1" Duration="0:0:0.1">
+                            <DoubleAnimation
+                                Storyboard.TargetName="scale"
+                                Storyboard.TargetProperty="ScaleX"
+                                To="1"
+                                Duration="0:0:0.1">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
-                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" 
-                                             To="1" Duration="0:0:0.1">
+                            <DoubleAnimation
+                                Storyboard.TargetName="scale"
+                                Storyboard.TargetProperty="ScaleY"
+                                To="1"
+                                Duration="0:0:0.1">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuarticEase EasingMode="EaseOut"/>
+                                    <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
                         </Storyboard>
@@ -280,14 +348,13 @@
 
 
     <ControlTemplate x:Key="noNormalButtonTemplate" TargetType="Button">
-        <Grid Width="{TemplateBinding Width}"
-              Height="{TemplateBinding Height}">
-            <Border x:Name="border" 
-                    CornerRadius="{TemplateBinding cm:WPFUI.CornerRadius}" 
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    RenderTransformOrigin="0.5 0.5">
+        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+            <Border x:Name="border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding cm:WPFUI.CornerRadius}"
+                RenderTransformOrigin="0.5 0.5">
                 <!--
                 <Border.RenderTransform>
                     <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"/>
@@ -295,20 +362,20 @@
                 -->
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="text"
-                           Text="{TemplateBinding Content}"
-                           FontSize="{TemplateBinding FontSize}"
-                           FontFamily="{TemplateBinding FontFamily}"
-                           FontStyle="{TemplateBinding FontStyle}"
-                           Foreground="{TemplateBinding Foreground}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Effect="{x:Null}"/>
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Effect="{x:Null}"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        FontSize="{TemplateBinding FontSize}"
+                        FontStyle="{TemplateBinding FontStyle}"
+                        Foreground="{TemplateBinding Foreground}"
+                        Text="{TemplateBinding Content}" />
                     <!--
-                    <Image x:Name="image" Source="{TemplateBinding cm:WPFUI.Icon}" Width="{TemplateBinding cm:WPFUI.IconWidth}" 
+                    <Image x:Name="image" Source="{TemplateBinding cm:WPFUI.Icon}" Width="{TemplateBinding cm:WPFUI.IconWidth}"
                            Height="{TemplateBinding cm:WPFUI.IconHeight}" Stretch="None" Grid.Column="1" Effect="{x:Null}"
                            Margin="{TemplateBinding cm:WPFUI.IconMargin}">
                         <Image.Style>
@@ -327,33 +394,34 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Effect" Value="{x:Null}"/>
-                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin),RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter Property="Effect" Value="{x:Null}" />
+                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{Binding Path=(cm:WPFUI.MouseOverBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Setter TargetName="border" Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Opacity="{Binding Path=(cm:WPFUI.MouseOverDropShadowOpcity),RelativeSource={RelativeSource TemplatedParent}}"
-                                          Direction="-90" 
-                                          Color="{Binding Path=(cm:WPFUI.MouseOverDropShadowColor),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          ShadowDepth="{Binding Path=(cm:WPFUI.MouseOverDropShadowDepth),RelativeSource={RelativeSource TemplatedParent}}" 
-                                          BlurRadius="{Binding Path=(cm:WPFUI.MouseOverDropShadowBlurRadius),RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <DropShadowEffect
+                            BlurRadius="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectBlurRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            Direction="-90"
+                            Opacity="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectOpcity), RelativeSource={RelativeSource TemplatedParent}}"
+                            ShadowDepth="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectDepth), RelativeSource={RelativeSource TemplatedParent}}"
+                            Color="{Binding Path=(cm:WPFUI.MouseOverDropShadowEffectColor), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="border" Property="Background" Value="{Binding Path=(cm:WPFUI.MouseOverBackground),RelativeSource={RelativeSource TemplatedParent}}"/>
+                <Setter TargetName="border" Property="Padding" Value="{Binding Path=(cm:WPFUI.MouseOverMargin), RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="text" Property="Foreground" Value="{Binding Path=(cm:WPFUI.MouseOverForeground), RelativeSource={RelativeSource TemplatedParent}}" />
                 <!--<Setter TargetName="image" Property="Source" Value="{Binding Path=(cm:WPFUI.MouseOverIcon),RelativeSource={RelativeSource TemplatedParent}}"/>-->
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="border" Property="RenderTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                        <ScaleTransform ScaleX="0.95" ScaleY="0.95" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -362,13 +430,13 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" 
+                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX"
                                              To="0.9" Duration="0:0:0.1">
                                 <DoubleAnimation.EasingFunction>
                                     <QuarticEase EasingMode="EaseOut"/>
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
-                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" 
+                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY"
                                              To="0.9" Duration="0:0:0.1">
                                 <DoubleAnimation.EasingFunction>
                                     <QuarticEase EasingMode="EaseOut"/>

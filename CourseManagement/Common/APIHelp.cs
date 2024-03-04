@@ -57,7 +57,7 @@ public class APIHelp
             request.AddHeader("Authorization", authorization);
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("application/json", data, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
+            RestResponse response = client.Execute<RestResponse>(request);
             return Task.FromResult(response.StatusCode.ToString());
         }
         catch (Exception ex)
@@ -76,7 +76,7 @@ public class APIHelp
             request.AddHeader("apikey", apikey);
             request.AddHeader("Authorization", authorization);
             request.AddParameter("application/json", date, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
+            RestResponse response = client.Execute<RestResponse>(request);
             return Task.FromResult(response.Content);
         }
         catch (Exception ex)
@@ -125,7 +125,7 @@ public class APIHelp
             var client = new RestClient(Url);
             var request = new RestRequest("", Method.Get);
             request.AddHeader("apikey", apikey);
-            RestResponse response = client.Execute(request);
+            RestResponse response = client.Execute<RestResponse>(request);
             return Task.FromResult(response.Content);
         }
         catch (Exception ex)

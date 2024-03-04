@@ -1,222 +1,232 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:Double x:Key="MessageWindowWidth">668</sys:Double>
 
-    <!--消息窗口Border-->
+    <!--  消息窗口Border  -->
     <Style x:Key="MessageWindowBorder" TargetType="Border">
-        <Setter Property="Margin" Value="20"/>
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Background" Value="#F5F8FC"/>
+        <Setter Property="Background" Value="#F5F8FC" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#4065a1" Opacity="0.4" Direction="-90" ShadowDepth="6" BlurRadius="20"/>
+                <DropShadowEffect
+                    BlurRadius="20"
+                    Direction="-90"
+                    Opacity="0.4"
+                    ShadowDepth="6"
+                    Color="#4065a1" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="20" />
     </Style>
 
-    <!--消息窗口上部背景-->
+    <!--  消息窗口上部背景  -->
     <Style x:Key="MessageWindowTopBackground" TargetType="Border">
-        <Setter Property="CornerRadius" Value="10 10 0 0"/>
-        <Setter Property="Background" Value="#DCE5F5"/>
+        <Setter Property="Background" Value="#DCE5F5" />
+        <Setter Property="CornerRadius" Value="10 10 0 0" />
     </Style>
 
-    <!--消息窗口上部图片-->
+    <!--  消息窗口上部图片  -->
     <Style x:Key="MessageWindowTopImage" TargetType="Image">
-        <Setter Property="Margin" Value="0 20 -20 0"/>
-        <Setter Property="Stretch" Value="None"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Source" Value="/Assets/Icon/pair_illustration_caveat1.png"/>
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Margin" Value="0,20,-20,0" />
+        <Setter Property="Source" Value="/Assets/Icon/pair_illustration_caveat1.png" />
+        <Setter Property="Stretch" Value="None" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxImage}" Value="Information">
-                <Setter Property="Source" Value="/Assets/Icon/pair_illustration_prompt1.png"/>
+                <Setter Property="Source" Value="/Assets/Icon/pair_illustration_prompt1.png" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MessageBoxImage}" Value="Question">
-                <Setter Property="Source" Value="/Assets/Icon/pair_illustration_error.png"/>
+                <Setter Property="Source" Value="/Assets/Icon/pair_illustration_error.png" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
-    <!--消息窗口文字-->
+    <!--  消息窗口文字  -->
     <Style x:Key="MessageWindowTopTextBlock" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="Margin" Value="10 40 20 20"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Foreground" Value="#FF5D6D91"/>
-        <Setter Property="FontFamily" Value="/MusicEdu.UI;component/Resource/Fonts/#方正兰亭中黑_GBK"/>
-        <Setter Property="Text" Value="{Binding Message}"/>
+        <Setter Property="FontFamily" Value="/MusicEdu.UI;component/Resource/Fonts/#方正兰亭中黑_GBK" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="#FF5D6D91" />
+        <Setter Property="Margin" Value="10,40,20,20" />
+        <Setter Property="Text" Value="{Binding Message}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <!--是按钮-->
+    <!--  是按钮  -->
     <Style x:Key="MessageWindowzYesButton" TargetType="Button">
-        <Setter Property="Width" Value="184"/>
-        <Setter Property="Height" Value="52"/>
-        <Setter Property="FontSize" Value="21"/>
-        <Setter Property="FontFamily" Value="等线"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Background" Value="#FFA8BCF0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
-        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0"/>
-        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:WPFUI.DropShadowDepth" Value="3"/>
-        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="10"/>
-        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
+        <Setter Property="Background" Value="#FFA8BCF0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontFamily" Value="等线" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="52" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Width" Value="184" />
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26" />
+        <Setter Property="cm:WPFUI.DropShadowEffectBlurRadius" Value="10" />
+        <Setter Property="cm:WPFUI.DropShadowEffectDepth" Value="3" />
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0" />
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNo">
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNoCancel">
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
-    <!--否按钮-->
-    <Style x:Key="MessageWindowNoButton" TargetType="Button" >
-        <Setter Property="Width" Value="184"/>
-        <Setter Property="Height" Value="52"/>
-        <Setter Property="FontSize" Value="21"/>
-        <Setter Property="Margin" Value="48 0 0 0"/>
-        <Setter Property="Background" Value="#e8eef6"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#7d8494"/>
-        <Setter Property="FontFamily" Value="等线"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
-        <Setter Property="cm:WPFUI.DropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:WPFUI.DropShadowDepth" Value="0"/>
-        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#e8eef6"/>
-        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent"/>
-        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#7d8494"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowDepth" Value="0"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowOpcity" Value="0"/>
-        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
+    <!--  否按钮  -->
+    <Style x:Key="MessageWindowNoButton" TargetType="Button">
+        <Setter Property="Background" Value="#e8eef6" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontFamily" Value="等线" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="Foreground" Value="#7d8494" />
+        <Setter Property="Height" Value="52" />
+        <Setter Property="Margin" Value="48,0,0,0" />
+        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Width" Value="184" />
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26" />
+        <Setter Property="cm:WPFUI.DropShadowEffectBlurRadius" Value="0" />
+        <Setter Property="cm:WPFUI.DropShadowEffectColor" Value="Transparent" />
+        <Setter Property="cm:WPFUI.DropShadowEffectDepth" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#e8eef6" />
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectBlurRadius" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectColor" Value="Transparent" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectDepth" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectOpcity" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#7d8494" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNo">
-                <Setter Property="IsDefault" Value="True"/>
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="IsDefault" Value="True" />
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNoCancel">
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
-    <!--确定按钮-->
-    <Style x:Key="MessageWindowzOKButton" TargetType="Button" >
-        <Setter Property="Width" Value="184"/>
-        <Setter Property="Height" Value="52"/>
-        <Setter Property="FontSize" Value="21"/>
-        <Setter Property="FontFamily" Value="等线"/>
-        <Setter Property="Background" Value="#A8BCF0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
-        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#A8BCF0"/>
-        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:WPFUI.DropShadowDepth" Value="3"/>
-        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="10"/>
-        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
+    <!--  确定按钮  -->
+    <Style x:Key="MessageWindowzOKButton" TargetType="Button">
+        <Setter Property="Background" Value="#A8BCF0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Opacity="0.1" Color="Black" BlurRadius="10" ShadowDepth="2"/>
+                <DropShadowEffect
+                    BlurRadius="10"
+                    Opacity="0.1"
+                    ShadowDepth="2"
+                    Color="Black" />
             </Setter.Value>
         </Setter>
+        <Setter Property="FontFamily" Value="等线" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="52" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Width" Value="184" />
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26" />
+        <Setter Property="cm:WPFUI.DropShadowEffectBlurRadius" Value="10" />
+        <Setter Property="cm:WPFUI.DropShadowEffectDepth" Value="3" />
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#A8BCF0" />
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="OK">
-                <Setter Property="IsDefault" Value="True"/>
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="IsDefault" Value="True" />
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="OKCancel">
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <!--确定按钮-->
+    <!--  确定按钮  -->
     <Style x:Key="DisConnectWindowzOKButton" TargetType="Button">
-        <Setter Property="Width" Value="184"/>
-        <Setter Property="Height" Value="52"/>
-        <Setter Property="FontSize" Value="21"/>
-        <Setter Property="FontFamily" Value="等线"/>
-        <Setter Property="Visibility" Value="Visible"/>
-        <Setter Property="Background" Value="#FFA8BCF0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
-        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0"/>
-        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White"/>
-        <Setter Property="cm:WPFUI.DropShadowDepth" Value="3"/>
-        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="10"/>
-        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
+        <Setter Property="Background" Value="#FFA8BCF0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontFamily" Value="等线" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="52" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Visibility" Value="Visible" />
+        <Setter Property="Width" Value="184" />
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26" />
+        <Setter Property="cm:WPFUI.DropShadowEffectBlurRadius" Value="10" />
+        <Setter Property="cm:WPFUI.DropShadowEffectDepth" Value="3" />
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0" />
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="White" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="OK">
-                <Setter Property="IsDefault" Value="True"/>
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="IsDefault" Value="True" />
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="OKCancel">
-                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <!--取消按钮-->
+    <!--  取消按钮  -->
     <Style x:Key="MessageWindowCancelButton" TargetType="Button">
-        <Setter Property="Width" Value="184"/>
-        <Setter Property="Height" Value="52"/>
-        <Setter Property="FontSize" Value="21"/>
-        <Setter Property="Margin" Value="48 0 0 0"/>
-        <Setter Property="FontFamily" Value="等线"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Background" Value="#e8eef6"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#7d8494"/>
-        <Setter Property="cm:WPFUI.CornerRadius" Value="26"/>
-        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#e8eef6"/>
-        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#7d8494"/>
-        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent"/>
-        <Setter Property="cm:WPFUI.DropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:WPFUI.DropShadowDepth" Value="0"/>
-        <Setter Property="cm:WPFUI.DropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowColor" Value="Transparent"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowDepth" Value="0"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowBlurRadius" Value="0"/>
-        <Setter Property="cm:WPFUI.MouseOverDropShadowOpcity" Value="0"/>
-        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
+        <Setter Property="Background" Value="#e8eef6" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontFamily" Value="等线" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="Foreground" Value="#7d8494" />
+        <Setter Property="Height" Value="52" />
+        <Setter Property="Margin" Value="48,0,0,0" />
+        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Width" Value="184" />
+        <Setter Property="cm:WPFUI.CornerRadius" Value="26" />
+        <Setter Property="cm:WPFUI.DropShadowEffectBlurRadius" Value="0" />
+        <Setter Property="cm:WPFUI.DropShadowEffectColor" Value="Transparent" />
+        <Setter Property="cm:WPFUI.DropShadowEffectDepth" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverBackground" Value="#e8eef6" />
+        <Setter Property="cm:WPFUI.MouseOverBorderBrush" Value="Transparent" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectBlurRadius" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectColor" Value="Transparent" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectDepth" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverDropShadowEffectOpcity" Value="0" />
+        <Setter Property="cm:WPFUI.MouseOverForeground" Value="#7d8494" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="YesNoCancel">
-                <Setter Property="Visibility" Value="Visible"/>
-                <Setter Property="IsDefault" Value="True"/>
+                <Setter Property="IsDefault" Value="True" />
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MessageBoxButton}" Value="OKCancel">
-                <Setter Property="Visibility" Value="Visible"/>
-                <Setter Property="IsDefault" Value="True"/>
+                <Setter Property="IsDefault" Value="True" />
+                <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
-    <!--关闭按钮-->
+    <!--  关闭按钮  -->
     <Style x:Key="MessageWindowCloseButton" TargetType="Button">
-        <Setter Property="Margin" Value="10"/>
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="Content" Value="&#xe616;"/>
-        <Setter Property="Foreground" Value="#FF3B4F81"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate_1}"/>
+        <Setter Property="Content" Value="&#xe616;" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Foreground" Value="#FF3B4F81" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Template" Value="{DynamicResource WindowControlButtonTemplate_1}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
 
 </ResourceDictionary>

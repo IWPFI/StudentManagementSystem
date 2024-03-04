@@ -1,26 +1,35 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--监控数据4个表格-->
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  监控数据4个表格  -->
     <Style x:Key="FirstPageView_MonitoringFormBorderStyle" TargetType="Border">
-        <Setter Property="Margin" Value="10"/>
-        <Setter Property="CornerRadius" Value="5"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="White" />
+        <Setter Property="CornerRadius" Value="5" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="Gray" ShadowDepth="10" BlurRadius="96" Opacity="0.4" Direction="270"/>
+                <DropShadowEffect
+                    BlurRadius="96"
+                    Direction="270"
+                    Opacity="0.4"
+                    ShadowDepth="10"
+                    Color="Gray" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="10" />
     </Style>
 
-    <!--简介-->
+    <!--  简介  -->
     <Style x:Key="FirstPageView_SynopsisBorderStyle" TargetType="Border">
-        <Setter Property="Grid.Row" Value="2"/>
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Background" Value="#FF3B4F81"/>
+        <Setter Property="Background" Value="#FF3B4F81" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#f2f2f2" ShadowDepth="10" BlurRadius="105" Direction="10" Opacity="0.4"/>
+                <DropShadowEffect
+                    BlurRadius="105"
+                    Direction="10"
+                    Opacity="0.4"
+                    ShadowDepth="10"
+                    Color="#f2f2f2" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Grid.Row" Value="2" />
     </Style>
 </ResourceDictionary>

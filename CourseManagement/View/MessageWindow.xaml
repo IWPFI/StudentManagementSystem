@@ -1,44 +1,53 @@
 ﻿<Window x:Class="StudentManagementSystem.View.MessageWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StudentManagementSystem.View"
-          mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="信息提示窗口" Height="402" Width="666" ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StudentManagementSystem.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="信息提示窗口"
+    Width="666"
+    Height="402"
+    AllowsTransparency="True"
+    Background="Transparent"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
         <Border Style="{DynamicResource MessageWindowBorder}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="257"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="257" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Border Style="{DynamicResource MessageWindowTopBackground}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="240"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="240" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Style="{DynamicResource MessageWindowTopImage}"/>
-                        <ScrollViewer Grid.Column="1" VerticalAlignment="Center" Margin="10 40 20 20" VerticalScrollBarVisibility="Hidden">
-                            <TextBlock Style="{StaticResource MessageWindowTopTextBlock}"/>
+                        <Image Style="{DynamicResource MessageWindowTopImage}" />
+                        <ScrollViewer Grid.Column="1"
+                            Margin="10,40,20,20"
+                            VerticalAlignment="Center"
+                            VerticalScrollBarVisibility="Hidden">
+                            <TextBlock Style="{StaticResource MessageWindowTopTextBlock}" />
                         </ScrollViewer>
                     </Grid>
                 </Border>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Button Style="{DynamicResource MessageWindowzYesButton}"
-                            Content="是" Click="YesButton_OnClick"/>
-                    <Button Style="{DynamicResource MessageWindowNoButton}"
-                            Content="否" Click="NoButton_OnClick"/>
-                    <Button Style="{DynamicResource MessageWindowzOKButton}"
-                            Content="确定" Click="OkButton_OnClick"/>
-                    <Button Style="{DynamicResource MessageWindowCancelButton}"
-                            Content="取消" Click="CancelButton_OnClick"/>
+                <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button Click="YesButton_OnClick" Content="是" Style="{DynamicResource MessageWindowzYesButton}" />
+                    <Button Click="NoButton_OnClick" Content="否" Style="{DynamicResource MessageWindowNoButton}" />
+                    <Button Click="OkButton_OnClick" Content="确定" Style="{DynamicResource MessageWindowzOKButton}" />
+                    <Button Click="CancelButton_OnClick" Content="取消" Style="{DynamicResource MessageWindowCancelButton}" />
                 </StackPanel>
-                <Button Grid.Row="0" Grid.RowSpan="2" Style="{DynamicResource MessageWindowCloseButton}"
-                        Click="CloseButton_Click"/>
+                <Button Grid.Row="0" Grid.RowSpan="2"
+                    Click="CloseButton_Click"
+                    Style="{DynamicResource MessageWindowCloseButton}" />
             </Grid>
         </Border>
     </Grid>

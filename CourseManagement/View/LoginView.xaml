@@ -1,157 +1,247 @@
-﻿<Window x:Class="StudentManagementSystem.View.LoginView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StudentManagementSystem.View"
-        xmlns:common="clr-namespace:StudentManagementSystem.Common"
-        xmlns:ViewModel="clr-namespace:StudentManagementSystem.ViewModel" 
-        mc:Ignorable="d"
-        Title="系统登录" 
-        x:Name="window"
-        Height="600" Width="360"
-        FontFamily="Microsoft YaHei" FontWeight="ExtraLight"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
-        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
-    <!--#region Notes -->
+﻿<Window x:Class="StudentManagementSystem.View.LoginView" x:Name="window"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModel="clr-namespace:StudentManagementSystem.ViewModel"
+    xmlns:common="clr-namespace:StudentManagementSystem.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StudentManagementSystem.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="系统登录"
+    Width="360"
+    Height="600"
+    AllowsTransparency="True"
+    Background="{x:Null}"
+    FontFamily="Microsoft YaHei"
+    FontWeight="ExtraLight"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <!--#region Notes-->
     <!--
-    ResizeMode="NoResize"设置窗口拖到顶不放大,禁止放大
-    WindowStartupLocation="CenterScreen"设置启动时居中
+        ResizeMode="NoResize"设置窗口拖到顶不放大,禁止放大
+        WindowStartupLocation="CenterScreen"设置启动时居中
     -->
     <!--#endregion-->
 
     <Window.DataContext>
-        <ViewModel:LoginViewModel/>
+        <ViewModel:LoginViewModel />
     </Window.DataContext>
     <Border Style="{DynamicResource LoginBorderStyle}">
         <Border.Effect>
-            <DropShadowEffect ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0" Color="Gray" />
+            <DropShadowEffect
+                BlurRadius="5"
+                Direction="0"
+                Opacity="0.3"
+                ShadowDepth="0"
+                Color="Gray" />
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Border Style="{DynamicResource LogoBorderStyle}">
                 <Border.InputBindings>
-                    <MouseBinding Command="{Binding CmdWindowDragMove}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick"/>
+                    <MouseBinding Command="{Binding CmdWindowDragMove}" CommandParameter="{Binding ElementName=window}" MouseAction="LeftClick" />
                 </Border.InputBindings>
             </Border>
-            <!--右上角关闭图标-->
-            <Button Margin="4" ToolTip="关闭"
-                    VerticalAlignment="Top" HorizontalAlignment="Right"
-                    Template="{StaticResource CloseButtonTemplate}" 
-                    Command="{Binding CmdWindowClose}"
-                    CommandParameter="{Binding ElementName=window}"/>
+            <!--  右上角关闭图标  -->
+            <Button
+                Margin="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Command="{Binding CmdWindowClose}"
+                CommandParameter="{Binding ElementName=window}"
+                Template="{StaticResource CloseButtonTemplate}"
+                ToolTip="关闭" />
 
-            <Grid Margin="4" >
-                <Button x:Name="more" Background="White" FontSize="20" Command="{Binding OpenPopupCommand}"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"
-                    Template="{StaticResource WindowControlButtonTemplate}" Content="&#xE614;"/>
-                <Popup x:Name="popup" IsOpen="{Binding OpenPopup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                       Style="{DynamicResource LoginPopupStyle}" Height="120" Width="130" Panel.ZIndex="6">
-                    <Border BorderThickness="1" CornerRadius="5" Background="White" BorderBrush="#FF413939">
+            <Grid Margin="4">
+                <Button x:Name="more"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="White"
+                    Command="{Binding OpenPopupCommand}"
+                    Content="&#xE614;"
+                    FontSize="20"
+                    Foreground="White"
+                    Template="{StaticResource WindowControlButtonTemplate}" />
+                <Popup x:Name="popup"
+                    Width="130"
+                    Height="120"
+                    Panel.ZIndex="6"
+                    IsOpen="{Binding OpenPopup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{DynamicResource LoginPopupStyle}">
+                    <Border
+                        Background="White"
+                        BorderBrush="#FF413939"
+                        BorderThickness="1"
+                        CornerRadius="5">
                         <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
                             <StackPanel>
-                                <Button Content="注册账号" Background="#0fff" BorderBrush="#0fff" Padding="0 5 0 5" Command="{Binding CmdRegister}"/>
-                                <Button Content="忘记密码" Background="#0fff" BorderBrush="#0fff" Padding="0 5 0 5"/>
-                                <Button Content="联系客服" Background="#0fff" BorderBrush="#0fff" Padding="0 5 0 5"/>
+                                <Button
+                                    Padding="0,5,0,5"
+                                    Background="#0fff"
+                                    BorderBrush="#0fff"
+                                    Command="{Binding CmdRegister}"
+                                    Content="注册账号" />
+                                <Button
+                                    Padding="0,5,0,5"
+                                    Background="#0fff"
+                                    BorderBrush="#0fff"
+                                    Content="忘记密码" />
+                                <Button
+                                    Padding="0,5,0,5"
+                                    Background="#0fff"
+                                    BorderBrush="#0fff"
+                                    Content="联系客服" />
                             </StackPanel>
                         </ScrollViewer>
                     </Border>
                 </Popup>
             </Grid>
-            <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="0,0,0,30">
-                <Border Width="80" Height="80" Margin="0,0,0,20" Background="White" CornerRadius="40" 
-                        VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" Margin="0,0,0,30" VerticalAlignment="Bottom">
+                <Border
+                    Width="80"
+                    Height="80"
+                    Margin="0,0,0,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="White"
+                    CornerRadius="40">
                     <Border.Effect>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0" Color="White"/>
+                        <DropShadowEffect
+                            BlurRadius="5"
+                            Direction="0"
+                            Opacity="0.3"
+                            ShadowDepth="0"
+                            Color="White" />
                     </Border.Effect>
-                    <Border Width="80" Height="80" CornerRadius="40" HorizontalAlignment="Center">
+                    <Border
+                        Width="80"
+                        Height="80"
+                        HorizontalAlignment="Center"
+                        CornerRadius="40">
                         <Border.Background>
-                            <ImageBrush ImageSource="../WPFBC.ico"/>
+                            <ImageBrush ImageSource="../WPFBC.ico" />
                         </Border.Background>
                     </Border>
                 </Border>
-                <TextBlock Text="学生管理系统" FontSize="18" Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="18"
+                    Foreground="White"
+                    Text="学生管理系统" />
             </StackPanel>
 
-            <Grid Grid.Row="1" Margin=" 20 10" FocusManager.FocusedElement="{Binding ElementName=txtUserName}">
+            <Grid Grid.Row="1" Margin="20,10" FocusManager.FocusedElement="{Binding ElementName=txtUserName}">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition MinHeight="23" Height="auto"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="auto" MinHeight="23" />
                 </Grid.RowDefinitions>
-                <TextBox x:Name="txtUserName" Text="{Binding LoginModel.UserName}" Height="40" Style="{DynamicResource UserNameTextBoxStyle}">
+                <TextBox x:Name="txtUserName"
+                    Height="40"
+                    Style="{DynamicResource UserNameTextBoxStyle}"
+                    Text="{Binding LoginModel.UserName}">
                     <TextBox.InputBindings>
-                        <!--回车时会触发-->
-                        <KeyBinding Key="Enter"
-                                    Command="{Binding LoginCommand}"
-                                    CommandParameter="{Binding ElementName=window}"/>
+                        <!--  回车时会触发  -->
+                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=window}" />
                     </TextBox.InputBindings>
                 </TextBox>
-                <PasswordBox Grid.Row="1" Height="40"  Style="{DynamicResource PasswordBoxStyle}"
-                             common:PasswordHelper.Attached="True"
-                             common:PasswordHelper.Password="{Binding LoginModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <PasswordBox Grid.Row="1"
+                    Height="40"
+                    common:PasswordHelper.Attached="True"
+                    common:PasswordHelper.Password="{Binding LoginModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{DynamicResource PasswordBoxStyle}">
                     <PasswordBox.InputBindings>
-                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ElementName=window}"/>
+                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=window}" />
                     </PasswordBox.InputBindings>
                 </PasswordBox>
-                <TextBox  Grid.Row="2" Text="{Binding LoginModel.ValidationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="40" MaxLength="4" 
-                          Style="{DynamicResource VlidationCodeTextBoxStyle}">
+                <TextBox Grid.Row="2"
+                    Height="40"
+                    MaxLength="4"
+                    Style="{DynamicResource VlidationCodeTextBoxStyle}"
+                    Text="{Binding LoginModel.ValidationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.InputBindings>
-                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ElementName=window}"/>
+                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=window}" />
                     </TextBox.InputBindings>
                 </TextBox>
-                <TextBox  Grid.Row="2" Text="{Binding LoginModel.ValidationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="40" MaxLength="4" 
-                          Style="{DynamicResource VlidationCodeTextBoxStyle}">
+                <TextBox Grid.Row="2"
+                    Height="40"
+                    MaxLength="4"
+                    Style="{DynamicResource VlidationCodeTextBoxStyle}"
+                    Text="{Binding LoginModel.ValidationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.InputBindings>
-                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ElementName=window}"/>
+                        <KeyBinding Key="Enter" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=window}" />
                     </TextBox.InputBindings>
                 </TextBox>
-                <Button Grid.Row="3" Content="登   录" Height="40" FontSize="16" Foreground="White"
-                        Template="{StaticResource LoginButtonTemplate}" 
-                        Command="{Binding LoginCommand}" 
-                        CommandParameter="{Binding ElementName=window}"/>
-                <TextBlock Grid.Row="4" Text="{Binding ErrorMessage}" FontSize="13" LineHeight="22" Foreground="red" TextWrapping="Wrap"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <!--TextWrapping="Wrap"自动换行，当内容很多超出容器边界时  LineHeight="22"调整换行后的行高，不至于挤在一起-->
+                <Button Grid.Row="3"
+                    Height="40"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=window}"
+                    Content="登   录"
+                    FontSize="16"
+                    Foreground="White"
+                    Template="{StaticResource LoginButtonTemplate}" />
+                <TextBlock Grid.Row="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    Foreground="red"
+                    LineHeight="22"
+                    Text="{Binding ErrorMessage}"
+                    TextWrapping="Wrap" />
+                <!--  TextWrapping="Wrap"自动换行，当内容很多超出容器边界时  LineHeight="22"调整换行后的行高，不至于挤在一起  -->
             </Grid>
 
             <Grid Grid.Row="2" Margin="30,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="20" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Border BorderThickness="0,0,0,1" BorderBrush="#DDD" VerticalAlignment="Center"/>
-                    <Border Grid.Column="2" BorderThickness="0,0,0,1" BorderBrush="#DDD" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Text="OR" Foreground="#CCC" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Border VerticalAlignment="Center" BorderBrush="#DDD" BorderThickness="0,0,0,1" />
+                    <Border Grid.Column="2"
+                        VerticalAlignment="Center"
+                        BorderBrush="#DDD"
+                        BorderThickness="0,0,0,1" />
+                    <TextBlock Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="#CCC"
+                        Text="OR" />
                 </Grid>
 
                 <UniformGrid Grid.Row="2" Columns="5">
-                    <Button Content="&#xE64A;" Template="{DynamicResource IconTextBlockTemplate}"/>
-                    <Border Background="Transparent"/>
-                    <Button Content="&#xE604;" Template="{DynamicResource IconTextBlockTemplate}"/>
-                    <Border Background="Transparent"/>
-                    <Button Content="&#xE606;" Template="{DynamicResource IconTextBlockTemplate}"/>
+                    <Button Content="&#xE64A;" Template="{DynamicResource IconTextBlockTemplate}" />
+                    <Border Background="Transparent" />
+                    <Button Content="&#xE604;" Template="{DynamicResource IconTextBlockTemplate}" />
+                    <Border Background="Transparent" />
+                    <Button Content="&#xE606;" Template="{DynamicResource IconTextBlockTemplate}" />
                 </UniformGrid>
             </Grid>
-            <!--进度条-->
-            <Border Grid.Row="1" Grid.RowSpan="2" Height="3" Visibility="{Binding ShowProgress}" Background="Transparent" VerticalAlignment="Top">
-                <ProgressBar Height="3" BorderThickness="0" IsIndeterminate="True"
-                             Foreground="Orange" Background="Transparent" VerticalAlignment="Top"/>
+            <!--  进度条  -->
+            <Border Grid.Row="1" Grid.RowSpan="2"
+                Height="3"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Visibility="{Binding ShowProgress}">
+                <ProgressBar
+                    Height="3"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="Orange"
+                    IsIndeterminate="True" />
             </Border>
         </Grid>
     </Border>

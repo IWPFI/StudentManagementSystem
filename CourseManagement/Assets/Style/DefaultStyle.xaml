@@ -1,31 +1,33 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:cm="clr-namespace:WPF.UI;assembly=WPF.UI">
 
     <Style x:Key="WinBorderEffect" TargetType="Border">
-        <Setter Property="Margin" Value="0 5"/>
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="Gray" ShadowDepth="1" BlurRadius="5" Opacity="0.5" Direction="1"/>
+                <DropShadowEffect
+                    BlurRadius="5"
+                    Direction="1"
+                    Opacity="0.5"
+                    ShadowDepth="1"
+                    Color="Gray" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="0,5" />
     </Style>
 
 
     <Style x:Key="NormalButtonStyle" TargetType="Button">
-        <Setter Property="Width" Value="228"/>
-        <Setter Property="Height" Value="64"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="等线"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="Background" Value="#FFA8BCF0"/>
-        <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="Foreground" Value="White"/>
-        
-        <!--未知报错，暂时不用-->
+        <Setter Property="Background" Value="#FFA8BCF0" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FontFamily" Value="等线" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="64" />
+
+        <!--  未知报错，暂时不用  -->
         <!--
         <Setter Property="cm:WPFUI.CornerRadius" Value="32"/>
         <Setter Property="cm:WPFUI.MouseOverBackground" Value="#FFA8BCF0"/>
@@ -36,9 +38,10 @@
         <Setter Property="cm:WPFUI.MouseOverDropShadowBlurRadius" Value="20"/>
         <Setter Property="cm:WPFUI.MouseOverDropShadowOpcity" Value="0.2"/>
         -->
-        
-        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}"/>
+
+        <Setter Property="Template" Value="{DynamicResource NormalButtonTemplate}" />
+        <Setter Property="Width" Value="228" />
     </Style>
 
- 
+
 </ResourceDictionary>

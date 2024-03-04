@@ -1,23 +1,34 @@
 ﻿<UserControl x:Class="StudentManagementSystem.Controls.PopupControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:StudentManagementSystem.Controls"
-             mc:Ignorable="d"
-             d:DesignHeight="250" d:DesignWidth="320">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StudentManagementSystem.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="250"
+    d:DesignWidth="320"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Assets/Style/ScrollViewerStyle.xaml"/>
-                <ResourceDictionary Source="../Assets/Style/PopupControlStyle.xaml"/>
+                <ResourceDictionary Source="../Assets/Style/ScrollViewerStyle.xaml" />
+                <ResourceDictionary Source="../Assets/Style/PopupControlStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border x:Name="border" Background="White" CornerRadius="10" Height="240" Width="310" Margin="5"  
-            DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+    <Border x:Name="border"
+        Width="310"
+        Height="240"
+        Margin="5"
+        Background="White"
+        CornerRadius="10"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
         <Border.Effect>
-            <DropShadowEffect Color="#FFA0A0A0" BlurRadius="5" Direction="315" ShadowDepth="0" Opacity="0.5"/>
+            <DropShadowEffect
+                BlurRadius="5"
+                Direction="315"
+                Opacity="0.5"
+                ShadowDepth="0"
+                Color="#FFA0A0A0" />
         </Border.Effect>
         <ScrollViewer x:Name="popupScrollViewer">
             <!--<ItemsControl ItemsSource="{Binding NationModelList}">
@@ -35,7 +46,10 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>-->
 
-            <StackPanel x:Name="popupContentStackPanel" Width="{Binding ActualWidth, ElementName=border, Mode=OneWay}" Margin="0 5" HorizontalAlignment="Center">
+            <StackPanel x:Name="popupContentStackPanel"
+                Width="{Binding ActualWidth, ElementName=border, Mode=OneWay}"
+                Margin="0,5"
+                HorizontalAlignment="Center">
                 <!--<RadioButton x:Name="popupContentRadioButton" Content="{Binding PopupContent}" Style="{DynamicResource RadioButtonStyle}"/>-->
             </StackPanel>
         </ScrollViewer>

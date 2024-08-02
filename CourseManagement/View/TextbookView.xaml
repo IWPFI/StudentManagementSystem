@@ -1,14 +1,14 @@
 ﻿<UserControl x:Class="StudentManagementSystem.View.TextbookView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:date="clr-namespace:StudentManagementSystem.ViewModel"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:local="clr-namespace:StudentManagementSystem.View"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:date="clr-namespace:StudentManagementSystem.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:StudentManagementSystem.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
     <UserControl.DataContext>
         <date:TextbookViewModel />
     </UserControl.DataContext>
@@ -31,12 +31,12 @@
                     <DataTemplate>
                         <Grid Width="50" Height="28">
                             <TextBlock x:Name="smallBtn" Grid.Row="1"
-                                Margin="0"
-                                Padding="0"
-                                HorizontalAlignment="Center"
-                                FontSize="18"
-                                Foreground="{Binding ForeBrush}"
-                                Text="{Binding .}" />
+                                       Margin="0"
+                                       Padding="0"
+                                       HorizontalAlignment="Center"
+                                       FontSize="18"
+                                       Foreground="{Binding ForeBrush}"
+                                       Text="{Binding .}" />
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
@@ -65,12 +65,11 @@
     </UserControl.Resources>
     <Border Style="{DynamicResource WinBorderEffect}">
         <Grid>
-            <Border
-                Width="400"
-                Height="270"
-                Margin="10,5,5,5"
-                BorderBrush="SeaGreen"
-                BorderThickness="2">
+            <Border Width="400"
+                    Height="270"
+                    Margin="10,5,5,5"
+                    BorderBrush="SeaGreen"
+                    BorderThickness="2">
                 <Grid Grid.Row="0" Margin="5,0,2,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
@@ -94,47 +93,47 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="一" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="一" />
                         <TextBlock Grid.Column="1"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="二" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="二" />
                         <TextBlock Grid.Column="2"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="三" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="三" />
                         <TextBlock Grid.Column="3"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="四" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="四" />
                         <TextBlock Grid.Column="4"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="五" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="五" />
                         <TextBlock Grid.Column="5"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="六" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="六" />
                         <TextBlock Grid.Column="6"
-                            Margin="0"
-                            HorizontalAlignment="Center"
-                            FontSize="14"
-                            Text="日" />
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Text="日" />
                     </Grid>
 
                     <ListBox x:Name="lstCalendar" Grid.Row="2"
-                        Background="Transparent"
-                        ItemsSource="{Binding DateList}"
-                        SelectedItem="{Binding SelectedCalendar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        SelectionMode="Extended">
+                             Background="Transparent"
+                             ItemsSource="{Binding DateList}"
+                             SelectedItem="{Binding SelectedCalendar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             SelectionMode="Extended">
                         <ListBox.InputBindings>
                             <KeyBinding Key="C" Command="{Binding CmdCopyListBoxItem}" Gesture="Ctrl+C" />
                             <KeyBinding Key="V" Command="{Binding CmdPasteListBoxItem}" Gesture="Ctrl+V" />

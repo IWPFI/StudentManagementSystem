@@ -6,12 +6,11 @@
         <Setter Property="CornerRadius" Value="5" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="10"
-                    Direction="0"
-                    Opacity="0.2"
-                    ShadowDepth="0"
-                    Color="Gray" />
+                <DropShadowEffect BlurRadius="10"
+                                  Direction="0"
+                                  Opacity="0.2"
+                                  ShadowDepth="0"
+                                  Color="Gray" />
             </Setter.Value>
         </Setter>
         <Setter Property="Margin" Value="5" />
@@ -42,28 +41,28 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border x:Name="back"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="20">
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="20">
                         <Grid>
                             <TextBlock Name="markText"
-                                Margin="15,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="13"
-                                Foreground="#BBB"
-                                Text="{TemplateBinding Tag}"
-                                Visibility="Collapsed" />
+                                       Margin="15,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontSize="13"
+                                       Foreground="#BBB"
+                                       Text="{TemplateBinding Tag}"
+                                       Visibility="Collapsed" />
                             <ScrollViewer x:Name="PART_ContentHost"
-                                Margin="15,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
+                                          Margin="15,0,0,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center"
+                                          Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -93,19 +92,18 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border x:Name="back"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="30">
-                        <TextBlock
-                            Margin="0,0,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Background="Transparent"
-                            FontFamily="{DynamicResource Iconfont}"
-                            FontSize="18"
-                            Foreground="White"
-                            Text="&#xe60b;" />
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="30">
+                        <TextBlock Margin="0,0,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Background="Transparent"
+                                   FontFamily="{DynamicResource Iconfont}"
+                                   FontSize="18"
+                                   Foreground="White"
+                                   Text="&#xe60b;" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

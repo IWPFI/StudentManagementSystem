@@ -7,11 +7,10 @@
         <Setter Property="CornerRadius" Value="15" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="15"
-                    Opacity="0.2"
-                    ShadowDepth="10"
-                    Color="#33818181" />
+                <DropShadowEffect BlurRadius="15"
+                                  Opacity="0.2"
+                                  ShadowDepth="10"
+                                  Color="#33818181" />
             </Setter.Value>
         </Setter>
         <Setter Property="Height" Value="80" />
@@ -75,21 +74,21 @@
 
     <ControlTemplate x:Key="ContactsAddButton" TargetType="{x:Type Button}">
         <Border x:Name="border"
-            Width="24"
-            Height="50"
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            CornerRadius="10 0 0 10"
-            SnapsToDevicePixels="true">
+                Width="24"
+                Height="50"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="10 0 0 10"
+                SnapsToDevicePixels="true">
             <Grid>
                 <ContentPresenter x:Name="contentPresenter"
-                    Margin="{TemplateBinding Padding}"
-                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                    Focusable="False"
-                    RecognizesAccessKey="True"
-                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Focusable="False"
+                                  RecognizesAccessKey="True"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                 <!--<TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="22" Foreground="White" Padding="15,0,0,0" />-->
             </Grid>
         </Border>
@@ -101,12 +100,11 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation
-                                Storyboard.TargetName="border"
-                                Storyboard.TargetProperty="Width"
-                                From="24"
-                                To="50"
-                                Duration="0:0:1">
+                            <DoubleAnimation Storyboard.TargetName="border"
+                                             Storyboard.TargetProperty="Width"
+                                             From="24"
+                                             To="50"
+                                             Duration="0:0:1">
                                 <DoubleAnimation.EasingFunction>
                                     <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>
@@ -117,12 +115,11 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation
-                                Storyboard.TargetName="border"
-                                Storyboard.TargetProperty="Width"
-                                From="50"
-                                To="24"
-                                Duration="0:0:1">
+                            <DoubleAnimation Storyboard.TargetName="border"
+                                             Storyboard.TargetProperty="Width"
+                                             From="50"
+                                             To="24"
+                                             Duration="0:0:1">
                                 <DoubleAnimation.EasingFunction>
                                     <QuarticEase EasingMode="EaseOut" />
                                 </DoubleAnimation.EasingFunction>

@@ -27,12 +27,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridColumnHeader">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontWeight="Bold"
-                            Foreground="#565656"
-                            Text="{TemplateBinding Content}" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Foreground="#565656"
+                                   Text="{TemplateBinding Content}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

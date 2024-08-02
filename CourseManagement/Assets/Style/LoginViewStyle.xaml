@@ -3,15 +3,14 @@
     <!--  右上角关闭按钮控件模板  -->
     <ControlTemplate x:Key="CloseButtonTemplate" TargetType="Button">
         <Border Name="back"
-            Width="30"
-            Height="30"
-            Background="Transparent"
-            CornerRadius="3">
-            <Path
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Data="M0 0 12 12M0 12 12 0"
-                Stroke="White" />
+                Width="30"
+                Height="30"
+                Background="Transparent"
+                CornerRadius="3">
+            <Path HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M0 0 12 12M0 12 12 0"
+                  Stroke="White" />
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -30,18 +29,17 @@
         <Border Background="#FFA8BCF0" CornerRadius="5">
             <Grid>
                 <Border Name="back"
-                    Background="#22FFFFFF"
-                    CornerRadius="4"
-                    Visibility="Hidden" />
+                        Background="#22FFFFFF"
+                        CornerRadius="4"
+                        Visibility="Hidden" />
                 <Border Name="back_1"
-                    Background="#44FFFFFF"
-                    CornerRadius="4"
-                    Visibility="Hidden" />
-                <ContentControl
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Content="{TemplateBinding Content}"
-                    Foreground="{TemplateBinding Foreground}" />
+                        Background="#44FFFFFF"
+                        CornerRadius="4"
+                        Visibility="Hidden" />
+                <ContentControl HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}"
+                                Foreground="{TemplateBinding Foreground}" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -59,10 +57,10 @@
         <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent">
             <Grid>
                 <TextBlock Name="tb"
-                    FontFamily="{DynamicResource Iconfont}"
-                    FontSize="55"
-                    Foreground="#FF98A0B9"
-                    Text="{TemplateBinding Content}" />
+                           FontFamily="{DynamicResource Iconfont}"
+                           FontSize="55"
+                           Foreground="#FF98A0B9"
+                           Text="{TemplateBinding Content}" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -94,32 +92,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="5"
-                        SnapsToDevicePixels="True">
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock x:Name="tbk"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="{DynamicResource Iconfont}"
-                                FontSize="16"
-                                Foreground="{StaticResource TextBox.Static.Border}"
-                                Text="&#xe601;" />
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{DynamicResource Iconfont}"
+                                       FontSize="16"
+                                       Foreground="{StaticResource TextBox.Static.Border}"
+                                       Text="&#xe601;" />
                             <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1"
-                                Width="260"
-                                Height="22"
-                                Margin="0,5,0,0"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
+                                          Width="260"
+                                          Height="22"
+                                          Margin="0,5,0,0"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center"
+                                          Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -169,31 +167,31 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
                     <Border x:Name="border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="5"
-                        SnapsToDevicePixels="True">
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock x:Name="tbk"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="{DynamicResource Iconfont}"
-                                FontSize="18"
-                                Foreground="{StaticResource TextBox.Static.Border}"
-                                Text="&#xe674;" />
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{DynamicResource Iconfont}"
+                                       FontSize="18"
+                                       Foreground="{StaticResource TextBox.Static.Border}"
+                                       Text="&#xe674;" />
                             <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1"
-                                Width="260"
-                                Height="22"
-                                Margin="0,5,0,0"
-                                HorizontalContentAlignment="Center"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
+                                          Width="260"
+                                          Height="22"
+                                          Margin="0,5,0,0"
+                                          HorizontalContentAlignment="Center"
+                                          Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -242,11 +240,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="5"
-                        SnapsToDevicePixels="True">
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40" />
@@ -254,30 +252,30 @@
                                 <ColumnDefinition Width="80" />
                             </Grid.ColumnDefinitions>
                             <TextBlock x:Name="tbk"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="{DynamicResource Iconfont}"
-                                FontSize="16"
-                                Foreground="{StaticResource TextBox.Static.Border}"
-                                Text="&#xee9b;" />
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{DynamicResource Iconfont}"
+                                       FontSize="16"
+                                       Foreground="{StaticResource TextBox.Static.Border}"
+                                       Text="&#xee9b;" />
                             <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1"
-                                Width="178"
-                                Height="22"
-                                Margin="0,5,0,0"
-                                VerticalContentAlignment="Center"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
+                                          Width="178"
+                                          Height="22"
+                                          Margin="0,5,0,0"
+                                          VerticalContentAlignment="Center"
+                                          Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden" />
                             <TextBlock Grid.Column="2"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Microsoft Himalaya"
-                                FontSize="20"
-                                FontStyle="Italic"
-                                FontWeight="Normal"
-                                Foreground="#66000000"
-                                Text="{Binding LoginModel.RandomField, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                TextDecorations="Underline" />
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Microsoft Himalaya"
+                                       FontSize="20"
+                                       FontStyle="Italic"
+                                       FontWeight="Normal"
+                                       Foreground="#66000000"
+                                       Text="{Binding LoginModel.RandomField, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       TextDecorations="Underline" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>

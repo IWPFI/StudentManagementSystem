@@ -14,51 +14,49 @@
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid x:Name="Grid" Background="{TemplateBinding Background}">
                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
-                            Margin="{TemplateBinding Padding}"
-                            CanContentScroll="{TemplateBinding CanContentScroll}"
-                            CanHorizontallyScroll="False"
-                            CanVerticallyScroll="False"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                                Margin="{TemplateBinding Padding}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                CanHorizontallyScroll="False"
+                                                CanVerticallyScroll="False"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
                         <ScrollBar x:Name="PART_VerticalScrollBar"
-                            HorizontalAlignment="Right"
-                            AutomationProperties.AutomationId="VerticalScrollBar"
-                            Cursor="Arrow"
-                            Maximum="{TemplateBinding ScrollableHeight}"
-                            Minimum="0"
-                            Opacity="0"
-                            Style="{DynamicResource ScrollBarStyle}"
-                            ViewportSize="{TemplateBinding ViewportHeight}"
-                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                            Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                   HorizontalAlignment="Right"
+                                   AutomationProperties.AutomationId="VerticalScrollBar"
+                                   Cursor="Arrow"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   Minimum="0"
+                                   Opacity="0"
+                                   Style="{DynamicResource ScrollBarStyle}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
-                            VerticalAlignment="Bottom"
-                            AutomationProperties.AutomationId="HorizontalScrollBar"
-                            Cursor="Arrow"
-                            Maximum="{TemplateBinding ScrollableWidth}"
-                            Minimum="0"
-                            Opacity="0"
-                            Orientation="Horizontal"
-                            Style="{DynamicResource ScrollBarStyle}"
-                            ViewportSize="{TemplateBinding ViewportWidth}"
-                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
-                            Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                   VerticalAlignment="Bottom"
+                                   AutomationProperties.AutomationId="HorizontalScrollBar"
+                                   Cursor="Arrow"
+                                   Maximum="{TemplateBinding ScrollableWidth}"
+                                   Minimum="0"
+                                   Opacity="0"
+                                   Orientation="Horizontal"
+                                   Style="{DynamicResource ScrollBarStyle}"
+                                   ViewportSize="{TemplateBinding ViewportWidth}"
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="PART_VerticalScrollBar"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="0.7"
-                                            Duration="0:0:0.3" />
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="PART_HorizontalScrollBar"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="0.7"
-                                            Duration="0:0:0.3" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.7"
+                                                         Duration="0:0:0.3" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.7"
+                                                         Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -90,12 +88,12 @@
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Grid x:Name="Bg" SnapsToDevicePixels="true">
                         <Border Grid.Row="1"
-                            Background="Transparent"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="0" />
+                                Background="Transparent"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0" />
                         <Track x:Name="PART_Track" Grid.Row="1"
-                            IsDirectionReversed="true"
-                            IsEnabled="{TemplateBinding IsMouseOver}">
+                               IsDirectionReversed="true"
+                               IsEnabled="{TemplateBinding IsMouseOver}">
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{DynamicResource RepeatButtonTransparent}" />
                             </Track.DecreaseRepeatButton>
@@ -122,9 +120,9 @@
                         <ControlTemplate TargetType="{x:Type ScrollBar}">
                             <Grid x:Name="Bg" SnapsToDevicePixels="true">
                                 <Border Grid.Column="1"
-                                    Background="Transparent"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="0" />
+                                        Background="Transparent"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="0" />
                                 <Track x:Name="PART_Track" Grid.Column="1" IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.DecreaseRepeatButton>
                                         <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{DynamicResource RepeatButtonTransparent}" />
@@ -166,12 +164,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Rectangle x:Name="rectangle"
-                        Width="12"
-                        Height="{TemplateBinding Height}"
-                        Fill="{StaticResource ScrollBar.Static.Thumb}"
-                        RadiusX="6"
-                        RadiusY="6"
-                        SnapsToDevicePixels="True" />
+                               Width="12"
+                               Height="{TemplateBinding Height}"
+                               Fill="{StaticResource ScrollBar.Static.Thumb}"
+                               RadiusX="6"
+                               RadiusY="6"
+                               SnapsToDevicePixels="True" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="rectangle" Property="Fill" Value="{StaticResource ScrollBar.MouseOver.Thumb}" />
@@ -192,12 +190,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Rectangle x:Name="rectangle"
-                        Width="{TemplateBinding Width}"
-                        Height="{TemplateBinding Height}"
-                        Fill="{StaticResource ScrollBar.Static.Thumb}"
-                        RadiusX="6"
-                        RadiusY="6"
-                        SnapsToDevicePixels="True" />
+                               Width="{TemplateBinding Width}"
+                               Height="{TemplateBinding Height}"
+                               Fill="{StaticResource ScrollBar.Static.Thumb}"
+                               RadiusX="6"
+                               RadiusY="6"
+                               SnapsToDevicePixels="True" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="rectangle" Property="Fill" Value="{StaticResource ScrollBar.MouseOver.Thumb}" />

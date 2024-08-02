@@ -28,12 +28,11 @@
         <Setter Property="CornerRadius" Value="0 5 5 0" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="5"
-                    Direction="180"
-                    Opacity="0.3"
-                    ShadowDepth="0"
-                    Color="Gray" />
+                <DropShadowEffect BlurRadius="5"
+                                  Direction="180"
+                                  Opacity="0.3"
+                                  ShadowDepth="0"
+                                  Color="Gray" />
             </Setter.Value>
         </Setter>
         <Setter Property="HorizontalAlignment" Value="Right" />
@@ -49,28 +48,27 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border
-                        Width="30"
-                        Height="30"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        CornerRadius="3">
+                    <Border Width="30"
+                            Height="30"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            CornerRadius="3">
                         <Grid>
                             <TextBlock Name="tt"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="{DynamicResource Iconfont}"
-                                FontSize="{TemplateBinding FontSize}"
-                                Foreground="{TemplateBinding Foreground}"
-                                Text="{TemplateBinding Content}" />
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{DynamicResource Iconfont}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Text="{TemplateBinding Content}" />
                             <Border Name="back"
-                                Background="#22FFFFFF"
-                                CornerRadius="3"
-                                Visibility="Hidden" />
+                                    Background="#22FFFFFF"
+                                    CornerRadius="3"
+                                    Visibility="Hidden" />
                             <Border Name="back_1"
-                                Background="#62FFFFFF"
-                                CornerRadius="3"
-                                Visibility="Hidden" />
+                                    Background="#62FFFFFF"
+                                    CornerRadius="3"
+                                    Visibility="Hidden" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -129,12 +127,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Border Name="back" Background="Transparent" CornerRadius="8">
-                        <ContentControl
-                            Margin="20,4"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{TemplateBinding Content}"
-                            FontSize="13" />
+                        <ContentControl Margin="20,4"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}"
+                                        FontSize="13" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
@@ -155,30 +152,27 @@
         <Setter Property="Width" Value="42" />
     </Style>
     <ControlTemplate x:Key="StaticSearchButtonTemplate" TargetType="Button">
-        <Border
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            CornerRadius="10"
-            SnapsToDevicePixels="True">
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="10"
+                SnapsToDevicePixels="True">
             <Grid>
-                <Border
-                    Margin="0"
-                    Background="#7E3E5081"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="10">
+                <Border Margin="0"
+                        Background="#7E3E5081"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10">
                     <Border.Effect>
                         <BlurEffect KernelType="Box" Radius="2" />
                     </Border.Effect>
                 </Border>
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontFamily="{DynamicResource Iconfont}"
-                    FontSize="18"
-                    Foreground="#FFD6D6D6"
-                    Text="&#xe602;" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontFamily="{DynamicResource Iconfont}"
+                           FontSize="18"
+                           Foreground="#FFD6D6D6"
+                           Text="&#xe602;" />
             </Grid>
         </Border>
     </ControlTemplate>
@@ -195,37 +189,36 @@
     </Style>
     <ControlTemplate x:Key="StaticResourceSearchTextBoxTemplate" TargetType="{x:Type TextBox}">
         <Border x:Name="border"
-            Background="#33CBCBCB"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            CornerRadius="10"
-            SnapsToDevicePixels="True">
+                Background="#33CBCBCB"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="10"
+                SnapsToDevicePixels="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <!--  搜索框左边图标  -->
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontFamily="{DynamicResource Iconfont}"
-                    FontSize="14"
-                    Foreground="#FFCECFD3"
-                    Text="&#xe624;" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontFamily="{DynamicResource Iconfont}"
+                           FontSize="14"
+                           Foreground="#FFCECFD3"
+                           Text="&#xe624;" />
 
                 <TextBlock Name="mt" Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Foreground="#FFD8D8D8"
-                    Text="Search for what you like..."
-                    Visibility="Collapsed" />
+                           VerticalAlignment="Center"
+                           Foreground="#FFD8D8D8"
+                           Text="Search for what you like..."
+                           Visibility="Collapsed" />
                 <!--  ₁₂  -->
                 <ScrollViewer x:Name="PART_ContentHost" Grid.Column="1"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Focusable="false"
-                    HorizontalScrollBarVisibility="Hidden"
-                    VerticalScrollBarVisibility="Hidden" />
+                              VerticalAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              Focusable="false"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Hidden" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -252,21 +245,20 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border
-                Width="14"
-                Height="14"
-                Margin="5,0"
-                VerticalAlignment="Center"
-                Background="White"
-                BorderBrush="#007DFA"
-                BorderThickness="1"
-                CornerRadius="7">
+            <Border Width="14"
+                    Height="14"
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    Background="White"
+                    BorderBrush="#007DFA"
+                    BorderThickness="1"
+                    CornerRadius="7">
                 <Border Name="point"
-                    Width="8"
-                    Height="8"
-                    Background="#007DFA"
-                    CornerRadius="4"
-                    Visibility="Collapsed" />
+                        Width="8"
+                        Height="8"
+                        Background="#007DFA"
+                        CornerRadius="4"
+                        Visibility="Collapsed" />
             </Border>
             <ContentControl Grid.Column="1" VerticalAlignment="Center" Content="{TemplateBinding Content}" />
         </Grid>
@@ -281,11 +273,10 @@
     <!--  抽屉侧滑栏动画  -->
     <Storyboard x:Key="UserInfoStoryboard">
         <!--  把 Storyboard.TargetName 属性从 To 变化到 Storyboard.TargetProperty ，时间 Duration  -->
-        <DoubleAnimation
-            Storyboard.TargetName="tt"
-            Storyboard.TargetProperty="X"
-            To="0"
-            Duration="0:0:0.2" />
+        <DoubleAnimation Storyboard.TargetName="tt"
+                         Storyboard.TargetProperty="X"
+                         To="0"
+                         Duration="0:0:0.2" />
     </Storyboard>
     <Storyboard x:Key="CloseUserInfoStoryboard">
         <DoubleAnimation Storyboard.TargetName="tt" Storyboard.TargetProperty="X" Duration="0:0:0.1" />

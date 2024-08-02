@@ -74,16 +74,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0-preview.7.23375.6" />
-    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Npgsql" Version="8.0.0-preview.4" />
-    <PackageReference Include="PresentationFramework" Version="4.6.0" />
-    <PackageReference Include="RestSharp" Version="110.2.1-alpha.0.11" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="WPF.UI" Version="3.2.1" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,8 +83,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="LiveCharts">
+      <HintPath>Assets\Dll\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf">
+      <HintPath>Assets\Dll\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity">
+      <HintPath>Assets\Dll\Microsoft.Expression.Prototyping.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors">
+      <HintPath>Assets\Dll\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="WPF.UI">
       <HintPath>..\..\WPF UI AttachProperties\WPF.UI.AttachProperties\WPF.UI.AttachProperties\bin\Debug\WPF.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="XIAMU.Jsons">
+      <HintPath>Assets\Dll\XIAMU.Jsons.dll</HintPath>
+    </Reference>
+    <Reference Include="XIAMU.PLC">
+      <HintPath>Assets\Dll\XIAMU.PLC.dll</HintPath>
+    </Reference>
+    <Reference Include="XIAMU.Sockets">
+      <HintPath>Assets\Dll\XIAMU.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="XIAMU.Sockets.Core">
+      <HintPath>Assets\Dll\XIAMU.Sockets.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XIAMU.SqlSugar">
+      <HintPath>Assets\Dll\SqlSugar\XIAMU.SqlSugar.dll</HintPath>
     </Reference>
   </ItemGroup>
 

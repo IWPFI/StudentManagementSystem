@@ -5,12 +5,11 @@
         <Setter Property="CornerRadius" Value="5" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="96"
-                    Direction="270"
-                    Opacity="0.4"
-                    ShadowDepth="10"
-                    Color="Gray" />
+                <DropShadowEffect BlurRadius="96"
+                                  Direction="270"
+                                  Opacity="0.4"
+                                  ShadowDepth="10"
+                                  Color="Gray" />
             </Setter.Value>
         </Setter>
         <Setter Property="Margin" Value="10" />
@@ -22,12 +21,11 @@
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="105"
-                    Direction="10"
-                    Opacity="0.4"
-                    ShadowDepth="10"
-                    Color="#f2f2f2" />
+                <DropShadowEffect BlurRadius="105"
+                                  Direction="10"
+                                  Opacity="0.4"
+                                  ShadowDepth="10"
+                                  Color="#f2f2f2" />
             </Setter.Value>
         </Setter>
         <Setter Property="Grid.Row" Value="2" />

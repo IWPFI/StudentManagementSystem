@@ -14,25 +14,23 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border
-                        Width="100"
-                        Height="30"
-                        Background="#3F8DC1FF"
-                        CornerRadius="10">
+                    <Border Width="100"
+                            Height="30"
+                            Background="#3F8DC1FF"
+                            CornerRadius="10">
                         <Grid>
                             <Border Name="back"
-                                Background="#22FFFFFF"
-                                CornerRadius="9"
-                                Visibility="Hidden" />
+                                    Background="#22FFFFFF"
+                                    CornerRadius="9"
+                                    Visibility="Hidden" />
                             <Border Name="back_1"
-                                Background="#44FFFFFF"
-                                CornerRadius="9"
-                                Visibility="Hidden" />
-                            <ContentControl
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding Content}"
-                                Foreground="#FF7C7C7C" />
+                                    Background="#44FFFFFF"
+                                    CornerRadius="9"
+                                    Visibility="Hidden" />
+                            <ContentControl HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{TemplateBinding Content}"
+                                            Foreground="#FF7C7C7C" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -59,11 +57,10 @@
                 <ControlTemplate TargetType="RadioButton">
                     <Grid Background="Transparent">
                         <Border Name="back" Background="#eee" CornerRadius="5">
-                            <TextBlock
-                                Margin="15,5"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{TemplateBinding Content}" />
+                            <TextBlock Margin="15,5"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="{TemplateBinding Content}" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -83,12 +80,11 @@
         <Setter Property="CornerRadius" Value="5" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="10"
-                    Direction="0"
-                    Opacity="0.3"
-                    ShadowDepth="0"
-                    Color="Gray" />
+                <DropShadowEffect BlurRadius="10"
+                                  Direction="0"
+                                  Opacity="0.3"
+                                  ShadowDepth="0"
+                                  Color="Gray" />
             </Setter.Value>
         </Setter>
         <Setter Property="Height" Value="60" />

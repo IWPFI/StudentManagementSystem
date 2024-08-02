@@ -15,18 +15,19 @@ namespace StudentManagementSystem.SQL
         /// </summary>
         public static SqlSugarClient db => new SqlSugarClient(new ConnectionConfig()
         {
-            ConnectionString = $"PORT=5432;DATABASE=SqlSugar4xTe111st;HOST=localhost;PASSWORD=postgres;USER ID=postgres",
-            DbType = SqlSugar.DbType.PostgreSQL,
-            InitKeyType = InitKeyType.Attribute,
             IsAutoCloseConnection = true,
-            AopEvents = new AopEvents
+            DbType = SqlSugar.DbType.PostgreSQL,
+            ConnectionString = "PORT=5433;DATABASE=db632d2042e3384749accf96b125b4cda0XIAMU;HOST=139.196.89.94;PASSWORD=WlVkc2FHSllWVDA9;USER ID=lxiamul",
+            LanguageType = LanguageType.Default//Set language
+
+        }, it =>
+        {
+            // Logging SQL statements and parameters before execution
+            // 在执行前记录 SQL 语句和参数
+            it.Aop.OnLogExecuting = (sql, para) =>
             {
-                OnLogExecuting = (sql, p) =>
-                {
-                    Console.WriteLine(sql);
-                    Console.WriteLine(string.Join(",", p?.Select(it => it.ParameterName + ":" + it.Value)));
-                }
-            }
+                Console.WriteLine(UtilMethods.GetNativeSql(sql, para));
+            };
         });
     }
 }

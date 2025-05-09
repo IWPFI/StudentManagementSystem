@@ -104,14 +104,8 @@
     <Reference Include="XIAMU.PLC">
       <HintPath>Assets\Dll\XIAMU.PLC.dll</HintPath>
     </Reference>
-    <Reference Include="XIAMU.Sockets">
-      <HintPath>Assets\Dll\XIAMU.Sockets.dll</HintPath>
-    </Reference>
-    <Reference Include="XIAMU.Sockets.Core">
-      <HintPath>Assets\Dll\XIAMU.Sockets.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="XIAMU.SqlSugar">
-      <HintPath>Assets\Dll\SqlSugar\XIAMU.SqlSugar.dll</HintPath>
+    <Reference Include="XIAMU.Sql">
+      <HintPath>Assets\Dll\SqlSugar\XIAMU.Sql.dll</HintPath>
     </Reference>
   </ItemGroup>
 

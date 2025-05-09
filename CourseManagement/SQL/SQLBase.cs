@@ -1,4 +1,4 @@
-﻿using SqlSugar;
+﻿using Sql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,10 +13,10 @@ namespace StudentManagementSystem.SQL
         /// <summary>
         /// 初始化客户端
         /// </summary>
-        public static SqlSugarClient db => new SqlSugarClient(new ConnectionConfig()
+        public static SqlClient db => new SqlClient(new ConnectionConfig()
         {
             IsAutoCloseConnection = true,
-            DbType = SqlSugar.DbType.PostgreSQL,
+            DbType = Sql.DbType.PostgreSQL,
             ConnectionString = "PORT=5433;DATABASE=db632d2042e3384749accf96b125b4cda0XIAMU;HOST=139.196.89.94;PASSWORD=WlVkc2FHSllWVDA9;USER ID=lxiamul",
             LanguageType = LanguageType.Default//Set language
 

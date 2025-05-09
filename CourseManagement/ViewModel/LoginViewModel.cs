@@ -10,7 +10,7 @@ using static StudentManagementSystem.DataAccess.LocalDataAccess;
 
 namespace StudentManagementSystem.ViewModel
 {
-    public class LoginViewModel:NotifyBase
+    public class LoginViewModel : NotifyBase
     {
         public View.LoginView login;
 

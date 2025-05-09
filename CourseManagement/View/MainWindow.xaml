@@ -1,147 +1,195 @@
 ﻿<Window x:Class="StudentManagementSystem.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StudentManagementSystem"
-        xmlns:converter="clr-CourseManagement.Converter" 
+        xmlns:converter="clr-CourseManagement.Converter"
         xmlns:converter1="clr-namespace:StudentManagementSystem.Converter"
-        mc:Ignorable="d"
-        Title="学生管理系统" Height="800" Width="1250"
-        FontFamily="Microsoft YaHei" FontWeight="ExtraLight" FontSize="12"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:StudentManagementSystem"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="学生管理系统"
+        Width="1250"
+        Height="800"
+        AllowsTransparency="True"
+        Background="{x:Null}"
+        FontFamily="Microsoft YaHei"
+        FontSize="12"
+        FontWeight="ExtraLight"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d">
 
     <Window.Resources>
-        <converter1:GenderConverter x:Key="genderConverter"/>
+        <converter1:GenderConverter x:Key="genderConverter" />
     </Window.Resources>
 
     <Window.Triggers>
-        <!--触发动画-->
+        <!--  触发动画  -->
         <EventTrigger RoutedEvent="Button.Click" SourceName="btnUsreInfo">
-            <BeginStoryboard Storyboard="{StaticResource UserInfoStoryboard}"/>
+            <BeginStoryboard Storyboard="{StaticResource UserInfoStoryboard}" />
         </EventTrigger>
         <EventTrigger RoutedEvent="Button.Click" SourceName="btnCloseUserInfo">
-            <BeginStoryboard Storyboard="{StaticResource CloseUserInfoStoryboard}"/>
+            <BeginStoryboard Storyboard="{StaticResource CloseUserInfoStoryboard}" />
         </EventTrigger>
     </Window.Triggers>
 
     <Border Name="layout" Style="{DynamicResource MainBorderStyle}">
-        <!--边框阴影-->
+        <!--  边框阴影  -->
         <Border.Effect>
-            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="3"/>
+            <DropShadowEffect BlurRadius="5"
+                              Direction="3"
+                              Opacity="0.3"
+                              ShadowDepth="0"
+                              Color="Gray" />
         </Border.Effect>
         <Grid>
-            <!--窗口上方背景-->
-            <Border Style="{DynamicResource MainTopBorderStyle}" MouseLeftButtonDown="Border_MouseLeftButtonDown"/>
-            <!--窗口控制按钮-->
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Content="&#xe65a;" Style="{StaticResource WindowControlButtonStyle}" Click="btnMin_Click"/>
-                <Button Style="{StaticResource WindowMaxButtonStyle}" Click="btnMax_Click"/>
-                <Button Content="&#xe605;" Style="{StaticResource WindowControlButtonStyle}" Click="btnClose_Click"/>
+            <!--  窗口上方背景  -->
+            <Border MouseLeftButtonDown="Border_MouseLeftButtonDown" Style="{DynamicResource MainTopBorderStyle}" />
+            <!--  窗口控制按钮  -->
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button Click="btnMin_Click" Content="&#xe65a;" Style="{StaticResource WindowControlButtonStyle}" />
+                <Button Click="btnMax_Click" Style="{StaticResource WindowMaxButtonStyle}" />
+                <Button Click="btnClose_Click" Content="&#xe605;" Style="{StaticResource WindowControlButtonStyle}" />
             </StackPanel>
 
-            <Grid Margin="50 20">
+            <Grid Margin="50,20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="65" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Border CornerRadius="20" Height="40" Width="40">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Border Width="40" Height="40" CornerRadius="20">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Assets/Image/xiamu.jpg"/>
+                            <ImageBrush ImageSource="/Assets/Image/xiamu.jpg" />
                         </Border.Background>
                     </Border>
-                    <StackPanel Margin="15 0 0 0">
-                        <TextBlock Text="学生管理系统" FontSize="20" Foreground="White"/>
-                        <TextBlock Text="Student management system" Foreground="#7EFFFFFF"/>
+                    <StackPanel Margin="15,0,0,0">
+                        <TextBlock FontSize="20" Foreground="White" Text="学生管理系统" />
+                        <TextBlock Foreground="#7EFFFFFF" Text="Student management system" />
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-                    <Border CornerRadius="15" Height="30" Width="30">
+                <StackPanel Margin="10"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <Border Width="30" Height="30" CornerRadius="15">
                         <Border.Background>
-                            <ImageBrush ImageSource="{Binding UserInfo.Avatar}"/>
+                            <ImageBrush ImageSource="{Binding UserInfo.Avatar}" />
                         </Border.Background>
                     </Border>
-                    <!--Cursor="Hand"设置鼠标移入时的形状-->
-                    <Button Margin="5 0 0 0" Foreground="White" Cursor="Hand"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnUsreInfo">
+                    <!--  Cursor="Hand"设置鼠标移入时的形状  -->
+                    <Button Name="btnUsreInfo"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Cursor="Hand"
+                            Foreground="White">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <TextBlock Text="{Binding UserInfo.UserName}"/>
+                                <TextBlock Text="{Binding UserInfo.UserName}" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                 </StackPanel>
+                <TextBox Name="Search" Style="{DynamicResource StaticResourceSearchTextBoxStyle}" Text="{Binding SearchText}" />
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
-                    <!--Bind to switch command₇-->
-                    <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="FirstPageView" Click="FirstPageRadioButton_Checked"/>
-                    <RadioButton Content="课程管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="CoursePageView" Checked="CoursePageRadioButton_Checked"/>
-                    <RadioButton Content="通讯录管理" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="ContactsView" Checked="ContactsRadioButton_Checked"/>
-                    <RadioButton Content="教材管理" Style="{StaticResource NavButtonStyle}"
-                                 Command="{Binding NavChangedCommand}" CommandParameter="TextbookView" Checked="TextbookRadioButton_Checked"/>
-                    <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}" 
-                                 Command="{Binding NavChangedCommand}" CommandParameter="DocumentEditingView"/>
-                    <RadioButton Content="娱乐放松" Style="{StaticResource NavButtonStyle}"
-                                 Command="{Binding NavChangedCommand}" CommandParameter="GameView"/>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <!--  Bind to switch command₇  -->
+                    <RadioButton Click="FirstPageRadioButton_Checked"
+                                 Command="{Binding NavChangedCommand}"
+                                 CommandParameter="FirstPageView"
+                                 Content="首页"
+                                 IsChecked="True"
+                                 Style="{StaticResource NavButtonStyle}" />
+                    <RadioButton Checked="CoursePageRadioButton_Checked"
+                                 Command="{Binding NavChangedCommand}"
+                                 CommandParameter="CoursePageView"
+                                 Content="课程管理"
+                                 Style="{StaticResource NavButtonStyle}" />
+                    <RadioButton Checked="ContactsRadioButton_Checked"
+                                 Command="{Binding NavChangedCommand}"
+                                 CommandParameter="ContactsView"
+                                 Content="通讯录管理"
+                                 Style="{StaticResource NavButtonStyle}" />
+                    <RadioButton Checked="TextbookRadioButton_Checked"
+                                 Command="{Binding NavChangedCommand}"
+                                 CommandParameter="TextbookView"
+                                 Content="教材管理"
+                                 Style="{StaticResource NavButtonStyle}" />
+                    <RadioButton Command="{Binding NavChangedCommand}"
+                                 CommandParameter="DocumentEditingView"
+                                 Content="个人中心"
+                                 Style="{StaticResource NavButtonStyle}" />
+                    <RadioButton Command="{Binding NavChangedCommand}"
+                                 CommandParameter="GameView"
+                                 Content="娱乐放松"
+                                 Style="{StaticResource NavButtonStyle}" />
                 </StackPanel>
-                <TextBox Name="Search" Text="{Binding SearchText}" Style="{DynamicResource StaticResourceSearchTextBoxStyle}"/>
-                <Button Grid.Row="1" Style="{StaticResource SearchButtonStyle}" Click="SearchButton_Click" Visibility="Hidden"/>
+                <Button Grid.Row="1"
+                        Click="SearchButton_Click"
+                        Style="{StaticResource SearchButtonStyle}"
+                        Visibility="Hidden" />
 
-                <ContentControl Grid.Row="2" Content="{Binding MainContent}"></ContentControl>
+                <ContentControl Grid.Row="2" Content="{Binding MainContent}" />
             </Grid>
-            <!--抽屉侧滑栏-->
+            <!--  抽屉侧滑栏  -->
             <Border Style="{DynamicResource DrawerSideSlideBorderStyle}">
                 <Border.RenderTransform>
-                    <TranslateTransform X="250" x:Name="tt"/>
+                    <TranslateTransform x:Name="tt" X="250" />
                 </Border.RenderTransform>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="230"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="230" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <!--关闭按钮-->
-                    <Button x:Name="btnCloseUserInfo"  Style="{DynamicResource CloseButtonStyle}" Content="&#xe605;" />
-                    <!--头像-->
-                    <Border Height="80" Width="80" CornerRadius="40">
+                    <!--  关闭按钮  -->
+                    <Button x:Name="btnCloseUserInfo" Content="&#xe605;" Style="{DynamicResource CloseButtonStyle}" />
+                    <!--  头像  -->
+                    <Border Width="80" Height="80" CornerRadius="40">
                         <Border.Background>
-                            <ImageBrush ImageSource="{Binding UserInfo.Avatar}"/>
+                            <ImageBrush ImageSource="{Binding UserInfo.Avatar}" />
                         </Border.Background>
                         <Border.Effect>
-                            <DropShadowEffect Color="White" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="180"/>
+                            <DropShadowEffect BlurRadius="5"
+                                              Direction="180"
+                                              Opacity="0.3"
+                                              ShadowDepth="0"
+                                              Color="White" />
                         </Border.Effect>
                     </Border>
-                    <Grid Grid.Row="1" Margin="20 0">
+                    <Grid Grid.Row="1" Margin="20,0">
                         <Grid.Resources>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Foreground" Value="White" />
                             </Style>
                             <Style TargetType="RadioButton">
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Foreground" Value="White" />
                             </Style>
                         </Grid.Resources>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center">
-                            <TextBlock Text="用户名:"/>
-                            <TextBlock Text="{Binding UserInfo.UserName}" Margin="10,0,0,0"/>
+                        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock Text="用户名:" />
+                            <TextBlock Margin="10,0,0,0" Text="{Binding UserInfo.UserName}" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
-                            <TextBlock Text="性   别:"/>
-                            <RadioButton Content="男" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.Gender,Converter={StaticResource genderConverter},ConverterParameter=1}"/>
-                            <RadioButton Content="女" Margin="10,0,0,0" Template="{StaticResource GenderRadioButtonTemplate}" IsChecked="{Binding UserInfo.Gender,Converter={StaticResource genderConverter},ConverterParameter=2}"/>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock Text="性   别:" />
+                            <RadioButton Margin="10,0,0,0"
+                                         Content="男"
+                                         IsChecked="{Binding UserInfo.Gender, Converter={StaticResource genderConverter}, ConverterParameter=1}"
+                                         Template="{StaticResource GenderRadioButtonTemplate}" />
+                            <RadioButton Margin="10,0,0,0"
+                                         Content="女"
+                                         IsChecked="{Binding UserInfo.Gender, Converter={StaticResource genderConverter}, ConverterParameter=2}"
+                                         Template="{StaticResource GenderRadioButtonTemplate}" />
                         </StackPanel>
                     </Grid>
                 </Grid>
